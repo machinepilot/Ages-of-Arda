@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bow -->
+  <path d="M30,20 Q10,50 30,80" fill="none" stroke="#b87333" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Bowstring -->
+  <line x1="30" y1="20" x2="30" y2="80" stroke="#f5e7c1" stroke-width="1"/>
+  
+  <!-- Arrow -->
+  <line x1="30" y1="50" x2="80" y2="50" stroke="#5a7c96" stroke-width="2"/>
+  
+  <!-- Arrow tip -->
+  <path d="M80,50 L70,45 L72,50 L70,55 Z" fill="#5a7c96" stroke="#3a2e21" stroke-width="1"/>
+  
+  <!-- Fletching -->
+  <path d="M30,50 L40,45 L40,55 Z" fill="#2e5741" stroke="#3a2e21" stroke-width="1"/>
+  
+  <!-- Decorative woodgrain lines -->
+  <path d="M28,30 Q18,50 28,70" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.5"/>
+  <path d="M26,25 Q16,50 26,75" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.5"/>
+</svg> 
