@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Bank System - Ages of Arda</title>
+    <link rel="stylesheet" href="../roguebasin-style.css">
+</head>
+<body>
+    <div id="mw-navigation">
+        <div class="sidebar">
+            <!-- Sidebar content will be included via JavaScript -->
+        </div>
+    </div>
+    
+    <div id="content" class="mw-body">
+        <h1 id="firstHeading">Memory Bank System</h1>
+        
+        <div id="bodyContent">
+            <div class="card">
+                <h3>Persistent Context for AI-Driven Gameplay</h3>
+                <p>The Memory Bank System is a specialized knowledge management framework that provides persistent context to the AI systems in Ages of Arda. It serves as the long-term memory for the game's AI agents, ensuring consistency, coherence, and continuity across gameplay sessions while preventing hallucinations and incorrect information.</p>
+            </div>
+            
+            <h2>Core Architecture</h2>
+            
+            <p>The Memory Bank System is organized into five main components, each focusing on a different aspect of game context:</p>
+            
+            <div class="architecture-diagram">
+                <img src="../images/memory-bank-architecture.png" alt="Memory Bank Architecture">
+            </div>
+            
+            <h3>Memory Components</h3>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Game State Context</h3>
+                    <p>Represents the current game state, including player location, inventory, abilities, and entity relationships. This component enables AI systems to understand the player's current situation and respond appropriately.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Player Experience</h3>
+                    <p>Captures player interaction patterns, preferences, and history. This allows for personalized gameplay experiences and ensures AI responses are consistent with the player's past actions and choices.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>World Building</h3>
+                    <p>Contains lore, environment descriptions, cultural details, and NPC behaviors. This is the foundation for creating a rich, immersive world that aligns with Tolkien's legendarium.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>AI Behavior Patterns</h3>
+                    <p>Documents successful and failed AI interaction patterns, enabling the system to learn from past experiences and improve over time. This component is crucial for refining AI-driven gameplay elements.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Technical Architecture</h3>
+                    <p>Provides system diagrams and data flow patterns that help the AI understand the technical capabilities and constraints of the game engine, ensuring generated content is compatible with the game's systems.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Lore Database</h3>
+                    <p>A comprehensive collection of canonical Tolkien lore, organized by age and entity type, with source attribution. This serves as the authoritative reference for narrative generation and world consistency.</p>
+                </div>
+            </div>
+            
+            <h2>Memory Bank File Structure</h2>
+            
+            <p>The Memory Bank is implemented as a structured file system with specialized formats for different types of information:</p>
+            
+            <pre><code>memory-bank/
+├── game-state/
+│   ├── player.json           # Player character stats and state
+│   ├── npcs.json             # NPC states and relationships
+│   ├── world-state.json      # Global game world state
+│   ├── quests.json           # Active and completed quests
+│   └── items.json            # Important items and artifacts
+│
+├── player-experience/
+│   ├── choices.json          # Significant player decisions
+│   ├── play-patterns.json    # Observed gameplay preferences
+│   ├── session-history.json  # Summary of past sessions
+│   └── interactions.json     # Key character interactions
+│
+├── world-building/
+│   ├── locations/            # Location descriptions by region
+│   ├── cultures/             # Cultural details of Middle-earth peoples
+│   ├── historical-events/    # Major events in timeline
+│   └── artifacts/            # Legendary items and their histories
+│
+├── ai-patterns/
+│   ├── dialogues/            # Successful dialogue patterns
+│   ├── narratives/           # Effective narrative structures
+│   ├── failed-interactions/  # Problematic AI responses to avoid
+│   └── player-feedback.json  # Recorded player feedback on AI
+│
+├── technical/
+│   ├── engine-capabilities.json  # Game engine capabilities
+│   ├── response-formats.json     # Expected output structures
+│   ├── performance-metrics.json  # Processing time constraints
+│   └── integration-points.json   # How AI connects to game systems
+│
+└── lore/
+    ├── first-age/            # First Age entities and events
+    ├── second-age/           # Second Age entities and events
+    ├── third-age/            # Third Age entities and events
+    ├── fourth-age/           # Fourth Age entities and events
+    ├── entities/             # Cross-age entity definitions
+    └── sources.json          # Lore source attributions</code></pre>
+            
+            <h2>Memory Entry Structure</h2>
+            
+            <p>Each memory entry follows a standardized structure to ensure consistency and enable efficient retrieval. Here's an example of a location memory entry:</p>
+            
+            <pre><code>{
+  "type": "location",
+  "id": "minas-tirith",
+  "name": "Minas Tirith",
+  "aliases": ["The White City", "City of Kings", "Tower of Guard"],
+  "age": "third",
+  "region": "gondor",
+  "description": "A multi-tiered fortress city built on a hill, with seven concentric rings carved from white stone. It serves as the capital of Gondor.",
+  "significance": "Capital of Gondor and stronghold against the forces of Mordor",
+  "notable_features": [
+    "The White Tower of Ecthelion",
+    "The Court of the Fountain",
+    "The Great Gate",
+    "The Houses of Healing",
+    "The Citadel"
+  ],
+  "inhabitants": [
+    {
+      "type": "culture",
+      "id": "gondorians",
+      "relationship": "primary"
+    }
+  ],
+  "history": [
+    {
+      "event": "founding",
+      "year": "TA 1",
+      "description": "Built as Minas Anor (Tower of the Sun) by Anárion, son of Elendil."
+    },
+    {
+      "event": "renaming",
+      "year": "TA 2002",
+      "description": "Renamed to Minas Tirith (Tower of Guard) after the fall of Minas Ithil to the Nazgûl."
+    },
+    {
+      "event": "siege",
+      "year": "TA 3019",
+      "description": "Withstood the Siege of Gondor during the War of the Ring."
+    }
+  ],
+  "connections": [
+    {
+      "type": "location",
+      "id": "pelennor-fields",
+      "relationship": "surrounds"
+    },
+    {
+      "type": "location",
+      "id": "osgiliath",
+      "relationship": "east"
+    },
+    {
+      "type": "location",
+      "id": "mount-mindolluin",
+      "relationship": "built_against"
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Return of the King",
+      "type": "book",
+      "chapter": "Minas Tirith",
+      "page": "various"
+    }
+  ],
+  "last_updated": "2023-06-15T14:30:22Z",
+  "update_reason": "Added detailed description of the seven levels"
+}</code></pre>
+            
+            <h2>Memory Access Patterns</h2>
+            
+            <p>The AI systems access the Memory Bank through a set of specialized interfaces:</p>
+            
+            <h3>Direct Query Interface</h3>
+            
+            <pre><code>/**
+ * Retrieve memory entries by query parameters
+ */
+memory_entry_t **
+memory_bank_query(memory_bank_t *bank, query_params_t *params)
+{
+    if (bank == NULL || params == NULL) {
+        return NULL;
+    }
+    
+    memory_result_set_t *results = create_result_set();
+    
+    // Process query against each relevant memory component
+    if (params->include_game_state) {
+        query_game_state(bank, params, results);
+    }
+    
+    if (params->include_world_building) {
+        query_world_building(bank, params, results);
+    }
+    
+    // Additional components as needed
+    
+    // Sort by relevance and return
+    sort_by_relevance(results);
+    
+    return extract_entries(results);
+}</code></pre>
+            
+            <h3>Lore-Specific Interface</h3>
+            
+            <pre><code>/**
+ * Retrieve lore specific to an entity and age
+ */
+lore_entry_t *
+memory_bank_get_lore(memory_bank_t *bank, 
+                      const char *entity_name,
+                      age_t age,
+                      lore_detail_level_t detail_level)
+{
+    if (bank == NULL || entity_name == NULL) {
+        return NULL;
+    }
+    
+    // First try exact match for the specific age
+    lore_entry_t *entry = find_lore_entry(bank, entity_name, age);
+    
+    // If not found, try aliases
+    if (entry == NULL) {
+        entry = find_lore_by_aliases(bank, entity_name, age);
+    }
+    
+    // If still not found and entity exists across ages, get most relevant
+    if (entry == NULL) {
+        entry = find_cross_age_lore(bank, entity_name);
+    }
+    
+    // Filter content based on detail level
+    if (entry != NULL) {
+        apply_detail_filter(entry, detail_level);
+    }
+    
+    return entry;
+}</code></pre>
+            
+            <h3>Context Assembly Interface</h3>
+            
+            <pre><code>/**
+ * Assemble comprehensive context for AI prompt
+ */
+char *
+memory_bank_assemble_context(memory_bank_t *bank, 
+                             context_request_t *request,
+                             size_t max_tokens)
+{
+    if (bank == NULL || request == NULL) {
+        return NULL;
+    }
+    
+    context_builder_t *builder = create_context_builder(max_tokens);
+    
+    // Add components based on request priorities
+    if (request->include_current_state) {
+        add_current_game_state(bank, builder, request->state_priority);
+    }
+    
+    if (request->include_player_history) {
+        add_player_history(bank, builder, request->history_priority);
+    }
+    
+    if (request->include_lore) {
+        add_relevant_lore(bank, builder, request->location, 
+                          request->entities, request->lore_priority);
+    }
+    
+    // Finalize and format context
+    format_context(builder);
+    
+    return extract_context_string(builder);
+}</code></pre>
+            
+            <h2>Memory Update Mechanisms</h2>
+            
+            <p>The Memory Bank is continuously updated through several mechanisms:</p>
+            
+            <h3>Game Event Listeners</h3>
+            
+            <p>Key game events trigger automatic updates to the Memory Bank:</p>
+            
+            <ul>
+                <li><strong>Location Discovery</strong>: When a player discovers a new location, its details are added to the player experience</li>
+                <li><strong>NPC Interactions</strong>: Conversations and relationships with NPCs are recorded</li>
+                <li><strong>Quest Completion</strong>: Major narrative achievements are logged</li>
+                <li><strong>Player Choices</strong>: Significant decisions are stored to influence future AI responses</li>
+                <li><strong>World Changes</strong>: Changes to the game world (e.g., political shifts, destroyed locations) are recorded</li>
+            </ul>
+            
+            <h3>AI Feedback Loop</h3>
+            
+            <p>AI responses are evaluated and used to refine the Memory Bank:</p>
+            
+            <ul>
+                <li><strong>Success Patterns</strong>: Successful AI interactions are recorded for future reference</li>
+                <li><strong>Failure Patterns</strong>: Problematic responses are logged to avoid repetition</li>
+                <li><strong>Player Reactions</strong>: Implicit and explicit player feedback affects future context assembly</li>
+                <li><strong>Content Quality</strong>: Generated content is evaluated for lore accuracy and narrative quality</li>
+            </ul>
+            
+            <h3>Session Summaries</h3>
+            
+            <p>At the end of each gameplay session, the Memory Bank generates a session summary:</p>
+            
+            <pre><code>{
+  "session_id": "player1-2023-07-15-01",
+  "start_time": "2023-07-15T19:30:15Z",
+  "end_time": "2023-07-15T21:45:22Z",
+  "duration_minutes": 135,
+  "player": {
+    "id": "player1",
+    "character": "Durin VII",
+    "race": "dwarf",
+    "level_start": 8,
+    "level_end": 9
+  },
+  "locations_visited": [
+    "erebor-throne-room",
+    "erebor-forges",
+    "erebor-deep-mines",
+    "lake-town-market"
+  ],
+  "quest_progress": [
+    {
+      "quest_id": "reclaim-arkenstone",
+      "progress": "Started quest by speaking to King Thorin IV",
+      "completion": 15
+    },
+    {
+      "quest_id": "forge-mithril-hammer",
+      "progress": "Completed by forging the Hammer of Durin VII",
+      "completion": 100
+    }
+  ],
+  "key_interactions": [
+    {
+      "npc": "thorin-iv",
+      "summary": "Received quest to find the lost Arkenstone",
+      "relationship_change": "+5 (now 85/100)"
+    },
+    {
+      "npc": "dain-ironfoot",
+      "summary": "Learned ancient forging techniques",
+      "relationship_change": "+10 (now 60/100)"
+    }
+  ],
+  "narrative_achievements": [
+    "Discovered the secret history of the Hammer of Durin",
+    "Learned about the corruption spreading from Moria"
+  ],
+  "player_choices": [
+    {
+      "context": "Dealing with Lake-town merchants",
+      "choice": "Negotiated fair prices rather than using royal authority",
+      "alignment_impact": "Lawful Good reinforcement"
+    }
+  ],
+  "ai_performance": {
+    "dialogue_quality": 4.8,
+    "narrative_coherence": 4.6,
+    "lore_accuracy": 4.9,
+    "response_relevance": 4.7,
+    "total_queries": 247,
+    "average_response_time": 0.8
+  }
+}</code></pre>
+            
+            <h2>Lore Organization</h2>
+            
+            <p>The lore component of the Memory Bank is organized to maximize authenticity and narrative consistency:</p>
+            
+            <h3>Age-Based Organization</h3>
+            
+            <p>Lore is primarily organized by the four Ages of Arda:</p>
+            
+            <ul>
+                <li><strong>First Age</strong>: From the awakening of the Elves to the War of Wrath</li>
+                <li><strong>Second Age</strong>: From the defeat of Morgoth to the defeat of Sauron and the One Ring</li>
+                <li><strong>Third Age</strong>: From the defeat of Sauron to the War of the Ring and departure of the Ring-bearers</li>
+                <li><strong>Fourth Age</strong>: The Age of Men, following the departure of the Elves</li>
+            </ul>
+            
+            <h3>Entity Type Categorization</h3>
+            
+            <p>Within each age, entities are categorized by type:</p>
+            
+            <ul>
+                <li><strong>Characters</strong>: Historical and legendary figures</li>
+                <li><strong>Locations</strong>: Physical places and realms</li>
+                <li><strong>Items</strong>: Artifacts, weapons, and significant objects</li>
+                <li><strong>Events</strong>: Battles, councils, journeys, and significant moments</li>
+                <li><strong>Cultures</strong>: Peoples and their customs, languages, and traditions</li>
+                <li><strong>Creatures</strong>: Races, monsters, and beings</li>
+                <li><strong>Concepts</strong>: Ideas, forces, and metaphysical elements</li>
+            </ul>
+            
+            <h3>Source Attribution</h3>
+            
+            <p>All lore entries include source attribution to distinguish between:</p>
+            
+            <ul>
+                <li><strong>Primary Canon</strong>: Direct from Tolkien's published works (The Hobbit, The Lord of the Rings)</li>
+                <li><strong>Secondary Canon</strong>: From posthumously published works edited by Christopher Tolkien (The Silmarillion, Unfinished Tales)</li>
+                <li><strong>Tertiary Canon</strong>: From The History of Middle-earth series and other scholarly compilations</li>
+                <li><strong>Game Extensions</strong>: Lore extensions created specifically for the game</li>
+            </ul>
+            
+            <p>This attribution system allows AI systems to prioritize more canonical sources and clearly mark game-specific extensions.</p>
+            
+            <h2>Integration with MCP</h2>
+            
+            <p>The Memory Bank is tightly integrated with the <a href="mcp.html">Model Context Protocol (MCP)</a> to efficiently provide context for AI-generated content:</p>
+            
+            <h3>Memory Bank API Endpoints</h3>
+            
+            <div class="api-endpoint">
+                <h3>Get Contextual Memory</h3>
+                <div class="api-url"><span class="api-method post">POST</span> /memory/context</div>
+                <div class="api-params">
+                    <h4>Parameters:</h4>
+                    <table class="api-param-table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>context_type</td>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>Type of context needed (e.g., "dialogue", "location", "quest")</td>
+                        </tr>
+                        <tr>
+                            <td>location</td>
+                            <td>string</td>
+                            <td>No</td>
+                            <td>Current location for context</td>
+                        </tr>
+                        <tr>
+                            <td>entities</td>
+                            <td>array</td>
+                            <td>No</td>
+                            <td>Relevant entities for the context</td>
+                        </tr>
+                        <tr>
+                            <td>max_tokens</td>
+                            <td>integer</td>
+                            <td>Yes</td>
+                            <td>Maximum context length in tokens</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-example">
+                    <h4>Response:</h4>
+                    <pre><code>{
+  "formatted_context": "[GAME_STATE]\n{...}\n[/GAME_STATE]\n\n[PLAYER_HISTORY]\n{...}\n[/PLAYER_HISTORY]\n\n[LORE_CONTEXT]\n{...}\n[/LORE_CONTEXT]",
+  "token_count": 842,
+  "sources_used": [
+    "game-state/player.json",
+    "player-experience/choices.json",
+    "lore/third-age/locations/minas-tirith.json"
+  ],
+  "memory_age": {
+    "game_state": "current",
+    "player_history": "last 3 sessions",
+    "lore": "canonical"
+  }
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="api-endpoint">
+                <h3>Update Memory Entry</h3>
+                <div class="api-url"><span class="api-method post">POST</span> /memory/update</div>
+                <div class="api-params">
+                    <h4>Parameters:</h4>
+                    <table class="api-param-table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>component</td>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>Memory component to update (e.g., "game_state", "player_experience")</td>
+                        </tr>
+                        <tr>
+                            <td>entry_type</td>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>Type of entry to update (e.g., "location", "character")</td>
+                        </tr>
+                        <tr>
+                            <td>entry_id</td>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>Identifier for the entry to update</td>
+                        </tr>
+                        <tr>
+                            <td>update_data</td>
+                            <td>object</td>
+                            <td>Yes</td>
+                            <td>Data to update in the entry</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-example">
+                    <h4>Response:</h4>
+                    <pre><code>{
+  "status": "success",
+  "updated_entry_id": "minas-tirith",
+  "update_timestamp": "2023-07-15T22:14:35Z",
+  "changes_applied": [
+    "description",
+    "notable_features.4"
+  ],
+  "previous_version_id": "minas-tirith-v12"
+}</code></pre>
+                </div>
+            </div>
+            
+            <h3>Context Assembly Pipeline</h3>
+            
+            <p>The integration between the Memory Bank and MCP involves a sophisticated context assembly pipeline:</p>
+            
+            <ol>
+                <li><strong>Request Analysis</strong>: The MCP analyzes the incoming request to determine context needs</li>
+                <li><strong>Context Specification</strong>: A detailed context request is formulated, specifying required components</li>
+                <li><strong>Memory Retrieval</strong>: The Memory Bank gathers relevant entries from across components</li>
+                <li><strong>Relevance Ranking</strong>: Entries are ranked by relevance to the current situation</li>
+                <li><strong>Context Formatting</strong>: Selected entries are formatted into the structured MCP prompt format</li>
+                <li><strong>Token Optimization</strong>: Context is trimmed to fit within token limits while preserving critical information</li>
+                <li><strong>Prompt Assembly</strong>: The formatted context is combined with the task-specific instruction</li>
+                <li><strong>Model Processing</strong>: The complete prompt is processed by the LLM via Ollama</li>
+            </ol>
+            
+            <h2>Performance Optimizations</h2>
+            
+            <p>Several optimizations ensure the Memory Bank operates efficiently even with large amounts of data:</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Content Caching</h3>
+                    <p>Frequently accessed memory entries are cached in memory for rapid access, with cache invalidation on updates.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Progressive Loading</h3>
+                    <p>Memory components are loaded progressively based on immediate needs rather than loading everything at startup.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Relevance Filtering</h3>
+                    <p>Sophisticated algorithms rank memory entries by relevance to minimize context size while maximizing usefulness.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Compression Techniques</h3>
+                    <p>Less frequently accessed information is stored in compressed formats and decompressed only when needed.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Incremental Updates</h3>
+                    <p>Only changed portions of memory entries are written during updates, reducing I/O operations.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Background Processing</h3>
+                    <p>Memory reorganization and optimization tasks run during idle periods to avoid impacting gameplay.</p>
+                </div>
+            </div>
+            
+            <h2>Future Enhancements</h2>
+            
+            <p>The Memory Bank System is designed for ongoing evolution, with several planned enhancements:</p>
+            
+            <ul>
+                <li><strong>Vector Embeddings</strong>: Implementing vector embeddings for more sophisticated semantic search and retrieval</li>
+                <li><strong>Automated Summarization</strong>: Using AI to generate and maintain concise summaries of complex historical events</li>
+                <li><strong>Cross-Session Learning</strong>: Refining memory prioritization based on which contexts lead to better gameplay</li>
+                <li><strong>Player Memory Customization</strong>: Allowing players to prioritize certain types of memories and lore</li>
+                <li><strong>Community Contributions</strong>: Creating a framework for player-contributed lore that stays faithful to canon</li>
+                <li><strong>Temporal Memory Dynamics</strong>: Implementing a system for memories to evolve and change over time</li>
+                <li><strong>Emotional Tagging</strong>: Adding emotional annotations to memories to enhance narrative relevance</li>
+            </ul>
+            
+            <div class="card">
+                <h3>Related Documentation</h3>
+                <p>To further explore the Memory Bank System and related components:</p>
+                <ul>
+                    <li><a href="mcp.html">Model Context Protocol (MCP)</a> - How memory is used in AI requests</li>
+                    <li><a href="lore-management.html">Lore Management</a> - Details on the lore database structure</li>
+                    <li><a href="multi-agent.html">Multi-Agent Framework</a> - How specialized agents use memory</li>
+                    <li><a href="../developer/memory-api.html">Memory API Reference</a> - Complete documentation of the Memory Bank API</li>
+                    <li><a href="../developer/contribute-lore.html">Lore Contribution Guide</a> - How to add to the lore database</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="footer" class="mw-footer">
+        <p>Ages of Arda Wiki - Documentation for AI-Driven Roguelike Development</p>
+    </footer>
+    
+    <script src="../sidebar.js"></script>
+</body>
+</html> 

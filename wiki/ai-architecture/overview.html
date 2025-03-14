@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Architecture Overview - Ages of Arda</title>
+    <link rel="stylesheet" href="../roguebasin-style.css">
+</head>
+<body>
+    <div id="mw-navigation">
+        <div class="sidebar">
+            <!-- Sidebar content will be included via JavaScript -->
+        </div>
+    </div>
+    
+    <div id="content" class="mw-body">
+        <h1 id="firstHeading">AI Architecture Overview</h1>
+        
+        <div id="bodyContent">
+            <div class="card">
+                <h3>A Layered Approach to AI-Driven Gameplay</h3>
+                <p>The Ages of Arda project employs a sophisticated AI architecture designed to create emergent, lore-accurate gameplay experiences. This architecture integrates local Large Language Models (LLMs) with the Angband game engine through a series of specialized components, each with distinct responsibilities.</p>
+            </div>
+            
+            <h2>Core Architecture</h2>
+            
+            <p>The AI system is built on four foundational pillars that work together to create a cohesive gameplay experience:</p>
+            
+            <div class="architecture-diagram">
+                <img src="../images/ai-architecture-overview.png" alt="AI Architecture Overview" class="diagram">
+            </div>
+            
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>1. Model Context Protocol (MCP)</h3>
+                    <p>The communication layer that connects the game engine with local LLMs via Ollama.</p>
+                    <ul>
+                        <li>Standardized API for AI interactions</li>
+                        <li>Context management for coherent responses</li>
+                        <li>Prompt engineering for consistent outputs</li>
+                        <li>Response parsing and validation</li>
+                    </ul>
+                    <p><a href="mcp-integration.html">Learn more about MCP</a></p>
+                </div>
+                
+                <div class="component-card">
+                    <h3>2. Multi-Agent Framework</h3>
+                    <p>A collection of specialized AI agents that handle different aspects of gameplay generation.</p>
+                    <ul>
+                        <li>Narrative Agent for story and quests</li>
+                        <li>Character Agent for NPCs and dialogue</li>
+                        <li>World Agent for environment descriptions</li>
+                        <li>Item Agent for unique item generation</li>
+                        <li>Combat Agent for battle narration</li>
+                    </ul>
+                    <p><a href="multi-agent-framework.html">Learn more about the Multi-Agent Framework</a></p>
+                </div>
+                
+                <div class="component-card">
+                    <h3>3. Memory Bank System</h3>
+                    <p>Persistent storage for game state, player history, and AI-generated content.</p>
+                    <ul>
+                        <li>Game State Context for current world state</li>
+                        <li>Player Experience for interaction patterns</li>
+                        <li>World Building for environment details</li>
+                        <li>AI Behavior Patterns for successful interactions</li>
+                        <li>Technical Architecture for system diagrams</li>
+                    </ul>
+                    <p><a href="memory-bank.html">Learn more about the Memory Bank System</a></p>
+                </div>
+                
+                <div class="component-card">
+                    <h3>4. Lore Management System</h3>
+                    <p>Repository for canonical Tolkien lore to ensure accuracy and consistency.</p>
+                    <ul>
+                        <li>Structured lore database by age and entity type</li>
+                        <li>Source attribution for canonical information</li>
+                        <li>Integration with narrative generation</li>
+                        <li>Validation of AI-generated content</li>
+                        <li>Performance optimizations for efficient access</li>
+                    </ul>
+                    <p><a href="lore-management.html">Learn more about the Lore Management System</a></p>
+                </div>
+            </div>
+            
+            <h2>System Integration</h2>
+            
+            <p>These four pillars integrate with the Angband game engine and with each other to create a cohesive AI-driven gameplay experience:</p>
+            
+            <div class="integration-diagram">
+                <img src="../images/system-integration.png" alt="System Integration Diagram" class="diagram">
+            </div>
+            
+            <h3>Integration Points</h3>
+            
+            <ol>
+                <li><strong>Game Engine to MCP:</strong> The Angband engine communicates with the MCP server through a C client library, requesting AI-generated content at specific gameplay moments.</li>
+                <li><strong>MCP to Multi-Agent Framework:</strong> The MCP server routes requests to the appropriate specialized agent based on the content type needed.</li>
+                <li><strong>Agents to Memory Bank:</strong> Agents retrieve context from and store generated content in the Memory Bank to maintain consistency across interactions.</li>
+                <li><strong>Agents to Lore Management:</strong> Agents query the Lore Management System to ensure generated content aligns with canonical Tolkien lore.</li>
+                <li><strong>Memory Bank to MCP:</strong> The Memory Bank provides historical context to the MCP for enriching prompts with relevant information.</li>
+            </ol>
+            
+            <h2>Data Flow</h2>
+            
+            <p>A typical AI interaction in the game follows this data flow:</p>
+            
+            <ol>
+                <li><strong>Trigger Event:</strong> A gameplay event (e.g., entering a new location, encountering an NPC) triggers a request for AI-generated content.</li>
+                <li><strong>Context Gathering:</strong> The game engine collects relevant context (player state, location, etc.) and sends it to the MCP server.</li>
+                <li><strong>Agent Selection:</strong> The MCP server routes the request to the appropriate specialized agent (e.g., World Agent for location descriptions).</li>
+                <li><strong>Context Enrichment:</strong> The agent enriches the context with information from the Memory Bank and Lore Management System.</li>
+                <li><strong>Prompt Construction:</strong> The agent constructs a specialized prompt using templates designed for the specific content type.</li>
+                <li><strong>LLM Generation:</strong> The prompt is sent to the local LLM via Ollama for content generation.</li>
+                <li><strong>Response Processing:</strong> The raw LLM response is parsed, validated, and transformed into a format usable by the game engine.</li>
+                <li><strong>Memory Update:</strong> The interaction and generated content are stored in the Memory Bank for future reference.</li>
+                <li><strong>Game Integration:</strong> The processed content is returned to the game engine and integrated into the gameplay experience.</li>
+            </ol>
+            
+            <h2>Performance Considerations</h2>
+            
+            <p>The AI architecture includes several optimizations to ensure responsive gameplay:</p>
+            
+            <ul>
+                <li><strong>Local LLM Execution:</strong> All AI processing occurs locally via Ollama, eliminating network latency and privacy concerns.</li>
+                <li><strong>Asynchronous Processing:</strong> Non-blocking API calls allow the game to continue while waiting for AI responses.</li>
+                <li><strong>Multi-level Caching:</strong> Frequently accessed content is cached at various levels to reduce redundant processing.</li>
+                <li><strong>Fallback Mechanisms:</strong> Pre-generated content is used when real-time generation would cause delays.</li>
+                <li><strong>Progressive Enhancement:</strong> AI features are implemented in a way that degrades gracefully on less powerful hardware.</li>
+            </ul>
+            
+            <h2>Development Workflow</h2>
+            
+            <p>The AI architecture is developed using a modular approach that allows for incremental implementation and testing:</p>
+            
+            <ol>
+                <li><strong>Core Infrastructure:</strong> MCP server and basic communication with Ollama</li>
+                <li><strong>Foundational Components:</strong> Memory Bank and Lore Management systems</li>
+                <li><strong>Specialized Agents:</strong> Individual agents for different content types</li>
+                <li><strong>Integration Layer:</strong> Connecting all components with the game engine</li>
+                <li><strong>Optimization:</strong> Performance tuning and fallback mechanisms</li>
+                <li><strong>Expansion:</strong> Additional content types and enhanced capabilities</li>
+            </ol>
+            
+            <h2>Future Directions</h2>
+            
+            <p>The AI architecture is designed to be extensible, with several planned enhancements:</p>
+            
+            <ul>
+                <li><strong>Advanced Narrative Generation:</strong> More complex, branching storylines that adapt to player choices</li>
+                <li><strong>Character Development:</strong> NPCs that evolve based on interactions with the player</li>
+                <li><strong>Procedural Content:</strong> AI-generated dungeons, quests, and items with deeper lore integration</li>
+                <li><strong>Multi-modal Integration:</strong> Incorporating image generation for character portraits and location visuals</li>
+                <li><strong>Player Modeling:</strong> Adapting gameplay to individual player preferences and play styles</li>
+            </ul>
+        </div>
+    </div>
+    
+    <footer id="footer" class="mw-footer">
+        <p>Ages of Arda Wiki - Documentation for AI-Driven Roguelike Development</p>
+    </footer>
+    
+    <script src="../sidebar.js"></script>
+</body>
+</html> 

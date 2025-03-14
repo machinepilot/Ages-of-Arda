@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Context Protocol - Ages of Arda</title>
+    <link rel="stylesheet" href="../roguebasin-style.css">
+</head>
+<body>
+    <div id="mw-navigation">
+        <div class="sidebar">
+            <!-- Sidebar content will be included via JavaScript -->
+        </div>
+    </div>
+    
+    <div id="content" class="mw-body">
+        <h1 id="firstHeading">Model Context Protocol (MCP)</h1>
+        
+        <div id="bodyContent">
+            <div class="card">
+                <h3>The Communication Layer for AI Integration</h3>
+                <p>The Model Context Protocol (MCP) serves as the standardized communication layer between the Angband game engine and local Large Language Models (LLMs) via Ollama. It provides a consistent interface for AI-driven gameplay features while abstracting away the complexities of LLM interaction.</p>
+            </div>
+            
+            <h2>Core Concepts</h2>
+            
+            <p>The MCP is built around several key concepts that enable seamless integration of AI capabilities into the game:</p>
+            
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>Context Management</h3>
+                    <p>MCP maintains and enriches context for AI interactions, ensuring that LLMs have the necessary information to generate appropriate responses. This includes game state, player history, and relevant lore.</p>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>Prompt Engineering</h3>
+                    <p>Specialized prompt templates are used to guide LLM responses, ensuring consistent, high-quality outputs that align with gameplay needs and lore constraints.</p>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>Response Parsing</h3>
+                    <p>MCP handles the parsing and validation of LLM responses, transforming raw text into structured data that can be directly used by the game engine.</p>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>Fallback Mechanisms</h3>
+                    <p>To ensure gameplay continuity, MCP includes fallback options when LLM responses are unavailable, inappropriate, or too slow.</p>
+                </div>
+            </div>
+            
+            <h2>Architecture Overview</h2>
+            
+            <p>The MCP consists of several interconnected components that work together to provide AI capabilities to the game:</p>
+            
+            <div class="architecture-diagram">
+                <img src="../images/mcp-architecture.png" alt="MCP Architecture Diagram" class="diagram">
+            </div>
+            
+            <h3>Components</h3>
+            
+            <div class="component-grid">
+                <div class="component-card">
+                    <h4>MCP Server</h4>
+                    <p>A Python-based server that handles communication with Ollama and exposes a REST API for the game engine to consume.</p>
+                    <pre><code># src/mcp/server.py
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+import asyncio
+import ollama
+import logging
+
+from .context_manager import ContextManager
+from .prompt_templates import get_template
+from .response_parser import parse_response
+
+app = FastAPI(title="MCP Server")
+context_manager = ContextManager()
+
+class GenerationRequest(BaseModel):
+    prompt_type: str
+    context_id: str
+    parameters: dict
+    model: str = "llama3"
+
+@app.post("/generate")
+async def generate_content(request: GenerationRequest):
+    try:
+        # Get context for this request
+        context = context_manager.get_context(request.context_id)
+        
+        # Get appropriate template
+        template = get_template(request.prompt_type)
+        
+        # Build full prompt
+        prompt = template.format(
+            context=context,
+            **request.parameters
+        )
+        
+        # Generate response from Ollama
+        response = await ollama.generate(
+            model=request.model,
+            prompt=prompt,
+            options={
+                "temperature": 0.7,
+                "top_p": 0.9,
+                "max_tokens": 512
+            }
+        )
+        
+        # Parse and validate response
+        parsed_response = parse_response(
+            response.text, 
+            request.prompt_type
+        )
+        
+        # Update context with this interaction
+        context_manager.update_context(
+            request.context_id,
+            prompt,
+            parsed_response
+        )
+        
+        return {"result": parsed_response}
+        
+    except Exception as e:
+        logging.error(f"Error generating content: {str(e)}")
+        raise HTTPException(
+            status_code=500, 
+            detail=f"Generation failed: {str(e)}"
+        )</code></pre>
+                </div>
+                
+                <div class="component-card">
+                    <h4>Context Manager</h4>
+                    <p>Maintains conversation history and relevant game state for each active context, ensuring continuity across interactions.</p>
+                    <pre><code># src/mcp/context_manager.py
+import time
+from typing import Dict, List, Any
+import json
+
+class ContextManager:
+    def __init__(self, max_contexts=1000, ttl=3600):
+        self.contexts = {}
+        self.max_contexts = max_contexts
+        self.ttl = ttl  # Time to live in seconds
+    
+    def get_context(self, context_id: str) -> Dict:
+        """Retrieve context by ID, or create new if not exists"""
+        if context_id in self.contexts:
+            context = self.contexts[context_id]
+            context["last_accessed"] = time.time()
+            return context["data"]
+        else:
+            # Create new context
+            self.contexts[context_id] = {
+                "data": {
+                    "history": [],
+                    "game_state": {},
+                    "created_at": time.time()
+                },
+                "last_accessed": time.time()
+            }
+            return self.contexts[context_id]["data"]
+    
+    def update_context(self, context_id: str, 
+                      prompt: str, response: Any) -> None:
+        """Update context with new interaction"""
+        if context_id not in self.contexts:
+            self.get_context(context_id)
+        
+        context = self.contexts[context_id]["data"]
+        
+        # Add to history
+        context["history"].append({
+            "prompt": prompt,
+            "response": response,
+            "timestamp": time.time()
+        })
+        
+        # Trim history if too long
+        if len(context["history"]) > 20:
+            context["history"] = context["history"][-20:]
+        
+        self.contexts[context_id]["last_accessed"] = time.time()
+    
+    def update_game_state(self, context_id: str, 
+                         game_state: Dict) -> None:
+        """Update game state in context"""
+        context = self.get_context(context_id)
+        context["game_state"] = game_state
+    
+    def cleanup_old_contexts(self) -> None:
+        """Remove expired contexts"""
+        now = time.time()
+        to_remove = []
+        
+        for context_id, context in self.contexts.items():
+            if now - context["last_accessed"] > self.ttl:
+                to_remove.append(context_id)
+        
+        for context_id in to_remove:
+            del self.contexts[context_id]</code></pre>
+                </div>
+                
+                <div class="component-card">
+                    <h4>Prompt Templates</h4>
+                    <p>A collection of specialized templates for different types of AI-generated content, designed to elicit appropriate responses.</p>
+                    <pre><code># src/mcp/prompt_templates.py
+from typing import Dict
+
+# Template registry
+_templates = {}
+
+def register_template(name: str, template: str) -> None:
+    """Register a new prompt template"""
+    _templates[name] = template
+
+def get_template(name: str) -> str:
+    """Get a prompt template by name"""
+    if name not in _templates:
+        raise ValueError(f"Template '{name}' not found")
+    return _templates[name]
+
+# Register core templates
+register_template("npc_dialogue", """
+You are {npc_name}, a character in the world of Middle-earth during the {age}.
+
+Character background:
+{character_background}
+
+Current situation:
+{situation}
+
+The player has just said: "{player_message}"
+
+Respond in character as {npc_name}. Keep your response concise (1-3 sentences) and authentic to your character's personality and knowledge. Do not break the fourth wall or reference modern concepts.
+
+Your response:
+""")
+
+register_template("location_description", """
+Describe the following location in the world of Middle-earth during the {age}:
+
+Location: {location_name}
+Background: {location_background}
+
+Current conditions:
+- Time of day: {time_of_day}
+- Weather: {weather}
+- Season: {season}
+
+Notable features: {notable_features}
+
+Write an atmospheric, evocative description of this location as a player would encounter it. Focus on sensory details and the mood of the place. Keep the description between 3-5 sentences.
+
+Description:
+""")
+
+# Additional templates for quests, items, combat, etc.</code></pre>
+                </div>
+                
+                <div class="component-card">
+                    <h4>Response Parser</h4>
+                    <p>Processes and validates LLM outputs, ensuring they meet the requirements for game integration.</p>
+                    <pre><code># src/mcp/response_parser.py
+import json
+import re
+from typing import Any, Dict, Union
+
+def parse_response(text: str, response_type: str) -> Any:
+    """Parse and validate LLM response based on type"""
+    if response_type == "npc_dialogue":
+        return parse_dialogue(text)
+    elif response_type == "location_description":
+        return parse_description(text)
+    elif response_type == "structured_data":
+        return parse_structured_data(text)
+    else:
+        # For simple text responses
+        return clean_text(text)
+
+def parse_dialogue(text: str) -> str:
+    """Parse NPC dialogue response"""
+    # Remove any prefixes the LLM might add
+    text = re.sub(r'^[^A-Za-z]*', '', text)
+    
+    # Remove any suffixes or explanations
+    text = re.sub(r'\n.*$', '', text, flags=re.DOTALL)
+    
+    return clean_text(text)
+
+def parse_description(text: str) -> str:
+    """Parse location description"""
+    # Similar cleaning to dialogue
+    return clean_text(text)
+
+def parse_structured_data(text: str) -> Dict:
+    """Parse JSON-formatted structured data"""
+    # Extract JSON from response
+    match = re.search(r'```json\s*(.*?)\s*```', 
+                     text, re.DOTALL)
+    if match:
+        json_str = match.group(1)
+    else:
+        # Try to find JSON without markdown
+        match = re.search(r'(\{.*\})', text, re.DOTALL)
+        if match:
+            json_str = match.group(1)
+        else:
+            raise ValueError("No JSON found in response")
+    
+    try:
+        return json.loads(json_str)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Invalid JSON in response: {str(e)}")
+
+def clean_text(text: str) -> str:
+    """Clean and normalize text responses"""
+    # Remove leading/trailing whitespace
+    text = text.strip()
+    
+    # Remove quotes that might wrap the response
+    if (text.startswith('"') and text.endswith('"')) or \
+       (text.startswith("'") and text.endswith("'")):
+        text = text[1:-1]
+    
+    # Normalize whitespace
+    text = re.sub(r'\s+', ' ', text)
+    
+    return text</code></pre>
+                </div>
+                
+                <div class="component-card">
+                    <h4>C Client Library</h4>
+                    <p>A C library that allows the Angband engine to communicate with the MCP server.</p>
+                    <pre><code>// src/mcp/client.c
+#include "angband.h"
+#include "mcp_client.h"
+#include <curl/curl.h>
+#include <json-c/json.h>
+
+// Structure to hold response data
+typedef struct {
+    char *data;
+    size_t size;
+} response_t;
+
+// Callback for curl
+static size_t write_callback(void *contents, size_t size, 
+                           size_t nmemb, void *userp) {
+    size_t realsize = size * nmemb;
+    response_t *resp = (response_t *)userp;
+    
+    char *ptr = realloc(resp->data, resp->size + realsize + 1);
+    if (!ptr) {
+        fprintf(stderr, "Out of memory!\n");
+        return 0;
+    }
+    
+    resp->data = ptr;
+    memcpy(&(resp->data[resp->size]), contents, realsize);
+    resp->size += realsize;
+    resp->data[resp->size] = 0;
+    
+    return realsize;
+}
+
+// Initialize MCP client
+bool mcp_init(mcp_client_t *client, const char *server_url) {
+    if (!client || !server_url) return false;
+    
+    // Initialize curl
+    curl_global_init(CURL_GLOBAL_ALL);
+    
+    // Set server URL
+    client->server_url = strdup(server_url);
+    if (!client->server_url) return false;
+    
+    // Initialize context ID
+    sprintf(client->context_id, "game_%ld", (long)time(NULL));
+    
+    return true;
+}
+
+// Generate content via MCP
+char *mcp_generate(mcp_client_t *client, const char *prompt_type,
+                 const char *parameters_json) {
+    if (!client || !prompt_type || !parameters_json) return NULL;
+    
+    CURL *curl;
+    CURLcode res;
+    response_t resp = {0};
+    char *result = NULL;
+    
+    // Create full URL
+    char url[512];
+    sprintf(url, "%s/generate", client->server_url);
+    
+    // Create JSON payload
+    json_object *payload = json_object_new_object();
+    json_object_object_add(payload, "prompt_type", 
+                         json_object_new_string(prompt_type));
+    json_object_object_add(payload, "context_id", 
+                         json_object_new_string(client->context_id));
+    
+    // Parse and add parameters
+    json_object *params = json_tokener_parse(parameters_json);
+    if (params) {
+        json_object_object_add(payload, "parameters", params);
+    } else {
+        // If parameters JSON is invalid, use empty object
+        json_object_object_add(payload, "parameters", 
+                             json_object_new_object());
+    }
+    
+    // Add default model
+    json_object_object_add(payload, "model", 
+                         json_object_new_string("llama3"));
+    
+    const char *payload_str = json_object_to_json_string(payload);
+    
+    // Initialize curl session
+    curl = curl_easy_init();
+    if (curl) {
+        // Set URL
+        curl_easy_setopt(curl, CURLOPT_URL, url);
+        
+        // Set POST data
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload_str);
+        
+        // Set headers
+        struct curl_slist *headers = NULL;
+        headers = curl_slist_append(headers, 
+                                  "Content-Type: application/json");
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+        
+        // Set write callback
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&resp);
+        
+        // Set timeout
+        curl_easy_setopt(curl, CURLOPT_TIMEOUT, 30L);
+        
+        // Perform request
+        res = curl_easy_perform(curl);
+        
+        // Check for errors
+        if (res != CURLE_OK) {
+            fprintf(stderr, "curl_easy_perform() failed: %s\n",
+                   curl_easy_strerror(res));
+        } else {
+            // Parse JSON response
+            json_object *response = json_tokener_parse(resp.data);
+            if (response) {
+                json_object *result_obj;
+                if (json_object_object_get_ex(response, "result", 
+                                           &result_obj)) {
+                    const char *result_str = 
+                        json_object_get_string(result_obj);
+                    if (result_str) {
+                        result = strdup(result_str);
+                    }
+                }
+                json_object_put(response);
+            }
+        }
+        
+        // Clean up
+        curl_slist_free_all(headers);
+        curl_easy_cleanup(curl);
+    }
+    
+    // Free resources
+    json_object_put(payload);
+    free(resp.data);
+    
+    return result;
+}
+
+// Clean up MCP client
+void mcp_cleanup(mcp_client_t *client) {
+    if (!client) return;
+    
+    free(client->server_url);
+    client->server_url = NULL;
+    
+    curl_global_cleanup();
+}</code></pre>
+                </div>
+            </div>
+            
+            <h2>MCP Endpoints</h2>
+            
+            <p>The MCP server exposes several REST endpoints for different types of AI-driven content:</p>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Description</th>
+                        <th>Parameters</th>
+                        <th>Response</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>/generate</code></td>
+                        <td>Generate content based on prompt type</td>
+                        <td>prompt_type, context_id, parameters, model</td>
+                        <td>Generated content</td>
+                    </tr>
+                    <tr>
+                        <td><code>/context</code></td>
+                        <td>Update or retrieve context</td>
+                        <td>context_id, game_state</td>
+                        <td>Current context</td>
+                    </tr>
+                    <tr>
+                        <td><code>/lore</code></td>
+                        <td>Query lore database</td>
+                        <td>query, age, entity_type</td>
+                        <td>Relevant lore entries</td>
+                    </tr>
+                    <tr>
+                        <td><code>/health</code></td>
+                        <td>Check server and model status</td>
+                        <td>None</td>
+                        <td>Health status</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>Integration with Game Engine</h2>
+            
+            <p>The MCP integrates with the Angband game engine through several key touchpoints:</p>
+            
+            <ol>
+                <li><strong>Initialization:</strong> The game initializes the MCP client during startup, establishing a connection to the MCP server.</li>
+                <li><strong>Context Updates:</strong> Game state is regularly sent to the MCP server to maintain up-to-date context.</li>
+                <li><strong>Content Requests:</strong> The game requests AI-generated content at specific points in gameplay.</li>
+                <li><strong>Response Handling:</strong> AI-generated content is integrated into the game's UI and mechanics.</li>
+            </ol>
+            
+            <p>Example integration in the game engine:</p>
+            
+            <pre><code>// src/game/npc.c
+#include "angband.h"
+#include "mcp_client.h"
+
+// Generate NPC dialogue
+char *generate_npc_dialogue(int npc_id, const char *player_message) {
+    npc_type *npc = &npc_list[npc_id];
+    
+    // Create parameters JSON
+    char params[1024];
+    sprintf(params, 
+           "{"
+           "\"npc_name\": \"%s\","
+           "\"character_background\": \"%s\","
+           "\"age\": \"%s\","
+           "\"situation\": \"%s\","
+           "\"player_message\": \"%s\""
+           "}",
+           npc->name,
+           npc->background,
+           current_age_name(),
+           npc->current_situation,
+           player_message);
+    
+    // Request dialogue from MCP
+    char *dialogue = mcp_generate(&mcp_client, "npc_dialogue", params);
+    
+    // Fallback if generation fails
+    if (!dialogue) {
+        dialogue = strdup("I have nothing to say right now.");
+    }
+    
+    return dialogue;
+}</code></pre>
+            
+            <h2>Performance Considerations</h2>
+            
+            <p>The MCP implementation includes several optimizations to ensure responsive gameplay:</p>
+            
+            <ul>
+                <li><strong>Asynchronous Processing:</strong> Non-blocking API calls allow the game to continue while waiting for AI responses.</li>
+                <li><strong>Response Caching:</strong> Common responses are cached to reduce redundant LLM calls.</li>
+                <li><strong>Fallback Mechanisms:</strong> Pre-generated content is used when LLM responses are too slow or unavailable.</li>
+                <li><strong>Context Pruning:</strong> Context history is regularly pruned to maintain optimal performance.</li>
+                <li><strong>Batched Updates:</strong> Game state updates are batched to reduce communication overhead.</li>
+            </ul>
+            
+            <h2>Security Considerations</h2>
+            
+            <p>The MCP implementation includes several security measures:</p>
+            
+            <ul>
+                <li><strong>Local-Only Operation:</strong> The MCP server is designed to run locally, minimizing exposure.</li>
+                <li><strong>Input Validation:</strong> All inputs are validated to prevent injection attacks.</li>
+                <li><strong>Response Filtering:</strong> AI responses are filtered to ensure appropriate content.</li>
+                <li><strong>Rate Limiting:</strong> Requests are rate-limited to prevent abuse.</li>
+                <li><strong>Error Handling:</strong> Robust error handling prevents crashes and information leakage.</li>
+            </ul>
+            
+            <h2>Configuration Options</h2>
+            
+            <p>The MCP can be configured through a configuration file (<code>mcp_config.json</code>) with the following options:</p>
+            
+            <pre><code>{
+  "server": {
+    "host": "localhost",
+    "port": 5000,
+    "workers": 4,
+    "timeout": 30
+  },
+  "models": {
+    "primary": "llama3",
+    "fallback": "mistral",
+    "specialized": {
+      "dialogue": "llama3",
+      "description": "llama3",
+      "quest": "llama3"
+    }
+  },
+  "context": {
+    "max_history": 20,
+    "ttl": 3600,
+    "max_contexts": 1000
+  },
+  "performance": {
+    "cache_size": 1000,
+    "cache_ttl": 300,
+    "batch_size": 5
+  },
+  "logging": {
+    "level": "info",
+    "file": "mcp.log"
+  }
+}</code></pre>
+        </div>
+    </div>
+    
+    <footer id="footer" class="mw-footer">
+        <p>Ages of Arda Wiki - Documentation for AI-Driven Roguelike Development</p>
+    </footer>
+    
+    <script src="../sidebar.js"></script>
+</body>
+</html> 

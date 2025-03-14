@@ -1,0 +1,15 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# C Code Documentation Rules
+*.c, *.h
+- Document every function with detailed descriptions, parameters, return values, and relationships to other functions
+- Identify global variables and explain their purpose
+- Trace data structures and how they interact
+- Explain complex algorithms
+- Document game mechanics implementations
+- Identify file dependencies and inclusions
+- Follow roguelike game conventions in explanations
+- Consider Windows-specific dependencies and compilation requirements

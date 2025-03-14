@@ -1,0 +1,22 @@
+{
+  "books": {
+    "hobbit": {
+      "title": "The Hobbit",
+      "age": "third_age",
+      "year": 2941,
+      "path": "third_age/hobbit_metadata.json"
+    },
+    "lotr": {
+      "title": "The Lord of the Rings",
+      "age": "third_age",
+      "year": 3018,
+      "path": "third_age/lotr_metadata.json"
+    },
+    "silmarillion": {
+      "title": "The Silmarillion",
+      "age": "first_age",
+      "year": 1,
+      "path": "first_age/silmarillion_metadata.json"
+    }
+  }
+}

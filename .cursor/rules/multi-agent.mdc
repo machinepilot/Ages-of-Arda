@@ -1,0 +1,127 @@
+---
+description: Multi-Agent Framework for Angband Variant
+globs: ["**/src/ai/**"]
+alwaysApply: false
+---
+# Multi-Agent Framework for Angband Variant
+
+## Overview
+This document outlines the multi-agent framework for AI-driven gameplay in our Angband variant, inspired by the OWL (Optimized Workforce Learning) framework.
+
+## Agent Types
+
+### 1. Narrative Agent
+- **Purpose**: Generate dynamic storytelling and lore
+- **Responsibilities**:
+  - Create contextual descriptions of environments
+  - Develop NPC dialogue and personalities
+  - Adapt narrative based on player choices
+  - Generate quest descriptions and objectives
+- **Model**: llama2:13b (optimized for creative text)
+
+### 2. Combat Agent
+- **Purpose**: Manage tactical combat situations
+- **Responsibilities**:
+  - Calculate appropriate enemy responses
+  - Generate combat descriptions
+  - Balance difficulty based on player skill
+  - Create unique combat encounters
+- **Model**: codellama:13b (optimized for logical processing)
+
+### 3. World Agent
+- **Purpose**: Manage the game world and environment
+- **Responsibilities**:
+  - Generate procedural dungeons with coherent themes
+  - Manage faction relationships and responses
+  - Control environmental effects and hazards
+  - Create consistent world interactions
+- **Model**: mistral:7b (optimized for efficiency)
+
+### 4. Player Agent
+- **Purpose**: Understand and respond to player behavior
+- **Responsibilities**:
+  - Track player preferences and play style
+  - Suggest appropriate challenges
+  - Provide contextual hints and guidance
+  - Adapt game elements to player skill level
+- **Model**: llama2:13b (optimized for understanding human behavior)
+
+## Agent Communication Protocol
+
+Agents communicate through a structured message format:
+
+```json
+{
+  "agent_id": "narrative_agent",
+  "message_type": "request|response|update",
+  "context": {
+    "game_state": {},
+    "player_state": {},
+    "world_state": {}
+  },
+  "content": {
+    "text": "Detailed message content",
+    "parameters": {}
+  },
+  "priority": 1-5,
+  "timestamp": "ISO timestamp"
+}
+```
+
+## Implementation Guidelines
+
+### Agent Initialization
+```c
+/**
+ * Initialize an AI agent with specific role
+ */
+agent_t *
+init_agent(agent_role_t role, const char *model_name)
+{
+    agent_t *agent = malloc(sizeof(agent_t));
+    
+    if (agent == NULL) {
+        return NULL;
+    }
+    
+    agent->role = role;
+    agent->model_name = strdup(model_name);
+    agent->context = init_agent_context();
+    agent->message_queue = create_queue();
+    
+    return agent;
+}
+```
+
+### Message Processing
+```c
+/**
+ * Process a message between agents
+ */
+bool
+process_agent_message(agent_t *source, agent_t *target, message_t *message)
+{
+    // Add to target's message queue
+    enqueue(target->message_queue, message);
+    
+    // Process messages based on priority
+    while (!is_empty(target->message_queue)) {
+        message_t *current = dequeue_highest_priority(target->message_queue);
+        bool success = handle_message(target, current);
+        
+        if (!success) {
+            log_error("Failed to process message from %s to %s", 
+                      source->role_name, target->role_name);
+            return false;
+        }
+    }
+    
+    return true;
+}
+```
+
+## Performance Considerations
+- Use asynchronous processing for non-blocking gameplay
+- Implement message priority system for time-sensitive operations
+- Cache common responses for frequently used interactions
+- Implement fallback behaviors for offline play 

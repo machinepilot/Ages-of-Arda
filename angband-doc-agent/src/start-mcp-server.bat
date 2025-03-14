@@ -1,0 +1,6 @@
+@echo off
+echo Loading environment variables...
+cd ..
+echo Starting MCP server...
+cd src
+node mcp-server.js

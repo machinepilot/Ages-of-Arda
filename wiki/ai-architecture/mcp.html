@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Context Protocol (MCP) - Ages of Arda</title>
+    <link rel="stylesheet" href="../roguebasin-style.css">
+</head>
+<body>
+    <div id="mw-navigation">
+        <div class="sidebar">
+            <!-- Sidebar content will be included via JavaScript -->
+        </div>
+    </div>
+    
+    <div id="content" class="mw-body">
+        <h1 id="firstHeading">Model Context Protocol (MCP)</h1>
+        
+        <div id="bodyContent">
+            <div class="card">
+                <h3>The Communication Layer for AI Integration</h3>
+                <p>The Model Context Protocol (MCP) is the standardized communication layer that connects the Angband game engine with local Large Language Models (LLMs) via Ollama. It enables AI-driven gameplay by providing a structured way to request and receive content from language models while maintaining performance, security, and reliability.</p>
+            </div>
+            
+            <h2>Core Concepts</h2>
+            
+            <p>The MCP is built around several fundamental concepts that enable seamless integration between a traditional game engine and modern AI systems:</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Tools</h3>
+                    <p>Discrete functions that the game can request from AI models, such as generating dialogue, creating descriptions, or analyzing game situations.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Context Management</h3>
+                    <p>Structured approach to providing relevant information to the AI model while respecting token limitations.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Endpoints</h3>
+                    <p>Standardized API routes that handle specific types of requests, such as companion dialogue or lore retrieval.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Prompts</h3>
+                    <p>Carefully engineered instructions that guide the AI model to produce the desired output format and content.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Response Parsing</h3>
+                    <p>Systematic extraction and validation of AI-generated content to ensure it meets game requirements.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Fallback Mechanisms</h3>
+                    <p>Alternative pathways when AI generation is unavailable, ensuring the game remains playable offline.</p>
+                </div>
+            </div>
+            
+            <h2>Architecture</h2>
+            
+            <p>The MCP architecture consists of several components that work together to provide a reliable and efficient communication layer:</p>
+            
+            <div class="architecture-diagram">
+                <img src="../images/mcp-architecture.png" alt="MCP Architecture Diagram">
+            </div>
+            
+            <h3>MCP Server</h3>
+            
+            <p>At the core of the system is the MCP server, which:</p>
+            
+            <ul>
+                <li>Runs as a separate process alongside the game</li>
+                <li>Listens for requests from the game engine</li>
+                <li>Communicates with Ollama for LLM access</li>
+                <li>Processes and validates responses</li>
+                <li>Handles error conditions and retries</li>
+                <li>Implements caching and performance optimizations</li>
+            </ul>
+            
+            <p>The server is implemented in a combination of C (for core functionality) and Python (for higher-level processing), allowing for both performance and flexibility.</p>
+            
+            <h3>C API</h3>
+            
+            <p>The C API provides low-level access to MCP functionality from the Angband game engine:</p>
+            
+            <pre><code>/**
+ * Initialize the MCP server for game integration
+ */
+mcp_server_t *
+init_mcp_server(const char *server_name, int port)
+{
+    mcp_server_t *server = malloc(sizeof(mcp_server_t));
+    
+    if (server == NULL) {
+        return NULL;
+    }
+    
+    server->name = strdup(server_name);
+    server->port = port;
+    server->tools = create_tool_registry();
+    server->active = false;
+    
+    return server;
+}
+
+/**
+ * Register a tool with the MCP server
+ */
+bool
+register_mcp_tool(mcp_server_t *server, const char *tool_name, 
+                 tool_handler_t handler, tool_params_t *params)
+{
+    if (server == NULL || tool_name == NULL || handler == NULL) {
+        return false;
+    }
+    
+    mcp_tool_t *tool = create_tool(tool_name, handler, params);
+    
+    if (tool == NULL) {
+        return false;
+    }
+    
+    return add_tool_to_registry(server->tools, tool);
+}</code></pre>
+            
+            <h3>Tool Registration</h3>
+            
+            <p>The MCP allows for dynamic registration of tools, each implementing specific gameplay functionality:</p>
+            
+            <pre><code>// Register a narrative generation tool
+tool_params_t *params = create_tool_params();
+add_string_param(params, "location", "Location name", true);
+add_string_param(params, "context", "Additional context", false);
+
+register_mcp_tool(server, "generate_narrative", generate_narrative_handler, params);</code></pre>
+            
+            <h3>Request/Response Flow</h3>
+            
+            <p>The typical flow for an MCP interaction follows these steps:</p>
+            
+            <ol>
+                <li>Game engine identifies need for AI-generated content (e.g., entering a new location)</li>
+                <li>Engine calls appropriate MCP function with relevant parameters</li>
+                <li>MCP server formulates a request to the LLM with appropriate context</li>
+                <li>LLM generates a response via Ollama</li>
+                <li>MCP server validates and processes the response</li>
+                <li>Processed response is returned to the game engine</li>
+                <li>Game engine incorporates the response into gameplay</li>
+            </ol>
+            
+            <h2>MCP Endpoints</h2>
+            
+            <p>The MCP provides a comprehensive set of endpoints organized by functionality:</p>
+            
+            <h3>Companion System</h3>
+            
+            <div class="api-endpoint">
+                <h3>Companion Dialogue</h3>
+                <div class="api-url"><span class="api-method post">POST</span> /ages/companion/dialogue</div>
+                <div class="api-params">
+                    <h4>Parameters:</h4>
+                    <table class="api-param-table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>companion_name</td>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>The name of the companion</td>
+                        </tr>
+                        <tr>
+                            <td>age</td>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>The current age (e.g., "first_age")</td>
+                        </tr>
+                        <tr>
+                            <td>topic</td>
+                            <td>string</td>
+                            <td>No</td>
+                            <td>Optional topic for the dialogue</td>
+                        </tr>
+                        <tr>
+                            <td>relationship_level</td>
+                            <td>integer</td>
+                            <td>Yes</td>
+                            <td>The relationship level with the companion (1-10)</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-example">
+                    <h4>Response:</h4>
+                    <pre><code>{
+  "dialogue": "The stone halls of Moria still echo with the memories of my people, friend. I can almost hear the hammers on anvils and the songs of old. Let us tread carefully, for what dwells here now bears little love for the living.",
+  "companion": "Gimli",
+  "age": "third_age",
+  "topic": "Moria"
+}</code></pre>
+                </div>
+            </div>
+            
+            <h3>Lore System</h3>
+            
+            <p>The Lore System endpoints provide access to the lore database and are detailed in the <a href="lore-management.html">Lore Management</a> section.</p>
+            
+            <h3>Narrative Generation</h3>
+            
+            <div class="api-endpoint">
+                <h3>Location Description</h3>
+                <div class="api-url"><span class="api-method post">POST</span> /ages/narrative/location</div>
+                <div class="api-params">
+                    <h4>Parameters:</h4>
+                    <table class="api-param-table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>location_name</td>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>The name of the location</td>
+                        </tr>
+                        <tr>
+                            <td>age</td>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>The current age (e.g., "first_age")</td>
+                        </tr>
+                        <tr>
+                            <td>context</td>
+                            <td>object</td>
+                            <td>No</td>
+                            <td>Additional context information</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-example">
+                    <h4>Response:</h4>
+                    <pre><code>{
+  "description": "The white stones of Minas Tirith gleam in the morning sun, rising in seven concentric tiers against the mountainside. Banners of the White Tree flutter from the towers, and the sound of silver trumpets echoes across the Pelennor Fields. Guards in the livery of the Citadel stand at attention as you approach the Great Gate, their armor polished to a mirror shine.",
+  "location": "Minas Tirith",
+  "age": "third_age"
+}</code></pre>
+                </div>
+            </div>
+            
+            <h3>Timeline Management</h3>
+            
+            <div class="api-endpoint">
+                <h3>Player Death</h3>
+                <div class="api-url"><span class="api-method post">POST</span> /ages/player/death</div>
+                <div class="api-params">
+                    <h4>Parameters:</h4>
+                    <table class="api-param-table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>cause_of_death</td>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>How the player died</td>
+                        </tr>
+                        <tr>
+                            <td>player_level</td>
+                            <td>integer</td>
+                            <td>Yes</td>
+                            <td>The player's level at time of death</td>
+                        </tr>
+                        <tr>
+                            <td>achievements</td>
+                            <td>array</td>
+                            <td>Yes</td>
+                            <td>Array of achievements completed</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-example">
+                    <h4>Response:</h4>
+                    <pre><code>{
+  "new_age": "second_age",
+  "new_year": 1050,
+  "new_companion": "Narvi",
+  "death_narrative": "Your spirit passes beyond the circles of the world, but your deeds echo through the ages. As the First Age draws to a close, a new hero arises in the Second Age, guided by the wisdom of those who came before..."
+}</code></pre>
+                </div>
+            </div>
+            
+            <h2>Prompt Templates</h2>
+            
+            <p>One of the key innovations in the MCP is the structured prompt template system, which ensures consistent, high-quality outputs:</p>
+            
+            <pre><code>[GAME_STATE]
+{game_state_json}
+[/GAME_STATE]
+
+[PLAYER_HISTORY]
+{player_history_text}
+[/PLAYER_HISTORY]
+
+[WORLD_STATE]
+{world_state_json}
+[/WORLD_STATE]
+
+[LORE_CONTEXT]
+{relevant_lore_json}
+[/LORE_CONTEXT]
+
+[INSTRUCTION]
+{specific_instruction}
+[/INSTRUCTION]</code></pre>
+            
+            <p>These templates provide clear separation between different types of context, allowing for:</p>
+            
+            <ul>
+                <li>Modular context management (adding or removing sections as needed)</li>
+                <li>Clear instruction delineation for the LLM</li>
+                <li>Efficient token usage by prioritizing the most relevant context</li>
+                <li>Consistent output format across different requests</li>
+            </ul>
+            
+            <h2>Performance Considerations</h2>
+            
+            <p>The MCP implements several performance optimizations to ensure a smooth gameplay experience:</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Response Caching</h3>
+                    <p>Common responses are cached to avoid redundant LLM calls, dramatically improving response times for repeated requests.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Asynchronous Processing</h3>
+                    <p>Non-blocking request handling ensures the game remains responsive while waiting for LLM responses.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Request Batching</h3>
+                    <p>Similar requests are combined when possible to reduce overhead and improve throughput.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Template Fallbacks</h3>
+                    <p>Pre-defined templates provide immediate responses for time-sensitive operations when LLM generation would be too slow.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Model Selection</h3>
+                    <p>Different models are selected based on the complexity of the task and available system resources.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Connection Management</h3>
+                    <p>Robust handling of connection issues, retries, and fallbacks ensures reliability even with unstable LLM access.</p>
+                </div>
+            </div>
+            
+            <h2>Security Considerations</h2>
+            
+            <p>The MCP incorporates several security measures to protect the game and player data:</p>
+            
+            <ul>
+                <li><strong>Input Sanitization</strong>: All input to the MCP server is sanitized to prevent injection attacks</li>
+                <li><strong>Output Validation</strong>: All LLM outputs are validated before being incorporated into the game</li>
+                <li><strong>Local Processing</strong>: Using Ollama for local LLM access avoids sending data to external services</li>
+                <li><strong>Rate Limiting</strong>: Prevents abuse through excessive requests</li>
+                <li><strong>Authentication</strong>: Ensures only authorized game instances can access the MCP server</li>
+                <li><strong>Content Filtering</strong>: Ensures generated content adheres to game-appropriate standards</li>
+            </ul>
+            
+            <h2>Testing and Validation</h2>
+            
+            <p>The MCP includes a comprehensive testing framework to ensure reliability:</p>
+            
+            <ul>
+                <li><strong>Unit Tests</strong>: Verify the functionality of individual MCP components</li>
+                <li><strong>Integration Tests</strong>: Ensure proper interaction between the game engine and MCP server</li>
+                <li><strong>Mock LLM Tests</strong>: Test MCP functionality without requiring actual LLM access</li>
+                <li><strong>Performance Benchmarks</strong>: Measure response times and resource usage</li>
+                <li><strong>Validation Tests</strong>: Ensure response formats and content adhere to requirements</li>
+                <li><strong>Edge Case Testing</strong>: Verify behavior under unusual or error conditions</li>
+            </ul>
+            
+            <div class="card">
+                <h3>Next Steps in Exploration</h3>
+                <p>To dive deeper into related components, explore the following pages:</p>
+                <ul>
+                    <li><a href="../api/mcp-endpoints.html">MCP Endpoints Reference</a> - Complete documentation of all endpoints</li>
+                    <li><a href="memory-bank.html">Memory Bank System</a> - How context is maintained across sessions</li>
+                    <li><a href="lore-management.html">Lore Management</a> - Integration with the lore database</li>
+                    <li><a href="multi-agent.html">Multi-Agent Framework</a> - Specialized AI agents using MCP</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="footer" class="mw-footer">
+        <p>Ages of Arda Wiki - Documentation for AI-Driven Roguelike Development</p>
+    </footer>
+    
+    <script src="../sidebar.js"></script>
+</body>
+</html> 

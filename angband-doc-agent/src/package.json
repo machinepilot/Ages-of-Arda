@@ -1,0 +1,32 @@
+{
+  "name": "bard-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP Server for Lute the Bard narrative generation in Tower of Babel",
+  "main": "bard-mcp-server.js",
+  "scripts": {
+    "start": "node bard-mcp-server.js",
+    "dev": "nodemon bard-mcp-server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mcp",
+    "angband",
+    "narrative",
+    "ai",
+    "bard"
+  ],
+  "author": "Tower of Babel team",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "marked": "^15.0.7",
+    "openai": "^3.3.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

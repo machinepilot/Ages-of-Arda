@@ -1,0 +1,3 @@
+# Chapter 79
+
+* The view is taken (as clearly reappears later in the case of the Hobbits that have the Ring for a while) that each ‘Kind’ has a natural span, integral to its biological and spiritual nature. This cannot really be increased qualitatively or quantitatively; so that prolongation in time is like stretching a wire out ever tauter, or ‘spreading butter ever thinner’ it becomes an intolerable torment.

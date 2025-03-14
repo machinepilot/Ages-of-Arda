@@ -1,0 +1,149 @@
+{
+  "title": "The Hobbit",
+  "age": "third_age",
+  "year": 2941,
+  "chapters": [
+    "Chapter 1",
+    "COPYRIGHT",
+    "NOTE ON THE TEXT",
+    "ILLUSTRATIONS",
+    "Chapter 5",
+    "",
+    "THE HOBBIT",
+    "Chapter 8",
+    "Chapter 9",
+    "Chapter I",
+    "Chapter II",
+    "Chapter III",
+    "Chapter IV",
+    "Chapter V",
+    "Chapter VI",
+    "Chapter VII",
+    "Chapter VIII",
+    "Chapter IX",
+    "Chapter X",
+    "Chapter XI",
+    "Chapter XII",
+    "Chapter XIII",
+    "Chapter XIV",
+    "Chapter XV",
+    "Chapter XVI",
+    "Chapter XVII",
+    "Chapter XVIII",
+    "Chapter XIX",
+    "Chapter 29"
+  ],
+  "entities": {
+    "characters": {
+      "Thorin": [
+        "",
+        "Chapter I",
+        "Chapter II",
+        "Chapter III",
+        "Chapter IV",
+        "Chapter VI",
+        "Chapter VII",
+        "Chapter VIII",
+        "Chapter IX",
+        "Chapter X",
+        "Chapter XI",
+        "Chapter XII",
+        "Chapter XIII",
+        "Chapter XIV",
+        "Chapter XV",
+        "Chapter XVI",
+        "Chapter XVII",
+        "Chapter XVIII"
+      ],
+      "Bilbo": [
+        "Chapter 9",
+        "Chapter I",
+        "Chapter II",
+        "Chapter III",
+        "Chapter IV",
+        "Chapter V",
+        "Chapter VI",
+        "Chapter VII",
+        "Chapter VIII",
+        "Chapter IX",
+        "Chapter X",
+        "Chapter XI",
+        "Chapter XII",
+        "Chapter XIII",
+        "Chapter XV",
+        "Chapter XVI",
+        "Chapter XVII",
+        "Chapter XVIII",
+        "Chapter XIX"
+      ],
+      "Smaug": [
+        "Chapter 9",
+        "Chapter I",
+        "Chapter III",
+        "Chapter VII",
+        "Chapter X",
+        "Chapter XII",
+        "Chapter XIII",
+        "Chapter XIV",
+        "Chapter XV",
+        "Chapter XVII"
+      ],
+      "Gandalf": [
+        "Chapter I",
+        "Chapter II",
+        "Chapter III",
+        "Chapter IV",
+        "Chapter VI",
+        "Chapter VII",
+        "Chapter VIII",
+        "Chapter IX",
+        "Chapter X",
+        "Chapter XVI",
+        "Chapter XVII",
+        "Chapter XVIII",
+        "Chapter XIX"
+      ]
+    },
+    "locations": {
+      "Mirkwood": [
+        "Chapter I",
+        "Chapter VII",
+        "Chapter VIII",
+        "Chapter IX",
+        "Chapter X",
+        "Chapter XI",
+        "Chapter XIV",
+        "Chapter XVIII",
+        "Chapter XIX"
+      ],
+      "Rivendell": [
+        "Chapter II",
+        "Chapter III",
+        "Chapter XIX"
+      ],
+      "Lonely Mountain": [
+        "Chapter III",
+        "Chapter VII",
+        "Chapter X",
+        "Chapter XI",
+        "Chapter XIV",
+        "Chapter XV",
+        "Chapter XVII",
+        "Chapter XVIII"
+      ]
+    },
+    "artifacts": {
+      "Sting": [
+        "Chapter VIII"
+      ],
+      "Arkenstone": [
+        "Chapter XII",
+        "Chapter XIII",
+        "Chapter XV",
+        "Chapter XVI",
+        "Chapter XVII",
+        "Chapter XVIII"
+      ]
+    }
+  }
+}

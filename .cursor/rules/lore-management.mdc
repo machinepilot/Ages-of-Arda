@@ -1,0 +1,126 @@
+---
+description: Lore Management Guidelines for Ages of Arda
+globs: ["**/memory-bank/lore/**", "**/src/mcp/lore/**"]
+alwaysApply: false
+---
+# Lore Management Guidelines for Ages of Arda
+
+## Data Organization
+
+- All lore data must be stored in the memory-bank/lore directory
+- Lore must be organized by age (first_age, second_age, third_age, etc.)
+- Each age directory must contain subdirectories for:
+  - characters/
+  - locations/
+  - artifacts/
+  - events/
+
+## Data Format
+
+- All lore entries must be stored as JSON files
+- Each lore entry must include the following fields:
+  - name: Name of the entity
+  - description: Short description
+  - content: Main lore content
+  - source: Source book or material
+  - year: Year within the age
+  - is_canonical: Boolean indicating whether this is from Tolkien's works
+
+## Code Integration
+
+- Use the lore_manager.h API for C code that needs lore access
+- Use the LoreIntegration class for Python code that needs lore access
+- All lore queries should be cached to minimize memory bank access
+- Always provide fallback options for missing lore data
+
+## Example Lore Entry
+
+```json
+{
+  "name": "Minas Tirith",
+  "description": "The great city of Gondor, also known as the Tower of Guard",
+  "content": "Minas Tirith was built on seven levels, each carved out of the hill, and surrounded by the White Mountains. The city was originally called Minas Anor, the Tower of the Sun, but was renamed to Minas Tirith, the Tower of Guard, after Minas Ithil fell to the forces of Mordor and became Minas Morgul.",
+  "source": "The Lord of the Rings",
+  "year": 3018,
+  "is_canonical": true,
+  "type": "city",
+  "region": "Gondor",
+  "notable_features": [
+    "White Tower of Ecthelion",
+    "The Citadel",
+    "Seven levels"
+  ]
+}
+```
+
+## Generation Guidelines
+
+- Text generation should prioritize canonical lore accuracy
+- Template fallbacks must be available for all LLM-based generation
+- Keep prompt size within 2048 tokens to ensure efficient LLM usage
+- Context should be organized from most to least important when space is limited
+
+### Example Prompt Template
+
+```
+[LOCATION_NAME]
+{location_name}
+[/LOCATION_NAME]
+
+[LOCATION_LORE]
+{location_lore_json}
+[/LOCATION_LORE]
+
+[AGE]
+{age}
+[/AGE]
+
+[CONTEXT]
+{context_json}
+[/CONTEXT]
+
+[INSTRUCTION]
+Generate a vivid, atmospheric description of this location from Tolkien's world.
+The description should be 2-3 paragraphs long and include sensory details.
+Stay true to the lore and the feel of the age. Focus on creating a mood that
+reflects the history and significance of the place.
+[/INSTRUCTION]
+```
+
+## MCP Integration
+
+- All lore endpoints must follow the pattern: ages/lore/{entity_type}
+- Narrative endpoints must follow the pattern: ages/narrative/{content_type}
+- All endpoints must validate required parameters and return clear error messages
+- Responses should include metadata about the source of the lore
+
+### Required MCP Endpoints
+
+1. Character Lore: `ages/lore/character`
+   - Required params: character_name, age (optional)
+   
+2. Location Lore: `ages/lore/location`
+   - Required params: location_name, age (optional)
+   
+3. Artifact Lore: `ages/lore/artifact`
+   - Required params: artifact_name, age (optional)
+
+4. Random Lore: `ages/lore/random`
+   - Required params: topic_type (optional), age (optional)
+
+5. Location Description: `ages/narrative/location`
+   - Required params: location_name, age
+   
+6. Companion Dialogue: `ages/narrative/companion`
+   - Required params: companion_name, age, topic (optional)
+   
+7. Quest Generation: `ages/narrative/quest`
+   - Required params: quest_type, location, age, target (optional)
+
+## Performance Best Practices
+
+- Implement caching with LRU replacement for all lore queries
+- Use asynchronous processing for LLM-based generation where possible
+- Provide templated fallbacks for all LLM-based generation
+- Pre-load commonly accessed lore on initialization
+- Rate-limit LLM calls to prevent overwhelming the system 

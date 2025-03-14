@@ -1,0 +1,93 @@
+---
+description: Angband Variant Development Rules
+globs: 
+alwaysApply: false
+---
+# Angband Variant Development - AI Integration Project
+
+## Project Overview
+This is an Angband variant focused on integrating AI for emergent gameplay using Model Context Protocol (MCP) and Ollama LLM integration. The project aims to develop new methods of emergent gameplay with AI while maintaining the core roguelike experience.
+
+## Related Rule Files
+- @c-style.mdc - C code style guidelines
+- @mcp-integration.mdc - MCP integration details
+- @ai-gameplay.mdc - AI gameplay implementation guidelines
+- @lore-management.mdc - Lore management system guidelines
+- @memory-bank.mdc - Memory bank organization
+
+## Project Structure
+- `src/`: Core game engine code
+- `src/mcp/`: Model Context Protocol integration
+- `src/ai/`: AI gameplay systems
+- `src/mcp/lore/`: Lore management and narrative generation
+- `memory-bank/`: Persistent storage for AI context
+- `memory-bank/lore/`: Structured lore database from Tolkien's works
+
+## Development Priorities
+1. AI-driven emergent gameplay
+2. Maintaining roguelike principles
+3. Performance optimization for local LLM integration
+4. Cross-platform compatibility
+5. Lore-accurate content generation
+
+## Key Files
+- `src/main.c` - Main entry point
+- `src/mcp/mcp_server.c` - MCP server implementation
+- `src/ai/ai_agent.c` - AI agent implementation
+- `src/game/game_state.c` - Game state management
+- `src/mcp/lore/lore_manager.c` - Lore management implementation
+- `src/mcp/lore/lore_integration.py` - Lore integration with MCP
+- `src/mcp/lore/narrative_generator.py` - Narrative generation using lore
+
+## Ollama Integration
+- Models: codellama:13b, llama2:13b, mistral:7b
+- Context window: Optimized for available hardware
+- Temperature: 0.7 for creative gameplay generation
+- No arbitrary token limits - hardware dependent
+
+## Testing Requirements
+- Unit tests for core game mechanics
+- Integration tests for AI systems
+- Performance benchmarks for LLM response times
+- Lore accuracy validation tests
+
+## Documentation Standards
+- Function headers with parameters and return values
+- Module-level documentation
+- AI interaction points clearly marked
+- Lore sources properly attributed
+
+## Development Workflow
+1. Feature planning with AI assistance
+2. Implementation with test-driven development
+3. AI integration testing
+4. Performance optimization
+5. Documentation
+6. Lore accuracy validation
+
+## Emergent Gameplay Goals
+- Dynamic narrative generation
+- Adaptive difficulty based on player behavior
+- Procedural quest generation
+- NPC personalities that evolve with player interaction
+- Environmental storytelling
+- Lore-consistent world elements
+
+## Performance Considerations
+- Asynchronous AI requests to prevent gameplay stuttering
+- Caching common AI responses
+- Fallback mechanisms for offline play
+- Optimized context management to reduce token usage
+- Efficient lore retrieval with caching
+
+## Cross-Platform Support
+- Windows (primary)
+- Linux
+- macOS
+
+## Contribution Guidelines
+- Follow C style guide
+- Document all AI integration points
+- Include tests for new features
+- Maintain backward compatibility with base Angband where possible
+- Ensure all lore additions conform to the lore management guidelines

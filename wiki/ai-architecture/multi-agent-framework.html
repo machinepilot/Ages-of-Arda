@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent Framework - Ages of Arda</title>
+    <link rel="stylesheet" href="../roguebasin-style.css">
+</head>
+<body>
+    <div id="mw-navigation">
+        <div class="sidebar">
+            <!-- Sidebar content will be included via JavaScript -->
+        </div>
+    </div>
+    
+    <div id="content" class="mw-body">
+        <h1 id="firstHeading">Multi-Agent Framework</h1>
+        
+        <div id="bodyContent">
+            <div class="card">
+                <h3>Specialized AI Agents Working in Concert</h3>
+                <p>The Multi-Agent Framework is a core component of the Ages of Arda AI architecture, providing a structured approach to distributing AI responsibilities across specialized agents. Rather than relying on a single AI model to handle all aspects of gameplay generation, the framework orchestrates multiple purpose-built agents that collaborate to create a cohesive, rich gameplay experience.</p>
+            </div>
+            
+            <h2>Framework Architecture</h2>
+            
+            <p>The Multi-Agent Framework consists of a central orchestrator that coordinates communication between specialized agents, each responsible for different aspects of gameplay:</p>
+            
+            <div class="architecture-diagram">
+                <img src="../images/multi-agent-architecture.png" alt="Multi-Agent Framework Architecture" class="diagram">
+            </div>
+            
+            <h2>Agent Types and Roles</h2>
+            
+            <div class="agent-grid">
+                <div class="agent-card">
+                    <h3>Narrative Agent</h3>
+                    <p>Responsible for generating story elements, quest descriptions, and narrative progression.</p>
+                    <h4>Key Responsibilities:</h4>
+                    <ul>
+                        <li>Quest generation and progression</li>
+                        <li>Story arc development</li>
+                        <li>Narrative consistency across gameplay sessions</li>
+                        <li>Age-appropriate storytelling</li>
+                    </ul>
+                    <h4>Implementation:</h4>
+                    <pre><code># src/mcp/agents/narrative_agent.py
+class NarrativeAgent:
+    def __init__(self, lore_manager, memory_bank):
+        self.lore_manager = lore_manager
+        self.memory_bank = memory_bank
+        self.current_arcs = {}
+        
+    async def generate_quest(self, player_context, location, difficulty):
+        """Generate a new quest appropriate for the player's context"""
+        # Retrieve relevant lore
+        location_lore = self.lore_manager.get_location_lore(location)
+        age_lore = self.lore_manager.get_age_context(player_context['age'])
+        
+        # Build prompt with constraints
+        prompt = self._build_quest_prompt(
+            player_context, 
+            location_lore, 
+            age_lore, 
+            difficulty
+        )
+        
+        # Generate quest via MCP
+        quest_data = await self.mcp.generate_structured(
+            prompt, 
+            self.QUEST_SCHEMA
+        )
+        
+        # Store in memory bank for consistency
+        self.memory_bank.store_quest(quest_data)
+        
+        return quest_data</code></pre>
+                </div>
+                
+                <div class="agent-card">
+                    <h3>Character Agent</h3>
+                    <p>Manages NPC behaviors, dialogue, and character development.</p>
+                    <h4>Key Responsibilities:</h4>
+                    <ul>
+                        <li>NPC dialogue generation</li>
+                        <li>Character personality consistency</li>
+                        <li>Relationship development with player</li>
+                        <li>Companion character behaviors</li>
+                    </ul>
+                    <h4>Implementation:</h4>
+                    <pre><code># src/mcp/agents/character_agent.py
+class CharacterAgent:
+    def __init__(self, lore_manager, memory_bank):
+        self.lore_manager = lore_manager
+        self.memory_bank = memory_bank
+        self.character_memories = {}
+        
+    async def generate_dialogue(self, character_id, player_context, dialogue_type):
+        """Generate dialogue for an NPC based on context"""
+        # Get character data and history
+        character_data = self.memory_bank.get_character(character_id)
+        interaction_history = self.memory_bank.get_interaction_history(
+            player_id=player_context['id'],
+            character_id=character_id
+        )
+        
+        # Get relevant lore
+        character_lore = self.lore_manager.get_character_lore(
+            character_data['name']
+        )
+        
+        # Build dialogue prompt
+        prompt = self._build_dialogue_prompt(
+            character_data,
+            character_lore,
+            interaction_history,
+            player_context,
+            dialogue_type
+        )
+        
+        # Generate dialogue
+        dialogue = await self.mcp.generate_text(prompt)
+        
+        # Update interaction history
+        self.memory_bank.store_interaction(
+            player_id=player_context['id'],
+            character_id=character_id,
+            interaction_type='dialogue',
+            content=dialogue
+        )
+        
+        return dialogue</code></pre>
+                </div>
+                
+                <div class="agent-card">
+                    <h3>World Agent</h3>
+                    <p>Handles environment generation, descriptions, and world state management.</p>
+                    <h4>Key Responsibilities:</h4>
+                    <ul>
+                        <li>Location descriptions</li>
+                        <li>Environmental storytelling</li>
+                        <li>Weather and time effects</li>
+                        <li>World state persistence</li>
+                    </ul>
+                    <h4>Implementation:</h4>
+                    <pre><code># src/mcp/agents/world_agent.py
+class WorldAgent:
+    def __init__(self, lore_manager, memory_bank):
+        self.lore_manager = lore_manager
+        self.memory_bank = memory_bank
+        self.current_world_state = {}
+        
+    async def generate_location_description(self, location_id, player_context):
+        """Generate a rich description of a location"""
+        # Get location data
+        location_data = self.memory_bank.get_location(location_id)
+        
+        # Get relevant lore
+        location_lore = self.lore_manager.get_location_lore(
+            location_data['name']
+        )
+        
+        # Get environmental factors
+        time_of_day = self.current_world_state.get('time_of_day', 'day')
+        weather = self.current_world_state.get('weather', 'clear')
+        season = self.current_world_state.get('season', 'summer')
+        
+        # Build description prompt
+        prompt = self._build_description_prompt(
+            location_data,
+            location_lore,
+            player_context,
+            time_of_day,
+            weather,
+            season
+        )
+        
+        # Generate description
+        description = await self.mcp.generate_text(prompt)
+        
+        return description</code></pre>
+                </div>
+                
+                <div class="agent-card">
+                    <h3>Item Agent</h3>
+                    <p>Manages item generation, descriptions, and special properties.</p>
+                    <h4>Key Responsibilities:</h4>
+                    <ul>
+                        <li>Procedural item generation</li>
+                        <li>Lore-appropriate item descriptions</li>
+                        <li>Magical properties and effects</li>
+                        <li>Item history and significance</li>
+                    </ul>
+                    <h4>Implementation:</h4>
+                    <pre><code># src/mcp/agents/item_agent.py
+class ItemAgent:
+    def __init__(self, lore_manager, memory_bank):
+        self.lore_manager = lore_manager
+        self.memory_bank = memory_bank
+        
+    async def generate_unique_item(self, item_type, rarity, player_context):
+        """Generate a unique item with lore-appropriate properties"""
+        # Get relevant lore
+        age_lore = self.lore_manager.get_age_context(player_context['age'])
+        item_type_lore = self.lore_manager.get_item_type_lore(item_type)
+        
+        # Build item generation prompt
+        prompt = self._build_item_prompt(
+            item_type,
+            rarity,
+            player_context,
+            age_lore,
+            item_type_lore
+        )
+        
+        # Generate item data
+        item_data = await self.mcp.generate_structured(
+            prompt,
+            self.ITEM_SCHEMA
+        )
+        
+        # Store in memory bank
+        self.memory_bank.store_item(item_data)
+        
+        return item_data</code></pre>
+                </div>
+                
+                <div class="agent-card">
+                    <h3>Combat Agent</h3>
+                    <p>Handles combat narration, enemy tactics, and battle outcomes.</p>
+                    <h4>Key Responsibilities:</h4>
+                    <ul>
+                        <li>Combat descriptions and narration</li>
+                        <li>Enemy tactical decision-making</li>
+                        <li>Special combat events</li>
+                        <li>Boss fight mechanics</li>
+                    </ul>
+                    <h4>Implementation:</h4>
+                    <pre><code># src/mcp/agents/combat_agent.py
+class CombatAgent:
+    def __init__(self, lore_manager, memory_bank):
+        self.lore_manager = lore_manager
+        self.memory_bank = memory_bank
+        
+    async def generate_combat_narration(self, combat_event, player_context):
+        """Generate narration for a combat event"""
+        # Get relevant data
+        enemy_data = self.memory_bank.get_enemy(combat_event['enemy_id'])
+        
+        # Get relevant lore
+        enemy_lore = self.lore_manager.get_enemy_lore(enemy_data['name'])
+        
+        # Build narration prompt
+        prompt = self._build_combat_prompt(
+            combat_event,
+            enemy_data,
+            enemy_lore,
+            player_context
+        )
+        
+        # Generate narration
+        narration = await self.mcp.generate_text(prompt)
+        
+        return narration
+        
+    async def determine_enemy_tactics(self, enemy_id, combat_state, difficulty):
+        """Determine tactical decisions for an enemy"""
+        # Implementation for enemy AI decision-making
+        pass</code></pre>
+                </div>
+            </div>
+            
+            <h2>Agent Orchestration</h2>
+            
+            <p>The Multi-Agent Framework includes an orchestration layer that coordinates communication between agents and ensures a cohesive gameplay experience:</p>
+            
+            <pre><code># src/mcp/agents/orchestrator.py
+class AgentOrchestrator:
+    def __init__(self, mcp_client, memory_bank, lore_manager):
+        self.mcp = mcp_client
+        self.memory_bank = memory_bank
+        self.lore_manager = lore_manager
+        
+        # Initialize agents
+        self.narrative_agent = NarrativeAgent(lore_manager, memory_bank)
+        self.character_agent = CharacterAgent(lore_manager, memory_bank)
+        self.world_agent = WorldAgent(lore_manager, memory_bank)
+        self.item_agent = ItemAgent(lore_manager, memory_bank)
+        self.combat_agent = CombatAgent(lore_manager, memory_bank)
+        
+    async def process_game_event(self, event_type, event_data, player_context):
+        """Process a game event using the appropriate agent(s)"""
+        responses = {}
+        
+        if event_type == 'enter_location':
+            # World agent handles location description
+            responses['description'] = await self.world_agent.generate_location_description(
+                event_data['location_id'],
+                player_context
+            )
+            
+            # Narrative agent checks for potential quests
+            responses['quests'] = await self.narrative_agent.check_location_quests(
+                event_data['location_id'],
+                player_context
+            )
+            
+        elif event_type == 'npc_interaction':
+            # Character agent handles dialogue
+            responses['dialogue'] = await self.character_agent.generate_dialogue(
+                event_data['character_id'],
+                player_context,
+                event_data['dialogue_type']
+            )
+            
+        elif event_type == 'combat_round':
+            # Combat agent handles narration
+            responses['narration'] = await self.combat_agent.generate_combat_narration(
+                event_data,
+                player_context
+            )
+            
+            # Combat agent determines enemy tactics
+            responses['enemy_action'] = await self.combat_agent.determine_enemy_tactics(
+                event_data['enemy_id'],
+                event_data['combat_state'],
+                player_context['difficulty']
+            )
+            
+        # Store event in memory bank
+        self.memory_bank.store_game_event(event_type, event_data, responses)
+        
+        return responses</code></pre>
+            
+            <h2>Inter-Agent Collaboration Patterns</h2>
+            
+            <p>Agents collaborate in several ways to create a cohesive gameplay experience:</p>
+            
+            <ol>
+                <li><strong>Sequential Processing:</strong> Events may be processed by multiple agents in sequence, with each agent adding its specialized contribution.</li>
+                <li><strong>Shared Memory:</strong> All agents access the same Memory Bank, allowing them to build upon each other's contributions.</li>
+                <li><strong>Context Enrichment:</strong> Each agent enriches the context with its specialized knowledge before passing to the next agent.</li>
+                <li><strong>Conflict Resolution:</strong> The orchestrator resolves conflicts when multiple agents have overlapping responsibilities.</li>
+            </ol>
+            
+            <h2>Agent Communication Protocol</h2>
+            
+            <p>Agents communicate using a standardized protocol that includes:</p>
+            
+            <ul>
+                <li><strong>Event Context:</strong> Information about the triggering game event</li>
+                <li><strong>Player Context:</strong> Current player state, history, and preferences</li>
+                <li><strong>World State:</strong> Current state of the game world</li>
+                <li><strong>Response Format:</strong> Expected structure of the agent's response</li>
+            </ul>
+            
+            <h2>Performance Considerations</h2>
+            
+            <p>The Multi-Agent Framework includes several optimizations to ensure responsive gameplay:</p>
+            
+            <ul>
+                <li><strong>Parallel Processing:</strong> Independent agent tasks are processed concurrently</li>
+                <li><strong>Caching:</strong> Common responses are cached to reduce redundant processing</li>
+                <li><strong>Prioritization:</strong> Critical gameplay elements are processed before optional enhancements</li>
+                <li><strong>Fallback Mechanisms:</strong> Pre-generated content is used when real-time generation would cause delays</li>
+            </ul>
+            
+            <h2>Integration with Other Systems</h2>
+            
+            <p>The Multi-Agent Framework integrates with other core systems:</p>
+            
+            <ul>
+                <li><strong>Model Context Protocol (MCP):</strong> Provides standardized communication with LLMs</li>
+                <li><strong>Memory Bank:</strong> Stores and retrieves persistent context for consistent agent responses</li>
+                <li><strong>Lore Management:</strong> Ensures all agent outputs are consistent with canonical lore</li>
+                <li><strong>Game Engine:</strong> Translates agent outputs into gameplay elements</li>
+            </ul>
+        </div>
+    </div>
+    
+    <footer id="footer" class="mw-footer">
+        <p>Ages of Arda Wiki - Documentation for AI-Driven Roguelike Development</p>
+    </footer>
+    
+    <script src="../sidebar.js"></script>
+</body>
+</html> 

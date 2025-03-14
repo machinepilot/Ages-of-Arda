@@ -1,0 +1,3 @@
+# Chapter 75
+
+* As far as all this has symbolical or allegorical significance, Light is such a primeval symbol in the nature of the Universe, that it can hardly be analysed. The Light of Valinor (derived from light before any fall) is the light of art undivorced from reason, that sees things both scientifically (or philosophically) and imaginatively (or sub-creatively) and says that they are good – as beautiful. The Light of Sun (or Moon) is derived from the Trees only after they were sullied by Evil.

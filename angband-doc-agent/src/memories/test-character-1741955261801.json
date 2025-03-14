@@ -1,0 +1,75 @@
+[
+  {
+    "type": "events",
+    "items": [
+      {
+        "id": "6c9021da-bfea-414d-bcdd-8628c5014059",
+        "timestamp": 1741955277498,
+        "event_type": "monster_death",
+        "details": {
+          "monster_name": "Ancient Red Dragon",
+          "monster_level": 50,
+          "is_unique": true
+        },
+        "narrative": "The Red Depths trembled beneath your feet, Thorin, son of Durin. As the last rays of sunlight faded from the horizon, casting the land in a fiery glow, you faced your greatest foe yet: the Ancient Red Dragon. For centuries, its lair had been shrouded in mystery, and many had dared not approach. But you, undaunted by legend or lore, stood resolute against the beast's unyielding fury.",
+        "importance": 87
+      },
+      {
+        "id": "55450e38-be99-4fdb-9a1d-10e2c058d270",
+        "timestamp": 1741955279706,
+        "event_type": "item_discovery",
+        "details": {
+          "item_name": "Glamdring, the Foe-hammer",
+          "is_artifact": true,
+          "item_type": "sword"
+        },
+        "narrative": "Deep within the Red Depths' labyrinthine tunnels, where shadows writhe like living darkness and ancient secrets slumber, a forgotten chamber beckons you, Thorin, son of Durin. Amidst the twisted stalactites and dripping crystals, an unassuming pedestal stands, veiled by a tattered curtain of cobwebs. As your blade slices through the entrapped air, the curtain falls away, revealing a hilt adorned with runes that shimmer like embers from a dying fire. Glamdring, the Foe-hammer, stirs once more in slumber, its presence both an omen and a warning: the road ahead shall be fraught with peril, yet tempered by unyielding resolve.",
+        "importance": 82
+      },
+      {
+        "id": "c492865d-b45b-4179-a1e0-8af90d8e22f5",
+        "timestamp": 1741955283068,
+        "event_type": "new_level",
+        "details": {
+          "dungeon_level": 40,
+          "level_feeling": "menacing"
+        },
+        "narrative": "{\n  \"text\": \"As you delve deeper into the Red Depths, the air grows thick with malevolent intent, like the stench of decay on a winter's night. The walls seem to press in upon you, their cold stone skin infusing your bones with a creeping sense of dread. You can feel the weight of forgotten ages settling upon your shoulders, the crushing burden of the depths bearing down upon your will.\n\nA faint, flickering glow emanates from the darkness ahead, casting eerie shadows on the walls. The light seem",
+        "importance": 60
+      },
+      {
+        "id": "df8cf408-0aee-41f2-a601-4ad2bb18a42a",
+        "timestamp": 1741955286695,
+        "event_type": "near_death",
+        "details": {
+          "hp_percent": 5,
+          "enemy_name": "Balrog of Morgoth"
+        },
+        "narrative": "{\n  \"text\": \"As the Balrog of Morgoth's fiery whip cracked through the air, its blast of hellish energy struck you with unyielding force, Thorin. The Dark Lord's minion seized upon your momentary lapse in defense, and for an instant, all hope seemed lost. Your vision blurred, the Red Depths' cavernous expanse dissolving into a sea of crimson and shadow.\n\nThe weight of Glamdring, now firmly grasped in your shaking hand, felt like an anchor to your soul. You could feel its power coursing through y",
+        "importance": 67
+      },
+      {
+        "id": "f3c865a0-66c4-4c4b-942f-3f7386ebd06e",
+        "timestamp": 1741955292074,
+        "event_type": "quest_complete",
+        "details": {
+          "quest_name": "Defeat the Witch-king",
+          "quest_level": 30
+        },
+        "narrative": "{\n  \"text\": \"As the last remnants of darkness dissipated, Thorin stood triumphant amidst the ruins of the Witch-king's stronghold. The air was heavy with the weight of victory, the very stones seeming to vibrate with the force of your unyielding resolve. The Witch-king's malevolent presence had been vanquished, and with it, a shard of Morgoth's dark influence was rent asunder.\n\nThe memory of that fateful night still seared itself into your mind: the Witch-king's unholy power, forged in the depth",
+        "importance": 70
+      },
+      {
+        "id": "06e29155-2f3e-4d0a-963a-dee6a41e3237",
+        "timestamp": 1741955297867,
+        "event_type": "level_up",
+        "details": {
+          "new_level": 26,
+          "class": "Warrior"
+        },
+        "narrative": "{\n  \"text\": \"As the shadows of your most formidable foes recede before you, Thorin, son of Durin, a new dawn breaks within the unyielding depths of your soul. The trials of old have tempered your will, forging an unbreakable bond between you and the hallowed traditions of Khazad-dûm. Your unrelenting resolve has reshaped the very fabric of the Red Depths, forging a path of light through the darkness that was once thought impassable.\n\nThe Foe-hammer's power stirs anew within you, its runes blazin",
+        "importance": 65
+      }
+    ]
+  }
+]

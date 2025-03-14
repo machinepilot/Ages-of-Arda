@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Story - Ages of Arda</title>
+    <link rel="stylesheet" href="roguebasin-style.css">
+</head>
+<body>
+    <div id="mw-navigation">
+        <div class="sidebar">
+            <!-- Sidebar content will be included via JavaScript -->
+        </div>
+    </div>
+    
+    <div id="content" class="mw-body">
+        <h1 id="firstHeading">Development Story</h1>
+        
+        <div id="bodyContent">
+            <div class="card">
+                <h3>A Revolutionary Approach to Game Development</h3>
+                <p>The Ages of Arda project represents a groundbreaking approach to game development, combining traditional roguelike mechanics with modern AI techniques. This page chronicles our journey from initial concept to the current state of the project, highlighting key insights and breakthroughs along the way.</p>
+            </div>
+            
+            <h2>Genesis of the Project</h2>
+            
+            <p>Ages of Arda began as an exploration of how AI could enhance roguelike gameplay beyond simple procedural generation. The core idea was to create a game that could generate contextually appropriate narrative content in real-time, while maintaining consistency with Tolkien's rich lore.</p>
+            
+            <p>Rather than building a game from scratch, we chose to fork Angband, a well-established roguelike with a modular codebase. This decision allowed us to focus on innovating in the AI and narrative spaces while leveraging a proven gameplay foundation.</p>
+            
+            <div class="timeline">
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3>Concept Phase</h3>
+                        <p>The project began with a simple question: Could we use modern AI techniques to create a roguelike with dynamic, contextually aware narratives? Initial explorations focused on:</p>
+                        <ul>
+                            <li>Evaluating different roguelike codebases for forking</li>
+                            <li>Researching LLM integration techniques</li>
+                            <li>Exploring Tolkien's world as a setting</li>
+                            <li>Concepting the reincarnation mechanics across ages</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3>Architecture Design</h3>
+                        <p>Once the concept was solidified, we developed the architectural framework that would support our AI-driven gameplay:</p>
+                        <ul>
+                            <li>Model Context Protocol (MCP) for standardized AI communication</li>
+                            <li>Memory Bank system for persistent context</li>
+                            <li>Lore Management for canonical accuracy</li>
+                            <li>Multi-Agent Framework for specialized AI roles</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3>Prototype Implementation</h3>
+                        <p>With the architecture defined, we began implementing core systems:</p>
+                        <ul>
+                            <li>MCP server with basic endpoints</li>
+                            <li>Initial Lore Management System</li>
+                            <li>Basic companion dialogue generation</li>
+                            <li>Angband integration module</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3>Current Development</h3>
+                        <p>The project has now reached a stage where:</p>
+                        <ul>
+                            <li>Core AI systems are fully designed and partially implemented</li>
+                            <li>The lore database is being populated with canonical content</li>
+                            <li>Companion characters have been designed for all three ages</li>
+                            <li>MCP endpoints are defined and implemented</li>
+                            <li>Integration with Angband is progressing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Key Development Insights</h2>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Local LLM Revolution</h3>
+                    <p>A breakthrough realization was that modern local LLMs (via Ollama) are now powerful enough to generate high-quality narrative content with low latency, eliminating the need for cloud-based API calls and preserving player privacy.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Memory Bank Architecture</h3>
+                    <p>The development of the Memory Bank system solved the critical challenge of maintaining consistent context across gameplay sessions, preventing the "amnesia" problems common in AI applications.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Lore-Driven Design</h3>
+                    <p>Building a structured lore database proved essential for ensuring that AI-generated content remained faithful to Tolkien's world, addressing the "hallucination" problems common in generative AI.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Multi-Agent Specialization</h3>
+                    <p>Splitting AI responsibilities across specialized agents (narrative, combat, world, player) significantly improved the quality and coherence of generated content.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Reincarnation Mechanics</h3>
+                    <p>The "death as progression" mechanic, where players are reborn in new ages with new companions, created a unique roguelike experience that embraces permadeath while maintaining player investment.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Modular Integration</h3>
+                    <p>Designing the AI systems as modular components that communicate through a standardized protocol (MCP) made integration with Angband cleaner and potentially adaptable to other games.</p>
+                </div>
+            </div>
+            
+            <h2>Technical Evolution</h2>
+            
+            <p>Throughout development, several technical approaches have evolved:</p>
+            
+            <h3>Prompt Engineering</h3>
+            
+            <p>Early prototypes used simple, unstructured prompts that often led to inconsistent results. We evolved to structured formats with clear delineation between context and instructions:</p>
+            
+            <pre><code>[GAME_STATE]
+{game_state_json}
+[/GAME_STATE]
+
+[PLAYER_HISTORY]
+{player_history_text}
+[/PLAYER_HISTORY]
+
+[WORLD_STATE]
+{world_state_json}
+[/WORLD_STATE]
+
+[LORE_CONTEXT]
+{relevant_lore_json}
+[/LORE_CONTEXT]
+
+[INSTRUCTION]
+{specific_instruction}
+[/INSTRUCTION]</code></pre>
+            
+            <h3>Context Management</h3>
+            
+            <p>Initial implementations provided all available context to the LLM, leading to token limit issues. We refined this to:</p>
+            
+            <ul>
+                <li>Prioritize context by relevance to the current request</li>
+                <li>Implement token budgeting for different context categories</li>
+                <li>Cache frequently used context to reduce duplicative content</li>
+                <li>Develop compression techniques for history summarization</li>
+            </ul>
+            
+            <h3>Performance Optimization</h3>
+            
+            <p>Performance has been a critical focus to ensure a smooth gameplay experience:</p>
+            
+            <ul>
+                <li>Asynchronous processing for non-blocking gameplay</li>
+                <li>Implementation of caching for common responses</li>
+                <li>Development of template fallbacks for time-sensitive operations</li>
+                <li>Model selection based on available hardware resources</li>
+                <li>Batching similar requests when possible</li>
+            </ul>
+            
+            <h2>Collaborative Development</h2>
+            
+            <p>The Ages of Arda project itself represents a new model of game development, where:</p>
+            
+            <ul>
+                <li><strong>AI augments developer creativity</strong>, generating ideas and content that humans refine</li>
+                <li><strong>Systems design integrates AI capabilities</strong> from the ground up rather than as an afterthought</li>
+                <li><strong>Iterative prototyping</strong> allows rapid exploration of gameplay concepts</li>
+                <li><strong>Open development</strong> invites community participation and feedback</li>
+                <li><strong>Knowledge transfer</strong> from AI research to game design creates novel mechanics</li>
+            </ul>
+            
+            <div class="card">
+                <h3>Looking Forward</h3>
+                <p>The development journey of Ages of Arda is ongoing, with several exciting directions on the horizon:</p>
+                <ul>
+                    <li>Full implementation of the companion relationship system</li>
+                    <li>Expansion of the lore database to cover more of Tolkien's world</li>
+                    <li>Refinement of the narrative generation for more diverse and nuanced content</li>
+                    <li>Enhanced integration with Angband's core systems</li>
+                    <li>Community testing and feedback incorporation</li>
+                    <li>Documentation of our AI integration approach for other developers</li>
+                </ul>
+                <p>See our <a href="roadmap.html">Roadmap</a> for more details on future development plans.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="footer" class="mw-footer">
+        <p>Ages of Arda Wiki - Documentation for AI-Driven Roguelike Development</p>
+    </footer>
+    
+    <script src="sidebar.js"></script>
+</body>
+</html> 

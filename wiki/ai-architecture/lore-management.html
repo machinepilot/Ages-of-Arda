@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lore Management System - Ages of Arda</title>
+    <link rel="stylesheet" href="../roguebasin-style.css">
+</head>
+<body>
+    <div id="mw-navigation">
+        <div class="sidebar">
+            <!-- Sidebar content will be included via JavaScript -->
+        </div>
+    </div>
+    
+    <div id="content" class="mw-body">
+        <h1 id="firstHeading">Lore Management System</h1>
+        
+        <div id="bodyContent">
+            <div class="card">
+                <h3>The Canonical Knowledge Repository</h3>
+                <p>The Lore Management System serves as the authoritative repository for canonical Tolkien lore within the Ages of Arda project. It ensures that all AI-generated content remains consistent with established Middle-earth history, geography, and character backgrounds across the First, Second, and Third Ages.</p>
+            </div>
+            
+            <h2>System Architecture</h2>
+            
+            <p>The Lore Management System consists of five key components that work together to provide accurate and contextually relevant lore to the game's AI systems:</p>
+            
+            <div class="architecture-diagram">
+                <img src="../images/lore-system-architecture.png" alt="Lore Management System Architecture" class="diagram">
+            </div>
+            
+            <h3>Components</h3>
+            
+            <div class="component-grid">
+                <div class="component-card">
+                    <h4>1. Lore Database</h4>
+                    <p>A structured collection of JSON files organized by age and entity type, containing canonical information from Tolkien's works. Each entry includes source attribution and temporal metadata.</p>
+                    <pre><code>{
+  "name": "Fingolfin",
+  "type": "character",
+  "age": "first",
+  "description": "High King of the Noldor in Beleriand",
+  "content": "Fingolfin was the second High King of the Noldor in Beleriand, eldest son of Finwë and Indis, younger brother of Fëanor and father of Fingon, Turgon, and Aredhel...",
+  "source": "The Silmarillion, Chapter 13",
+  "year": {
+    "start": "YT 1190",
+    "end": "FA 456"
+  },
+  "relationships": [
+    {"name": "Fëanor", "type": "half-brother"},
+    {"name": "Fingon", "type": "son"},
+    {"name": "Turgon", "type": "son"}
+  ],
+  "locations": ["Hithlum", "Angband"]
+}</code></pre>
+                </div>
+                
+                <div class="component-card">
+                    <h4>2. Lore Manager (C)</h4>
+                    <p>Core C module that provides efficient access to the lore database, with caching and indexing for performance.</p>
+                    <pre><code>// src/mcp/lore/lore_manager.c
+#include "angband.h"
+#include "lore_manager.h"
+
+// Initialize the lore management system
+bool init_lore_system(void)
+{
+    // Load lore database index
+    if (!load_lore_index()) {
+        return false;
+    }
+    
+    // Initialize lore cache
+    init_lore_cache();
+    
+    return true;
+}
+
+// Retrieve lore entry by name and type
+lore_entry_t *get_lore_entry(const char *name, lore_type_t type)
+{
+    // Check cache first
+    lore_entry_t *cached = lore_cache_lookup(name, type);
+    if (cached) {
+        return cached;
+    }
+    
+    // Load from database if not in cache
+    lore_entry_t *entry = load_lore_entry(name, type);
+    if (entry) {
+        // Add to cache for future lookups
+        lore_cache_add(entry);
+    }
+    
+    return entry;
+}</code></pre>
+                </div>
+                
+                <div class="component-card">
+                    <h4>3. Lore Integration (Python)</h4>
+                    <p>Python module that provides higher-level lore processing, including context-aware retrieval and narrative integration.</p>
+                    <pre><code># src/mcp/lore/lore_integration.py
+import json
+from typing import Dict, List, Optional
+
+class LoreIntegration:
+    def __init__(self, memory_bank):
+        self.memory_bank = memory_bank
+        self.current_age = "third"  # Default to Third Age
+    
+    def get_contextual_lore(self, entity_name: str, 
+                           context: Dict) -> Dict:
+        """
+        Retrieve lore relevant to the current context
+        """
+        # Get base lore entry
+        base_lore = self._get_lore_entry(entity_name)
+        if not base_lore:
+            return {}
+        
+        # Enrich with contextual information
+        enriched_lore = self._enrich_with_context(
+            base_lore, context)
+        
+        # Add relevant relationships
+        enriched_lore = self._add_relationships(
+            enriched_lore, context)
+            
+        return enriched_lore</code></pre>
+                </div>
+                
+                <div class="component-card">
+                    <h4>4. MCP Endpoints</h4>
+                    <p>API endpoints that allow the MCP server to query the lore system for AI prompt construction.</p>
+                    <pre><code># Lore-related MCP endpoints
+
+GET /lore/entity/{name}
+- Retrieves information about a specific named entity
+- Parameters:
+  - name: Entity name
+  - type: Optional entity type filter
+  - age: Optional age filter
+- Returns: JSON object with entity information
+
+GET /lore/context/{context_id}
+- Retrieves contextually relevant lore for a given game context
+- Parameters:
+  - context_id: Current game context identifier
+  - limit: Maximum number of lore entries to return
+- Returns: JSON array of relevant lore entries
+
+POST /lore/validate
+- Validates generated content against canonical lore
+- Body: JSON object containing content to validate
+- Returns: Validation result with inconsistencies highlighted</code></pre>
+                </div>
+                
+                <div class="component-card">
+                    <h4>5. Narrative Generator</h4>
+                    <p>Specialized component that uses lore to generate narratively consistent descriptions, dialogues, and quest elements.</p>
+                    <pre><code># src/mcp/lore/narrative_generator.py
+class NarrativeGenerator:
+    def __init__(self, lore_integration, mcp_client):
+        self.lore = lore_integration
+        self.mcp = mcp_client
+    
+    async def generate_npc_dialogue(self, 
+                                  npc_name: str, 
+                                  player_context: Dict,
+                                  dialogue_type: str) -> str:
+        """
+        Generate lore-consistent dialogue for an NPC
+        """
+        # Gather relevant lore
+        npc_lore = self.lore.get_contextual_lore(
+            npc_name, player_context)
+        
+        # Construct prompt with lore constraints
+        prompt = self._build_dialogue_prompt(
+            npc_name, npc_lore, player_context, dialogue_type)
+        
+        # Generate dialogue via MCP
+        response = await self.mcp.generate_text(prompt)
+        
+        # Validate against lore for consistency
+        validated = self.lore.validate_content(
+            response, npc_lore)
+        
+        return validated</code></pre>
+                </div>
+            </div>
+            
+            <h2>Lore Entry Format</h2>
+            
+            <p>The lore database uses a standardized JSON format for all entries, with specific fields depending on the entity type:</p>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Description</th>
+                        <th>Required</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>name</td>
+                        <td>Primary identifier for the entity</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>type</td>
+                        <td>Entity type (character, location, artifact, event)</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>age</td>
+                        <td>Relevant age(s) (first, second, third, or multiple)</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>description</td>
+                        <td>Brief summary (1-2 sentences)</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>content</td>
+                        <td>Detailed information about the entity</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>source</td>
+                        <td>Source material reference</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>year</td>
+                        <td>Temporal information (can be range or point)</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>relationships</td>
+                        <td>Connections to other entities</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>locations</td>
+                        <td>Associated places (for characters, artifacts, events)</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>aliases</td>
+                        <td>Alternative names for the entity</td>
+                        <td>No</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>Performance Optimizations</h2>
+            
+            <p>The Lore Management System employs several optimizations to ensure efficient operation:</p>
+            
+            <ul>
+                <li><strong>Tiered Caching:</strong> Frequently accessed lore is cached in memory with a multi-level approach:
+                    <ul>
+                        <li>L1 Cache: Most recently used entries kept in fast access memory</li>
+                        <li>L2 Cache: Secondary cache for frequently accessed but not immediate entries</li>
+                        <li>Persistent Cache: Disk-based cache for less frequent access patterns</li>
+                    </ul>
+                </li>
+                <li><strong>Indexing:</strong> Multiple indices for fast lookup by name, type, age, and relationships</li>
+                <li><strong>Lazy Loading:</strong> Lore entries are loaded on demand rather than all at once</li>
+                <li><strong>Contextual Preloading:</strong> Predictive loading of related lore based on current game context</li>
+            </ul>
+            
+            <h2>Integration with Game Systems</h2>
+            
+            <p>The Lore Management System integrates with several game systems:</p>
+            
+            <ol>
+                <li><strong>Character Generation:</strong> Ensures character backgrounds align with the chosen age</li>
+                <li><strong>Quest Generation:</strong> Provides historical context for procedurally generated quests</li>
+                <li><strong>NPC Dialogue:</strong> Informs dialogue options and responses based on canonical relationships</li>
+                <li><strong>World Building:</strong> Guides the generation of locations, artifacts, and events</li>
+                <li><strong>Companion Characters:</strong> Provides personality traits and background knowledge for companions</li>
+            </ol>
+            
+            <h2>Contributing to the Lore Database</h2>
+            
+            <p>Contributors to the lore database should follow these guidelines:</p>
+            
+            <ol>
+                <li>All entries must have a verifiable source in Tolkien's published works</li>
+                <li>Entries should be categorized by the appropriate age(s)</li>
+                <li>Relationships between entities should be bidirectional where appropriate</li>
+                <li>Non-canonical extensions should be clearly marked as such</li>
+                <li>Temporal information should use consistent notation (YT for Years of the Trees, FA for First Age, etc.)</li>
+            </ol>
+        </div>
+    </div>
+    
+    <footer id="footer" class="mw-footer">
+        <p>Ages of Arda Wiki - Documentation for AI-Driven Roguelike Development</p>
+    </footer>
+    
+    <script src="../sidebar.js"></script>
+</body>
+</html> 

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent Framework - Ages of Arda</title>
+    <link rel="stylesheet" href="../roguebasin-style.css">
+</head>
+<body>
+    <div id="mw-navigation">
+        <div class="sidebar">
+            <!-- Sidebar content will be included via JavaScript -->
+        </div>
+    </div>
+    
+    <div id="content" class="mw-body">
+        <h1 id="firstHeading">Multi-Agent Framework</h1>
+        
+        <div id="bodyContent">
+            <div class="card">
+                <h3>Specialized AI Intelligences for Emergent Gameplay</h3>
+                <p>The Multi-Agent Framework is an advanced AI system that coordinates multiple specialized AI agents, each with distinct roles and responsibilities, to create a rich, dynamic, and coherent gameplay experience. Rather than using a single general-purpose AI for all game tasks, the framework employs multiple specialized agents that collaborate to create emergent, memorable gameplay moments while maintaining lore accuracy.</p>
+            </div>
+            
+            <h2>Core Architecture</h2>
+            
+            <p>The Multi-Agent Framework builds upon the <a href="mcp.html">Model Context Protocol (MCP)</a> to establish a system of specialized intelligences that work together:</p>
+            
+            <div class="architecture-diagram">
+                <img src="../images/multi-agent-architecture.png" alt="Multi-Agent Architecture Diagram">
+            </div>
+            
+            <h3>Agent Types and Roles</h3>
+            
+            <p>The framework includes several specialized agents, each focused on a specific aspect of gameplay:</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Lore Keeper</h3>
+                    <p>Responsible for maintaining lore accuracy and consistency across all generated content. Acts as the authoritative source on Middle-earth knowledge and ensures all narrative elements align with established canon.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Narrative Weaver</h3>
+                    <p>Creates compelling stories, descriptions, and dialogue. Focuses on storytelling and creating an immersive narrative experience while remaining consistent with the game's themes and setting.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Companion Director</h3>
+                    <p>Manages NPC companions, their personalities, dialogue, and relationship development with the player. Ensures companions have consistent character arcs and believable reactions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>World Simulator</h3>
+                    <p>Handles environmental and ecological simulations, weather patterns, and the dynamic responses of the world to player actions and events.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Challenge Balancer</h3>
+                    <p>Dynamically adjusts gameplay difficulty, monster behavior, and resource availability based on player skill, progression, and playstyle.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Meta Coordinator</h3>
+                    <p>The "conductor" that oversees all other agents, manages conflicts, and ensures coherent gameplay experiences. It weighs priorities and makes executive decisions when agents have competing objectives.</p>
+                </div>
+            </div>
+            
+            <h2>Agent Architecture</h2>
+            
+            <p>Each agent follows a standardized architecture that enables both specialization and collaboration:</p>
+            
+            <pre><code>typedef struct agent_s {
+    /* Basic identity */
+    char *name;
+    char *role;
+    agent_type_t type;
+    
+    /* Communication */
+    message_queue_t *inbox;
+    message_queue_t *outbox;
+    
+    /* Knowledge */
+    knowledge_base_t *memory;
+    priority_t *priorities;
+    
+    /* Behavior */
+    decision_function_t decide;
+    action_function_t act;
+    learn_function_t learn;
+    collaborative_function_t collaborate;
+    
+    /* State */
+    agent_state_t state;
+    double confidence;
+    
+    /* Metrics */
+    performance_metrics_t *metrics;
+} agent_t;</code></pre>
+            
+            <p>This structured approach ensures that:</p>
+            
+            <ul>
+                <li>Agents have a clear role and scope of responsibility</li>
+                <li>Communication between agents follows a standardized protocol</li>
+                <li>Each agent maintains its own specialized knowledge base</li>
+                <li>Decision-making processes are appropriate to the agent's specialization</li>
+                <li>Performance can be measured and optimized for each agent</li>
+                <li>Agents can collaborate effectively on complex tasks</li>
+            </ul>
+            
+            <h2>Agent Communication Protocol</h2>
+            
+            <p>Agents communicate using a structured message format that supports various interaction patterns:</p>
+            
+            <pre><code>typedef struct message_s {
+    message_id_t id;
+    agent_id_t sender;
+    agent_id_t recipient;
+    message_type_t type;
+    priority_t priority;
+    timestamp_t timestamp;
+    
+    /* Content */
+    json_t *content;
+    
+    /* Metadata */
+    json_t *metadata;
+    
+    /* Reference */
+    message_id_t in_reply_to;
+    bool requires_response;
+    
+    /* Status */
+    message_status_t status;
+    timestamp_t processed_at;
+} message_t;</code></pre>
+            
+            <p>Message types include:</p>
+            
+            <ul>
+                <li><strong>Query</strong>: Request for information or expertise</li>
+                <li><strong>Response</strong>: Factual answer to a query</li>
+                <li><strong>Suggestion</strong>: Proposed action or content</li>
+                <li><strong>Decision</strong>: Final determination on a topic requiring coordination</li>
+                <li><strong>Override</strong>: High-priority instruction from the Meta Coordinator</li>
+                <li><strong>Update</strong>: New information to be incorporated into knowledge bases</li>
+                <li><strong>Feedback</strong>: Evaluation of previous messages or actions</li>
+            </ul>
+            
+            <h2>Inter-Agent Collaboration Patterns</h2>
+            
+            <p>The Multi-Agent Framework employs several collaboration patterns to solve complex gameplay challenges:</p>
+            
+            <h3>1. Sequential Collaboration</h3>
+            
+            <p>A staged process where agents work in sequence, each adding their expertise:</p>
+            
+            <div class="collaboration-flow">
+                <div class="flow-step">
+                    <div class="agent">Lore Keeper</div>
+                    <div class="action">Provides canonical information about a location</div>
+                    <div class="arrow">↓</div>
+                </div>
+                <div class="flow-step">
+                    <div class="agent">World Simulator</div>
+                    <div class="action">Determines current state based on game events</div>
+                    <div class="arrow">↓</div>
+                </div>
+                <div class="flow-step">
+                    <div class="agent">Narrative Weaver</div>
+                    <div class="action">Creates compelling description</div>
+                    <div class="arrow">↓</div>
+                </div>
+                <div class="flow-step">
+                    <div class="agent">Meta Coordinator</div>
+                    <div class="action">Reviews and finalizes for gameplay</div>
+                </div>
+            </div>
+            
+            <h3>2. Parallel Consultation</h3>
+            
+            <p>Multiple agents are consulted simultaneously, with results synthesized afterward:</p>
+            
+            <div class="collaboration-grid">
+                <div class="grid-branch">
+                    <div class="agent">Companion Director</div>
+                    <div class="action">Proposes companion reaction</div>
+                    <div class="arrow">↓</div>
+                </div>
+                <div class="grid-branch">
+                    <div class="agent">Challenge Balancer</div>
+                    <div class="action">Suggests encounter difficulty</div>
+                    <div class="arrow">↓</div>
+                </div>
+                <div class="grid-branch">
+                    <div class="agent">Lore Keeper</div>
+                    <div class="action">Validates canonical accuracy</div>
+                    <div class="arrow">↓</div>
+                </div>
+                <div class="grid-synthesis">
+                    <div class="agent">Meta Coordinator</div>
+                    <div class="action">Synthesizes inputs into coherent gameplay moment</div>
+                </div>
+            </div>
+            
+            <h3>3. Debate and Consensus</h3>
+            
+            <p>For complex decisions, agents engage in a structured debate to reach consensus:</p>
+            
+            <ol>
+                <li>Each agent proposes a solution based on their expertise</li>
+                <li>Agents critique each other's proposals from their specialized perspective</li>
+                <li>Proposals are refined based on feedback</li>
+                <li>The Meta Coordinator evaluates final proposals and selects the best option</li>
+                <li>Decision is implemented and feedback collected for future learning</li>
+            </ol>
+            
+            <h2>Example: Dynamic Quest Generation</h2>
+            
+            <p>To illustrate how the Multi-Agent Framework operates in practice, consider the example of generating a dynamic quest based on player actions:</p>
+            
+            <div class="example-code">
+                <pre><code>// Step 1: Player burns down a forest near a Silvan Elf settlement
+// System detects significant environmental change
+
+// Step 2: World Simulator analyzes impact
+agent_message_t *impact_analysis = world_simulator_analyze_event(
+    EVENT_FOREST_DESTRUCTION, 
+    location_get("Greenwood"),
+    player_get_current()
+);
+
+// Step 3: Lore Keeper provides context on affected entities
+agent_message_t *lore_context = lore_keeper_get_context(
+    ENTITY_TYPE_SETTLEMENT,
+    "Silvan Elves of Greenwood",
+    AGE_THIRD,
+    YEAR_2850
+);
+
+// Step 4: Companion Director assesses companion reactions
+agent_message_t *companion_reactions = companion_director_get_reactions(
+    player_get_companions(),
+    EVENT_FOREST_DESTRUCTION,
+    ALIGNMENT_GOOD
+);
+
+// Step 5: Narrative Weaver generates potential quest storylines
+quest_options_t *potential_quests = narrative_weaver_generate_quests(
+    impact_analysis,
+    lore_context,
+    companion_reactions,
+    3 // Number of options to generate
+);
+
+// Step 6: Challenge Balancer evaluates difficulty and rewards
+balanced_quests_t *balanced_quests = challenge_balancer_adjust_quests(
+    potential_quests,
+    player_get_level(),
+    player_get_skills(),
+    player_get_history()
+);
+
+// Step 7: Meta Coordinator makes final selection
+selected_quest_t *final_quest = meta_coordinator_select_quest(
+    balanced_quests,
+    player_get_preferences(),
+    game_get_current_narrative_arc()
+);
+
+// Step 8: Quest is presented to the player
+game_add_quest(final_quest);</code></pre>
+            </div>
+            
+            <p>This collaboration results in a quest that is:</p>
+            
+            <ul>
+                <li>Responsive to player actions (burning the forest)</li>
+                <li>Lore-accurate (based on Silvan Elf culture and history)</li>
+                <li>Environmentally realistic (ecological impact simulation)</li>
+                <li>Character-consistent (appropriate companion reactions)</li>
+                <li>Narratively compelling (professional storytelling elements)</li>
+                <li>Appropriately challenging (balanced for player capabilities)</li>
+                <li>Coherent with the broader game narrative (fits ongoing storylines)</li>
+            </ul>
+            
+            <h2>Agents and Memory Management</h2>
+            
+            <p>Each agent interacts with the <a href="memory-bank.html">Memory Bank System</a> in different ways, focusing on different aspects of the persistent game context:</p>
+            
+            <div class="agent-memory-table">
+                <table>
+                    <tr>
+                        <th>Agent</th>
+                        <th>Primary Memory Focus</th>
+                        <th>Secondary Memory Focus</th>
+                    </tr>
+                    <tr>
+                        <td>Lore Keeper</td>
+                        <td>World Building / Lore Database</td>
+                        <td>Game State Context</td>
+                    </tr>
+                    <tr>
+                        <td>Narrative Weaver</td>
+                        <td>Player Experience</td>
+                        <td>World Building</td>
+                    </tr>
+                    <tr>
+                        <td>Companion Director</td>
+                        <td>Player Experience</td>
+                        <td>AI Behavior Patterns</td>
+                    </tr>
+                    <tr>
+                        <td>World Simulator</td>
+                        <td>Game State Context</td>
+                        <td>World Building</td>
+                    </tr>
+                    <tr>
+                        <td>Challenge Balancer</td>
+                        <td>Player Experience</td>
+                        <td>Game State Context</td>
+                    </tr>
+                    <tr>
+                        <td>Meta Coordinator</td>
+                        <td>AI Behavior Patterns</td>
+                        <td>Technical Architecture</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <p>This specialization ensures that each agent:</p>
+            
+            <ul>
+                <li>Focuses on the most relevant information for its role</li>
+                <li>Maintains a manageable knowledge base size</li>
+                <li>Can quickly access information critical to its function</li>
+                <li>Contributes to and benefits from the collective intelligence</li>
+            </ul>
+            
+            <h2>Performance Optimization</h2>
+            
+            <p>The Multi-Agent Framework includes several optimizations to ensure responsive gameplay:</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Selective Activation</h3>
+                    <p>Only the agents needed for a specific task are activated, reducing computational overhead.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Graduated Complexity</h3>
+                    <p>Simple tasks use streamlined decision paths, while complex situations employ more comprehensive agent collaboration.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Pre-Generation</h3>
+                    <p>Common scenarios are pre-generated during idle moments to reduce on-demand computation.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Adaptive Model Selection</h3>
+                    <p>Different-sized models are selected based on the complexity of the task and available resources.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Response Caching</h3>
+                    <p>Common responses and collaborations are cached to avoid redundant processing.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Asynchronous Processing</h3>
+                    <p>Non-critical agent tasks are processed asynchronously to maintain gameplay responsiveness.</p>
+                </div>
+            </div>
+            
+            <h2>Future Development</h2>
+            
+            <p>The Multi-Agent Framework is designed for ongoing evolution, with several planned enhancements:</p>
+            
+            <ul>
+                <li><strong>Agent Learning</strong>: Enabling agents to improve their decision-making based on player feedback and outcomes</li>
+                <li><strong>Expanded Agent Roles</strong>: Adding specialized agents for music generation, puzzle creation, and tactical combat</li>
+                <li><strong>Enhanced Collaboration Patterns</strong>: Developing more sophisticated interaction models between agents</li>
+                <li><strong>Player-Agent Interaction</strong>: Creating an interface for players to directly communicate with specific agents</li>
+                <li><strong>Cross-Session Agent Memory</strong>: Allowing agents to maintain knowledge and relationships across multiple gameplay sessions</li>
+                <li><strong>Community-Contributed Agents</strong>: Framework for players to create and share specialized agents that extend gameplay</li>
+            </ul>
+            
+            <div class="card">
+                <h3>Related Documentation</h3>
+                <p>To further explore the Multi-Agent Framework and related systems:</p>
+                <ul>
+                    <li><a href="mcp.html">Model Context Protocol (MCP)</a> - The communication layer used by agents</li>
+                    <li><a href="memory-bank.html">Memory Bank System</a> - How agents store and retrieve context</li>
+                    <li><a href="lore-management.html">Lore Management</a> - The Lore Keeper's primary knowledge source</li>
+                    <li><a href="../developer/agent-development.html">Agent Development Guide</a> - How to create and modify agents</li>
+                    <li><a href="../api/agent-api.html">Agent API Reference</a> - Complete documentation of the agent interfaces</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="footer" class="mw-footer">
+        <p>Ages of Arda Wiki - Documentation for AI-Driven Roguelike Development</p>
+    </footer>
+    
+    <script src="../sidebar.js"></script>
+</body>
+</html> 

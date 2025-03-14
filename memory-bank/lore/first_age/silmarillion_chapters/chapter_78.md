@@ -1,0 +1,3 @@
+# Chapter 78
+
+* Elrond symbolises throughout the ancient wisdom, and his House represents Lore – the preservation in reverent memory of all tradition concerning the good, wise, and beautiful. It is not a scene of action but of reflection. Thus it is a place visited on the way to all deeds, or ‘adventures’. It may prove to be on the direct road (as in The Hobbit); but it may be necessary to go from there in a totally unexpected course. So necessarily in The Lord of the Rings, having escaped to Elrond from the imminent pursuit of present evil, the hero departs in a wholly new direction: to go and face it at its source.

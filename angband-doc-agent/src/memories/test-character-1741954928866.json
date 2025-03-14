@@ -1,0 +1,75 @@
+[
+  {
+    "type": "events",
+    "items": [
+      {
+        "id": "de0ac4bb-ae48-4a0a-b779-ceef828fd476",
+        "timestamp": 1741954929854,
+        "event_type": "monster_death",
+        "details": {
+          "monster_name": "Ancient Red Dragon",
+          "monster_level": 50,
+          "is_unique": true
+        },
+        "narrative": "The bard seems at a loss for words...",
+        "importance": 47
+      },
+      {
+        "id": "fad1a5a0-c563-4f0b-81a7-087652cd9822",
+        "timestamp": 1741954930053,
+        "event_type": "item_discovery",
+        "details": {
+          "item_name": "Glamdring, the Foe-hammer",
+          "is_artifact": true,
+          "item_type": "sword"
+        },
+        "narrative": "The bard seems at a loss for words...",
+        "importance": 47
+      },
+      {
+        "id": "c32924b6-7aff-42b4-8fa4-8f85613c8aed",
+        "timestamp": 1741954930228,
+        "event_type": "new_level",
+        "details": {
+          "dungeon_level": 40,
+          "level_feeling": "menacing"
+        },
+        "narrative": "The bard seems at a loss for words...",
+        "importance": 40
+      },
+      {
+        "id": "c635423e-8662-4c25-a69b-e3bd088b972e",
+        "timestamp": 1741954930448,
+        "event_type": "near_death",
+        "details": {
+          "hp_percent": 5,
+          "enemy_name": "Balrog of Morgoth"
+        },
+        "narrative": "The bard seems at a loss for words...",
+        "importance": 47
+      },
+      {
+        "id": "39bbae71-5943-4667-8c26-823af523b81c",
+        "timestamp": 1741954930645,
+        "event_type": "quest_complete",
+        "details": {
+          "quest_name": "Defeat the Witch-king",
+          "quest_level": 30
+        },
+        "narrative": "The bard seems at a loss for words...",
+        "importance": 50
+      },
+      {
+        "id": "9d793489-977e-4217-928f-38f30be9bde2",
+        "timestamp": 1741954930858,
+        "event_type": "level_up",
+        "details": {
+          "new_level": 26,
+          "class": "Warrior"
+        },
+        "narrative": "The bard seems at a loss for words...",
+        "importance": 45
+      }
+    ]
+  }
+]

@@ -1,0 +1,31 @@
+{
+    "name": "Fingolfin",
+    "description": "Second High King of the Noldor, son of Finwë and Indis",
+    "content": "Fingolfin was the second High King of the Noldor in Beleriand, eldest son of Finwë and Indis, younger half-brother of Fëanor, and the elder brother of Finarfin. He founded the city of Gondolin and led his host across the treacherous ice of the Helcaraxë after being abandoned by Fëanor. Fingolfin is renowned for his hopeless single combat with Morgoth after the devastating defeat of the Elves in the Dagor Bragollach, where he wounded the Dark Lord seven times before being slain. He was said to be the strongest, most steadfast, and most valiant of Finwë's sons.",
+    "source": "The Silmarillion, Chapter 5, 6, 13, 18",
+    "year": 1,
+    "is_canonical": true,
+    "type": "character",
+    "race": "Elf (Noldor)",
+    "titles": [
+        "High King of the Noldor",
+        "Lord of Hithlum"
+    ],
+    "relations": {
+        "father": "Finwë",
+        "mother": "Indis",
+        "half-brother": "Fëanor",
+        "brother": "Finarfin",
+        "children": ["Fingon", "Turgon", "Aredhel", "Argon"]
+    },
+    "notable_deeds": [
+        "Led his people across the Helcaraxë",
+        "Wounded Morgoth seven times in single combat",
+        "Ruled the Noldor in Middle-earth for centuries"
+    ],
+    "death": {
+        "cause": "Slain by Morgoth",
+        "location": "Angband",
+        "circumstances": "Single combat challenge after the Dagor Bragollach"
+    }
+} 

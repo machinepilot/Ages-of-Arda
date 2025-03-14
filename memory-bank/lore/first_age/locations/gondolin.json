@@ -1,0 +1,44 @@
+{
+    "name": "Gondolin",
+    "description": "Hidden elven city founded by Turgon in the First Age",
+    "content": "Gondolin was a hidden city of the Elves built by King Turgon in the First Age. Located in a hidden valley called Tumladen in the Encircling Mountains, it was founded around FA 126 and remained hidden from both friend and foe for nearly 400 years. Designed to resemble Tirion upon Túna in Valinor, Gondolin was built on a hill in the middle of the valley and was accessible only through a secret passage. The city featured seven names and contained seven gates that guarded its entrance: the Gate of Wood, the Gate of Stone, the Gate of Bronze, the Gate of Iron, the Gate of Silver, the Gate of Gold, and the Gate of Steel. Gondolin fell in FA 510 when it was betrayed by Maeglin to Morgoth, who sent an army to destroy it. The city's fall is one of the most tragic events in the First Age.",
+    "source": "The Silmarillion, Chapter 15, 23",
+    "year": 126,
+    "is_canonical": true,
+    "type": "city",
+    "region": "Tumladen Valley, Encircling Mountains",
+    "ruler": "Turgon",
+    "notable_features": [
+        "Seven Gates",
+        "The King's Tower",
+        "The Square of the Folkwell",
+        "The Way of Running Waters"
+    ],
+    "history": {
+        "founded": "FA 126",
+        "founder": "Turgon",
+        "major_events": [
+            "Arrival of Tuor (FA 496)",
+            "Birth of Eärendil (FA 503)",
+            "Fall of Gondolin (FA 510)"
+        ],
+        "destruction": {
+            "date": "FA 510",
+            "cause": "Betrayed by Maeglin to Morgoth",
+            "attackers": ["Balrogs", "Dragons", "Orcs"]
+        }
+    },
+    "houses": [
+        "House of the King",
+        "House of the Heavenly Arch",
+        "House of the Mole",
+        "House of the Swallow",
+        "House of the Harp",
+        "House of the Fountain",
+        "House of the Golden Flower",
+        "House of the Tree",
+        "House of the Pillar",
+        "House of the Tower of Snow",
+        "House of the Wing"
+    ]
+} 

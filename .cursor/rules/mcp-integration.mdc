@@ -1,0 +1,136 @@
+---
+description: Model Context Protocol (MCP) Integration Guidelines
+globs: 
+alwaysApply: false
+---
+# Model Context Protocol (MCP) Integration Guidelines
+
+## Overview
+MCP is used to connect the Angband variant with local LLMs via Ollama for dynamic gameplay generation.
+
+## Server Configuration
+- Default port: 11434 (Ollama default)
+- Backup port: 8000 (if Ollama port is unavailable)
+- Connection timeout: 5 seconds
+- Retry attempts: 3
+
+## Model Selection
+- Primary: `codellama:13b` - For code generation and game logic
+- Secondary: `llama2:13b` - For narrative and world building
+- Fallback: `mistral:7b` - For lightweight interactions
+
+## Context Management
+- Game state context: Limited to 4000 tokens
+- Player history context: Limited to 2000 tokens
+- World state context: Limited to 2000 tokens
+- Lore context: Limited to 2000 tokens
+
+## MCP Endpoints
+
+### Companion System
+- `ages/companion/dialogue`: Generate dialogue for a companion
+  - Parameters: companion_name, age, topic (optional), relationship_level
+  - Response: dialogue, companion, age, topic
+
+- `ages/companion/info`: Get information about a companion
+  - Parameters: companion_name, age
+  - Response: companion data including background, traits, and relationships
+
+- `ages/relationship/update`: Update the relationship level with a companion
+  - Parameters: companion_name, change_amount, reason
+  - Response: new_level, companion_name, reaction
+
+### Lore System
+- `ages/lore/character`: Get character lore
+  - Parameters: character_name, age (optional)
+  - Response: content, source, age, year, is_canonical
+
+- `ages/lore/location`: Get location lore
+  - Parameters: location_name, age (optional)
+  - Response: content, source, age, year, is_canonical
+
+- `ages/lore/artifact`: Get artifact lore
+  - Parameters: artifact_name, age (optional)
+  - Response: content, source, age, year, is_canonical
+
+- `ages/lore/random`: Get random lore
+  - Parameters: topic_type (optional), age (optional)
+  - Response: content, topic_type, age, source
+
+- `ages/lore/age/set`: Set the current age
+  - Parameters: age
+  - Response: status, age
+
+- `ages/lore/age/get`: Get the current age
+  - Parameters: none
+  - Response: age
+
+### Narrative Generation
+- `ages/narrative/location`: Generate location description
+  - Parameters: location_name, age, context (optional)
+  - Response: description, location, age
+
+- `ages/narrative/companion`: Generate companion dialogue
+  - Parameters: companion_name, age, topic (optional), relationship_level, context (optional)
+  - Response: dialogue, companion, age, topic
+
+- `ages/narrative/quest`: Generate quest
+  - Parameters: quest_type, location, age, target (optional), context (optional)
+  - Response: title, description, quest_type, location, age, target
+
+### Timeline Management
+- `ages/timeline/info`: Get information about the current timeline
+  - Parameters: none
+  - Response: current_age, year, major_events
+
+- `ages/player/death`: Handle player death and advance the timeline
+  - Parameters: cause_of_death, player_level, achievements
+  - Response: new_age, new_year, new_companion, death_narrative
+
+## Prompt Templates
+```
+[GAME_STATE]
+{game_state_json}
+[/GAME_STATE]
+
+[PLAYER_HISTORY]
+{player_history_text}
+[/PLAYER_HISTORY]
+
+[WORLD_STATE]
+{world_state_json}
+[/WORLD_STATE]
+
+[LORE_CONTEXT]
+{relevant_lore_json}
+[/LORE_CONTEXT]
+
+[INSTRUCTION]
+{specific_instruction}
+[/INSTRUCTION]
+```
+
+## Response Parsing
+- JSON format expected for structured data
+- Plain text for narrative responses
+- Error handling for malformed responses
+- Validation against lore accuracy when applicable
+
+## Performance Considerations
+- Cache common responses
+- Batch similar requests
+- Use async processing for non-blocking gameplay
+- Implement fallback behavior for offline play
+- Prioritize template-based generation for time-sensitive operations
+
+## Security
+- No sensitive data in prompts
+- Sanitize all LLM outputs before processing
+- Implement rate limiting
+- Local-only deployment by default
+
+## Testing
+- Mock LLM responses for unit tests
+- Benchmark response times
+- Validate response formats
+- Verify lore accuracy and consistency 

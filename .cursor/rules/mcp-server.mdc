@@ -1,0 +1,257 @@
+---
+description: MCP Server Implementation for Angband Variant
+globs: ["**/src/mcp/**"]
+alwaysApply: false
+---
+# MCP Server Implementation for Angband Variant
+
+## Overview
+This document outlines the implementation strategy for Model Context Protocol (MCP) servers in our Angband variant, enabling AI-driven emergent gameplay through standardized communication with LLMs.
+
+## Development Workflow
+
+### 1. Planning Phase
+- Define the specific gameplay elements that will use AI
+- Map required AI capabilities to specific MCP tools
+- Design the authentication and security approach
+- Create specifications for each tool's parameters and outputs
+- Develop error handling and fallback strategies
+
+### 2. Implementation Phase
+
+#### Core Server Structure
+```c
+/**
+ * Initialize the MCP server for game integration
+ */
+mcp_server_t *
+init_mcp_server(const char *server_name, int port)
+{
+    mcp_server_t *server = malloc(sizeof(mcp_server_t));
+    
+    if (server == NULL) {
+        return NULL;
+    }
+    
+    server->name = strdup(server_name);
+    server->port = port;
+    server->tools = create_tool_registry();
+    server->active = false;
+    
+    return server;
+}
+
+/**
+ * Register a tool with the MCP server
+ */
+bool
+register_mcp_tool(mcp_server_t *server, const char *tool_name, 
+                 tool_handler_t handler, tool_params_t *params)
+{
+    if (server == NULL || tool_name == NULL || handler == NULL) {
+        return false;
+    }
+    
+    mcp_tool_t *tool = create_tool(tool_name, handler, params);
+    
+    if (tool == NULL) {
+        return false;
+    }
+    
+    return add_tool_to_registry(server->tools, tool);
+}
+```
+
+#### Tool Implementation Examples
+
+##### Narrative Generation Tool
+```c
+/**
+ * Generate narrative description based on game state
+ */
+char *
+generate_narrative_handler(const char *location, const char *context, void *user_data)
+{
+    game_state_t *state = (game_state_t *)user_data;
+    
+    // Prepare prompt with context
+    char prompt[4096];
+    snprintf(prompt, sizeof(prompt), 
+             "[GAME_STATE]\n%s\n[/GAME_STATE]\n"
+             "[LOCATION]\n%s\n[/LOCATION]\n"
+             "[CONTEXT]\n%s\n[/CONTEXT]\n"
+             "[INSTRUCTION]\nGenerate a vivid, atmospheric description of this location "
+             "that reflects the game state and context.\n[/INSTRUCTION]",
+             serialize_game_state(state), location, context);
+    
+    // Request from LLM
+    char *response = request_llm_completion(state->llm_client, prompt);
+    
+    // Process and validate response
+    char *validated = validate_narrative_response(response);
+    free(response);
+    
+    return validated;
+}
+```
+
+##### Combat Analysis Tool
+```c
+/**
+ * Analyze combat situation and suggest enemy tactics
+ */
+combat_response_t *
+analyze_combat_handler(entity_t *player, entity_t **enemies, int enemy_count, void *user_data)
+{
+    game_state_t *state = (game_state_t *)user_data;
+    combat_response_t *response = malloc(sizeof(combat_response_t));
+    
+    if (response == NULL) {
+        return NULL;
+    }
+    
+    // Prepare combat state representation
+    char *combat_state = serialize_combat_state(player, enemies, enemy_count);
+    
+    // Prepare prompt
+    char prompt[4096];
+    snprintf(prompt, sizeof(prompt),
+             "[COMBAT_STATE]\n%s\n[/COMBAT_STATE]\n"
+             "[INSTRUCTION]\nAnalyze this combat situation and suggest appropriate "
+             "tactics for the enemies based on their abilities, the environment, "
+             "and the player's condition.\n[/INSTRUCTION]",
+             combat_state);
+    
+    free(combat_state);
+    
+    // Request from LLM
+    char *llm_response = request_llm_completion(state->llm_client, prompt);
+    
+    // Parse and validate response
+    parse_combat_response(llm_response, response);
+    free(llm_response);
+    
+    return response;
+}
+```
+
+##### Lore Retrieval Tool
+```c
+/**
+ * Retrieve lore information about a character, location, or artifact
+ */
+lore_response_t *
+get_lore_handler(const char *entity_name, const char *entity_type, const char *age, void *user_data)
+{
+    game_state_t *state = (game_state_t *)user_data;
+    lore_response_t *response = malloc(sizeof(lore_response_t));
+    
+    if (response == NULL) {
+        return NULL;
+    }
+    
+    // First check the memory bank cache
+    lore_entry_t *cached_lore = lore_manager_get_entry(entity_name, entity_type, age);
+    
+    if (cached_lore != NULL) {
+        // Use cached lore
+        response->content = strdup(cached_lore->content);
+        response->source = strdup(cached_lore->source);
+        response->age = strdup(cached_lore->age);
+        response->year = cached_lore->year;
+        response->is_canonical = cached_lore->is_canonical;
+        return response;
+    }
+    
+    // If not in cache, prepare a request to the LLM
+    char prompt[4096];
+    snprintf(prompt, sizeof(prompt),
+             "[ENTITY]\n%s\n[/ENTITY]\n"
+             "[ENTITY_TYPE]\n%s\n[/ENTITY_TYPE]\n"
+             "[AGE]\n%s\n[/AGE]\n"
+             "[INSTRUCTION]\nProvide accurate lore information about this entity from "
+             "Tolkien's legendarium. If the information is not canonical, indicate this "
+             "clearly and provide the closest canonical reference.\n[/INSTRUCTION]",
+             entity_name, entity_type, age);
+    
+    // Request from LLM
+    char *llm_response = request_llm_completion(state->llm_client, prompt);
+    
+    // Parse and validate response
+    parse_lore_response(llm_response, response);
+    free(llm_response);
+    
+    // Add to cache for future use
+    lore_manager_add_entry(entity_name, entity_type, age, response);
+    
+    return response;
+}
+```
+
+##### Narrative Generation with Lore Context
+```c
+/**
+ * Generate narrative content that incorporates lore context
+ */
+char *
+generate_lore_narrative_handler(const char *content_type, const char *entity_name, 
+                               const char *age, void *user_data)
+{
+    game_state_t *state = (game_state_t *)user_data;
+    
+    // Retrieve relevant lore first
+    lore_response_t *lore = get_lore_handler(entity_name, content_type, age, user_data);
+    
+    if (lore == NULL) {
+        return strdup("Could not retrieve lore information.");
+    }
+    
+    // Prepare prompt with lore context
+    char prompt[4096];
+    snprintf(prompt, sizeof(prompt), 
+             "[GAME_STATE]\n%s\n[/GAME_STATE]\n"
+             "[ENTITY]\n%s\n[/ENTITY]\n"
+             "[LORE_CONTEXT]\n%s\n[/LORE_CONTEXT]\n"
+             "[AGE]\n%s\n[/AGE]\n"
+             "[INSTRUCTION]\nGenerate %s narrative content about this entity that "
+             "incorporates the lore context. Ensure the narrative is consistent with "
+             "the lore and appropriate for the age. Focus on creating an immersive "
+             "experience that feels authentic to Tolkien's world.\n[/INSTRUCTION]",
+             serialize_game_state(state), entity_name, lore->content, age, content_type);
+    
+    // Request from LLM
+    char *response = request_llm_completion(state->llm_client, prompt);
+    
+    // Process and validate response
+    char *validated = validate_narrative_response(response);
+    free(response);
+    free_lore_response(lore);
+    
+    return validated;
+}
+```
+
+### 3. Testing Phase
+- Unit test each tool function
+- Integration test with mock LLM responses
+- Performance testing under various load conditions
+- Edge case testing with unusual inputs
+- User experience testing in gameplay context
+- Lore accuracy validation with canonical sources
+
+## Security Considerations
+- Implement proper authentication for MCP server access
+- Sanitize all inputs before processing
+- Validate all LLM outputs before applying to game state
+- Implement rate limiting to prevent abuse
+- Provide fallback mechanisms for offline play
+- Verify lore sources to prevent misinformation
+
+## Performance Optimization
+- Cache common responses to reduce LLM calls
+- Implement asynchronous processing for non-blocking gameplay
+- Batch similar requests when possible
+- Use lightweight models for time-sensitive operations
+- Implement progressive enhancement based on available resources
+- Pre-load frequently accessed lore on startup
+- Use LRU caching for lore entries 

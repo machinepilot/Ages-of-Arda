@@ -1,0 +1,143 @@
+[
+  {
+    "type": "events",
+    "items": [
+      {
+        "id": "545cfc0c-efa2-4df2-8589-c587893a648a",
+        "timestamp": 1741955543617,
+        "event_type": "monster_death",
+        "details": {
+          "monster_name": "Ancient Red Dragon",
+          "monster_level": 50,
+          "is_unique": true
+        },
+        "narrative": "The echoes of legend reverberate throughout the land as you stand victorious over the lifeless form of Azrok, the Ancient Red Dragon! Your axe, once imbued with the fire of the depths, now shines brighter than the sun itself, its blade etched with the tales of a thousand bravest deeds. The whispers of the ancients, which once spoke only of your name in awe, now speak of you as a champion, a warrior who has vanquished the very fabric of darkness itself. Your people, the Dwarves of old, shall tell this tale for ages to come, and the world shall tremble at the mention of Thorin's unyielding might.",
+        "importance": 92
+      },
+      {
+        "id": "e0fc4199-0069-4a9d-b70d-a636ed4245c6",
+        "timestamp": 1741955546075,
+        "event_type": "item_discovery",
+        "details": {
+          "item_name": "Glamdring, the Foe-hammer",
+          "is_artifact": true,
+          "item_type": "sword"
+        },
+        "narrative": "As you delve deeper into the heart of Moria, the shadows seem to grow longer and darker, as if the very presence of your axe has stirred the slumbering guardians of the ancient halls. You feel an unseen force drawing you towards a hidden chamber, where the whispers of the past converge with the present. And then, you see it: Glamdring, the Foe-hammer, its blade shining like a shard of starlight in the dim light. The sword's presence seems to hum with an otherworldly energy, as if the ancient Dwarves who forged it have imbued it with their very essence. You sense that this is no ordinary sword, but a wielder's companion, forged for the one who would vanquish the shadows and bring hope back to a world beset by darkness.",
+        "importance": 72
+      },
+      {
+        "id": "4f0561c7-706a-4282-af41-c99b8a145748",
+        "timestamp": 1741955549989,
+        "event_type": "new_level",
+        "details": {
+          "dungeon_level": 40,
+          "level_feeling": "menacing"
+        },
+        "narrative": "{\n  \"text\": \"As you venture deeper into the forsaken depths of Moria, an unshakeable sense of dread settles upon your shoulders like a shroud. The air thickens with malevolent intent, and the flickering torches seem to dance in macabre celebration of your presence. A faint whispering echoes through the corridors, a chilling litany that speaks directly to the darkness within your soul. You sense that you are being herded towards some ancient, long-abandoned lair, where the very essence of the ear",
+        "importance": 60
+      },
+      {
+        "id": "f83cfbef-9de4-4dd2-89ba-360a0c155cb5",
+        "timestamp": 1741955552327,
+        "event_type": "near_death",
+        "details": {
+          "hp_percent": 5,
+          "enemy_name": "Balrog of Morgoth"
+        },
+        "narrative": "The darkness closes in around you like a shroud, its icy breath washing over you with the weight of a thousand midnights. The Balrog's eyes blaze with malevolent fury as it raises a clawed hand to strike, its roar thundering through the caverns like a crack of doom. You feel the ground shudder beneath your feet as the beast unleashes a torrent of flame and shadow, seeking to snuff out the flickering spark of life that remains within you. Your vision blurs, your senses reel, and for an instant, all is lost to the abyss. The world narrows to a single, burning question: will you rise again, or will the shadows claim you as their own?",
+        "importance": 87
+      },
+      {
+        "id": "823aeb91-bc54-4a5f-9b0a-ca46f64f6412",
+        "timestamp": 1741955558097,
+        "event_type": "quest_complete",
+        "details": {
+          "quest_name": "Defeat the Witch-king",
+          "quest_level": 30
+        },
+        "narrative": "{\n  \"text\": \"As the shadows recede and the Witch-king's dark form dissipates, a warm glow illuminates the forsaken halls of Barad-dûr. The air is heavy with the scent of smoke and ash, but amidst the ruin, a sense of triumph echoes through the chambers. You stand victorious, your axe, Glamdring, still humming with the power of the ancient Dwarves who forged it. The whispers of the past, once silenced by the darkness, now speak in hushed tones of your unyielding might. Your quest to vanquish the ",
+        "importance": 70
+      },
+      {
+        "id": "3863b496-4dab-45ac-ae4d-fc5ad7c8aee7",
+        "timestamp": 1741955560662,
+        "event_type": "level_up",
+        "details": {
+          "new_level": 26,
+          "class": "Warrior"
+        },
+        "narrative": "As the shadows recede, and the light of the world breaks forth anew, you stand tall, your axe Glamdring at the ready. The weight of your unyielding resolve is palpable, a testament to the indomitable spirit of the Dwarves who forged it. Your prowess in battle has earned you a place among the annals of history, and the whispers of the past now speak in hushed tones of your name as a champion of the free peoples. The world trembles at the mention of Thorin's unyielding might, and the darkness that once shrouded the land is but a distant memory. Your level has reached 26, and with it, a new chapter unfolds in the tale of your unwavering courage.",
+        "importance": 85
+      },
+      {
+        "id": "d499a808-369c-42f6-a8d7-a0f44690ce46",
+        "timestamp": 1741955563813,
+        "event_type": "monster_death",
+        "details": {
+          "monster_name": "Shelob",
+          "monster_level": 35,
+          "is_unique": true
+        },
+        "narrative": "As you stand victorious over the lifeless form of Shelob, the very essence of darkness seems to unravel before your eyes. The air is heavy with the scent of decay and corruption, yet even in death, the spider's malevolent presence lingers, a testament to the terror she inspired in all who dared cross her path. Your axe, Glamdring, shines brighter than ever, its blade etched with the tales of a thousand bravest deeds. The whispers of the ancients, which once spoke only of your name in awe, now speak of you as a champion, a warrior who has vanquished the very fabric of darkness itself. In this forsaken place, where shadows danced and terror reigned, you have emerged triumphant, a beacon of hope in a world beset by the forces of night. The echoes of legend reverberate throughout the land, and all shall tremble at the mention of Thorin's unyielding might.",
+        "importance": 87
+      },
+      {
+        "id": "bb0fb9ca-b3c1-4c7f-af19-1224f02d1b6f",
+        "timestamp": 1741955566704,
+        "event_type": "item_discovery",
+        "details": {
+          "item_name": "Mithril Coat of Celebrimbor",
+          "is_artifact": true,
+          "item_type": "armor"
+        },
+        "narrative": "As you venture deeper into the forgotten depths of Khazad-dûm, the whispers of Celebrimbor's wisdom grow louder, guiding you towards a hidden sanctum where the secrets of the Dwarves await. The air thickens with anticipation as you approach the threshold of a long-abandoned chamber, and within its walls, you behold the Mithril Coat of Celebrimbor, forged by the master craftsman's own hands to adorn the shoulders of a true champion. Its metallic surface seems to shimmer like the stars in the evening sky, imbuing you with an unyielding sense of purpose and unwavering resolve. You sense that this ancient coat has been waiting for you, its presence a testament to the unbreakable bond between the Dwarves who forged it and those who would wield it against the gathering darkness.",
+        "importance": 87
+      },
+      {
+        "id": "de368e4f-8e73-451e-82e1-2668f0a9012d",
+        "timestamp": 1741955571376,
+        "event_type": "new_level",
+        "details": {
+          "dungeon_level": 50,
+          "level_feeling": "haunted"
+        },
+        "narrative": "{\n  \"text\": \"The shadows deepen, and the wind whispers secrets in your ear, Thorin, Dwarf Warrior of unyielding resolve. In the depths of Moria's forsaken halls, where darkness reigns supreme, you feel the weight of ancient malice gathering around you like a shroud. The air is heavy with malevolent intent, as if the very stones themselves are conspiring against your every step. Your axe, Glamdring, shines brighter still, its blade etched with the tales of a thousand bravest deeds, yet even its l",
+        "importance": 60
+      },
+      {
+        "id": "99a45044-ba57-4a97-a494-5f8b419d8084",
+        "timestamp": 1741955573246,
+        "event_type": "near_death",
+        "details": {
+          "hp_percent": 1,
+          "enemy_name": "Sauron the Deceiver"
+        },
+        "narrative": "The darkness closes in, an icy shroud that threatens to extinguish the last flicker of life within you. The Balrog's claws swipe at you with deadly precision, its roar deafening as it seeks to snuff out the spark of existence that remains. For an instant, all is lost to the abyss, and the world narrows to a single, burning question: will you rise again, or will the shadows claim you as their own?",
+        "importance": 87
+      },
+      {
+        "id": "687650c6-11f7-47f4-948e-f175f5f9a4af",
+        "timestamp": 1741955576198,
+        "event_type": "quest_complete",
+        "details": {
+          "quest_name": "Recover the Arkenstone",
+          "quest_level": 40
+        },
+        "narrative": "As you finally lay eyes on the Arkenstone, its radiant light illuminates the dark recesses of Moria, banishing the shadows that have long shrouded your path. The weight of centuries of loss and longing lifts from your shoulders, as if the very essence of the stone has freed you from the burden of your quest. Your hands, once bound by duty and obligation, now cradle the Arkenstone with a sense of pride and belonging. You are no longer just Thorin, Dwarf Warrior; you are the rightful heir to the legacy of Durin's folk. The whispers of the past, which once spoke only of your name in awe, now speak of you as a champion, a warrior who has reclaimed what was lost to the darkness. Your heart swells with a sense of purpose, and your spirit is renewed, ready to face whatever challenges lie ahead.",
+        "importance": 90
+      },
+      {
+        "id": "f6c0cfa3-5d29-4c21-9d1e-d6b07862b163",
+        "timestamp": 1741955579514,
+        "event_type": "level_up",
+        "details": {
+          "new_level": 30,
+          "class": "Warrior"
+        },
+        "narrative": "As the final rays of sunlight fade from the depths of Moria, you stand tall, your axe Glamdring at the ready. The weight of unyielding resolve that has guided you thus far presses upon you, a testament to the indomitable spirit of the Dwarves who forged it. With each passing moment, the whispers of Celebrimbor's wisdom grow clearer, urging you forward on the path to greatness. Your heart swells with pride as you gaze upon the Arkenstone, now shining brighter still, its light illuminating the dark recesses of your own soul. You are no longer just Thorin, Dwarf Warrior; you are a champion, a warrior who has reclaimed what was lost to the darkness. The echoes of legend reverberate throughout the land, and all shall tremble at the mention of your name as a hero of unyielding might. Your level has reached 30, and with it, a new chapter unfolds in the tale of your unwavering courage.",
+        "importance": 90
+      }
+    ]
+  }
+]

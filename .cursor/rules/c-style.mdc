@@ -1,0 +1,64 @@
+---
+description: C Code Style Guidelines for Angband Variant
+globs: 
+alwaysApply: false
+---
+# C Code Style Guidelines for Angband Variant
+
+## Formatting
+- Indentation: 4 spaces (no tabs)
+- Max line length: 120 characters
+- Braces: K&R style (opening brace on same line)
+- Function declarations: return type on separate line
+
+## Naming Conventions
+- Functions: `snake_case`
+- Variables: `snake_case`
+- Constants: `ALL_CAPS_WITH_UNDERSCORES`
+- Structs/Enums: `snake_case_t` (with _t suffix)
+- Macros: `ALL_CAPS_WITH_UNDERSCORES`
+
+## Example Function
+```c
+/**
+ * Calculate damage for a melee attack
+ * 
+ * @param attacker The attacking entity
+ * @param defender The defending entity
+ * @param weapon The weapon used (NULL for unarmed)
+ * @return int The calculated damage amount
+ */
+int
+calc_melee_damage(entity_t *attacker, entity_t *defender, object_t *weapon)
+{
+    int base_damage = 0;
+    int strength_bonus = 0;
+    
+    /* Base calculations */
+    if (weapon != NULL) {
+        base_damage = randint1(weapon->damage_dice) + weapon->damage_bonus;
+    } else {
+        base_damage = randint1(attacker->unarmed_dice);
+    }
+    
+    /* Apply strength modifier */
+    strength_bonus = (attacker->strength - 10) / 2;
+    
+    return MAX(1, base_damage + strength_bonus - defender->armor_class);
+}
+```
+
+## Comments
+- Function headers: Document parameters and return values
+- Complex logic: Explain with inline comments
+- Magic numbers: Always explain or use constants
+
+## Memory Management
+- Always free allocated memory
+- Check return values from memory allocation
+- Use defensive programming techniques
+
+## Error Handling
+- Return error codes for recoverable errors
+- Use assert() for programming errors
+- Log all errors with appropriate context 

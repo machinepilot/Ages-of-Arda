@@ -1,0 +1,13 @@
+# NOTE ON THE TEXT
+
+NOTE ON THE TEXT
+The Hobbit was first published in September 1937. Its 1951 second edition (fifth impression) contains a significantly revised portion
+of Chapter V, “Riddles in the Dark,” which brings the story of The Hobbit more in line with its sequel, The Lord of the Rings, then in progress. Tolkien made some further revisions to the American edition published by Ballantine Books in February
+1966, and to the British third edition (sixteenth impression) published by George Allen & Unwin later that same year.
+For the 1995 British hardcover edition, published by HarperCollins, the text of The Hobbit was entered into word-processing files, and a number of further corrections of misprints and errors were made. Since then,
+various editions of The Hobbit have been generated from that computerized text file. For the present text, that file has been compared again, line by line,
+with the earlier editions, and a number of further corrections have been made to present a text that, as closely as possible,
+represents Tolkien’s final intended form.
+Readers interested in details of the changes made at various times to the text of The Hobbit are referred to Appendix A, “Textual and Revisional Notes,” of The Annotated Hobbit (1988), and J. R. R. Tolkien: A Descriptive Bibliography by Wayne G. Hammond, with the assistance of Douglas A. Anderson (1993).
+Douglas A. Anderson
+May 2001
