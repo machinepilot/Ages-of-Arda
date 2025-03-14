@@ -1,0 +1,12 @@
+[build]
+  publish = "wiki"
+  command = ""  # No build command needed for static HTML
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+[build.environment]
+  NODE_VERSION = "16"
