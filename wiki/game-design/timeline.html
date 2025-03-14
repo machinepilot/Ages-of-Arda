@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline & Ages - Ages of Arda</title>
+    <link rel="stylesheet" href="../roguebasin-style.css">
+    <script src="../sidebar.js"></script>
+</head>
+<body>
+    <div id="mw-navigation">
+        <div class="sidebar">
+            <!-- Sidebar content will be included via JavaScript -->
+        </div>
+    </div>
+    
+    <div id="content" class="mw-body">
+        <h1 id="firstHeading">Timeline & Ages</h1>
+        
+        <div id="bodyContent">
+            <div class="card">
+                <h3>Journeying Through the History of Middle-earth</h3>
+                <p>One of the most distinctive features of Ages of Arda is its spanning of multiple eras in Tolkien's legendarium. The Timeline system allows players to experience the First, Second, and Third Ages of Middle-earth, with actions in earlier ages rippling forward to affect later ones. This cyclical gameplay creates a unique roguelike experience where death is not the end, but a transition to a new chapter in the world's history.</p>
+            </div>
+            
+            <h2>The Ages of Arda</h2>
+            
+            <div class="timeline-graphic">
+                <img src="../images/ages-timeline.png" alt="Timeline of the Ages of Arda" class="diagram">
+            </div>
+            
+            <div class="age-section">
+                <h3>First Age: The Elder Days</h3>
+                <p>The First Age represents the earliest period of Tolkien's legendarium covered in the game, beginning with the awakening of the Elves and ending with the War of Wrath. This age is characterized by:</p>
+                <ul>
+                    <li><strong>Setting</strong>: Beleriand, a now-sunken western region of Middle-earth</li>
+                    <li><strong>Major Powers</strong>: The Valar, Morgoth (the first Dark Lord), and the early Elven kingdoms</li>
+                    <li><strong>Key Events</strong>: The Wars of Beleriand, the Quest for the Silmarils, the fall of Gondolin and Nargothrond</li>
+                    <li><strong>Gameplay Focus</strong>: Epic heroism against overwhelming odds, ancient magic, and tragic downfalls</li>
+                </ul>
+                <p>In the First Age, players can interact with legendary figures like Fingolfin, Beren, Lúthien, and Túrin, and witness events from The Silmarillion firsthand.</p>
+            </div>
+            
+            <div class="age-section">
+                <h3>Second Age: The Age of Númenor</h3>
+                <p>The Second Age begins after the defeat of Morgoth and ends with the Last Alliance of Elves and Men. This period is defined by:</p>
+                <ul>
+                    <li><strong>Setting</strong>: Númenor, Lindon, Eregion, and early Gondor and Arnor</li>
+                    <li><strong>Major Powers</strong>: Númenóreans, Gil-galad's Elven realms, Sauron, and the Dwarven kingdom of Khazad-dûm</li>
+                    <li><strong>Key Events</strong>: The forging of the Rings of Power, the rise and fall of Númenor, the founding of the Realms in Exile</li>
+                    <li><strong>Gameplay Focus</strong>: Political intrigue, corruption, and the balance between technological advancement and wisdom</li>
+                </ul>
+                <p>Second Age gameplay explores the hubris of power and the seductive influence of Sauron as the players navigate a world transitioning from the mythic First Age to the more grounded Third Age.</p>
+            </div>
+            
+            <div class="age-section">
+                <h3>Third Age: The Familiar Era</h3>
+                <p>The Third Age is the setting most familiar to readers of The Hobbit and The Lord of the Rings, beginning after the defeat of Sauron by the Last Alliance and ending with the War of the Ring:</p>
+                <ul>
+                    <li><strong>Setting</strong>: Gondor, Rohan, Eriador, Mirkwood, and other locations from the main books</li>
+                    <li><strong>Major Powers</strong>: Gondor, Rohan, scattered Elven realms, Dwarven outposts, and the rising power of Mordor</li>
+                    <li><strong>Key Events</strong>: The Watchful Peace, the return of the Shadow, the War of the Ring</li>
+                    <li><strong>Gameplay Focus</strong>: Small-scale heroism, exploration of a world in decline, and resistance against the spreading darkness</li>
+                </ul>
+                <p>Third Age gameplay features the most familiar elements from Tolkien's most famous works, with recognizable locations, creatures, and themes.</p>
+            </div>
+            
+            <h2>Timeline Mechanics</h2>
+            
+            <div class="mechanics-section">
+                <h3>Character Reincarnation</h3>
+                <p>When a player character dies in one age, their spirit and legacy influence the creation of a new character in the next age. This creates a sense of continuity across playthroughs and ages:</p>
+                <ul>
+                    <li>Key accomplishments from previous ages are remembered as legends or historical events</li>
+                    <li>Artifacts created or discovered may persist into later ages</li>
+                    <li>Locations significantly altered may show those changes in later ages</li>
+                    <li>Relationships with immortal beings (like Elves) can carry forward</li>
+                </ul>
+            </div>
+            
+            <div class="mechanics-section">
+                <h3>World State Persistence</h3>
+                <p>The Memory Bank system tracks significant changes to the world across ages:</p>
+                <ul>
+                    <li>Major decisions by players can alter historical outcomes within lore-appropriate boundaries</li>
+                    <li>Hidden locations discovered in early ages may have different accessibility in later ages</li>
+                    <li>Powerful enemies defeated might not return in later ages, or might return in different forms</li>
+                    <li>Significant structures built or destroyed will be reflected in later ages</li>
+                </ul>
+            </div>
+            
+            <div class="mechanics-section">
+                <h3>Time Progression</h3>
+                <p>The timeline system handles the progression between ages in several ways:</p>
+                <ul>
+                    <li><strong>Character Death</strong>: When a character dies, the player can choose to advance to the next age</li>
+                    <li><strong>Age Completion</strong>: After completing major objectives in an age, players can choose to advance</li>
+                    <li><strong>Time Portals</strong>: Rare in-game mechanisms can allow temporary or permanent travel between ages</li>
+                </ul>
+            </div>
+            
+            <h2>Technical Implementation</h2>
+            
+            <h3>Memory Bank Integration</h3>
+            <p>The Timeline system relies heavily on the Memory Bank to maintain consistency across ages:</p>
+            <ul>
+                <li>Each age has a dedicated section in the Memory Bank storing world state</li>
+                <li>Character accomplishments are recorded and categorized by significance</li>
+                <li>Lore adaptations track how player actions have modified the canonical timeline</li>
+            </ul>
+            
+            <h3>Lore Consistency</h3>
+            <p>The Timeline system works with the Lore Management System to ensure that player-driven changes remain within the bounds of Tolkien's world:</p>
+            <ul>
+                <li>Major canonical events cannot be completely prevented, but their details may change</li>
+                <li>Character actions are contextualized within the broader historical narrative</li>
+                <li>Each age maintains its distinct themes and atmosphere regardless of player choices</li>
+            </ul>
+            
+            <h3>MCP-Driven Narrative Adaptation</h3>
+            <p>The Model Context Protocol adapts narrative elements based on timeline changes:</p>
+            <ul>
+                <li>NPC dialogue references historical events from previous ages</li>
+                <li>Environmental descriptions acknowledge world state changes</li>
+                <li>Quest generation considers the modified historical context</li>
+            </ul>
+            
+            <h2>Future Development</h2>
+            
+            <p>Ongoing development of the Timeline system includes:</p>
+            
+            <ul>
+                <li>More nuanced character legacy traits that carry forward between ages</li>
+                <li>Greater variety in how world-changing decisions manifest in later ages</li>
+                <li>Expanded narrative integration to better acknowledge player history</li>
+                <li>Potential addition of the Fourth Age as a playable period</li>
+            </ul>
+            
+            <p class="conclusion">The Timeline system represents the heart of the Ages of Arda experience, allowing players to not just explore Middle-earth geographically, but temporally as well. By connecting player experiences across the ages, the game creates a unique roguelike experience where each playthrough contributes to an evolving history of Tolkien's world.</p>
+        </div>
+    </div>
+</body>
+</html> 

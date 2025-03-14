@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP API Endpoints - Ages of Arda</title>
+    <link rel="stylesheet" href="../roguebasin-style.css">
+    <script src="../sidebar.js"></script>
+</head>
+<body>
+    <div id="mw-navigation">
+        <div class="sidebar">
+            <!-- Sidebar content will be included via JavaScript -->
+        </div>
+    </div>
+    
+    <div id="content" class="mw-body">
+        <h1 id="firstHeading">Model Context Protocol (MCP) API Endpoints</h1>
+        
+        <div id="bodyContent">
+            <div class="card">
+                <h3>Interfacing with AI Models</h3>
+                <p>The Model Context Protocol (MCP) is the core system that enables Ages of Arda to leverage AI models for dynamic content generation, NPC interactions, and narrative development. This document outlines the API endpoints available for interacting with the MCP system.</p>
+            </div>
+            
+            <div class="toc">
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li><a href="#overview">API Overview</a></li>
+                    <li><a href="#authentication">Authentication</a></li>
+                    <li><a href="#dialogue">Dialogue Generation</a></li>
+                    <li><a href="#narrative">Narrative Events</a></li>
+                    <li><a href="#lore">Lore Integration</a></li>
+                    <li><a href="#memory">Memory Bank Operations</a></li>
+                    <li><a href="#companions">Companion Interactions</a></li>
+                    <li><a href="#utilities">Utility Endpoints</a></li>
+                    <li><a href="#error-handling">Error Handling</a></li>
+                    <li><a href="#examples">Usage Examples</a></li>
+                </ul>
+            </div>
+            
+            <h2 id="overview">API Overview</h2>
+            
+            <p>The MCP API follows RESTful principles and uses JSON for request and response payloads. All endpoints are available at the base URL:</p>
+            
+            <pre><code>http://localhost:8080/api/mcp/v1</code></pre>
+            
+            <p>For production deployments, the API is available at:</p>
+            
+            <pre><code>https://api.agesofarda.com/mcp/v1</code></pre>
+            
+            <p>The API is versioned to ensure backward compatibility as new features are added.</p>
+            
+            <h2 id="authentication">Authentication</h2>
+            
+            <p>All API requests require authentication using an API key. The key should be included in the request headers:</p>
+            
+            <pre><code>Authorization: Bearer YOUR_API_KEY</code></pre>
+            
+            <p>API keys can be generated and managed through the developer portal or configured locally for development.</p>
+            
+            <h3>Local Development</h3>
+            
+            <p>For local development, you can use the default development key specified in your <code>mcp_config.json</code> file:</p>
+            
+            <pre><code>{
+    "api_key": "dev_key_local_only",
+    "base_url": "http://localhost:8080/api/mcp/v1",
+    "timeout_ms": 5000
+}</code></pre>
+            
+            <h2 id="dialogue">Dialogue Generation</h2>
+            
+            <h3>Generate NPC Dialogue</h3>
+            
+            <div class="endpoint">
+                <h4>POST /dialogue/generate</h4>
+                <p>Generates contextually appropriate dialogue for an NPC based on the current game state, player history, and NPC characteristics.</p>
+                
+                <h5>Request Body:</h5>
+                <pre><code>{
+    "npc_id": "string",
+    "player_id": "string",
+    "context": {
+        "location": "string",
+        "time_of_day": "string",
+        "current_quest": "string",
+        "recent_events": ["string"],
+        "relationship_level": "number"
+    },
+    "dialogue_type": "string",  // "greeting", "quest", "lore", "farewell", etc.
+    "max_length": "number",     // Maximum length in tokens
+    "tone": "string"            // Optional: "friendly", "hostile", "neutral", etc.
+}</code></pre>
+                
+                <h5>Response:</h5>
+                <pre><code>{
+    "dialogue": "string",
+    "follow_ups": ["string"],   // Potential player response options
+    "metadata": {
+        "tone": "string",
+        "sentiment": "string",
+        "key_topics": ["string"]
+    }
+}</code></pre>
+                
+                <h5>Status Codes:</h5>
+                <ul>
+                    <li><code>200 OK</code> - Dialogue generated successfully</li>
+                    <li><code>400 Bad Request</code> - Invalid request parameters</li>
+                    <li><code>401 Unauthorized</code> - Invalid or missing API key</li>
+                    <li><code>404 Not Found</code> - NPC or player not found</li>
+                    <li><code>500 Internal Server Error</code> - Server error</li>
+                </ul>
+            </div>
+            
+            <h3>Continue Conversation</h3>
+            
+            <div class="endpoint">
+                <h4>POST /dialogue/continue</h4>
+                <p>Continues an existing conversation with an NPC, maintaining context from previous exchanges.</p>
+                
+                <h5>Request Body:</h5>
+                <pre><code>{
+    "conversation_id": "string",
+    "player_response": "string",
+    "max_length": "number"
+}</code></pre>
+                
+                <h5>Response:</h5>
+                <pre><code>{
+    "dialogue": "string",
+    "follow_ups": ["string"],
+    "conversation_state": "string",  // "ongoing", "concluding", "quest_offered", etc.
+    "metadata": {
+        "sentiment_shift": "string",
+        "relationship_change": "number"
+    }
+}</code></pre>
+            </div>
+            
+            <h2 id="narrative">Narrative Events</h2>
+            
+            <h3>Generate Event</h3>
+            
+            <div class="endpoint">
+                <h4>POST /narrative/event</h4>
+                <p>Generates a narrative event based on the current game state and player history.</p>
+                
+                <h5>Request Body:</h5>
+                <pre><code>{
+    "player_id": "string",
+    "location": "string",
+    "event_type": "string",     // "combat", "discovery", "encounter", "ambient"
+    "intensity": "number",      // 1-10 scale
+    "constraints": {
+        "lore_alignment": "number",  // How strictly to adhere to established lore (1-10)
+        "age_specific": "string",    // "first_age", "second_age", "third_age"
+        "required_elements": ["string"]
+    }
+}</code></pre>
+                
+                <h5>Response:</h5>
+                <pre><code>{
+    "event_id": "string",
+    "title": "string",
+    "description": "string",
+    "outcomes": [{
+        "description": "string",
+        "probability": "number",
+        "consequences": [{
+            "type": "string",
+            "description": "string",
+            "game_effect": "string"
+        }]
+    }],
+    "metadata": {
+        "lore_references": ["string"],
+        "suggested_music": "string",
+        "mood": "string"
+    }
+}</code></pre>
+            </div>
+            
+            <h3>Resolve Event</h3>
+            
+            <div class="endpoint">
+                <h4>POST /narrative/event/{event_id}/resolve</h4>
+                <p>Resolves a previously generated narrative event based on player choices.</p>
+                
+                <h5>Request Body:</h5>
+                <pre><code>{
+    "player_id": "string",
+    "chosen_outcome": "string",
+    "player_actions": ["string"],
+    "random_factors": {
+        "luck": "number",
+        "skill_checks": [{
+            "skill": "string",
+            "result": "number"
+        }]
+    }
+}</code></pre>
+                
+                <h5>Response:</h5>
+                <pre><code>{
+    "resolution": "string",
+    "consequences": [{
+        "type": "string",
+        "description": "string",
+        "game_effect": "string"
+    }],
+    "memory_entries": [{
+        "type": "string",
+        "content": "string",
+        "importance": "number"
+    }]
+}</code></pre>
+            </div>
+            
+            <h2 id="lore">Lore Integration</h2>
+            
+            <h3>Query Lore</h3>
+            
+            <div class="endpoint">
+                <h4>GET /lore/query</h4>
+                <p>Retrieves lore information relevant to the current context.</p>
+                
+                <h5>Query Parameters:</h5>
+                <ul>
+                    <li><code>topic</code> (string) - The lore topic to query</li>
+                    <li><code>age</code> (string) - The age context ("first_age", "second_age", "third_age")</li>
+                    <li><code>detail_level</code> (number, optional) - Level of detail (1-5)</li>
+                </ul>
+                
+                <h5>Response:</h5>
+                <pre><code>{
+    "topic": "string",
+    "content": "string",
+    "sources": ["string"],
+    "related_topics": ["string"],
+    "canonical": "boolean"  // Whether this is canonical Tolkien lore or game-specific
+}</code></pre>
+            </div>
+            
+            <h3>Adapt Lore</h3>
+            
+            <div class="endpoint">
+                <h4>POST /lore/adapt</h4>
+                <p>Adapts canonical lore to accommodate player actions while maintaining consistency.</p>
+                
+                <h5>Request Body:</h5>
+                <pre><code>{
+    "topic": "string",
+    "player_actions": ["string"],
+    "world_state": {
+        "age": "string",
+        "major_events": ["string"],
+        "altered_elements": [{
+            "element": "string",
+            "current_state": "string"
+        }]
+    },
+    "constraints": {
+        "flexibility": "number",  // 1-10, how much the lore can be adapted
+        "preserve_outcomes": "boolean"
+    }
+}</code></pre>
+                
+                <h5>Response:</h5>
+                <pre><code>{
+    "original_lore": "string",
+    "adapted_lore": "string",
+    "justification": "string",
+    "consistency_score": "number",  // 1-100
+    "ripple_effects": [{
+        "affected_element": "string",
+        "description": "string",
+        "severity": "number"
+    }]
+}</code></pre>
+            </div>
+            
+            <h2 id="memory">Memory Bank Operations</h2>
+            
+            <h3>Store Memory</h3>
+            
+            <div class="endpoint">
+                <h4>POST /memory/store</h4>
+                <p>Stores a new memory in the Memory Bank system.</p>
+                
+                <h5>Request Body:</h5>
+                <pre><code>{
+    "player_id": "string",
+    "memory_type": "string",  // "event", "dialogue", "discovery", "achievement"
+    "content": "string",
+    "metadata": {
+        "location": "string",
+        "time": "string",
+        "importance": "number",  // 1-10
+        "entities_involved": ["string"],
+        "age": "string"
+    },
+    "tags": ["string"]
+}</code></pre>
+                
+                <h5>Response:</h5>
+                <pre><code>{
+    "memory_id": "string",
+    "status": "string",
+    "summary": "string"  // Condensed version for quick reference
+}</code></pre>
+            </div>
+            
+            <h3>Retrieve Memories</h3>
+            
+            <div class="endpoint">
+                <h4>GET /memory/retrieve</h4>
+                <p>Retrieves memories based on specified criteria.</p>
+                
+                <h5>Query Parameters:</h5>
+                <ul>
+                    <li><code>player_id</code> (string) - The player's unique identifier</li>
+                    <li><code>types</code> (array, optional) - Types of memories to retrieve</li>
+                    <li><code>tags</code> (array, optional) - Tags to filter by</li>
+                    <li><code>importance_min</code> (number, optional) - Minimum importance level</li>
+                    <li><code>age</code> (string, optional) - Age context</li>
+                    <li><code>limit</code> (number, optional) - Maximum number of memories to return</li>
+                    <li><code>related_to</code> (string, optional) - Entity or concept to find related memories</li>
+                </ul>
+                
+                <h5>Response:</h5>
+                <pre><code>{
+    "memories": [{
+        "memory_id": "string",
+        "memory_type": "string",
+        "content": "string",
+        "metadata": {
+            "location": "string",
+            "time": "string",
+            "importance": "number",
+            "entities_involved": ["string"],
+            "age": "string"
+        },
+        "tags": ["string"],
+        "relevance_score": "number"  // How relevant to the query
+    }],
+    "total_count": "number",
+    "summary": "string"  // Optional contextual summary
+}</code></pre>
+            </div>
+            
+            <h3>Update Memory Importance</h3>
+            
+            <div class="endpoint">
+                <h4>PATCH /memory/{memory_id}/importance</h4>
+                <p>Updates the importance level of a stored memory.</p>
+                
+                <h5>Request Body:</h5>
+                <pre><code>{
+    "new_importance": "number",  // 1-10
+    "reason": "string"
+}</code></pre>
+                
+                <h5>Response:</h5>
+                <pre><code>{
+    "memory_id": "string",
+    "previous_importance": "number",
+    "new_importance": "number",
+    "status": "string"
+}</code></pre>
+            </div>
+            
+            <h2 id="companions">Companion Interactions</h2>
+            
+            <h3>Generate Companion Response</h3>
+            
+            <div class="endpoint">
+                <h4>POST /companions/{companion_id}/response</h4>
+                <p>Generates a contextual response from a companion character.</p>
+                
+                <h5>Request Body:</h5>
+                <pre><code>{
+    "player_id": "string",
+    "situation": "string",
+    "prompt": "string",  // What the player said/did
+    "context": {
+        "location": "string",
+        "current_quest": "string",
+        "relationship_level": "number",
+        "recent_events": ["string"],
+        "companion_state": "string"  // "injured", "happy", "concerned", etc.
+    }
+}</code></pre>
+                
+                <h5>Response:</h5>
+                <pre><code>{
+    "response": "string",
+    "emotion": "string",
+    "action": "string",  // Physical action the companion takes
+    "relationship_change": "number",  // Positive or negative change
+    "insights": {
+        "player_assessment": "string",
+        "situation_assessment": "string"
+    }
+}</code></pre>
+            </div>
+            
+            <h3>Update Companion Relationship</h3>
+            
+            <div class="endpoint">
+                <h4>PATCH /companions/{companion_id}/relationship</h4>
+                <p>Updates the relationship status between a player and companion.</p>
+                
+                <h5>Request Body:</h5>
+                <pre><code>{
+    "player_id": "string",
+    "change_amount": "number",  // Positive or negative
+    "reason": "string",
+    "interaction_type": "string"  // "quest", "dialogue", "gift", "combat", etc.
+}</code></pre>
+                
+                <h5>Response:</h5>
+                <pre><code>{
+    "previous_level": "number",
+    "new_level": "number",
+    "relationship_status": "string",  // "friendly", "trusted", "loyal", etc.
+    "companion_reaction": "string"
+}</code></pre>
+            </div>
+            
+            <h2 id="utilities">Utility Endpoints</h2>
+            
+            <h3>Health Check</h3>
+            
+            <div class="endpoint">
+                <h4>GET /health</h4>
+                <p>Checks the health status of the MCP service.</p>
+                
+                <h5>Response:</h5>
+                <pre><code>{
+    "status": "string",  // "healthy", "degraded", "unavailable"
+    "version": "string",
+    "uptime": "string",
+    "model_status": {
+        "primary": "string",
+        "fallback": "string"
+    }
+}</code></pre>
+            </div>
+            
+            <h3>Model Information</h3>
+            
+            <div class="endpoint">
+                <h4>GET /models</h4>
+                <p>Retrieves information about available AI models.</p>
+                
+                <h5>Response:</h5>
+                <pre><code>{
+    "models": [{
+        "id": "string",
+        "name": "string",
+        "capabilities": ["string"],
+        "status": "string",
+        "latency_ms": "number"
+    }],
+    "default_model": "string"
+}</code></pre>
+            </div>
+            
+            <h2 id="error-handling">Error Handling</h2>
+            
+            <p>All API endpoints return standard HTTP status codes. In case of an error, the response body will contain additional information:</p>
+            
+            <pre><code>{
+    "error": {
+        "code": "string",
+        "message": "string",
+        "details": "string",
+        "request_id": "string"  // For troubleshooting
+    }
+}</code></pre>
+            
+            <h3>Common Error Codes</h3>
+            
+            <table class="error-table">
+                <tr>
+                    <th>Code</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>invalid_request</td>
+                    <td>The request was malformed or missing required parameters</td>
+                </tr>
+                <tr>
+                    <td>authentication_error</td>
+                    <td>Invalid or missing API key</td>
+                </tr>
+                <tr>
+                    <td>resource_not_found</td>
+                    <td>The requested resource does not exist</td>
+                </tr>
+                <tr>
+                    <td>model_error</td>
+                    <td>The AI model encountered an error during processing</td>
+                </tr>
+                <tr>
+                    <td>rate_limit_exceeded</td>
+                    <td>Too many requests in a given time period</td>
+                </tr>
+                <tr>
+                    <td>server_error</td>
+                    <td>An unexpected server error occurred</td>
+                </tr>
+            </table>
+            
+            <h2 id="examples">Usage Examples</h2>
+            
+            <h3>Generating NPC Dialogue</h3>
+            
+            <div class="code-example">
+                <h4>Request:</h4>
+                <pre><code>curl -X POST https://api.agesofarda.com/mcp/v1/dialogue/generate \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "npc_id": "elrond_001",
+    "player_id": "player_12345",
+    "context": {
+      "location": "rivendell",
+      "time_of_day": "evening",
+      "current_quest": "find_the_lost_scroll",
+      "recent_events": ["defeated_orc_patrol", "discovered_ancient_ruin"],
+      "relationship_level": 3
+    },
+    "dialogue_type": "greeting",
+    "max_length": 100,
+    "tone": "wise"
+  }'</code></pre>
+                
+                <h4>Response:</h4>
+                <pre><code>{
+  "dialogue": "Ah, there you are. The stars shine brightly tonight, do they not? I've heard of your encounter with the orc patrol. Such creatures grow bolder as the shadow lengthens. And what's this about ruins you've discovered? Perhaps they hold some clue to the scroll we seek.",
+  "follow_ups": [
+    "Tell me more about the scroll I'm looking for.",
+    "The ruins contained strange markings I couldn't decipher.",
+    "Are the orcs becoming more numerous in this region?"
+  ],
+  "metadata": {
+    "tone": "wise",
+    "sentiment": "curious",
+    "key_topics": ["orcs", "ruins", "scroll"]
+  }
+}</code></pre>
+            </div>
+            
+            <h3>Retrieving Relevant Memories</h3>
+            
+            <div class="code-example">
+                <h4>Request:</h4>
+                <pre><code>curl -X GET "https://api.agesofarda.com/mcp/v1/memory/retrieve?player_id=player_12345&related_to=gandalf&importance_min=7&limit=2" \
+  -H "Authorization: Bearer YOUR_API_KEY"</code></pre>
+                
+                <h4>Response:</h4>
+                <pre><code>{
+  "memories": [
+    {
+      "memory_id": "mem_78901",
+      "memory_type": "dialogue",
+      "content": "Gandalf revealed to you that he suspects the ancient artifact you found is connected to the Blue Wizards who journeyed East. 'Guard it well,' he warned, 'for there are forces that would use its power for ill purposes.'",
+      "metadata": {
+        "location": "bree",
+        "time": "third_age_3018",
+        "importance": 9,
+        "entities_involved": ["gandalf", "player"],
+        "age": "third_age"
+      },
+      "tags": ["gandalf", "artifact", "blue_wizards", "warning"],
+      "relevance_score": 0.92
+    },
+    {
+      "memory_id": "mem_65432",
+      "memory_type": "event",
+      "content": "Gandalf saved you from a Barrow-wight by casting a brilliant light from his staff that drove the creature back into the darkness. He then taught you a protective charm against such beings.",
+      "metadata": {
+        "location": "barrow_downs",
+        "time": "third_age_3018",
+        "importance": 8,
+        "entities_involved": ["gandalf", "player", "barrow_wight"],
+        "age": "third_age"
+      },
+      "tags": ["gandalf", "rescue", "magic", "undead"],
+      "relevance_score": 0.85
+    }
+  ],
+  "total_count": 7,
+  "summary": "Your most significant memories of Gandalf involve him sharing secret knowledge about magical artifacts and saving you from supernatural dangers."
+}</code></pre>
+            </div>
+            
+            <div class="note">
+                <p><strong>Note:</strong> All examples use the production API URL. For local development, replace with your local server URL.</p>
+            </div>
+            
+            <h2>Rate Limits</h2>
+            
+            <p>To ensure service stability, the MCP API enforces rate limits:</p>
+            
+            <table class="rate-table">
+                <tr>
+                    <th>Endpoint Category</th>
+                    <th>Rate Limit</th>
+                    <th>Reset Period</th>
+                </tr>
+                <tr>
+                    <td>Dialogue Generation</td>
+                    <td>60 requests</td>
+                    <td>1 minute</td>
+                </tr>
+                <tr>
+                    <td>Narrative Events</td>
+                    <td>30 requests</td>
+                    <td>1 minute</td>
+                </tr>
+                <tr>
+                    <td>Lore Operations</td>
+                    <td>100 requests</td>
+                    <td>1 minute</td>
+                </tr>
+                <tr>
+                    <td>Memory Operations</td>
+                    <td>120 requests</td>
+                    <td>1 minute</td>
+                </tr>
+                <tr>
+                    <td>Utility Endpoints</td>
+                    <td>300 requests</td>
+                    <td>1 minute</td>
+                </tr>
+            </table>
+            
+            <p>Rate limit headers are included in all responses:</p>
+            <ul>
+                <li><code>X-RateLimit-Limit</code>: Total requests allowed in the period</li>
+                <li><code>X-RateLimit-Remaining</code>: Requests remaining in the current period</li>
+                <li><code>X-RateLimit-Reset</code>: Time when the rate limit resets (Unix timestamp)</li>
+            </ul>
+            
+            <h2>Further Resources</h2>
+            
+            <ul>
+                <li><a href="../developer-guides/mcp-integration.html">MCP Integration Guide</a></li>
+                <li><a href="../developer-guides/ai-best-practices.html">AI Integration Best Practices</a></li>
+                <li><a href="https://github.com/ages-of-arda/mcp-client">MCP Client Library</a></li>
+                <li><a href="lore-api.html">Lore Management API</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    .endpoint {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        border-left: 4px solid #3498db;
+    }
+    
+    .endpoint h4 {
+        margin-top: 0;
+        color: #2c3e50;
+        font-family: monospace;
+        background-color: #e8f4f8;
+        padding: 5px 10px;
+        border-radius: 3px;
+        display: inline-block;
+    }
+    
+    pre {
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+    
+    code {
+        font-family: 'Courier New', Courier, monospace;
+    }
+    
+    .error-table, .rate-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+    
+    .error-table th, .error-table td,
+    .rate-table th, .rate-table td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .error-table th, .rate-table th {
+        background-color: #f2f2f2;
+    }
+    
+    .note {
+        background-color: #e8f4f8;
+        border-left: 4px solid #3498db;
+        padding: 15px;
+        margin: 20px 0;
+    }
+    
+    .code-example {
+        margin: 15px 0;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+    }
+    
+    .code-example h4 {
+        margin-top: 0;
+        color: #2c3e50;
+    }
+    
+    .toc {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 20px 0;
+    }
+    
+    .toc ul {
+        list-style-type: none;
+        padding-left: 20px;
+    }
+    
+    .toc a {
+        text-decoration: none;
+        color: #3498db;
+    }
+    
+    .toc a:hover {
+        text-decoration: underline;
+    }
+</style> 

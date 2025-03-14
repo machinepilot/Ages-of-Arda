@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lore API - Ages of Arda</title>
+    <link rel="stylesheet" href="../roguebasin-style.css">
+    <script src="../sidebar.js"></script>
+</head>
+<body>
+    <div id="mw-navigation">
+        <div class="sidebar">
+            <!-- Sidebar content will be included via JavaScript -->
+        </div>
+    </div>
+    
+    <div id="content" class="mw-body">
+        <h1 id="firstHeading">Lore Management API</h1>
+        
+        <div id="bodyContent">
+            <div class="card">
+                <h3>Overview</h3>
+                <p>The Lore Management API provides access to the rich lore of Tolkien's world, organized by age and entity type. This API is designed to ensure lore accuracy and consistency throughout the game, while providing efficient access patterns for both C and Python code.</p>
+            </div>
+            
+            <h2>C API (lore_manager.h)</h2>
+            
+            <div class="api-section">
+                <h3>Core Functions</h3>
+                
+                <div class="function-doc">
+                    <h4>Initialize Lore Manager</h4>
+                    <pre><code>/**
+ * Initialize the lore manager with the specified memory bank path
+ * 
+ * @param memory_bank_path Path to the memory bank directory
+ * @return Pointer to initialized lore_manager_t or NULL on failure
+ */
+lore_manager_t*
+lore_manager_init(const char* memory_bank_path);</code></pre>
+                </div>
+                
+                <div class="function-doc">
+                    <h4>Get Lore Entry</h4>
+                    <pre><code>/**
+ * Retrieve a lore entry for the specified entity
+ * 
+ * @param manager Pointer to the lore manager
+ * @param entity_name Name of the entity to retrieve
+ * @param entity_type Type of entity (character, location, artifact, event)
+ * @param age Age to search in (first_age, second_age, third_age, or NULL for all)
+ * @return Pointer to lore_entry_t or NULL if not found
+ */
+lore_entry_t*
+lore_manager_get_entry(lore_manager_t* manager, 
+                      const char* entity_name,
+                      const char* entity_type,
+                      const char* age);</code></pre>
+                </div>
+                
+                <div class="function-doc">
+                    <h4>Get Random Lore</h4>
+                    <pre><code>/**
+ * Retrieve a random lore entry
+ * 
+ * @param manager Pointer to the lore manager
+ * @param entity_type Type of entity or NULL for any type
+ * @param age Age to search in or NULL for any age
+ * @return Pointer to lore_entry_t or NULL if none available
+ */
+lore_entry_t*
+lore_manager_get_random(lore_manager_t* manager,
+                       const char* entity_type,
+                       const char* age);</code></pre>
+                </div>
+                
+                <div class="function-doc">
+                    <h4>Search Lore</h4>
+                    <pre><code>/**
+ * Search for lore entries matching the query
+ * 
+ * @param manager Pointer to the lore manager
+ * @param query Search query
+ * @param entity_type Type of entity or NULL for any type
+ * @param age Age to search in or NULL for any age
+ * @param max_results Maximum number of results to return
+ * @return Array of lore_entry_t pointers, NULL-terminated
+ */
+lore_entry_t**
+lore_manager_search(lore_manager_t* manager,
+                   const char* query,
+                   const char* entity_type,
+                   const char* age,
+                   int max_results);</code></pre>
+                </div>
+                
+                <div class="function-doc">
+                    <h4>Free Lore Entry</h4>
+                    <pre><code>/**
+ * Free a lore entry
+ * 
+ * @param entry Pointer to the lore entry to free
+ */
+void
+lore_manager_free_entry(lore_entry_t* entry);</code></pre>
+                </div>
+                
+                <div class="function-doc">
+                    <h4>Free Lore Manager</h4>
+                    <pre><code>/**
+ * Free the lore manager and all associated resources
+ * 
+ * @param manager Pointer to the lore manager
+ */
+void
+lore_manager_free(lore_manager_t* manager);</code></pre>
+                </div>
+            </div>
+            
+            <div class="api-section">
+                <h3>Lore Entry Structure</h3>
+                <pre><code>/**
+ * Structure representing a lore entry
+ */
+typedef struct lore_entry_t {
+    char* name;              /* Name of the entity */
+    char* description;       /* Short description */
+    char* content;           /* Main lore content */
+    char* source;            /* Source book or material */
+    char* age;               /* Age (first_age, second_age, third_age) */
+    int year;                /* Year within the age */
+    bool is_canonical;       /* Whether this is from Tolkien's works */
+    char* entity_type;       /* Type of entity */
+    char** additional_fields; /* NULL-terminated array of additional field names */
+    char** additional_values; /* NULL-terminated array of additional field values */
+} lore_entry_t;</code></pre>
+            </div>
+            
+            <h2>Python API (LoreIntegration)</h2>
+            
+            <div class="api-section">
+                <h3>Core Classes and Methods</h3>
+                
+                <div class="function-doc">
+                    <h4>LoreManager Class</h4>
+                    <pre><code>class LoreManager:
+    """
+    Python interface to the Lore Management System
+    """
+    
+    def __init__(self, memory_bank_path: str):
+        """
+        Initialize the lore manager
+        
+        Args:
+            memory_bank_path: Path to the memory bank directory
+        """
+        
+    def get_entry(self, entity_name: str, entity_type: str, age: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Retrieve a lore entry
+        
+        Args:
+            entity_name: Name of the entity to retrieve
+            entity_type: Type of entity (character, location, artifact, event)
+            age: Age to search in (first_age, second_age, third_age, or None for all)
+            
+        Returns:
+            Dictionary containing the lore entry or None if not found
+        """
+        
+    def get_random(self, entity_type: Optional[str] = None, age: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Retrieve a random lore entry
+        
+        Args:
+            entity_type: Type of entity or None for any type
+            age: Age to search in or None for any age
+            
+        Returns:
+            Dictionary containing the lore entry or None if none available
+        """
+        
+    def search(self, query: str, entity_type: Optional[str] = None, 
+              age: Optional[str] = None, max_results: int = 10) -> List[Dict[str, Any]]:
+        """
+        Search for lore entries matching the query
+        
+        Args:
+            query: Search query
+            entity_type: Type of entity or None for any type
+            age: Age to search in or None for any age
+            max_results: Maximum number of results to return
+            
+        Returns:
+            List of dictionaries containing the matching lore entries
+        """</code></pre>
+                </div>
+                
+                <div class="function-doc">
+                    <h4>LoreNarrativeGenerator Class</h4>
+                    <pre><code>class LoreNarrativeGenerator:
+    """
+    Generate narrative content based on lore
+    """
+    
+    def __init__(self, lore_manager: LoreManager, mcp_client: MCPClient):
+        """
+        Initialize the narrative generator
+        
+        Args:
+            lore_manager: Instance of LoreManager
+            mcp_client: Instance of MCPClient for AI generation
+        """
+        
+    def generate_location_description(self, location_name: str, age: str, 
+                                     context: Optional[Dict[str, Any]] = None) -> str:
+        """
+        Generate a description for a location
+        
+        Args:
+            location_name: Name of the location
+            age: Age (first_age, second_age, third_age)
+            context: Additional context for generation
+            
+        Returns:
+            Generated location description
+        """
+        
+    def generate_character_dialogue(self, character_name: str, age: str, 
+                                   topic: Optional[str] = None,
+                                   context: Optional[Dict[str, Any]] = None) -> str:
+        """
+        Generate dialogue for a character
+        
+        Args:
+            character_name: Name of the character
+            age: Age (first_age, second_age, third_age)
+            topic: Optional topic for the dialogue
+            context: Additional context for generation
+            
+        Returns:
+            Generated character dialogue
+        """
+        
+    def generate_quest(self, quest_type: str, location: str, age: str,
+                      target: Optional[str] = None,
+                      context: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        """
+        Generate a quest
+        
+        Args:
+            quest_type: Type of quest (exploration, combat, rescue, etc.)
+            location: Location for the quest
+            age: Age (first_age, second_age, third_age)
+            target: Optional target for the quest (character, artifact, etc.)
+            context: Additional context for generation
+            
+        Returns:
+            Dictionary containing the generated quest
+        """</code></pre>
+                </div>
+            </div>
+            
+            <h2>MCP Endpoints</h2>
+            
+            <div class="api-section">
+                <h3>Lore Endpoints</h3>
+                
+                <div class="endpoint-doc">
+                    <h4>Character Lore</h4>
+                    <p><code>ages/lore/character</code></p>
+                    <p><strong>Required Parameters:</strong></p>
+                    <ul>
+                        <li><code>character_name</code>: Name of the character</li>
+                        <li><code>age</code>: Age (optional, defaults to current age)</li>
+                    </ul>
+                    <p><strong>Response:</strong></p>
+                    <pre><code>{
+  "content": "Detailed character lore...",
+  "source": "The Silmarillion",
+  "age": "first_age",
+  "year": 472,
+  "is_canonical": true,
+  "name": "Túrin Turambar",
+  "description": "Tragic hero of the First Age"
+}</code></pre>
+                </div>
+                
+                <div class="endpoint-doc">
+                    <h4>Location Lore</h4>
+                    <p><code>ages/lore/location</code></p>
+                    <p><strong>Required Parameters:</strong></p>
+                    <ul>
+                        <li><code>location_name</code>: Name of the location</li>
+                        <li><code>age</code>: Age (optional, defaults to current age)</li>
+                    </ul>
+                    <p><strong>Response:</strong></p>
+                    <pre><code>{
+  "content": "Detailed location lore...",
+  "source": "The Lord of the Rings",
+  "age": "third_age",
+  "year": 3018,
+  "is_canonical": true,
+  "name": "Minas Tirith",
+  "description": "The great city of Gondor"
+}</code></pre>
+                </div>
+                
+                <div class="endpoint-doc">
+                    <h4>Artifact Lore</h4>
+                    <p><code>ages/lore/artifact</code></p>
+                    <p><strong>Required Parameters:</strong></p>
+                    <ul>
+                        <li><code>artifact_name</code>: Name of the artifact</li>
+                        <li><code>age</code>: Age (optional, defaults to current age)</li>
+                    </ul>
+                    <p><strong>Response:</strong></p>
+                    <pre><code>{
+  "content": "Detailed artifact lore...",
+  "source": "The Silmarillion",
+  "age": "first_age",
+  "year": 1,
+  "is_canonical": true,
+  "name": "Silmaril",
+  "description": "Jewels crafted by Fëanor containing the light of the Two Trees"
+}</code></pre>
+                </div>
+                
+                <div class="endpoint-doc">
+                    <h4>Random Lore</h4>
+                    <p><code>ages/lore/random</code></p>
+                    <p><strong>Optional Parameters:</strong></p>
+                    <ul>
+                        <li><code>topic_type</code>: Type of entity (character, location, artifact, event)</li>
+                        <li><code>age</code>: Age (first_age, second_age, third_age)</li>
+                    </ul>
+                    <p><strong>Response:</strong></p>
+                    <pre><code>{
+  "content": "Random lore content...",
+  "topic_type": "location",
+  "age": "second_age",
+  "source": "Unfinished Tales",
+  "name": "Númenor",
+  "description": "Island kingdom given to the Edain"
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="api-section">
+                <h3>Narrative Endpoints</h3>
+                
+                <div class="endpoint-doc">
+                    <h4>Location Description</h4>
+                    <p><code>ages/narrative/location</code></p>
+                    <p><strong>Required Parameters:</strong></p>
+                    <ul>
+                        <li><code>location_name</code>: Name of the location</li>
+                        <li><code>age</code>: Age (first_age, second_age, third_age)</li>
+                        <li><code>context</code>: Additional context (optional)</li>
+                    </ul>
+                    <p><strong>Response:</strong></p>
+                    <pre><code>{
+  "description": "Vivid, atmospheric description of the location...",
+  "location": "Minas Tirith",
+  "age": "third_age"
+}</code></pre>
+                </div>
+                
+                <div class="endpoint-doc">
+                    <h4>Companion Dialogue</h4>
+                    <p><code>ages/narrative/companion</code></p>
+                    <p><strong>Required Parameters:</strong></p>
+                    <ul>
+                        <li><code>companion_name</code>: Name of the companion</li>
+                        <li><code>age</code>: Age (first_age, second_age, third_age)</li>
+                        <li><code>topic</code>: Topic for dialogue (optional)</li>
+                        <li><code>relationship_level</code>: Relationship level with the companion</li>
+                        <li><code>context</code>: Additional context (optional)</li>
+                    </ul>
+                    <p><strong>Response:</strong></p>
+                    <pre><code>{
+  "dialogue": "Character-appropriate dialogue...",
+  "companion": "Legolas",
+  "age": "third_age",
+  "topic": "The One Ring"
+}</code></pre>
+                </div>
+                
+                <div class="endpoint-doc">
+                    <h4>Quest Generation</h4>
+                    <p><code>ages/narrative/quest</code></p>
+                    <p><strong>Required Parameters:</strong></p>
+                    <ul>
+                        <li><code>quest_type</code>: Type of quest (exploration, combat, rescue, etc.)</li>
+                        <li><code>location</code>: Location for the quest</li>
+                        <li><code>age</code>: Age (first_age, second_age, third_age)</li>
+                        <li><code>target</code>: Target for the quest (optional)</li>
+                        <li><code>context</code>: Additional context (optional)</li>
+                    </ul>
+                    <p><strong>Response:</strong></p>
+                    <pre><code>{
+  "title": "Quest title",
+  "description": "Detailed quest description...",
+  "quest_type": "exploration",
+  "location": "Moria",
+  "age": "third_age",
+  "target": "Mithril",
+  "objectives": [
+    "Enter the East Gate of Moria",
+    "Navigate to the lower levels",
+    "Find the mithril vein",
+    "Return with a sample"
+  ],
+  "rewards": {
+    "experience": 500,
+    "items": ["Mithril Nugget", "Ancient Dwarven Map"]
+  },
+  "difficulty": "challenging"
+}</code></pre>
+                </div>
+            </div>
+            
+            <h2>Best Practices</h2>
+            
+            <div class="best-practices">
+                <h3>Performance Optimization</h3>
+                <ul>
+                    <li>Implement caching with LRU replacement for all lore queries</li>
+                    <li>Use asynchronous processing for LLM-based generation where possible</li>
+                    <li>Provide templated fallbacks for all LLM-based generation</li>
+                    <li>Pre-load commonly accessed lore on initialization</li>
+                    <li>Rate-limit LLM calls to prevent overwhelming the system</li>
+                </ul>
+                
+                <h3>Error Handling</h3>
+                <ul>
+                    <li>Always check return values from lore API functions</li>
+                    <li>Provide meaningful error messages for failed queries</li>
+                    <li>Implement fallback behavior for missing lore data</li>
+                    <li>Log all errors with appropriate context</li>
+                    <li>Handle network failures gracefully in MCP requests</li>
+                </ul>
+                
+                <h3>Lore Consistency</h3>
+                <ul>
+                    <li>Validate all generated content against canonical lore</li>
+                    <li>Clearly mark non-canonical content</li>
+                    <li>Ensure temporal consistency within ages</li>
+                    <li>Maintain character consistency across interactions</li>
+                    <li>Preserve cultural and racial characteristics from Tolkien's works</li>
+                </ul>
+            </div>
+            
+            <div class="note">
+                <p>The Lore API is a critical component of the Ages of Arda project, ensuring that all game content remains faithful to Tolkien's world while enabling dynamic, AI-driven gameplay experiences. Proper use of this API will help maintain the immersive quality that makes Middle-earth such a compelling setting.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    .api-section, .endpoint-doc, .best-practices {
+        margin-bottom: 20px;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    
+    .function-doc {
+        margin-bottom: 20px;
+    }
+    
+    .function-doc h4 {
+        margin-top: 0;
+        color: #2c3e50;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+    }
+    
+    pre {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+    
+    code {
+        font-family: Consolas, Monaco, 'Andale Mono', monospace;
+        font-size: 0.9em;
+    }
+    
+    .endpoint-doc h4 {
+        margin-top: 0;
+        color: #2c3e50;
+    }
+    
+    .endpoint-doc p code {
+        background-color: #f0f0f0;
+        padding: 2px 5px;
+        border-radius: 3px;
+    }
+    
+    .note {
+        font-style: italic;
+        border-left: 4px solid #3498db;
+        padding-left: 15px;
+        margin-top: 30px;
+    }
+</style> 

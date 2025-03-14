@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C Code Style Guidelines - Ages of Arda</title>
+    <link rel="stylesheet" href="../roguebasin-style.css">
+    <script src="../sidebar.js"></script>
+</head>
+<body>
+    <div id="mw-navigation">
+        <div class="sidebar">
+            <!-- Sidebar content will be included via JavaScript -->
+        </div>
+    </div>
+    
+    <div id="content" class="mw-body">
+        <h1 id="firstHeading">C Code Style Guidelines</h1>
+        
+        <div id="bodyContent">
+            <div class="card">
+                <h3>Consistent Code for a Consistent World</h3>
+                <p>Ages of Arda follows specific code style guidelines to ensure consistency, readability, and maintainability across the codebase. These guidelines apply to all C code in the project and are enforced through code reviews and automated tools.</p>
+            </div>
+            
+            <div class="toc">
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li><a href="#formatting">Formatting</a></li>
+                    <li><a href="#naming">Naming Conventions</a></li>
+                    <li><a href="#comments">Comments and Documentation</a></li>
+                    <li><a href="#functions">Functions</a></li>
+                    <li><a href="#types">Types and Structures</a></li>
+                    <li><a href="#memory">Memory Management</a></li>
+                    <li><a href="#error-handling">Error Handling</a></li>
+                    <li><a href="#macros">Macros and Preprocessor</a></li>
+                    <li><a href="#tools">Automated Tools</a></li>
+                </ul>
+            </div>
+            
+            <h2 id="formatting">Formatting</h2>
+            
+            <h3>Indentation and Spacing</h3>
+            <ul>
+                <li>Use 4 spaces for indentation, not tabs</li>
+                <li>Maximum line length is 120 characters</li>
+                <li>No trailing whitespace</li>
+                <li>Use a single space after keywords like <code>if</code>, <code>for</code>, <code>while</code>, and <code>switch</code></li>
+                <li>Use a single space around binary operators (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, etc.)</li>
+                <li>No space between function name and opening parenthesis</li>
+            </ul>
+            
+            <div class="code-example">
+                <h4>Example:</h4>
+                <pre><code>// Good
+if (condition) {
+    do_something();
+}
+
+// Bad
+if(condition){
+    do_something();
+}</code></pre>
+            </div>
+            
+            <h3>Braces</h3>
+            <ul>
+                <li>Opening braces go on the same line as the statement</li>
+                <li>Closing braces go on their own line</li>
+                <li>Always use braces for control statements, even for single-line bodies</li>
+            </ul>
+            
+            <div class="code-example">
+                <h4>Example:</h4>
+                <pre><code>// Good
+if (condition) {
+    do_something();
+} else {
+    do_something_else();
+}
+
+// Bad
+if (condition) do_something();
+else
+    do_something_else();</code></pre>
+            </div>
+            
+            <h3>Switch Statements</h3>
+            <ul>
+                <li>Case labels are indented one level from the switch</li>
+                <li>Case contents are indented one level from the case label</li>
+                <li>Break statements align with the case contents</li>
+                <li>Always include a default case, even if it's just a comment</li>
+            </ul>
+            
+            <div class="code-example">
+                <h4>Example:</h4>
+                <pre><code>switch (value) {
+    case 1:
+        do_something();
+        break;
+    
+    case 2:
+        do_something_else();
+        break;
+    
+    default:
+        /* Impossible case */
+        assert(0);
+        break;
+}</code></pre>
+            </div>
+            
+            <h2 id="naming">Naming Conventions</h2>
+            
+            <h3>General Rules</h3>
+            <ul>
+                <li>Use descriptive names that convey meaning</li>
+                <li>Prefer clarity over brevity</li>
+                <li>Be consistent with existing code</li>
+            </ul>
+            
+            <h3>Specific Conventions</h3>
+            <table class="style-table">
+                <tr>
+                    <th>Element</th>
+                    <th>Convention</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td>Functions</td>
+                    <td>snake_case</td>
+                    <td><code>calculate_damage()</code></td>
+                </tr>
+                <tr>
+                    <td>Variables</td>
+                    <td>snake_case</td>
+                    <td><code>player_health</code></td>
+                </tr>
+                <tr>
+                    <td>Constants</td>
+                    <td>UPPER_SNAKE_CASE</td>
+                    <td><code>MAX_INVENTORY_SIZE</code></td>
+                </tr>
+                <tr>
+                    <td>Macros</td>
+                    <td>UPPER_SNAKE_CASE</td>
+                    <td><code>DEBUG_PRINT()</code></td>
+                </tr>
+                <tr>
+                    <td>Typedefs</td>
+                    <td>snake_case_t</td>
+                    <td><code>entity_t</code></td>
+                </tr>
+                <tr>
+                    <td>Structs</td>
+                    <td>snake_case</td>
+                    <td><code>struct player_stats</code></td>
+                </tr>
+                <tr>
+                    <td>Enums</td>
+                    <td>snake_case</td>
+                    <td><code>enum damage_type</code></td>
+                </tr>
+                <tr>
+                    <td>Enum values</td>
+                    <td>UPPER_SNAKE_CASE</td>
+                    <td><code>DAMAGE_FIRE</code></td>
+                </tr>
+                <tr>
+                    <td>Global variables</td>
+                    <td>g_snake_case</td>
+                    <td><code>g_game_state</code></td>
+                </tr>
+                <tr>
+                    <td>Static variables</td>
+                    <td>s_snake_case</td>
+                    <td><code>s_instance_count</code></td>
+                </tr>
+            </table>
+            
+            <h3>File Naming</h3>
+            <ul>
+                <li>Source files: <code>snake_case.c</code></li>
+                <li>Header files: <code>snake_case.h</code></li>
+                <li>Test files: <code>snake_case_test.c</code></li>
+            </ul>
+            
+            <h2 id="comments">Comments and Documentation</h2>
+            
+            <h3>General Guidelines</h3>
+            <ul>
+                <li>Write comments that explain "why", not "what"</li>
+                <li>Keep comments up-to-date with code changes</li>
+                <li>Use complete sentences with proper punctuation</li>
+                <li>Avoid obvious comments that duplicate the code</li>
+            </ul>
+            
+            <h3>Function Documentation</h3>
+            <p>All functions should have a documentation comment that includes:</p>
+            <ul>
+                <li>Brief description of what the function does</li>
+                <li>Parameters and their purpose</li>
+                <li>Return value and its meaning</li>
+                <li>Error conditions and side effects</li>
+                <li>Any special notes or warnings</li>
+            </ul>
+            
+            <div class="code-example">
+                <h4>Example:</h4>
+                <pre><code>/**
+ * Calculates damage dealt to an entity based on attack type and defenses.
+ *
+ * @param attacker The entity performing the attack
+ * @param defender The entity receiving the attack
+ * @param attack_type The type of attack being performed
+ * @param critical Whether this is a critical hit (1) or not (0)
+ *
+ * @return The amount of damage to be applied, or -1 on error
+ *
+ * @note This function does not apply the damage, it only calculates it.
+ */
+int calculate_damage(entity_t *attacker, entity_t *defender, 
+                    enum attack_type attack_type, int critical);</code></pre>
+            </div>
+            
+            <h3>File Headers</h3>
+            <p>Each file should begin with a header comment that includes:</p>
+            <ul>
+                <li>Brief description of the file's purpose</li>
+                <li>Copyright notice</li>
+                <li>License information</li>
+            </ul>
+            
+            <div class="code-example">
+                <h4>Example:</h4>
+                <pre><code>/**
+ * @file combat.c
+ * @brief Combat system implementation for Ages of Arda
+ *
+ * This file contains the core combat mechanics, including damage calculation,
+ * hit resolution, and critical hit determination.
+ *
+ * Copyright (c) 2023-2024 Ages of Arda Team
+ * Licensed under the MIT License
+ */</code></pre>
+            </div>
+            
+            <h2 id="functions">Functions</h2>
+            
+            <h3>Function Design</h3>
+            <ul>
+                <li>Functions should be short and focused on a single task</li>
+                <li>Aim for functions under 50 lines; consider refactoring if longer</li>
+                <li>Minimize the number of parameters (aim for 5 or fewer)</li>
+                <li>Avoid deep nesting of control structures</li>
+            </ul>
+            
+            <h3>Function Declarations</h3>
+            <ul>
+                <li>Include parameter names in declarations</li>
+                <li>Group related parameters</li>
+                <li>For functions with many parameters, place each on its own line</li>
+            </ul>
+            
+            <div class="code-example">
+                <h4>Example:</h4>
+                <pre><code>// For functions with few parameters
+void update_entity(entity_t *entity, float delta_time);
+
+// For functions with many parameters
+void spawn_entity(
+    world_t *world,
+    entity_type_t type,
+    const char *name,
+    int x, 
+    int y,
+    int level,
+    uint32_t flags
+);</code></pre>
+            </div>
+            
+            <h2 id="types">Types and Structures</h2>
+            
+            <h3>Type Definitions</h3>
+            <ul>
+                <li>Use typedefs for complex types to improve readability</li>
+                <li>Append <code>_t</code> to typedef names</li>
+                <li>Define structs and typedefs in header files</li>
+            </ul>
+            
+            <div class="code-example">
+                <h4>Example:</h4>
+                <pre><code>typedef struct {
+    char name[MAX_NAME_LENGTH];
+    int health;
+    int max_health;
+    position_t position;
+    inventory_t inventory;
+} player_t;</code></pre>
+            </div>
+            
+            <h3>Enumerations</h3>
+            <ul>
+                <li>Use enums for related constants</li>
+                <li>Prefix enum values with a common prefix</li>
+                <li>Consider using enum classes in C++ code</li>
+            </ul>
+            
+            <div class="code-example">
+                <h4>Example:</h4>
+                <pre><code>enum item_type {
+    ITEM_NONE = 0,
+    ITEM_WEAPON,
+    ITEM_ARMOR,
+    ITEM_POTION,
+    ITEM_SCROLL,
+    ITEM_KEY,
+    ITEM_COUNT  /* Always keep this last */
+};</code></pre>
+            </div>
+            
+            <h2 id="memory">Memory Management</h2>
+            
+            <h3>Allocation and Deallocation</h3>
+            <ul>
+                <li>Always check the return value of memory allocation functions</li>
+                <li>Free memory in the reverse order it was allocated</li>
+                <li>Set pointers to NULL after freeing them</li>
+                <li>Use the memory management wrapper functions provided by the engine</li>
+            </ul>
+            
+            <div class="code-example">
+                <h4>Example:</h4>
+                <pre><code>// Preferred approach using our wrappers
+entity_t *entity = mem_alloc(sizeof(entity_t));
+if (!entity) {
+    return ERROR_OUT_OF_MEMORY;
+}
+
+// Initialize entity...
+
+// When done
+mem_free(entity);
+entity = NULL;</code></pre>
+            </div>
+            
+            <h3>Memory Ownership</h3>
+            <ul>
+                <li>Document memory ownership in function comments</li>
+                <li>Be explicit about who is responsible for freeing memory</li>
+                <li>Use consistent patterns for transferring ownership</li>
+            </ul>
+            
+            <h2 id="error-handling">Error Handling</h2>
+            
+            <h3>Return Codes</h3>
+            <ul>
+                <li>Use consistent return codes across the codebase</li>
+                <li>Return negative values for errors, zero for success, positive for other results</li>
+                <li>Define error codes in a central header file</li>
+            </ul>
+            
+            <div class="code-example">
+                <h4>Example:</h4>
+                <pre><code>int result = load_map(map_file);
+if (result < 0) {
+    switch (result) {
+        case ERROR_FILE_NOT_FOUND:
+            log_error("Map file not found: %s", map_file);
+            break;
+        
+        case ERROR_INVALID_FORMAT:
+            log_error("Invalid map format in file: %s", map_file);
+            break;
+        
+        default:
+            log_error("Unknown error loading map: %d", result);
+            break;
+    }
+    return result;
+}</code></pre>
+            </div>
+            
+            <h3>Assertions</h3>
+            <ul>
+                <li>Use assertions to catch programming errors, not runtime errors</li>
+                <li>Include descriptive messages in assertions</li>
+                <li>Don't use assertions for error handling in production code</li>
+            </ul>
+            
+            <div class="code-example">
+                <h4>Example:</h4>
+                <pre><code>void damage_entity(entity_t *entity, int amount) {
+    assert(entity != NULL && "Entity cannot be NULL");
+    assert(amount >= 0 && "Damage amount must be non-negative");
+    
+    entity->health -= amount;
+    if (entity->health < 0) {
+        entity->health = 0;
+    }
+}</code></pre>
+            </div>
+            
+            <h2 id="macros">Macros and Preprocessor</h2>
+            
+            <h3>Macro Guidelines</h3>
+            <ul>
+                <li>Minimize macro usage; prefer inline functions when possible</li>
+                <li>Always wrap macro parameters in parentheses</li>
+                <li>Use <code>do { ... } while (0)</code> for multi-statement macros</li>
+                <li>Add comments explaining complex macros</li>
+            </ul>
+            
+            <div class="code-example">
+                <h4>Example:</h4>
+                <pre><code>#define MAX(a, b) ((a) > (b) ? (a) : (b))
+
+#define LOG_ERROR(fmt, ...) \
+    do { \
+        fprintf(stderr, "[ERROR] %s:%d: " fmt "\n", \
+                __FILE__, __LINE__, ##__VA_ARGS__); \
+    } while (0)</code></pre>
+            </div>
+            
+            <h3>Include Guards</h3>
+            <ul>
+                <li>Use <code>#ifndef</code>/<code>#define</code>/<code>#endif</code> for include guards</li>
+                <li>Name guards based on the file path to avoid conflicts</li>
+            </ul>
+            
+            <div class="code-example">
+                <h4>Example:</h4>
+                <pre><code>#ifndef AGES_ARDA_COMBAT_H
+#define AGES_ARDA_COMBAT_H
+
+/* Header contents */
+
+#endif /* AGES_ARDA_COMBAT_H */</code></pre>
+            </div>
+            
+            <h2 id="tools">Automated Tools</h2>
+            
+            <h3>Clang-Format</h3>
+            <p>We use clang-format to automatically format code according to our style guidelines. The configuration is provided in the <code>.clang-format</code> file in the repository root.</p>
+            
+            <p>To format your code:</p>
+            <pre><code>clang-format -i path/to/your/file.c</code></pre>
+            
+            <p>Or use the CMake target:</p>
+            <pre><code>cmake --build . --target format</code></pre>
+            
+            <h3>Static Analysis</h3>
+            <p>We use several static analysis tools to catch potential issues:</p>
+            <ul>
+                <li><strong>Clang Static Analyzer</strong>: Detects bugs and logic errors</li>
+                <li><strong>Cppcheck</strong>: Finds issues not caught by the compiler</li>
+                <li><strong>Valgrind</strong>: Detects memory leaks and other memory issues</li>
+            </ul>
+            
+            <p>Run static analysis with:</p>
+            <pre><code>cmake --build . --target analyze</code></pre>
+            
+            <h2>Conclusion</h2>
+            
+            <p>Following these guidelines helps maintain a consistent, readable, and maintainable codebase. When in doubt, look at existing code for examples or ask for guidance from other developers.</p>
+            
+            <p>Remember that these guidelines are meant to help, not hinder. If you have a good reason to deviate from them in a specific case, document your reasoning in the code.</p>
+            
+            <div class="note">
+                <p>This style guide is based on common C programming practices and adapted for the specific needs of the Ages of Arda project. It may evolve over time as the project grows and new patterns emerge.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    .code-example {
+        margin: 15px 0;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        border-left: 3px solid #3498db;
+    }
+    
+    .code-example h4 {
+        margin-top: 0;
+        color: #2c3e50;
+    }
+    
+    pre {
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+    
+    code {
+        font-family: 'Courier New', Courier, monospace;
+    }
+    
+    .style-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+    
+    .style-table th, .style-table td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .style-table th {
+        background-color: #f2f2f2;
+    }
+    
+    .note {
+        background-color: #e8f4f8;
+        border-left: 4px solid #3498db;
+        padding: 15px;
+        margin: 20px 0;
+    }
+    
+    .toc {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 20px 0;
+    }
+    
+    .toc ul {
+        list-style-type: none;
+        padding-left: 20px;
+    }
+    
+    .toc a {
+        text-decoration: none;
+        color: #3498db;
+    }
+    
+    .toc a:hover {
+        text-decoration: underline;
+    }
+</style> 

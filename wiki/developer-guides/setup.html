@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Environment Setup - Ages of Arda</title>
+    <link rel="stylesheet" href="../roguebasin-style.css">
+    <script src="../sidebar.js"></script>
+</head>
+<body>
+    <div id="mw-navigation">
+        <div class="sidebar">
+            <!-- Sidebar content will be included via JavaScript -->
+        </div>
+    </div>
+    
+    <div id="content" class="mw-body">
+        <h1 id="firstHeading">Development Environment Setup</h1>
+        
+        <div id="bodyContent">
+            <div class="card">
+                <h3>Getting Started with Ages of Arda Development</h3>
+                <p>This guide will walk you through setting up your development environment to contribute to the Ages of Arda project. The game is written primarily in C with various dependencies and tools to support AI integration and roguelike functionality.</p>
+            </div>
+            
+            <h2>Prerequisites</h2>
+            
+            <p>Before beginning, ensure you have the following installed on your system:</p>
+            
+            <ul>
+                <li>Git</li>
+                <li>C compiler (GCC 9+ or Clang 10+)</li>
+                <li>CMake (version 3.18+)</li>
+                <li>Python 3.8+ (for build scripts and AI integration)</li>
+                <li>SQLite 3.35+ (for the Memory Bank system)</li>
+            </ul>
+            
+            <div class="os-specific">
+                <h3>Platform-Specific Requirements</h3>
+                
+                <div class="os-tab">
+                    <h4>Linux</h4>
+                    <pre><code>sudo apt update
+sudo apt install build-essential cmake python3 python3-pip libsdl2-dev libsqlite3-dev libcurl4-openssl-dev</code></pre>
+                </div>
+                
+                <div class="os-tab">
+                    <h4>macOS</h4>
+                    <pre><code>brew update
+brew install cmake python sdl2 sqlite curl</code></pre>
+                </div>
+                
+                <div class="os-tab">
+                    <h4>Windows</h4>
+                    <p>We recommend using MSYS2 or Windows Subsystem for Linux (WSL) for Windows development:</p>
+                    <h5>Using MSYS2:</h5>
+                    <ol>
+                        <li>Download and install <a href="https://www.msys2.org/">MSYS2</a></li>
+                        <li>Open MSYS2 MINGW64 shell and run:</li>
+                    </ol>
+                    <pre><code>pacman -Syu
+pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-python mingw-w64-x86_64-sqlite3 mingw-w64-x86_64-curl mingw-w64-x86_64-SDL2</code></pre>
+                </div>
+            </div>
+            
+            <h2>Setting Up Python Environment</h2>
+            
+            <p>The MCP system requires several Python packages. We recommend setting up a virtual environment:</p>
+            
+            <pre><code>python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt</code></pre>
+            
+            <p>Key Python dependencies include:</p>
+            <ul>
+                <li>requests (for API communication)</li>
+                <li>numpy (for various calculations)</li>
+                <li>pytorch (for local AI model inference)</li>
+                <li>transformers (for text generation)</li>
+                <li>langchain (for LLM context management)</li>
+            </ul>
+            
+            <h2>Cloning the Repository</h2>
+            
+            <pre><code>git clone https://github.com/ages-of-arda/ages-of-arda.git
+cd ages-of-arda</code></pre>
+            
+            <h2>Building the Project</h2>
+            
+            <p>Ages of Arda uses CMake for build configuration. Follow these steps to build the project:</p>
+            
+            <pre><code>mkdir build
+cd build
+cmake ..
+cmake --build .</code></pre>
+            
+            <p>The build process will create the main executable and necessary libraries in the <code>build/bin</code> directory.</p>
+            
+            <h3>Build Options</h3>
+            
+            <p>You can customize your build with various options:</p>
+            
+            <pre><code>cmake .. -DBUILD_TESTS=ON -DENABLE_ASSERTIONS=ON -DUSE_LOCAL_MODELS=OFF</code></pre>
+            
+            <p>Common options include:</p>
+            <ul>
+                <li><code>BUILD_TESTS</code>: Build test suite (ON/OFF)</li>
+                <li><code>ENABLE_ASSERTIONS</code>: Enable additional runtime assertions (ON/OFF)</li>
+                <li><code>USE_LOCAL_MODELS</code>: Use local AI models instead of API calls (ON/OFF)</li>
+                <li><code>DISABLE_SOUND</code>: Build without sound support (ON/OFF)</li>
+                <li><code>MEMORY_DEBUG</code>: Enable memory debugging tools (ON/OFF)</li>
+            </ul>
+            
+            <h2>Running the Game</h2>
+            
+            <p>After building, you can run the game from the build directory:</p>
+            
+            <pre><code>cd bin
+./ages-of-arda</code></pre>
+            
+            <p>On Windows with MSYS2, use:</p>
+            
+            <pre><code>cd bin
+./ages-of-arda.exe</code></pre>
+            
+            <h2>MCP Configuration</h2>
+            
+            <p>The Model Context Protocol (MCP) system requires configuration to work with AI services:</p>
+            
+            <ol>
+                <li>Copy the example configuration file: <code>cp config/mcp_config.example.json config/mcp_config.json</code></li>
+                <li>Edit <code>config/mcp_config.json</code> to include your API keys and settings</li>
+                <li>Configure your preferred AI model providers (OpenAI, Anthropic, self-hosted, etc.)</li>
+            </ol>
+            
+            <div class="note">
+                <p><strong>Note:</strong> For local development without API access, you can use the <code>-DUSE_LOCAL_MODELS=ON</code> build option along with appropriate model configurations in the MCP config file. This will use smaller, local models that don't require API keys.</p>
+            </div>
+            
+            <h2>Running Tests</h2>
+            
+            <p>If you built with <code>-DBUILD_TESTS=ON</code>, you can run the test suite:</p>
+            
+            <pre><code>cd build/bin
+./run_tests</code></pre>
+            
+            <p>You can also run specific test categories:</p>
+            
+            <pre><code>./run_tests --gtest_filter="MemoryBank*"</code></pre>
+            
+            <h2>Code Formatting</h2>
+            
+            <p>We use clang-format to maintain code style consistency. Before submitting a pull request, please format your code:</p>
+            
+            <pre><code>cd build
+cmake --build . --target format</code></pre>
+            
+            <p>Alternatively, you can format individual files:</p>
+            
+            <pre><code>clang-format -i path/to/your/file.c</code></pre>
+            
+            <h2>Debugging Tools</h2>
+            
+            <h3>Memory Debugging</h3>
+            
+            <p>For memory debugging, we recommend:</p>
+            
+            <ul>
+                <li>Valgrind (Linux/macOS): <code>valgrind --leak-check=full ./ages-of-arda</code></li>
+                <li>Address Sanitizer: Build with <code>-DENABLE_ASAN=ON</code> CMake option</li>
+            </ul>
+            
+            <h3>MCP Debugging</h3>
+            
+            <p>To debug MCP interactions:</p>
+            
+            <ol>
+                <li>Enable MCP logging: <code>export MCP_DEBUG=1</code> (or set in config)</li>
+                <li>Run with verbose output: <code>./ages-of-arda --verbose-mcp</code></li>
+                <li>Check logs in <code>logs/mcp_debug.log</code></li>
+            </ol>
+            
+            <h2>Common Issues & Solutions</h2>
+            
+            <div class="troubleshooting">
+                <h3>Build Fails with Missing Dependencies</h3>
+                <p><strong>Problem:</strong> CMake reports missing libraries.</p>
+                <p><strong>Solution:</strong> Ensure all dependencies are installed. Check the CMake error message for specific missing libraries.</p>
+                
+                <h3>MCP Connection Issues</h3>
+                <p><strong>Problem:</strong> Game fails to connect to AI services.</p>
+                <p><strong>Solution:</strong> Verify your API keys in <code>config/mcp_config.json</code>, check network connectivity, or switch to local models with <code>-DUSE_LOCAL_MODELS=ON</code>.</p>
+                
+                <h3>Slow Performance</h3>
+                <p><strong>Problem:</strong> Game runs slowly, especially when generating content.</p>
+                <p><strong>Solution:</strong> Enable caching (<code>-DENABLE_MCP_CACHING=ON</code>), reduce AI model complexity in config, or switch to faster local models.</p>
+            </div>
+            
+            <h2>Additional Resources</h2>
+            
+            <ul>
+                <li><a href="../api/mcp-endpoints.html">MCP API Reference</a></li>
+                <li><a href="code-style.html">Code Style Guide</a></li>
+                <li><a href="contributing.html">Contributing Guide</a></li>
+                <li><a href="https://discord.gg/ages-of-arda">Developer Discord</a></li>
+            </ul>
+            
+            <p class="conclusion">With your development environment set up, you're ready to start contributing to Ages of Arda. For guidance on specific subsystems, refer to the relevant sections in the developer guides.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    .os-specific {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+    }
+    
+    .os-tab {
+        margin-bottom: 20px;
+        padding: 10px;
+        border-left: 3px solid #3498db;
+    }
+    
+    pre {
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+    
+    code {
+        font-family: 'Courier New', Courier, monospace;
+    }
+    
+    .note {
+        background-color: #e8f4f8;
+        border-left: 4px solid #3498db;
+        padding: 15px;
+        margin: 20px 0;
+    }
+    
+    .troubleshooting h3 {
+        color: #e74c3c;
+    }
+    
+    .conclusion {
+        margin-top: 30px;
+        padding: 15px;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        font-style: italic;
+    }
+</style> 

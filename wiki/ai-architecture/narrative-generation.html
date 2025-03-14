@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narrative Generation System - Ages of Arda</title>
+    <link rel="stylesheet" href="../roguebasin-style.css">
+    <script src="../sidebar.js"></script>
+</head>
+<body>
+    <div id="mw-navigation">
+        <div class="sidebar">
+            <!-- Sidebar content will be included via JavaScript -->
+        </div>
+    </div>
+    
+    <div id="content" class="mw-body">
+        <h1 id="firstHeading">AI-Driven Narrative Generation</h1>
+        
+        <div id="bodyContent">
+            <div class="card">
+                <h3>System Overview</h3>
+                <p>The Narrative Generation System is a core component of Ages of Arda's AI architecture, responsible for creating dynamic, contextually appropriate storylines and events that respond to player actions while maintaining consistency with Tolkien's lore. This system leverages the Model Context Protocol (MCP) to generate coherent narratives that evolve throughout gameplay.</p>
+            </div>
+            
+            <h2>Architecture Components</h2>
+            
+            <div class="component-section">
+                <h3>1. Narrative Engine</h3>
+                <p>The central coordinator for all narrative generation, responsible for:</p>
+                <ul>
+                    <li>Maintaining narrative coherence across gameplay sessions</li>
+                    <li>Balancing procedural generation with pre-defined story elements</li>
+                    <li>Scheduling narrative events based on player progression and world state</li>
+                    <li>Managing narrative tension and pacing</li>
+                </ul>
+                <pre><code>/* Simplified Narrative Engine Interface */
+struct NarrativeEngine {
+    void initialize(LoreManager* lore, MemoryBank* memory);
+    NarrativeEvent* generateEvent(PlayerContext* context);
+    QuestLine* createQuestLine(WorldState* state, LoreConstraints* constraints);
+    void resolveNarrativeBranch(PlayerChoice* choice, NarrativeBranch* branch);
+    void updateNarrativeState(GameTick tick);
+};</code></pre>
+            </div>
+            
+            <div class="component-section">
+                <h3>2. Context Assembler</h3>
+                <p>Prepares the context for AI model queries by:</p>
+                <ul>
+                    <li>Gathering relevant player history from the Memory Bank</li>
+                    <li>Extracting applicable lore elements from the Lore Manager</li>
+                    <li>Incorporating current world state and environmental factors</li>
+                    <li>Formatting data into optimized prompts for the MCP</li>
+                </ul>
+                <pre><code>/* Context Assembly Process */
+struct ContextAssembler {
+    MCPPrompt* assembleNarrativeContext(
+        PlayerContext* player,
+        WorldRegion* region,
+        MemoryBank* memories,
+        LoreConstraints* loreRules,
+        NarrativeGoals* goals
+    );
+};</code></pre>
+            </div>
+            
+            <div class="component-section">
+                <h3>3. Narrative Templates</h3>
+                <p>Structural frameworks that guide narrative generation:</p>
+                <ul>
+                    <li>Age-specific narrative patterns (First, Second, Third Age templates)</li>
+                    <li>Race and culture-specific storyline structures</li>
+                    <li>Quest archetypes based on Tolkien's themes</li>
+                    <li>Conflict resolution patterns aligned with Middle-earth's moral framework</li>
+                </ul>
+                <pre><code>/* Example Template Structure */
+struct NarrativeTemplate {
+    char* templateId;
+    AgeEra applicableEra;
+    NarrativePhases phases[MAX_PHASES];
+    LoreConstraints loreRequirements;
+    float complexityFactor;
+    bool requiresSpecificLocation;
+    char* locationTypeRequired;
+};</code></pre>
+            </div>
+            
+            <div class="component-section">
+                <h3>4. Event Generator</h3>
+                <p>Creates specific narrative events based on context:</p>
+                <ul>
+                    <li>Random encounters with contextually appropriate NPCs</li>
+                    <li>Discovery events for items, locations, and lore</li>
+                    <li>Conflict scenarios with appropriate enemies</li>
+                    <li>Companion interactions and relationship developments</li>
+                </ul>
+                <pre><code>/* Event Generation Interface */
+struct EventGenerator {
+    NarrativeEvent* generateRandomEncounter(WorldRegion* region, 
+                                           PlayerContext* player);
+    NarrativeEvent* createCompanionInteraction(Companion* companion, 
+                                              PlayerContext* player);
+    NarrativeEvent* developWorldEvent(WorldState* state, 
+                                     LoreConstraints* constraints);
+};</code></pre>
+            </div>
+            
+            <h2>Integration with Other Systems</h2>
+            
+            <div class="integration-section">
+                <h3>Memory Bank Integration</h3>
+                <p>The Narrative Generation System relies heavily on the Memory Bank to:</p>
+                <ul>
+                    <li>Retrieve player history to ensure narrative continuity</li>
+                    <li>Store generated narrative events for future reference</li>
+                    <li>Track player choices and their consequences</li>
+                    <li>Maintain relationship states with NPCs and companions</li>
+                </ul>
+                <p>Memory entries are tagged with narrative relevance scores to help the Context Assembler prioritize information when constructing prompts.</p>
+            </div>
+            
+            <div class="integration-section">
+                <h3>Lore Manager Integration</h3>
+                <p>The Lore Manager provides critical constraints and content for narrative generation:</p>
+                <ul>
+                    <li>Age-appropriate characters, locations, and events</li>
+                    <li>Factual consistency with Tolkien's established timeline</li>
+                    <li>Cultural details for different races and regions</li>
+                    <li>Thematic elements consistent with Middle-earth's mythology</li>
+                </ul>
+                <p>The Narrative Engine queries the Lore Manager to validate generated content against canonical lore before presenting it to the player.</p>
+            </div>
+            
+            <div class="integration-section">
+                <h3>Companion System Integration</h3>
+                <p>Companions play a crucial role in narrative development:</p>
+                <ul>
+                    <li>Providing alternative perspectives on events</li>
+                    <li>Suggesting quests based on their background and knowledge</li>
+                    <li>Reacting to player choices, affecting relationship dynamics</li>
+                    <li>Contributing to narrative branching through their own agency</li>
+                </ul>
+                <p>The Narrative Generator coordinates with the Companion System to ensure companion dialogue and actions align with current storylines.</p>
+            </div>
+            
+            <h2>Technical Implementation</h2>
+            
+            <div class="technical-section">
+                <h3>MCP Query Optimization</h3>
+                <p>To ensure responsive gameplay, the Narrative Generation System employs several optimization strategies:</p>
+                <ul>
+                    <li>Tiered generation approach, using lightweight models for common events</li>
+                    <li>Caching of similar narrative responses for reuse in appropriate contexts</li>
+                    <li>Background pre-generation of likely narrative branches</li>
+                    <li>Fallback to template-based generation during connectivity issues</li>
+                </ul>
+                <pre><code>/* Query Optimization Example */
+struct MCPQueryOptimizer {
+    MCPQueryTier determineTier(NarrativeEvent* event);
+    bool checkCacheForSimilarResponse(MCPPrompt* prompt, MCPResponse* output);
+    void scheduleBackgroundGeneration(PlayerContext* context, 
+                                     PredictedActions* likelyActions);
+};</code></pre>
+            </div>
+            
+            <div class="technical-section">
+                <h3>Narrative Consistency Validation</h3>
+                <p>To maintain a coherent player experience, all generated narrative content undergoes validation:</p>
+                <ul>
+                    <li>Temporal consistency check against world timeline</li>
+                    <li>Character motivation analysis for believable NPC actions</li>
+                    <li>Lore compliance verification against Tolkien's works</li>
+                    <li>Continuity check against player's previous experiences</li>
+                </ul>
+                <pre><code>/* Consistency Validation */
+struct NarrativeValidator {
+    ValidationResult validateTemporalConsistency(NarrativeEvent* event, 
+                                               WorldTimeline* timeline);
+    ValidationResult checkCharacterConsistency(NPC* character, 
+                                             ProposedAction* action);
+    ValidationResult verifyLoreCompliance(NarrativeEvent* event, 
+                                        LoreManager* lore);
+    ValidationResult ensurePlayerContinuity(NarrativeEvent* event, 
+                                          MemoryBank* playerMemories);
+};</code></pre>
+            </div>
+            
+            <h2>Future Development</h2>
+            
+            <div class="future-section">
+                <h3>Planned Enhancements</h3>
+                <ul>
+                    <li><span class="in-progress">⟳</span> Multi-threaded narrative generation for improved performance</li>
+                    <li><span class="in-progress">⟳</span> Enhanced narrative branching with deeper consequence tracking</li>
+                    <li><span class="pending">○</span> Player personality modeling for more personalized narratives</li>
+                    <li><span class="pending">○</span> Adaptive difficulty scaling for narrative challenges</li>
+                    <li><span class="pending">○</span> Cross-age narrative arcs that span multiple character incarnations</li>
+                </ul>
+            </div>
+            
+            <div class="future-section">
+                <h3>Research Areas</h3>
+                <ul>
+                    <li>Local AI models for offline narrative generation</li>
+                    <li>Improved natural language understanding for player intent</li>
+                    <li>Emotional intelligence in narrative response generation</li>
+                    <li>Procedural theme development aligned with Tolkien's philosophical concepts</li>
+                </ul>
+            </div>
+            
+            <div class="note">
+                <p>The Narrative Generation System represents one of the most ambitious aspects of the Ages of Arda project, aiming to create a truly responsive and immersive storytelling experience that honors Tolkien's legacy while embracing the emergent possibilities of modern AI.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    .component-section, .integration-section, .technical-section, .future-section {
+        margin-bottom: 20px;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    
+    pre {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+    
+    code {
+        font-family: Consolas, Monaco, 'Andale Mono', monospace;
+        font-size: 0.9em;
+    }
+    
+    .complete, .in-progress, .pending {
+        font-weight: bold;
+        margin-right: 8px;
+    }
+    
+    .complete {
+        color: #2ecc71;
+    }
+    
+    .in-progress {
+        color: #f39c12;
+    }
+    
+    .pending {
+        color: #95a5a6;
+    }
+    
+    .note {
+        font-style: italic;
+        border-left: 4px solid #3498db;
+        padding-left: 15px;
+        margin-top: 30px;
+    }
+</style> 
