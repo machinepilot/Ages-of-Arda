@@ -1,0 +1,467 @@
+Spoiler File -- Basic Items (Angband 4.2.5)
+
+
+Description                                           Dam/AC   Wgt Lev     Cost
+----------------------------------------              ------   --- ---     ----
+
+
+Ammo
+
+  Arrow                                                  1d4   0.2   3        1
+  Bolt                                                   1d5   0.3   3        1
+  Rounded Pebble                                         1d2   0.4   0        2
+  Iron Shot                                              1d4   0.5   3        3
+  Seeker Arrow                                           4d4   0.2  55       10
+  Mithril Shot                                           2d4   0.2  40       13
+  Mithril Arrow                                          3d4   0.1  55       15
+  Mithril Bolt                                           3d5   0.2  50       20
+  Seeker Bolt                                            4d5   0.3  65       27
+
+
+Bows
+
+  Sling                                                        0.5   1      150
+  Short Bow                                                    3.0   3      204
+  Long Bow                                                     4.0  10      414
+  Light Crossbow                                              11.0  15      546
+  Heavy Crossbow                                              20.0  30      924
+
+
+Weapons
+
+  Whip                                                   1d3   3.0   3       50
+  Shovel                                                 1d2   6.0   1       66
+  Main Gauche                                            1d5   3.0   3       84
+  Rapier                                                 1d6   4.0   5      104
+  Dagger                                                 1d4   1.2   0      150
+  Short Sword                                            1d7   8.0   5      150
+  Cutlass                                                1d8  11.0   5      176
+  Awl-Pike                                               1d8  16.0  10      176
+  Pick                                                   1d3  18.0  30      176
+  Tulwar                                                 2d4  10.0   5      204
+  Spear                                                  1d6   5.0   5      204
+  Mace                                                   2d4  12.0   5      204
+  Quarterstaff                                           1d9  15.0  10      204
+  Ball-and-Chain                                         2d4  15.0  20      204
+  Trident                                               1d10   7.0   5      234
+  Throwing Axe                                           2d3   4.0  25      266
+  War Hammer                                             3d3  12.0   5      300
+  Scimitar                                               4d2  15.0  10      300
+  Long Sword                                             2d5  13.0  10      300
+  Broad Sword                                            2d5  15.0  10      300
+  Lucerne Hammer                                         2d5  12.0  10      300
+  Pike                                                   2d5  16.0  15      300
+  Throwing Hammer                                        2d4   5.5  40      336
+  Morning Star                                           2d6  15.0  10      374
+  Flail                                                  2d6  15.0  10      374
+  Beaked Axe                                             2d6  18.0  15      374
+  Broad Axe                                              2d6  16.0  15      374
+  Glaive                                                 2d6  19.0  20      374
+  Bastard Sword                                          3d4  14.0  15      414
+  Great Hammer                                           8d1  18.0   5      500
+  Lead-Filled Mace                                       4d3  18.0  15      500
+  Mattock                                                1d8  25.0  50      500
+  Lance                                                  2d8  30.0  10      594
+  Battle Axe                                             2d8  17.0  15      594
+  Katana                                                 3d5  12.0  20      594
+  Halberd                                                3d5  19.0  25      594
+  Maul                                                   4d4  20.0   5      750
+  Great Axe                                              4d4  23.0  40      750
+  Scythe                                                 5d3  25.0  45      750
+  Zweihander                                             3d6  20.0  30      806
+  Two-Handed Great Flail                                 3d6  28.0  45      806
+  Executioner's Sword                                    4d5  26.0  40     1050
+  Lochaber Axe                                           3d8  25.0  45     1254
+  Scythe of Slicing                                      8d4  25.0  60     2750
+  Blade of Chaos                                         6d5  18.0  70     4550
+  Mace of Disruption                                     5d8  40.0  80     5846
+
+
+Armour (Body)
+
+  Robe                                                     2   2.0   1       14
+  Soft Leather Armour                                      8   8.0   3       84
+  Studded Leather Armour                                  12  10.0  10      176
+  Hard Leather Armour                                     16  12.0   5      374
+  Leather Scale Mail                                      20  14.0  15      594
+  Chain Mail                                              32  22.0  25     1400
+  White Dragon Scale Mail                                 14  11.0  50     1634
+  Black Dragon Scale Mail                                 16  12.0  50     1886
+  Blue Dragon Scale Mail                                  12  10.0  50     2064
+  Mithril Chain Mail                                      28  15.0  55     2064
+  Metal Scale Mail                                        38  25.0  25     2156
+  Partial Plate Armour                                    40  26.0  45     2444
+  Augmented Chain Mail                                    42  27.0  30     2646
+  Bar Chain Mail                                          45  28.0  35     3300
+  Metal Brigandine Armour                                 48  29.0  35     3900
+  Red Dragon Scale Mail                                   24  16.0  50     4026
+  Metal Lamellar Armour                                   58  34.0  45     5846
+  Gold Dragon Scale Mail                                  28  18.0  50     5846
+  Green Dragon Scale Mail                                 20  14.0  60     6314
+  Full Plate Armour                                       62  36.0  45     6800
+  Ribbed Plate Armour                                     66  38.0  50     7826
+  Mithril Plate Mail                                      60  30.0  60     9306
+  Shining Dragon Scale Mail                               32  20.0  65    10094
+  Law Dragon Scale Mail                                   36  22.0  80    11550
+  Adamantite Plate Mail                                   80  42.0  75    14274
+  Chaos Dragon Scale Mail                                 40  24.0  80    17550
+  Multi-Hued Dragon Scale Mail                            45  26.0  90    27716
+  Balance Dragon Scale Mail                               50  28.0  95    38214
+  Power Dragon Scale Mail                                 60  30.0 100   167684
+
+
+Armour (Misc)
+
+  Iron Crown                                               0   2.0  45        1
+  Set of Leather Gloves                                    1   1.0   0        6
+  Pair of Leather Sandals                                  1   1.5   0        6
+  Cloak                                                    1   1.0   1        6
+  Wicker Shield                                            2   3.0   1       14
+  Hard Leather Cap                                         2   2.0   3       14
+  Pair of Leather Boots                                    2   2.0   3       14
+  Set of Gauntlets                                         3   2.5   0       24
+  Fur Cloak                                                3   2.5   1       24
+  Metal Cap                                                3   2.5  10       24
+  Golden Crown                                             0   3.0  45       24
+  Jewel Encrusted Crown                                    0   4.0  50       24
+  Small Metal Shield                                       5   6.0  10       36
+  Set of Caestus                                           5   4.0   0       50
+  Leather Shield                                           8   9.0  15       66
+  Pair of Iron Shod Boots                                  4   3.5   5       84
+  Set of Alchemist's Gloves                                0   0.5   0      104
+  Pair of Ethereal Slippers                                0   0.0   0      104
+  Iron Helm                                                7   5.0  20      104
+  Ethereal Cloak                                           0   0.0  50      104
+  Pair of Steel Shod Boots                                 7   6.0  20      150
+  Large Metal Shield                                      12  12.0  30      150
+  Steel Helm                                               9   6.0  40      176
+  Knight's Shield                                         15  16.0  50      176
+  Pair of Mithril Shod Boots                               8   4.0  60      456
+  Mithril Shield                                          16  10.0  70      644
+  Set of Mithril Gauntlets                                 6   1.5   0      750
+  Elven Cloak                                              6   0.5  60      924
+
+
+Amulets
+
+  Adamant Amulet of Teleportation                              0.3  10        0
+  Copper Amulet of Infravision                                 0.3  10       36
+  Sea Shell Amulet of Adornment                                0.3  10       36
+  Mithril Amulet of Searching                                  0.3  15       36
+  Ivory Amulet of Slow Digestion                               0.3  15       66
+  Bone Amulet of Wisdom                                        0.3  30      104
+  Carved Oak Amulet of Resist Lightning                        0.3  10      176
+  Silver Amulet of Resist Acid                                 0.3  10      204
+  Obsidian Amulet of Regeneration                              0.3  30      266
+  Ruby Amulet of Inertia                                       0.3  15      500
+  Tortoise Shell Amulet of Devotion                            0.3  70     3186
+  Brass Amulet of Resistance                                   0.3  60     4026
+  Azure Amulet of Trickery                                     0.3  70     4154
+  Crystal Amulet of the Magi                                   0.3  70     4416
+  Flint Stone Amulet of Weaponmastery                          0.3  70     4824
+  Pewter Amulet of ESP                                         0.3  50     7134
+  Driftwood Amulet of Sustenance                               0.3  60     9500
+
+
+Rings
+
+  Emerald Ring of Teleportation                                0.2   5        0
+  Alexandrite Ring of Escaping                                 0.2  30        0
+  Turquoise Ring of Reckless Attacks                           0.2   0       36
+  Topaz Ring of Searching                                      0.2   5       36
+  Quartz Ring of Protection                                    0.2  10       36
+  Bloodstone Ring of Damage                                    0.2  20       36
+  Jasper Ring of Accuracy                                      0.2  20       36
+  Azurite Ring of the Mouse                                    0.2  30       36
+  Opal Ring of Slaying                                         0.2  40       36
+  Jet Ring of Speed                                            0.2  75       36
+  Fluorite Ring of Feather Falling                             0.2   5       50
+  Rhodonite Ring of Slow Digestion                             0.2   5       66
+  Amethyst Ring of Intelligence                                0.2  30      104
+  Tiger Eye Ring of Light                                      0.2   0      150
+  Corundum Ring of the Dog                                     0.2   0      150
+  Moonstone Ring of Digging                                    0.2   0      150
+  Hematite Ring of Dexterity                                   0.2  30      176
+  Adamantite Ring of Constitution                              0.2  30      204
+  Pearl Ring of Strength                                       0.2  30      234
+  Bronze Ring of See Invisible                                 0.2  30      336
+  Platinum Ring of Free Action                                 0.2  20      500
+  Diamond Ring of Open Wounds                                  0.2  10      546
+  Jewelled Ring of Ice                                         0.2  50      594
+  Zircon Ring of Lightning                                     0.2  50      594
+  Garnet Ring of Acid                                          0.2  50      644
+  Silver Ring of Resist Fire and Cold                          0.2  10      696
+  Amber Ring of Flames                                         0.2  50      696
+  Jade Ring of Soulkeeping                                     0.2  30     1050
+  Carnelian Ring of Resist Poison                              0.2  40     1184
+  Beryl Ring of Bodykeeping                                    0.2  30     1554
+
+
+Scrolls
+
+  Scroll titled "eque dinver" of Treasure Detection            0.5   0       20
+  Scroll titled "praeto itto" of Light                         0.5   0       20
+  Scroll titled "tastas se" of Phase Door                      0.5   1       20
+  Scroll titled "ame quer vo" of Detect Invisible              0.5   1       20
+  Scroll titled "dirio pas" of Identify Rune                   0.5   1       20
+  Scroll titled "se se borium" of Summon Monster               0.5   1       20
+  Scroll titled "prat contas ho" of Blessing                   0.5   1       20
+  Scroll titled "lo fecus" of Darkness                         0.5   1       20
+  Scroll titled "galudis" of Magic Mapping                     0.5   5       20
+  Scroll titled "ca re osic" of Remove Hunger                  0.5   5       20
+  Scroll titled "sus montus pro" of Monster Confusion          0.5   5       20
+  Scroll titled "canusto" of Aggravate Monster                 0.5   5       20
+  Scroll titled "por co ces" of Teleportation                  0.5  10       20
+  Scroll titled "descio vulea" of Remove Curse                 0.5  10       20
+  Scroll titled "semperse co" of Door Destruction              0.5  10       20
+  Scroll titled "tentex imus" of Deep Descent                  0.5  10       20
+  Scroll titled "bitas plecens" of Holy Chant                  0.5  10       20
+  Scroll titled "cons adariuro" of Trap Creation               0.5  10       20
+  Scroll titled "pratisto famet" of Enchant Weapon To          0.5  15       20
+  Scroll titled "ide or qui nes" of Enchant Weapon To          0.5  15       20
+  Scroll titled "so tuo prolo" of Enchant Armour               0.5  15       20
+  Scroll titled "anclibus" of Summon Undead                    0.5  15       20
+  Scroll titled "ta quanitus" of Teleport Level                0.5  20       20
+  Scroll titled "co su monsede" of Acquirement                 0.5  20       20
+  Scroll titled "vehenus ho" of Holy Prayer                    0.5  25       20
+  Scroll titled "per exorbus" of Protection from Evil          0.5  30       20
+  Scroll titled "sper proconus" of Dispel Undead               0.5  40       20
+  Scroll titled "clar ludo" of Banishment                      0.5  40       20
+  Scroll titled "met plectum" of Recharging                    0.5  40       20
+  Scroll titled "do stia incon" of *Destruction*               0.5  40       20
+  Scroll titled "se progo lam" of *Enchant Weapon*             0.5  50       20
+  Scroll titled "asmacto oblis" of *Enchant Armour*            0.5  50       20
+  Scroll titled "speludor" of *Remove Curse*                   0.5  50       20
+  Scroll titled "sido lo dior" of Mass Banishment              0.5  50       20
+  Scroll titled "trudo hocerius" of Curse Weapon               0.5  50       20
+  Scroll titled "ilicono iur" of Curse Armour                  0.5  50       20
+  Scroll titled "claraet lacero" of *Acquirement*              0.5  60       20
+  Scroll titled "pre comita" of Rune of Protection             0.5  60       20
+  Scroll titled "co ra ins" of Word of Recall                  0.5   5      125
+
+
+Potions
+
+  Purple Potion of Cure Light Wounds                           0.4   0       20
+  Black Potion of Slime Mold Juice                             0.4   0       20
+  Red Potion of Sleep                                          0.4   0       20
+  Ultramarine Potion of Blindness                              0.4   0       20
+  Smoky Potion of Confusion                                    0.4   0       20
+  White Potion of Salt Water                                   0.4   0       20
+  Teal Potion of Dragon Breath                                 0.4   0       20
+  Shimmering Potion of Speed                                   0.4   1       20
+  Cyan Potion of Heroism                                       0.4   1       20
+  Hazy Potion of Boldness                                      0.4   1       20
+  Viscous Pink Potion of Slowness                              0.4   1       20
+  Lavender Potion of Cure Serious Wounds                       0.4   3       20
+  Copper Speckled Potion of Brawn                              0.4   3       20
+  Orange Potion of True Seeing                                 0.4   3       20
+  Light Pink Potion of Infravision                             0.4   3       20
+  Vermilion Potion of Poison                                   0.4   3       20
+  Oily Yellow Potion of Cure Critical Wounds                   0.4   5       20
+  Blue Potion of Nimbleness                                    0.4   5       20
+  Mustard Yellow Potion of Toughness                           0.4  10       20
+  Light Yellow Potion of Surprise                              0.4  10       20
+  Tangerine Potion of Healing                                  0.4  15       20
+  Cloudy Potion of Intellect                                   0.4  20       20
+  Dark Red Potion of Contemplation                             0.4  20       20
+  Cerulean Potion of Resist Poison                             0.4  20       20
+  Coagulated Crimson Potion of Restore Mana                    0.4  25       20
+  Metallic Blue Potion of Enlightenment                        0.4  25       20
+  Light Brown Potion of Strength                               0.4  30       20
+  Misty Potion of Intelligence                                 0.4  30       20
+  Light Violet Potion of Wisdom                                0.4  30       20
+  Purple Speckled Potion of Dexterity                          0.4  30       20
+  Metallic Green Potion of Constitution                        0.4  30       20
+  Dark Green Potion of Resist Heat                             0.4  30       20
+  Gold Potion of Resist Cold                                   0.4  30       20
+  Indigo Potion of Augmentation                                0.4  40       20
+  Metallic Red Potion of *Healing*                             0.4  40       20
+  Crimson Potion of Restore Life Levels                        0.4  40       20
+  Vespertine Potion of Life                                    0.4  60       20
+  Violet Potion of Experience                                  0.4  65       20
+  Light Purple Potion of *Enlightenment*                       0.4  70       20
+  Metallic Purple Potion of Neutralize Poison                  0.4   5       75
+  Bubbling Potion of Berserk Strength                          0.4   3       80
+
+
+Food
+
+  Scrap of Flesh                                               0.5   0        0
+  Hard Biscuit                                                 0.2   0        1
+  Flask of Whisky                                              0.5   0        1
+  Swig of Orcish Liquor                                        0.2   0        1
+  Pint of Fine Wine                                            1.0   0        2
+  Slime Mold                                                   0.2   1        2
+  Apple                                                        0.4   0        3
+  Handful of Dried Fruits                                      0.3   0        3
+  Ration of Food                                               0.8   0        3
+  Slice of Meat                                                1.0   0        3
+  Honey-cake                                                   1.0   5       10
+  Piece of Elvish Waybread                                     0.3   5       10
+  Sip of Miruvor                                               0.2   0      100
+  Draught of the Ents                                          1.0   0     2000
+
+
+Mushrooms
+
+  Wrinkled Mushroom of Second Sight                            0.1   0        5
+  Moldy Mushroom of Fast Recovery                              0.1   0        5
+  Striped Mushroom of Vigor                                    0.1   0        5
+  Crumbly Mushroom of Clear Mind                               0.1   0        5
+  Waxy Mushroom of Emergency                                   0.1   0        5
+  Woody Mushroom of Terror                                     0.1   0        5
+  Gelatinous Mushroom of Stoneskin                             0.1   0        5
+  Speckled Mushroom of Turbulence                              0.1   0        5
+  Fragile Mushroom of Debility                                 0.1   0        5
+  Smelly Mushroom of Sprinting                                 0.1   0        5
+  Rubbery Mushroom of Purging                                  0.1   0        5
+  Glowing Mushroom of Shadows                                  0.1   0        5
+
+
+Rods
+
+  Nickel Rod of Treasure Location                              1.5   5       90
+  Aluminium-Plated Rod of Light                                1.5  10       90
+  Magnesium Rod of Lightning Bolts                             1.5  20       90
+  Steel Rod of Illumination                                    1.5  20       90
+  Silver-Gilt Rod of Frost Bolts                               1.5  25       90
+  Zirconium Rod of Detection                                   1.5  30       90
+  Tungsten Rod of Fire Bolts                                   1.5  30       90
+  Iron Rod of Slow Monster                                     1.5  30       90
+  Ivory Rod of Hold Monster                                    1.5  30       90
+  Platinum Rod of Recall                                       1.5  30       90
+  White Gold Rod of Probing                                    1.5  35       90
+  Polished Steel Rod of Polymorph                              1.5  35       90
+  Gold Rod of Disable Traps                                    1.5  35       90
+  Rusted Steel Rod of Acid Bolts                               1.5  40       90
+  Copper Rod of Teleport Other                                 1.5  45       90
+  Rusty Iron Rod of Lightning Balls                            1.5  55       90
+  Zinc Rod of Cold Balls                                       1.5  60       90
+  Lead-Plated Rod of Magic Mapping                             1.5  65       90
+  Molybdenum Rod of Curing                                     1.5  65       90
+  Tin-Plated Rod of Acid Balls                                 1.5  70       90
+  Cast Iron Rod of Fire Balls                                  1.5  75       90
+  Runed Rod of Drain Life                                      1.5  75       90
+  Aluminium Rod of Healing                                     1.5  80       90
+  Bronze Rod of Restoration                                    1.5  80       90
+  Titanium Rod of Speed                                        1.5  95       90
+
+
+Wands
+
+  Lead-Plated Wand of Magic Missile                            1.0   3       50
+  Copper-Plated Wand of Light                                  1.0   3       50
+  Tin Wand of Darkness                                         1.0   3       50
+  Copper Wand of Wonder                                        1.0   3       50
+  Zinc Wand of Heal Monster                                    1.0   3       50
+  Titanium Wand of Haste Monster                               1.0   3       50
+  Nickel-Plated Wand of Stinking Cloud                         1.0   5       50
+  Zirconium Wand of Slow Monster                               1.0   5       50
+  Iron Wand of Confuse Monster                                 1.0   5       50
+  Runed Wand of Hold Monster                                   1.0   5       50
+  Silver-Plated Wand of Stun Monster                           1.0   5       50
+  Platinum Wand of Scare Monster                               1.0  10       50
+  Molybdenum Wand of Stone to Mud                              1.0  10       50
+  Cast Iron Wand of Lightning Bolts                            1.0  15       50
+  Pewter Wand of Clone Monster                                 1.0  15       50
+  Mithril Wand of Frost Bolts                                  1.0  20       50
+  Steel-Plated Wand of Polymorph                               1.0  20       50
+  Lead Wand of Teleport Other                                  1.0  20       50
+  Rusty Wand of Disable Traps                                  1.0  20       50
+  Bronze Wand of Fire Bolts                                    1.0  30       50
+  Steel Wand of Acid Bolts                                     1.0  30       50
+  Chromium Wand of Lightning Balls                             1.0  35       50
+  Tungsten Wand of Cold Balls                                  1.0  40       50
+  Magnesium Wand of Fire Balls                                 1.0  50       50
+  Gold-Plated Wand of Acid Balls                               1.0  50       50
+  Aluminium-Plated Wand of Dragon's Flame                      1.0  50       50
+  Mithril-Plated Wand of Dragon's Frost                        1.0  50       50
+  Silver Wand of Drain Life                                    1.0  50       50
+  Zinc-Plated Wand of Dragon's Breath                          1.0  60       50
+  Ivory Wand of Annihilation                                   1.0  60       50
+
+
+Staffs
+
+  Elm Staff of Darkness                                        5.0   5       70
+  Aspen Staff of Detect Invisible                              5.0   5       70
+  Cypress Staff of Cure Light Wounds                           5.0   5       70
+  Ivory Staff of Light                                         5.0   5       70
+  Mistletoe Staff of Summoning                                 5.0  10       70
+  Willow Staff of Haste Monsters                               5.0  10       70
+  Eucalyptus Staff of Confuse Monsters                         5.0  10       70
+  Hemlock Staff of Slow Monsters                               5.0  10       70
+  Balsa Staff of Sleep Monsters                                5.0  10       70
+  Cedar Staff of Detect Evil                                   5.0  20       70
+  Walnut Staff of Mapping                                      5.0  20       70
+  Birch Staff of Starlight                                     5.0  20       70
+  Mulberry Staff of Teleportation                              5.0  20       70
+  Maple Staff of Curing                                        5.0  25       70
+  Dogwood Staff of Earthquakes                                 5.0  40       70
+  Golden Staff of Speed                                        5.0  40       70
+  Redwood Staff of Remove Curse                                5.0  40       70
+  Ironwood Staff of *Destruction*                              5.0  50       70
+  Mahogany Staff of Dispel Evil                                5.0  50       70
+  Cottonwood Staff of Healing                                  5.0  70       70
+  Rosewood Staff of Banishment                                 5.0  70       70
+  Hazel Staff of Power                                         5.0  70       70
+  Bamboo Staff of Holiness                                     5.0  70       70
+  Sycamore Staff of the Magi                                   5.0  70       70
+
+
+Magic Books
+
+  Book of Magic Spells [First Spells]                          3.0   1       25
+  Book of Magic Spells [Attacks and Knowledge]                 3.0  10      400
+  Book of Magic Spells [Magical Defences]                      3.0  30     1600
+  Book of Magic Spells [Arcane Control]                        3.0  40    30000
+  Book of Magic Spells [Wizard's Tome of Power]                3.0  60    50000
+
+
+Holy Books
+
+  Holy Book of Prayers [Novice's Handbook]                     3.0   1       25
+  Holy Book of Prayers [Cleansing Power]                       3.0   5      100
+  Holy Book of Prayers [Healing and Sanctuary]                 3.0  30    10000
+  Holy Book of Prayers [Battle Blessings]                      3.0  40    30000
+  Holy Book of Prayers [Wrath of the Valar]                    3.0  60    50000
+
+
+Nature Books
+
+  Book of Nature Magics [Lesser Charms]                        3.0   1       25
+  Book of Nature Magics [Gifts of Nature]                      3.0  10      400
+  Book of Nature Magics [Creature Dominion]                    3.0  30    10000
+  Book of Nature Magics [Nature Craft]                         3.0  40    30000
+  Book of Nature Magics [Wild Forces]                          3.0  60    50000
+
+
+Shadow Books
+
+  Necromantic Tome [Into the Shadows]                          3.0   1       25
+  Necromantic Tome [Dark Rituals]                              3.0  10      400
+  Necromantic Tome [Fear and Torment]                          3.0  30     1600
+  Necromantic Tome [Deadly Powers]                             3.0  40    30000
+  Necromantic Tome [Corruption of Spirit]                      3.0  60    50000
+
+
+Mystery Books
+
+
+
+Chests
+
+  Small wooden chest                                          25.0   5       20
+  Large wooden chest                                          50.0  15       60
+  Small iron chest                                            30.0  25      100
+  Large iron chest                                           100.0  35      150
+  Small steel chest                                           50.0  45      200
+  Large steel chest                                          100.0  55      250
+
+
+Lights and fuel
+
+  Flask of oil                                                 2.0   1        3
+  Wooden Torch                                                 2.2   1        6
+  Lantern                                                      5.0   3      546

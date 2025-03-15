@@ -1,0 +1,648 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\tests\player\inven-wield.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\working_directory\ages-project\clean-ages-of-arda\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurUnitTestLib.dir\$(Configuration)\test-utils.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurUnitTestLib.dir\$(Configuration)\unit-test.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\buildid.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\cave-map.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\cave-square.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\cave-view.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\cave.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\cmd-cave.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\cmd-core.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\cmd-misc.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\cmd-obj.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\cmd-pickup.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\cmd-spoil.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\cmd-wizard.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\datafile.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\debug.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\effect-handler-attack.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\effect-handler-general.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\effects.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\effects-info.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\game-event.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\game-input.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\game-world.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\gen-cave.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\gen-chunk.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\gen-monster.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\gen-room.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\gen-util.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\generate.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\grafmode.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\guid.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\init.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\load.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\message.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\mon-attack.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\mon-blows.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\mon-desc.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\mon-group.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\mon-init.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\mon-list.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\mon-lore.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\mon-make.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\mon-move.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\mon-msg.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\mon-predicate.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\mon-spell.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\mon-summon.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\mon-timed.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\mon-util.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-chest.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-curse.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-desc.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-gear.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-ignore.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-info.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-init.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-knowledge.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-list.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-make.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-pile.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-power.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-properties.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-randart.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-slays.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-tval.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\obj-util.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\option.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\parser.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\player-attack.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\player-birth.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\player-calcs.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\player-class.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\player-history.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\player-path.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\player-properties.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\player-quest.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\player-race.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\player-spell.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\player-timed.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\player-util.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\player.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\project-feat.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\project-mon.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\project-obj.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\project-player.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\project.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\randname.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\save.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\save-charoutput.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\savefile.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\score.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\sound-core.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\source.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\store.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\target.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\trap.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-birth.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-command.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-context.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-curse.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-death.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-display.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-effect.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-entry-combiner.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-entry-renderers.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-entry.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-equip-cmp.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-event.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-game.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-help.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-history.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-init.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-input.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-keymap.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-knowledge.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-map.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-menu.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-mon-list.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-mon-lore.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-obj-list.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-object.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-options.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-output.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-player-properties.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-player.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-prefs.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-score.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-signals.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-spell.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-spoil.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-store.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-target.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-term.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-visuals.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\ui-wizard.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\wiz-debug.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\wiz-spoil.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\wiz-stats.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\z-bitflag.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\z-color.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\z-dice.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\z-expression.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\z-file.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\z-form.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\z-quark.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\z-queue.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\z-rand.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\z-textblock.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\z-type.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\z-util.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\z-virt.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-attack-munchkin.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-caution.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-cave-light.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-cave-util.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-cave-view.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-cave.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-danger.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-escape.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-fight-attack.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-fight-defend.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-fight-perm.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-flow-dark.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-flow-glyph.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-flow-kill.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-flow-misc.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-flow-stairs.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-flow-take.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-flow.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-formulas.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-formulas-calc.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-home-notice.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-home-power.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-init.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-inventory.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-io.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-item-activation.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-item-analyze.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-item-decurse.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-item-enchant.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-item-id.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-item-use.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-item-val.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-item-wear.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-item.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-junk.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-light.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-log.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-magic-play.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-magic.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-messages-react.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-messages.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-power.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-prepared.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-projection.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-recover.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-reincarnate.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-store-buy.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-store-sell.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-store.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-think-dungeon-util.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-think-dungeon.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-think-store.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-think.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-trait-swap.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-trait.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-update.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg-util.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\working_directory\ages-project\clean-ages-of-arda\build\OurCoreLib.dir\$(Configuration)\borg.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Object Libraries">
+      <UniqueIdentifier>{057216B7-2302-3FFC-A67F-9007C917252D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{5DE3BF90-8C91-3B9B-B52E-F3FBB9744910}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

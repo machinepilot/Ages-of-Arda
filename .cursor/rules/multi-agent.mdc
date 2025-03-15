@@ -1,4 +1,9 @@
 ---
+description: 
+globs: 
+alwaysApply: false
+---
+---
 description: Multi-Agent Framework for Angband Variant
 globs: ["**/src/ai/**"]
 alwaysApply: false

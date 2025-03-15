@@ -1,0 +1,511 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C5E5E1C5-74D9-367A-82C7-81F5AB107FF2}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>OurCoreLib</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">OurCoreLib.dir\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">OurCoreLib.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">OurCoreLib</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">OurCoreLib.dir\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">OurCoreLib.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">OurCoreLib</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">OurCoreLib.dir\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">OurCoreLib.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">OurCoreLib</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">OurCoreLib.dir\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">OurCoreLib.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">OurCoreLib</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\working_directory\ages-project\clean-ages-of-arda\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/working_directory/ages-project/clean-ages-of-arda/src/win/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;ALLOW_BORG;USE_WIN;USE_PRIVATE_PATHS;SOUND;WINDOWS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;ALLOW_BORG;USE_WIN;USE_PRIVATE_PATHS;SOUND;WINDOWS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\working_directory\ages-project\clean-ages-of-arda\src;C:\working_directory\ages-project\clean-ages-of-arda\src\win\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\working_directory\ages-project\clean-ages-of-arda\src;C:\working_directory\ages-project\clean-ages-of-arda\src\win\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\working_directory\ages-project\clean-ages-of-arda\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/working_directory/ages-project/clean-ages-of-arda/src/win/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;ALLOW_BORG;USE_WIN;USE_PRIVATE_PATHS;SOUND;WINDOWS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;ALLOW_BORG;USE_WIN;USE_PRIVATE_PATHS;SOUND;WINDOWS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\working_directory\ages-project\clean-ages-of-arda\src;C:\working_directory\ages-project\clean-ages-of-arda\src\win\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\working_directory\ages-project\clean-ages-of-arda\src;C:\working_directory\ages-project\clean-ages-of-arda\src\win\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\working_directory\ages-project\clean-ages-of-arda\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/working_directory/ages-project/clean-ages-of-arda/src/win/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;ALLOW_BORG;USE_WIN;USE_PRIVATE_PATHS;SOUND;WINDOWS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;ALLOW_BORG;USE_WIN;USE_PRIVATE_PATHS;SOUND;WINDOWS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\working_directory\ages-project\clean-ages-of-arda\src;C:\working_directory\ages-project\clean-ages-of-arda\src\win\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\working_directory\ages-project\clean-ages-of-arda\src;C:\working_directory\ages-project\clean-ages-of-arda\src\win\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\working_directory\ages-project\clean-ages-of-arda\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/working_directory/ages-project/clean-ages-of-arda/src/win/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;ALLOW_BORG;USE_WIN;USE_PRIVATE_PATHS;SOUND;WINDOWS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;ALLOW_BORG;USE_WIN;USE_PRIVATE_PATHS;SOUND;WINDOWS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\working_directory\ages-project\clean-ages-of-arda\src;C:\working_directory\ages-project\clean-ages-of-arda\src\win\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\working_directory\ages-project\clean-ages-of-arda\src;C:\working_directory\ages-project\clean-ages-of-arda\src\win\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\working_directory\ages-project\clean-ages-of-arda\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/working_directory/ages-project/clean-ages-of-arda/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/working_directory/ages-project/clean-ages-of-arda -BC:/working_directory/ages-project/clean-ages-of-arda/build --check-stamp-file C:/working_directory/ages-project/clean-ages-of-arda/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCCompilerABI.c;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCompilerSupport.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineRCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeRCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeTestCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeTestRCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\CrayClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\LCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\OrangeC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\TIClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Tasking-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPython.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeDetermineLinkerId.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\4.0.0-rc4\CMakeCCompiler.cmake;C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\4.0.0-rc4\CMakeRCCompiler.cmake;C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\4.0.0-rc4\CMakeSystem.cmake;C:\working_directory\ages-project\clean-ages-of-arda\src\cmake\macros\WINDOWS_Frontend.cmake;C:\working_directory\ages-project\clean-ages-of-arda\src\cmake\modules\FindSphinx.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/working_directory/ages-project/clean-ages-of-arda/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/working_directory/ages-project/clean-ages-of-arda -BC:/working_directory/ages-project/clean-ages-of-arda/build --check-stamp-file C:/working_directory/ages-project/clean-ages-of-arda/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCCompilerABI.c;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCompilerSupport.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineRCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeRCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeTestCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeTestRCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\CrayClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\LCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\OrangeC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\TIClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Tasking-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPython.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeDetermineLinkerId.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\4.0.0-rc4\CMakeCCompiler.cmake;C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\4.0.0-rc4\CMakeRCCompiler.cmake;C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\4.0.0-rc4\CMakeSystem.cmake;C:\working_directory\ages-project\clean-ages-of-arda\src\cmake\macros\WINDOWS_Frontend.cmake;C:\working_directory\ages-project\clean-ages-of-arda\src\cmake\modules\FindSphinx.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/working_directory/ages-project/clean-ages-of-arda/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/working_directory/ages-project/clean-ages-of-arda -BC:/working_directory/ages-project/clean-ages-of-arda/build --check-stamp-file C:/working_directory/ages-project/clean-ages-of-arda/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCCompilerABI.c;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCompilerSupport.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineRCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeRCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeTestCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeTestRCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\CrayClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\LCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\OrangeC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\TIClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Tasking-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPython.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeDetermineLinkerId.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\4.0.0-rc4\CMakeCCompiler.cmake;C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\4.0.0-rc4\CMakeRCCompiler.cmake;C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\4.0.0-rc4\CMakeSystem.cmake;C:\working_directory\ages-project\clean-ages-of-arda\src\cmake\macros\WINDOWS_Frontend.cmake;C:\working_directory\ages-project\clean-ages-of-arda\src\cmake\modules\FindSphinx.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/working_directory/ages-project/clean-ages-of-arda/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/working_directory/ages-project/clean-ages-of-arda -BC:/working_directory/ages-project/clean-ages-of-arda/build --check-stamp-file C:/working_directory/ages-project/clean-ages-of-arda/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCCompilerABI.c;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineCompilerSupport.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineRCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeRCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeTestCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeTestRCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\CrayClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\LCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\OrangeC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\TIClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Tasking-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPython.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeDetermineLinkerId.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\4.0.0-rc4\CMakeCCompiler.cmake;C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\4.0.0-rc4\CMakeRCCompiler.cmake;C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\4.0.0-rc4\CMakeSystem.cmake;C:\working_directory\ages-project\clean-ages-of-arda\src\cmake\macros\WINDOWS_Frontend.cmake;C:\working_directory\ages-project\clean-ages-of-arda\src\cmake\modules\FindSphinx.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\buildid.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cave-map.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cave-square.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cave-view.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cave.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cmd-cave.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cmd-core.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cmd-misc.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cmd-obj.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cmd-pickup.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cmd-spoil.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cmd-wizard.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\datafile.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\debug.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\effect-handler-attack.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\effect-handler-general.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\effects.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\effects-info.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\game-event.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\game-input.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\game-world.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\gen-cave.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\gen-chunk.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\gen-monster.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\gen-room.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\gen-util.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\generate.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\grafmode.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\guid.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\init.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\load.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\message.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-attack.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-blows.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-desc.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-group.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-init.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-list.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-lore.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-make.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-move.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-msg.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-predicate.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-spell.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-summon.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-timed.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-util.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-chest.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-curse.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-desc.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-gear.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-ignore.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-info.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-init.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-knowledge.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-list.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-make.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-pile.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-power.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-properties.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-randart.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-slays.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-tval.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-util.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\option.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\parser.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-attack.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-birth.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-calcs.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-class.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-history.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-path.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-properties.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-quest.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-race.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-spell.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-timed.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-util.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\project-feat.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\project-mon.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\project-obj.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\project-player.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\project.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\randname.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\save.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\save-charoutput.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\savefile.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\score.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\sound-core.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\source.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\store.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\target.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\trap.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-birth.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-command.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-context.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-curse.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-death.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-display.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-effect.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-entry-combiner.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-entry-renderers.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-entry.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-equip-cmp.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-event.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-game.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-help.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-history.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-init.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-input.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-keymap.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-knowledge.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-map.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-menu.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-mon-list.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-mon-lore.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-obj-list.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-object.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-options.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-output.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-player-properties.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-player.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-prefs.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-score.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-signals.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-spell.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-spoil.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-store.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-target.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-term.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-visuals.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-wizard.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\wiz-debug.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\wiz-spoil.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\wiz-stats.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-bitflag.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-color.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-dice.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-expression.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-file.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-form.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-quark.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-queue.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-rand.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-textblock.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-type.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-util.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-virt.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-attack-munchkin.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-caution.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-cave-light.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-cave-util.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-cave-view.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-cave.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-danger.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-escape.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-fight-attack.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-fight-defend.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-fight-perm.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-flow-dark.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-flow-glyph.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-flow-kill.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-flow-misc.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-flow-stairs.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-flow-take.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-flow.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-formulas.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-formulas-calc.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-home-notice.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-home-power.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-init.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-inventory.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-io.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item-activation.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item-analyze.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item-decurse.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item-enchant.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item-id.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item-use.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item-val.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item-wear.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-junk.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-light.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-log.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-magic-play.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-magic.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-messages-react.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-messages.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-power.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-prepared.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-projection.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-recover.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-reincarnate.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-store-buy.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-store-sell.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-store.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-think-dungeon-util.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-think-dungeon.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-think-store.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-think.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-trait-swap.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-trait.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-update.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-util.c" />
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg.c" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\working_directory\ages-project\clean-ages-of-arda\build\ZERO_CHECK.vcxproj">
+      <Project>{8A1DDEC5-A930-3FA8-98D2-CC1593699FC6}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

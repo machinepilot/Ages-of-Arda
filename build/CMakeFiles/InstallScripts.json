@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/working_directory/ages-project/clean-ages-of-arda/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

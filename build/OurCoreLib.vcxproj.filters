@@ -1,0 +1,634 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\buildid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cave-map.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cave-square.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cave-view.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cave.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cmd-cave.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cmd-core.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cmd-misc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cmd-obj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cmd-pickup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cmd-spoil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\cmd-wizard.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\datafile.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\debug.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\effect-handler-attack.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\effect-handler-general.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\effects.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\effects-info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\game-event.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\game-input.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\game-world.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\gen-cave.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\gen-chunk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\gen-monster.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\gen-room.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\gen-util.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\generate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\grafmode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\guid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\load.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\message.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-attack.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-blows.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-desc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-group.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-list.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-lore.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-make.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-move.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-msg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-predicate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-spell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-summon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-timed.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\mon-util.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-chest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-curse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-desc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-gear.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-ignore.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-knowledge.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-list.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-make.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-pile.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-power.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-properties.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-randart.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-slays.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-tval.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\obj-util.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\option.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\parser.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-attack.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-birth.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-calcs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-class.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-history.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-path.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-properties.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-quest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-race.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-spell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-timed.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player-util.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\player.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\project-feat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\project-mon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\project-obj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\project-player.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\project.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\randname.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\save.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\save-charoutput.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\savefile.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\score.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\sound-core.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\source.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\store.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\target.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\trap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-birth.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-command.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-context.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-curse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-death.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-display.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-effect.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-entry-combiner.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-entry-renderers.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-entry.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-equip-cmp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-event.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-game.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-help.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-history.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-input.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-keymap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-knowledge.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-map.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-menu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-mon-list.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-mon-lore.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-obj-list.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-object.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-options.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-output.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-player-properties.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-player.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-prefs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-score.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-signals.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-spell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-spoil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-store.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-target.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-term.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-visuals.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\ui-wizard.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\wiz-debug.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\wiz-spoil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\wiz-stats.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-bitflag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-color.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-dice.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-expression.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-file.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-form.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-quark.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-queue.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-rand.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-textblock.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-type.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-util.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\z-virt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-attack-munchkin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-caution.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-cave-light.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-cave-util.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-cave-view.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-cave.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-danger.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-escape.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-fight-attack.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-fight-defend.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-fight-perm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-flow-dark.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-flow-glyph.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-flow-kill.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-flow-misc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-flow-stairs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-flow-take.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-flow.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-formulas.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-formulas-calc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-home-notice.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-home-power.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-inventory.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-io.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item-activation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item-analyze.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item-decurse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item-enchant.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item-id.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item-use.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item-val.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item-wear.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-junk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-light.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-log.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-magic-play.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-magic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-messages-react.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-messages.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-power.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-prepared.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-projection.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-recover.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-reincarnate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-store-buy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-store-sell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-store.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-think-dungeon-util.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-think-dungeon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-think-store.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-think.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-trait-swap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-trait.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-update.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg-util.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\working_directory\ages-project\clean-ages-of-arda\src\borg\borg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\working_directory\ages-project\clean-ages-of-arda\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{5DE3BF90-8C91-3B9B-B52E-F3FBB9744910}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

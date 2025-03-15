@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\d4ae522e1f7067c95830ef0bf2dcb02b\run-unittest-player-birth.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\working_directory\ages-project\clean-ages-of-arda\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\working_directory\ages-project\clean-ages-of-arda\build\CMakeFiles\run-unittest-player-birth" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{B39F4FD7-CD0C-36B4-B0BA-6053B171D3C4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

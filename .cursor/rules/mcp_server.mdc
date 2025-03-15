@@ -1,0 +1,22 @@
+---
+description: MCP Server Implementation for Angband Variant
+globs: src/bard-mcp-server.js, src/simple-mcp-server.js
+alwaysApply: false
+---
+# MCP Server Implementation Guidelines
+
+## Server Configuration
+- Server runs on port 3000 by default (configurable in .env)
+- Implements the Model Context Protocol for AI integration
+- Provides narrative generation endpoints for the Bard system
+
+## API Endpoints
+- `generateNarrative`: Creates narrative text for game events
+- `getCharacterMemories`: Retrieves stored memories for a character
+- `updateMemory`: Stores new memories for a character
+
+## Implementation Requirements
+- Use Node.js for the server implementation
+- Implement proper error handling and logging
+- Ensure asynchronous processing to avoid blocking
+- Cache responses when appropriate to reduce API calls 
