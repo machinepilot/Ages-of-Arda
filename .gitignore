@@ -14,6 +14,7 @@
 .dep
 .deps
 .DS_Store
+.env
 .idea/
 .project
 .settings

@@ -1,0 +1,48 @@
+[MCP_SERVER]
+; MCP Server Configuration
+enabled=true             ; Enable/disable MCP server
+port=3000               ; Port for the MCP server
+autostart=true          ; Automatically start the server with the game
+server_path=./angband-doc-agent/src  ; Path to the MCP server directory
+timeout=5000            ; Connection timeout in milliseconds
+retry_attempts=3        ; Number of retry attempts if connection fails
+cache_responses=true    ; Cache common responses to reduce API calls
+
+[WINDOW_PREFERENCES]
+; Main window configuration
+main_width=80
+main_height=24
+font_size=12
+use_graphics=false      ; Use tile graphics (true/false)
+graphics_mode=none      ; Options: none, old, new
+
+; Subwindow configuration 
+subwindow_count=3       ; Number of subwindows to display
+; Window 1 (Messages)
+window1_display=true
+window1_content=messages
+window1_width=80
+window1_height=10
+; Window 2 (Inventory)
+window2_display=true
+window2_content=inventory
+window2_width=40
+window2_height=15
+; Window 3 (Monster Recall)
+window3_display=true
+window3_content=monster
+window3_width=40
+window3_height=15
+
+[GAMEPLAY]
+; Gameplay preferences
+show_flavors=true       ; Show object flavors
+use_old_target=false    ; Use old-style targeting
+pickup_always=false     ; Always pick up items
+pickup_inven=true       ; Pick up items if room in inventory
+
+[ADVANCED]
+; Advanced settings
+debug_mode=false        ; Enable debug mode
+mcp_server_log=false    ; Log MCP server activity
+autosave_freq=10        ; Autosave frequency in minutes 
