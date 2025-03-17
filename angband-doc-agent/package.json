@@ -1,0 +1,13 @@
+{
+  "name": "angband-doc-agent",
+  "version": "1.0.0",
+  "description": "MCP server for Ages of Arda",
+  "main": "src/enhanced-mcp-server.js",
+  "scripts": {
+    "start": "node src/simple-mcp-server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}

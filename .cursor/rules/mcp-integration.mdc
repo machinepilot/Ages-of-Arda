@@ -1,136 +1,217 @@
 ---
 description: Model Context Protocol (MCP) Integration Guidelines
-globs: 
+globs: ["**/src/mcp/**", "**/angband-doc-agent/**"]
 alwaysApply: false
 ---
 # Model Context Protocol (MCP) Integration Guidelines
 
 ## Overview
-MCP is used to connect the Angband variant with local LLMs via Ollama for dynamic gameplay generation.
+The Ages of Arda project uses Model Context Protocol (MCP) to integrate AI-driven narrative generation and companion features. This document outlines the implementation patterns and best practices.
 
-## Server Configuration
-- Default port: 11434 (Ollama default)
-- Backup port: 8000 (if Ollama port is unavailable)
-- Connection timeout: 5 seconds
-- Retry attempts: 3
+## Server Architecture
 
-## Model Selection
-- Primary: `codellama:13b` - For code generation and game logic
-- Secondary: `llama2:13b` - For narrative and world building
-- Fallback: `mistral:7b` - For lightweight interactions
+### Simple MCP Server
+The primary implementation is `simple-mcp-server.js`, which provides:
+- File system access to the codebase
+- Template-based narrative generation
+- Memory storage for character experiences
 
-## Context Management
-- Game state context: Limited to 4000 tokens
-- Player history context: Limited to 2000 tokens
-- World state context: Limited to 2000 tokens
-- Lore context: Limited to 2000 tokens
-
-## MCP Endpoints
-
-### Companion System
-- `ages/companion/dialogue`: Generate dialogue for a companion
-  - Parameters: companion_name, age, topic (optional), relationship_level
-  - Response: dialogue, companion, age, topic
-
-- `ages/companion/info`: Get information about a companion
-  - Parameters: companion_name, age
-  - Response: companion data including background, traits, and relationships
-
-- `ages/relationship/update`: Update the relationship level with a companion
-  - Parameters: companion_name, change_amount, reason
-  - Response: new_level, companion_name, reaction
-
-### Lore System
-- `ages/lore/character`: Get character lore
-  - Parameters: character_name, age (optional)
-  - Response: content, source, age, year, is_canonical
-
-- `ages/lore/location`: Get location lore
-  - Parameters: location_name, age (optional)
-  - Response: content, source, age, year, is_canonical
-
-- `ages/lore/artifact`: Get artifact lore
-  - Parameters: artifact_name, age (optional)
-  - Response: content, source, age, year, is_canonical
-
-- `ages/lore/random`: Get random lore
-  - Parameters: topic_type (optional), age (optional)
-  - Response: content, topic_type, age, source
-
-- `ages/lore/age/set`: Set the current age
-  - Parameters: age
-  - Response: status, age
-
-- `ages/lore/age/get`: Get the current age
-  - Parameters: none
-  - Response: age
-
-### Narrative Generation
-- `ages/narrative/location`: Generate location description
-  - Parameters: location_name, age, context (optional)
-  - Response: description, location, age
-
-- `ages/narrative/companion`: Generate companion dialogue
-  - Parameters: companion_name, age, topic (optional), relationship_level, context (optional)
-  - Response: dialogue, companion, age, topic
-
-- `ages/narrative/quest`: Generate quest
-  - Parameters: quest_type, location, age, target (optional), context (optional)
-  - Response: title, description, quest_type, location, age, target
-
-### Timeline Management
-- `ages/timeline/info`: Get information about the current timeline
-  - Parameters: none
-  - Response: current_age, year, major_events
-
-- `ages/player/death`: Handle player death and advance the timeline
-  - Parameters: cause_of_death, player_level, achievements
-  - Response: new_age, new_year, new_companion, death_narrative
-
-## Prompt Templates
-```
-[GAME_STATE]
-{game_state_json}
-[/GAME_STATE]
-
-[PLAYER_HISTORY]
-{player_history_text}
-[/PLAYER_HISTORY]
-
-[WORLD_STATE]
-{world_state_json}
-[/WORLD_STATE]
-
-[LORE_CONTEXT]
-{relevant_lore_json}
-[/LORE_CONTEXT]
-
-[INSTRUCTION]
-{specific_instruction}
-[/INSTRUCTION]
+```javascript
+// Example narrative generation endpoint
+app.post('/mcp/tools/generateNarrative', async (req, res) => {
+  try {
+    const { event_type, event_data, character_id, style, tone } = req.body;
+    // Generate narrative based on templates or AI
+    let narrative = generateTemplateNarrative(event_type, eventData, style, tone);
+    
+    // Store in character memories
+    if (character_id) {
+      storeCharacterMemory(character_id, narrative);
+    }
+    
+    res.json(narrative);
+  } catch (error) {
+    // Provide fallback response
+    res.json({ 
+      text: "The bard seems at a loss for words...",
+      tone: "confused",
+      is_spoken: true,
+      importance: 30
+    });
+  }
+});
 ```
 
-## Response Parsing
-- JSON format expected for structured data
-- Plain text for narrative responses
-- Error handling for malformed responses
-- Validation against lore accuracy when applicable
+### Client Integration
 
-## Performance Considerations
-- Cache common responses
-- Batch similar requests
-- Use async processing for non-blocking gameplay
-- Implement fallback behavior for offline play
-- Prioritize template-based generation for time-sensitive operations
+The C client (`mcp-client.c`) provides a bridge between the game and the MCP server:
 
-## Security
-- No sensitive data in prompts
-- Sanitize all LLM outputs before processing
-- Implement rate limiting
-- Local-only deployment by default
+```c
+/**
+ * Request AI-generated content with fallback
+ */
+narrative_text_t *
+mcp_generate_narrative(mcp_client_t *client, const char *event_type,
+                     const char *event_data, const char *character_id,
+                     const char *style, const char *tone)
+{
+    // Try to get response from MCP server
+    mcp_response_t *response = mcp_invoke_tool(client, "generateNarrative", json_params_str);
+    
+    // Process response or use fallback
+    narrative_text_t *narrative = process_narrative_response(response);
+    
+    return narrative;
+}
+```
+
+## Implementation Patterns
+
+### Fallback Mechanism
+Always implement fallback mechanisms for when the MCP server is unavailable:
+
+```c
+char *
+get_ai_response(game_state_t *state, const char *prompt_type, const char *context)
+{
+    char *response = NULL;
+    
+    /* Try primary AI system */
+    response = mcp_request(state, prompt_type, context);
+    
+    /* Fall back to template if AI unavailable */
+    if (response == NULL) {
+        response = get_template_response(prompt_type, context);
+    }
+    
+    return response;
+}
+```
+
+### Asynchronous Processing
+Use asynchronous processing to avoid blocking the game:
+
+```c
+bool
+request_narrative_async(const char *event_type, const char *event_data)
+{
+    return mcp_generate_narrative_async(
+        mcp_client,
+        event_type,
+        event_data,
+        player_uuid,
+        "standard",
+        NULL,
+        narrative_callback,
+        NULL
+    );
+}
+```
+
+### Memory Management
+Store important character memories for future reference:
+
+```javascript
+// Store character memories
+function storeCharacterMemory(characterId, narrative) {
+  if (!characterMemories[characterId]) {
+    characterMemories[characterId] = [];
+  }
+  
+  characterMemories[characterId].push({
+    timestamp: new Date(),
+    narrative: narrative.text,
+    importance: narrative.importance
+  });
+  
+  // Sort by importance
+  characterMemories[characterId].sort((a, b) => b.importance - a.importance);
+}
+```
 
 ## Testing
-- Mock LLM responses for unit tests
-- Benchmark response times
-- Validate response formats
-- Verify lore accuracy and consistency 
+
+### Server Testing
+Test the MCP server independently:
+
+```bash
+# Start the server
+cd angband-doc-agent/src
+node simple-mcp-server.js
+
+# Test with curl
+curl -X POST http://localhost:3000/mcp/tools/generateNarrative \
+  -H "Content-Type: application/json" \
+  -d '{"event_type":"monster_death","event_data":{"monster_name":"Ancient Dragon"}}'
+```
+
+### Client Testing
+Test the C client with the test program:
+
+```bash
+# Compile the test client
+gcc -o test-mcp-client test-mcp-client.c mcp-client.c -lcurl -ljansson
+
+# Run the test
+./test-mcp-client
+```
+
+## Companion UI Integration
+
+The companion UI is integrated through the SDL2 interface:
+
+```c
+/**
+ * Initialize companion data for a subwindow
+ */
+errr
+companion_init(struct subwindow *subwindow)
+{
+    /* Allocate companion data */
+    subwindow->companion = mem_zalloc(sizeof(struct companion_data));
+    
+    /* Initialize MCP client */
+    subwindow->companion->mcp_client = mcp_client_init(MCP_SERVER_URL, NULL);
+    
+    return 0;
+}
+
+/**
+ * Render companion window
+ */
+void
+render_companion_window(struct subwindow *subwindow)
+{
+    /* Render companion portrait */
+    render_companion_portrait(subwindow);
+    
+    /* Render dialogue text */
+    render_companion_dialogue(subwindow);
+    
+    /* Render interaction options */
+    render_companion_options(subwindow);
+}
+```
+
+## Deployment
+
+### Server Startup
+Use the provided batch file to start the server:
+
+```batch
+@echo off
+echo Starting MCP server...
+cd angband-doc-agent\src
+node simple-mcp-server.js
+```
+
+### Game Integration
+Start the game with the companion window enabled:
+
+```batch
+@echo off
+echo Starting MCP server in background...
+start "MCP Server" cmd /c "cd angband-doc-agent\src && node simple-mcp-server.js"
+echo Starting game...
+angband.exe -n3
+``` 

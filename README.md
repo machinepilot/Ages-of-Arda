@@ -2227,6 +2227,38 @@ flowchart TD
     class Tutorial,ErrorHandling,Documentation,Settings ux
 ```
 
+## Companion System
+
+Ages of Arda features a unique companion system that provides narrative and guidance as you explore the world. 
+
+### Enhanced MCP System
+
+For the best companion experience, use the Enhanced MCP (Model Context Protocol) system:
+
+1. **Quick Setup**: Run `scripts/setup-enhanced.bat` to set up the Enhanced MCP system once
+2. **Start Game**: Run `scripts/start-enhanced.bat` to start both the MCP server and the game
+
+The Enhanced MCP System features:
+- Character memory that persists between sessions
+- Context-aware companion responses
+- Narrative generation for game events
+- Improved performance and reliability
+
+### Manual Window Configuration
+
+To configure the companion window manually:
+1. In-game, press `=` to access options
+2. Select `Window options` (press `w`)
+3. For Term-2, enable "Display companion information"
+4. Press ESC to save and return to the game
+
+### Troubleshooting
+
+If you encounter any issues with the companion system:
+- Run `scripts/reset-windows.bat` to reset window configurations
+- Run `scripts/kill-mcp.bat` to terminate any stuck MCP server processes
+- Check the README-ENHANCED-MCP.md file for detailed documentation
+
 ## Conclusion
 
 This comprehensive training plan provides a step-by-step approach to developing the Tower of Babel project. By working through these modules sequentially, you'll gain not only the technical skills needed for this specific project but also valuable experience in game development, AI integration, and cross-platform C/Python programming.

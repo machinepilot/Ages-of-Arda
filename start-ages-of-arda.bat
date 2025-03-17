@@ -22,6 +22,8 @@ SET CONFIG_FILE=%BASE_PATH%mcp_config.ini
 SET DEFAULT_CONFIG_PATH=%BASE_PATH%lib\customize\mcp_config_default.ini
 SET SDL2_CONFIG_PATH=%BASE_PATH%lib\user\sdl2init.txt
 SET SDL2_CONFIG_BACKUP=%BASE_PATH%lib\user\sdl2init.txt.backup
+SET PRF_PATH=%USERPROFILE%\Documents\Angband\user\windows.prf
+SET FORCE_COMPANION=true
 
 REM Create backup of SDL2 config if it doesn't exist
 IF EXIST "%SDL2_CONFIG_PATH%" IF NOT EXIST "%SDL2_CONFIG_BACKUP%" (
@@ -75,6 +77,24 @@ IF "%FORCE_CONFIG_REGEN%"=="true" (
     ECHO Forcing regeneration of SDL2 configuration...
     IF EXIST "%SDL2_CONFIG_PATH%" (
         DEL "%SDL2_CONFIG_PATH%"
+    )
+)
+
+REM If windows.prf exists, check if companion window flag is properly set
+IF EXIST "%PRF_PATH%" (
+    IF "%FORCE_COMPANION%"=="true" (
+        SET COMPANION_FOUND=false
+        
+        REM Check if windows.prf contains companion flag
+        FOR /F "tokens=*" %%A IN ('type "%PRF_PATH%" ^| find "PW_COMPANION"') DO (
+            SET COMPANION_FOUND=true
+        )
+        
+        IF "!COMPANION_FOUND!"=="false" (
+            ECHO Companion window flag not found in preferences, resetting configuration...
+            DEL "%PRF_PATH%"
+            SET FORCE_CONFIG_REGEN=true
+        )
     )
 )
 
@@ -183,11 +203,11 @@ IF "%TEST_MODE%"=="true" (
     GOTO :EOF
 )
 
-REM Start the game
+REM Start the game with multiple terms
 ECHO.
 ECHO Starting Ages of Arda...
 ECHO.
-START "" angband.exe %GRAPHICS_FLAG% %DEBUG_FLAG%
+START "" angband.exe %GRAPHICS_FLAG% %DEBUG_FLAG% -n3
 
 GOTO :EOF
 

@@ -1,4 +1,9 @@
 ---
+description: 
+globs: 
+alwaysApply: false
+---
+---
 description: MCP Server Implementation for Angband Variant
 globs: src/bard-mcp-server.js, src/simple-mcp-server.js
 alwaysApply: false

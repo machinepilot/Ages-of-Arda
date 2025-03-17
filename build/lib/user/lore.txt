@@ -1,0 +1,25 @@
+name:blubbering idiot
+counts:1:0:0:0:0:0:0
+flags:UNIQUE | QUESTOR | MALE | FEMALE | GROUP_AI | NAME_COMMA | SPIRIT
+flags:INVISIBLE | CLEAR_WEB
+
+name:boil-covered wretch
+counts:2:0:0:0:4:0:0
+flags:UNIQUE | QUESTOR | MALE | FEMALE | GROUP_AI | NAME_COMMA | SPIRIT
+flags:INVISIBLE | CLEAR_WEB
+
+name:pitiful-looking beggar
+counts:2:0:0:0:3:0:0
+flags:UNIQUE | QUESTOR | MALE | FEMALE | GROUP_AI | NAME_COMMA | SPIRIT
+flags:INVISIBLE | CLEAR_WEB
+
+name:squint-eyed rogue
+counts:1:0:0:0:3:0:0
+flags:UNIQUE | QUESTOR | MALE | FEMALE | GROUP_AI | NAME_COMMA | SPIRIT
+flags:INVISIBLE | CLEAR_WEB
+
+name:aimless-looking merchant
+counts:4:0:0:0:3:0:0
+flags:UNIQUE | QUESTOR | MALE | FEMALE | GROUP_AI | NAME_COMMA | SPIRIT
+flags:INVISIBLE | CLEAR_WEB
+

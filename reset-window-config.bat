@@ -52,6 +52,14 @@ REM Function to reset the window configuration
 :ResetConfig
 ECHO Resetting window configuration...
 
+REM If window preferences file exists, delete it
+if exist "%USERPROFILE%\Documents\Angband\user\windows.prf" (
+    del "%USERPROFILE%\Documents\Angband\user\windows.prf"
+    echo Deleted existing window preferences file.
+) else (
+    echo No existing window preferences file found.
+)
+
 IF EXIST "%SDL2_CONFIG_PATH%" (
     DEL "%SDL2_CONFIG_PATH%"
     ECHO Deleted existing SDL2 configuration.

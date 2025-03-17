@@ -37,6 +37,7 @@
 #include "ui-output.h"
 #include "ui-prefs.h"
 #include "ui-term.h"
+#include "ui-companion.h"
 
 /**
  * Initialise the UI
@@ -88,16 +89,21 @@ void textui_init(void)
 		textui_knowledge_init();
 	}
 
-	/* initialize window options that will be overridden by the savefile */
+	/* Initialize window options that will be overridden by the savefile */
 	memset(window_flag, 0, sizeof(uint32_t)*ANGBAND_TERM_MAX);
 	memset(default_window_flag, 0, sizeof default_window_flag);
 	if (ANGBAND_TERM_MAX > 1) default_window_flag[1] = (PW_MESSAGE);
-	if (ANGBAND_TERM_MAX > 2) default_window_flag[2] = (PW_INVEN);
+	if (ANGBAND_TERM_MAX > 2) default_window_flag[2] = (PW_INVEN | PW_COMPANION);
 	if (ANGBAND_TERM_MAX > 3) default_window_flag[3] = (PW_MONLIST);
 	if (ANGBAND_TERM_MAX > 4) default_window_flag[4] = (PW_ITEMLIST);
 	if (ANGBAND_TERM_MAX > 5) default_window_flag[5] = (PW_MONSTER | PW_OBJECT);
 	if (ANGBAND_TERM_MAX > 6) default_window_flag[6] = (PW_OVERHEAD);
 	if (ANGBAND_TERM_MAX > 7) default_window_flag[7] = (PW_PLAYER_2);
+
+	/* Ensure the companion window flag description is set */
+	if (window_flag_desc[PW_COMPANION] == NULL) {
+		window_flag_desc[PW_COMPANION] = "Display companion information";
+	}
 
 	/* Set up the subwindows */
 	subwindows_set_flags(default_window_flag, ANGBAND_TERM_MAX);

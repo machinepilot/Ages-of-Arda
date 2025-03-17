@@ -2172,7 +2172,7 @@ const char *window_flag_desc[32] =
 	NULL,
 	NULL,
 	NULL,
-	NULL
+	"Display companion information"
 };
 
 static void subwindow_flag_changed(int win_idx, uint32_t flag, bool new_state)
@@ -2319,6 +2319,24 @@ static void subwindow_flag_changed(int win_idx, uint32_t flag, bool new_state)
 			register_or_deregister(EVENT_ITEMLIST,
 						   update_itemlist_subwindow,
 						   angband_term[win_idx]);
+			break;
+		}
+        
+		case PW_COMPANION:
+		{
+			/* Register companion event handler for various game events */
+			register_or_deregister(EVENT_ENTER_DUNGEON,
+					       companion_event_handler,
+					       angband_term[win_idx]);
+			register_or_deregister(EVENT_MONSTER_DEATH,
+					       companion_event_handler,
+					       angband_term[win_idx]);
+			register_or_deregister(EVENT_LEAVE_LEVEL,
+					       companion_event_handler,
+					       angband_term[win_idx]);
+			register_or_deregister(EVENT_INVENTORY_CHANGE,
+					       companion_event_handler,
+					       angband_term[win_idx]);
 			break;
 		}
 	}

@@ -1,4 +1,9 @@
 ---
+description: 
+globs: 
+alwaysApply: false
+---
+---
 description: AI-Driven UX Design for Angband Variant
 globs: ["**/src/ui/**", "**/src/game/**"]
 alwaysApply: false
