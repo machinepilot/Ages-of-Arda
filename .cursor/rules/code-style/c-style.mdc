@@ -1,7 +1,13 @@
 ---
-description: C Code Style Guidelines for Angband Variant
+description: 
 globs: 
 alwaysApply: false
+---
+---
+title: C Code Style Guidelines
+glob: "**/*.c,**/*.h"
+priority: 800
+related: ["../game/angband-variant.mdc", "../game/memory-bank.mdc"]
 ---
 # C Code Style Guidelines for Angband Variant
 

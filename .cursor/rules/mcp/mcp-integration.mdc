@@ -1,4 +1,9 @@
 ---
+description: 
+globs: 
+alwaysApply: false
+---
+---
 description: Model Context Protocol (MCP) Integration Guidelines
 globs: ["**/src/mcp/**", "**/angband-doc-agent/**"]
 alwaysApply: false

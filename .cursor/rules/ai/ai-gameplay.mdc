@@ -1,7 +1,13 @@
 ---
-description: AI-Driven Emergent Gameplay Guidelines
+description: 
 globs: 
 alwaysApply: false
+---
+---
+title: AI-Driven Emergent Gameplay Guidelines
+glob: "**/ai/**,**/npc/**,**/gameplay/**"
+priority: 700
+related: ["ai-ux.mdc", "../mcp/mcp-integration.mdc", "../game/angband-variant.mdc"]
 ---
 # AI-Driven Emergent Gameplay Guidelines
 

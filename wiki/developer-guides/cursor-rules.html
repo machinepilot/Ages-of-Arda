@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor Rules System - Ages of Arda</title>
+    <link rel="stylesheet" href="../roguebasin-style.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <script src="../sidebar.js"></script>
+</head>
+<body>
+    <div id="mw-navigation">
+        <div class="sidebar">
+            <!-- Sidebar content will be included via JavaScript -->
+        </div>
+    </div>
+    
+    <div id="content" class="mw-body">
+        <h1 id="firstHeading">Cursor Rules System</h1>
+        
+        <div id="bodyContent">
+            <div class="card">
+                <h3>Context-Aware Development Guidance</h3>
+                <p>The Ages of Arda Cursor Rules System is a sophisticated framework that provides real-time development standards and best practices directly within your code editor. It automatically loads relevant guidelines based on the file you're editing, ensuring consistency across the codebase and accelerating the development process.</p>
+            </div>
+            
+            <div class="toc">
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li><a href="#introduction">Introduction for New Users</a></li>
+                    <li><a href="#overview">System Overview</a></li>
+                    <li><a href="#directory-structure">Directory Structure</a></li>
+                    <li><a href="#rule-categories">Rule Categories</a></li>
+                    <li><a href="#getting-started">Getting Started</a></li>
+                    <li><a href="#development-loop">Development Loop</a></li>
+                    <li><a href="#self-healing">Self-Healing System</a></li>
+                    <li><a href="#practical">Practical Implementation</a></li>
+                    <li><a href="#advanced">Advanced Topics</a></li>
+                    <li><a href="#troubleshooting">Troubleshooting</a></li>
+                </ul>
+            </div>
+            
+            <h2 id="introduction">Introduction for New Users</h2>
+            
+            <h3>What is the Cursor Rules System?</h3>
+            <p>The Cursor Rules System is an intelligent guidance framework that provides real-time development standards and best practices while you work in the Cursor editor. Think of it as having an expert looking over your shoulder as you code, offering advice specific to what you're working on.</p>
+            
+            <h3>Why Use It for Game Development?</h3>
+            <p>Game development involves complex systems that must work together: graphics, AI, physics, user interface, storytelling, and more. The Cursor Rules System helps by:</p>
+            
+            <ol>
+                <li><strong>Automatically loading relevant guidelines</strong> based on the file you're editing</li>
+                <li><strong>Ensuring consistency</strong> across the codebase regardless of who's working on it</li>
+                <li><strong>Reducing cognitive load</strong> by providing patterns and solutions for common problems</li>
+                <li><strong>Improving code quality</strong> through standardized approaches</li>
+                <li><strong>Accelerating onboarding</strong> for new team members</li>
+            </ol>
+            
+            <h3>How It Works in Simple Terms</h3>
+            <p>When you open a file in Cursor, the system:</p>
+            <ol>
+                <li>Looks at the file path and type</li>
+                <li>Finds matching rules based on glob patterns</li>
+                <li>Presents those rules within Cursor</li>
+                <li>Updates the guidance as you switch between files</li>
+            </ol>
+            
+            <p>For example, when editing an AI behavior file, you'll automatically see AI-specific guidelines, whereas editing a memory management file will show memory allocation best practices instead.</p>
+            
+            <h2 id="overview">System Overview</h2>
+            
+            <p>The Cursor rules system is an integrated set of guidelines that are automatically applied based on the context of files being edited. Each rule provides specific guidance for developing different aspects of the Ages of Arda game.</p>
+            
+            <h3>Key Components</h3>
+            <ul>
+                <li><strong>Metadata-Driven Rules</strong>: Each rule file contains metadata in a YAML frontmatter that determines when it applies</li>
+                <li><strong>Context-Aware Activation</strong>: Rules are automatically loaded based on file paths and types</li>
+                <li><strong>Hierarchical Organization</strong>: Rules are structured in logical categories</li>
+                <li><strong>Priority System</strong>: Higher priority rules take precedence when multiple rules apply</li>
+                <li><strong>Related Rules</strong>: Rules can explicitly reference other related rules</li>
+            </ul>
+            
+            <h3>Rule File Structure</h3>
+            <div class="code-example">
+                <pre><code>---
+title: Rule Title
+glob: "pattern/to/match/**"
+priority: 800
+related: ["related-rule-1.mdc", "related-rule-2.mdc"]
+---
+
+# Main Title
+
+## Section 1
+Content with examples...
+
+## Section 2
+More specific guidance...
+
+## Examples
+
+```c
+// Code example demonstrating the rule
+```</code></pre>
+            </div>
+            
+            <h3>Rule Priorities Explained</h3>
+            <p>The priority number determines which rules take precedence:</p>
+            <ul>
+                <li><strong>1000-900</strong>: Master rules (always loaded)</li>
+                <li><strong>899-700</strong>: Domain rules (language/technology specific)</li>
+                <li><strong>699-500</strong>: Feature rules (feature-specific guidelines)</li>
+                <li><strong>499-300</strong>: Specialized rules (very specific contexts)</li>
+                <li><strong>299-100</strong>: Optional rules (guidelines that may not always apply)</li>
+            </ul>
+            
+            <h2 id="directory-structure">Directory Structure</h2>
+            
+            <p>The rules are organized into logical categories to make them easy to find and maintain:</p>
+            
+            <div class="code-example">
+                <pre><code>.cursor/rules/
+├── README.mdc                 # Master rule file
+├── activators/                # Rule activation logic
+│   └── file-types.mdc         # Maps file types to rules
+├── ai/                        # AI-related guidelines
+│   ├── ai-gameplay.mdc        # Gameplay AI integration
+│   ├── ai-ux.mdc              # AI user experience
+│   └── multi-agent.mdc        # Multi-agent systems
+├── code-style/                # Programming standards
+│   ├── c-style.mdc            # C language style
+│   └── html.mdc               # HTML formatting
+├── game/                      # Game mechanics
+│   ├── angband-variant.mdc    # Angband variant development
+│   ├── lore-management.mdc    # Lore and world-building
+│   └── memory-bank.mdc        # Memory management
+├── infrastructure/            # Development infrastructure
+│   ├── github-standards.mdc   # GitHub workflow
+│   └── netlify.mdc            # Netlify deployment
+├── mcp/                       # Model Context Protocol
+│   ├── mcp-integration.mdc    # MCP integration
+│   └── mcp-server.mdc         # MCP server configuration
+└── self-healing/              # Self-improving system
+    ├── error-analyzer.ps1     # Error pattern detection
+    ├── schedule-analysis.ps1  # Scheduled analysis setup
+    └── integrate-rules.ps1    # Rule integration utilities</code></pre>
+            </div>
+            
+            <h2 id="rule-categories">Rule Categories</h2>
+            
+            <h3>Code Style</h3>
+            <ul>
+                <li><strong>C Programming</strong>: Standard formatting, naming conventions, memory management
+                    <ul>
+                        <li>Indentation: 4 spaces (no tabs)</li>
+                        <li>Max line length: 120 characters</li>
+                        <li>Braces: K&R style (opening brace on same line)</li>
+                        <li>Function declarations: return type on separate line</li>
+                        <li>Variable naming: snake_case</li>
+                        <li>Constants: ALL_CAPS_WITH_UNDERSCORES</li>
+                    </ul>
+                </li>
+                <li><strong>HTML</strong>: Markup standards and best practices</li>
+            </ul>
+            
+            <h3>Game Mechanics</h3>
+            <ul>
+                <li><strong>Angband Variant</strong>: Core game structure, entity systems, game state management</li>
+                <li><strong>Memory Management</strong>: Resource allocation, ownership, tracking, optimization</li>
+                <li><strong>Lore Management</strong>: World-building, canon adherence, discovery mechanisms</li>
+            </ul>
+            
+            <h3>AI Systems</h3>
+            <ul>
+                <li><strong>AI Gameplay</strong>: Integration of AI into game mechanics, emergent behavior</li>
+                <li><strong>AI UX</strong>: User experience for AI-driven features, responsiveness, transparency</li>
+                <li><strong>Multi-Agent</strong>: Agent types, communication patterns, coordination</li>
+            </ul>
+            
+            <h3>Infrastructure</h3>
+            <ul>
+                <li><strong>GitHub Workflow</strong>: Branch management, PR standards, CI/CD integration</li>
+                <li><strong>Netlify Deployment</strong>: Configuration, environment setup, deployment processes</li>
+            </ul>
+            
+            <h3>MCP (Model Context Protocol)</h3>
+            <ul>
+                <li><strong>Integration</strong>: API standards, error handling, context management</li>
+                <li><strong>Server Configuration</strong>: Service setup, deployment, monitoring</li>
+            </ul>
+            
+            <h2 id="getting-started">Getting Started</h2>
+            
+            <h3>Setting Up the Rules System</h3>
+            <ol>
+                <li><strong>Clone the Repository</strong>
+                    <div class="code-example"><pre><code>git clone https://github.com/your-org/ages-of-arda.git
+cd ages-of-arda</code></pre></div>
+                </li>
+                <li><strong>Ensure Cursor is Installed</strong>
+                    <p>The Cursor editor is required to utilize this rules system. Download from <a href="https://cursor.sh" target="_blank">https://cursor.sh</a> if needed.</p>
+                </li>
+                <li><strong>Verify Rules Structure</strong>
+                    <div class="code-example"><pre><code>ls -la .cursor/rules</code></pre></div>
+                </li>
+                <li><strong>Initialize Self-Healing (Optional)</strong>
+                    <div class="code-example"><pre><code>powershell -ExecutionPolicy Bypass -File .cursor/rules/self-healing/schedule-analysis.ps1</code></pre></div>
+                </li>
+            </ol>
+            
+            <h3>Working with the Rules System</h3>
+            <ol>
+                <li><strong>Open a File in Cursor</strong>
+                    <div class="code-example"><pre><code>cursor src/game/ai/npc_behavior.c</code></pre></div>
+                </li>
+                <li><strong>View Active Rules</strong>
+                    <p>Look at the Rules panel in Cursor to see which rules have been automatically loaded.</p>
+                </li>
+                <li><strong>Follow Guidance</strong>
+                    <p>As you code, follow the guidelines that appear in the Rules panel.</p>
+                </li>
+                <li><strong>Reference Related Rules</strong>
+                    <p>Click on related rule links to explore connected guidelines.</p>
+                </li>
+            </ol>
+            
+            <h2 id="development-loop">Development Loop</h2>
+            
+            <p>The Ages of Arda development follows a structured loop that leverages the rules system at each step:</p>
+            
+            <h3>1. Feature Planning</h3>
+            <ul>
+                <li><strong>Rule Reference</strong>: Review relevant rules for the feature domain</li>
+                <li><strong>Standards Adherence</strong>: Ensure planned implementation will follow guidelines</li>
+                <li><strong>Prerequisites</strong>: Identify related systems and dependencies</li>
+            </ul>
+            
+            <h3>2. Initial Implementation</h3>
+            <ul>
+                <li><strong>Active Guidance</strong>: Cursor loads appropriate rules while coding</li>
+                <li><strong>Code Patterns</strong>: Follow established patterns from examples in rules</li>
+                <li><strong>Consistency Check</strong>: Compare new code against standards in real-time</li>
+            </ul>
+            
+            <h3>3. Testing and Validation</h3>
+            <ul>
+                <li><strong>Quality Metrics</strong>: Apply standards from rules to evaluate implementation</li>
+                <li><strong>Heuristic Validation</strong>: Check against common issues documented in rules</li>
+                <li><strong>Edge Case Handling</strong>: Verify all scenarios outlined in rules are addressed</li>
+            </ul>
+            
+            <h3>4. Code Review</h3>
+            <ul>
+                <li><strong>Automated Checks</strong>: Verify compliance with style, memory, and other guidelines</li>
+                <li><strong>Manual Inspection</strong>: Compare implementation against domain-specific best practices</li>
+                <li><strong>Documentation Verification</strong>: Ensure proper documentation following rule standards</li>
+            </ul>
+            
+            <h3>5. Iteration and Refinement</h3>
+            <ul>
+                <li><strong>Feedback Loop</strong>: Incorporate review findings back into the code</li>
+                <li><strong>Rules Refinement</strong>: Update rules if new patterns or best practices emerge</li>
+                <li><strong>Knowledge Sharing</strong>: Document learnings from implementation</li>
+            </ul>
+            
+            <h2 id="self-healing">Self-Healing System</h2>
+            
+            <p>The Ages of Arda rules system includes a self-healing mechanism that learns from coding patterns and errors to continuously improve its guidance:</p>
+            
+            <div class="ascii-diagram">
+                <pre>┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│                 │     │                 │     │                 │
+│  Code Analysis  │────▶│  Error Parsing  │────▶│ Pattern Mining  │
+│                 │     │                 │     │                 │
+└─────────────────┘     └─────────────────┘     └────────┬────────┘
+                                                         │
+┌─────────────────┐     ┌─────────────────┐     ┌────────▼────────┐
+│                 │     │                 │     │                 │
+│   Rule Update   │◀────│ Rule Generation │◀────│ Pattern Analysis│
+│                 │     │                 │     │                 │
+└─────────────────┘     └─────────────────┘     └─────────────────┘</pre>
+            </div>
+            
+            <h3>How the Self-Healing System Works</h3>
+            <ol>
+                <li><strong>Error Collection</strong>: The system monitors build logs, static analysis, and runtime errors</li>
+                <li><strong>Pattern Analysis</strong>: Similar errors are clustered by signature and common root causes identified</li>
+                <li><strong>Rule Generation</strong>: New rule proposals are created for common error patterns</li>
+                <li><strong>Human Review</strong>: Proposed rules are reviewed by developers before integration</li>
+                <li><strong>Continuous Improvement</strong>: The system tracks which rules reduce error rates</li>
+            </ol>
+            
+            <div class="card">
+                <h3>Learn More</h3>
+                <p>For a comprehensive guide to the Cursor Rules System, including advanced topics and troubleshooting, refer to the complete documentation in the repository at <code>.cursor/CURSOR_RULES_SYSTEM.md</code>.</p>
+            </div>
+            
+        </div>
+    </div>
+    
+    <footer id="footer" class="mw-footer">
+        <p>Ages of Arda Wiki - Documentation for AI-Driven Roguelike Development</p>
+    </footer>
+</body>
+</html> 
