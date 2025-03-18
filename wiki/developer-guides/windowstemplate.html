@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>windowsTemplate | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>windowsTemplate</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-13</div>
+        </header>
+        
+        <main>
+            <h2 id="windows-specific-notes">Windows-Specific Notes</h2>
+<h3 id="windows-api-integration">Windows API Integration</h3>
+<ul>
+<li>[Windows API functions used in this file]</li>
+<li>[Main API categories: window management, graphics, input, etc.]</li>
+<li>[Event handling implementation details]</li>
+<li>[Resource usage (icons, cursors, dialogs)]</li>
+</ul>
+<h3 id="gui-elements">GUI Elements</h3>
+<ul>
+<li>[Main window creation and management]</li>
+<li>[Menu structures and command handling]</li>
+<li>[Dialog boxes and their purpose]</li>
+<li>[Custom controls or interface elements]</li>
+</ul>
+<h3 id="platform-specific-behavior">Platform-Specific Behavior</h3>
+<ul>
+<li>[Windows-specific gameplay features]</li>
+<li>[Differences from other platforms]</li>
+<li>[Windows-specific file handling]</li>
+<li>[Windows-exclusive features]</li>
+</ul>
+<h3 id="dll-dependencies">DLL Dependencies</h3>
+<ul>
+<li>[Required DLLs and their purpose]</li>
+<li>[Version requirements]</li>
+<li>[Loading and linking procedures]</li>
+<li>[Installation location]</li>
+</ul>
+<h2 id="compilation-considerations">Compilation Considerations</h2>
+<h3 id="mingwmsys-environment">MinGW/MSYS Environment</h3>
+<ul>
+<li>Required packages: <code>mingw-w64-x86_64-gcc</code>, <code>mingw-w64-x86_64-make</code></li>
+<li>Build command sequence:<pre><code class="language-bash">./autogen.sh
+./configure --enable-win
+make install
+</code></pre>
+</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

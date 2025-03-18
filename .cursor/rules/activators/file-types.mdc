@@ -1,8 +1,10 @@
 ---
-title: File Type Rule Mapping
-glob: "**"
-priority: 950
+title: "File Type Rule Mapping"
+glob: "**/*"
+priority: 500
+related: []
 ---
+
 # File Type Rule Mapping
 
 This rule automatically applies the appropriate rule files based on file type and location. It serves as a central dispatch mechanism for the rule system.
@@ -42,4 +44,4 @@ Each mapping indicates:
 1. The glob pattern to match file paths
 2. The rule files that should be applied when working with these files
 
-When multiple rules apply, they are loaded in order of priority from highest to lowest. 
+When multiple rules apply, they are loaded in order of priority from highest to lowest.  

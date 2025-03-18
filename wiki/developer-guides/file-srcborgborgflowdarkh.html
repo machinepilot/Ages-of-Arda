@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File: src/borg/borg-flow-dark.h | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>File: src/borg/borg-flow-dark.h</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="file-srcborgborg-flow-darkh">File: src/borg/borg-flow-dark.h</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-flow-dark.h</code> is a header file in the Angband roguelike game&#39;s codebase, specifically related to the &quot;Borg&quot; AI player. The Borg is an automated player that can navigate the dungeon and make decisions based on programmed strategies.</p>
+<p>This header file declares a function <code>borg_flow_dark()</code> which is responsible for making the Borg AI &quot;flow&quot; towards &quot;interesting&quot; grids in the dungeon, particularly when the Borg&#39;s current location is dark (i.e., not lit).</p>
+<h2 id="data-structures">Data Structures</h2>
+<p>This header file does not define any data structures.</p>
+<h2 id="global-variables">Global Variables</h2>
+<p>This header file does not declare any global variables.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_flow_dark"><code>borg_flow_dark()</code></h3>
+<pre><code class="language-c">extern bool borg_flow_dark(bool neer);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: This function makes the Borg AI move towards &quot;interesting&quot; grids in the dungeon when the current location is dark.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>neer</code> (bool): If true, the Borg will only consider grids that are directly adjacent to its current position.</li>
+</ul>
+</li>
+<li><strong>Return value</strong> (bool): Indicates whether the Borg successfully moved to an interesting grid.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s position in the dungeon may change as a result of calling this function.</li>
+<li><strong>Relationships to other functions</strong>: This function is part of the Borg AI&#39;s decision-making process and may be called by other Borg AI functions.</li>
+<li><strong>Game mechanics implemented</strong>: This function helps the Borg navigate the dungeon intelligently by seeking out interesting locations even when its surroundings are dark. The specifics of what constitutes an &quot;interesting&quot; grid are not defined in this header file, but likely involve factors such as item locations, monster positions, and dungeon features.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>This header file does not implement any algorithms directly. The actual implementation of the <code>borg_flow_dark()</code> function would contain the specific algorithm for determining interesting grids and navigating towards them.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>This header file depends on <code>../angband.h</code> and <code>borg-flow.h</code>.</li>
+<li>Other files in the Borg AI system likely depend on this header file to access the <code>borg_flow_dark()</code> function.</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>This file contains a copyright notice indicating that portions of the code are derived from earlier works by Ben Harrison, James E. Wilson, and Robert A. Koeneke, dating back to 1997. It also credits more recent contributors including Andi Sidwell, Chris Carr, Ed Graham, and Erik Osheim in 2007-2009.</p>
+<p>The presence of the <code>ALLOW_BORG</code> preprocessor directive suggests that the Borg AI is an optional feature that can be enabled or disabled at compile time.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

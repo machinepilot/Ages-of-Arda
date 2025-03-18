@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An overview of (some of) the monster intelligence code | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>An overview of (some of) the monster intelligence code</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-13</div>
+        </header>
+        
+        <main>
+            <h1 id="an-overview-of-some-of-the-monster-intelligence-code">An overview of (some of) the monster intelligence code</h1>
+<p>Monster intelligence in Angband is fairly basic.  mon-move.c and mon-spell.c cover most of the AI, with the &#39;flow&#39; code that keeps track of paths to the player living in cave-map.c.</p>
+<p>Mostly the code is quite straightforward.  <code>mon-move.c:process_monsters()</code> is the starting point for monster AI, which branches into a number of other <code>process_monster_*()</code> functions depending on the right behaviour for that monster.</p>
+<p>Each turn monsters will try the following in order:</p>
+<ol>
+<li>Regenerate HP and recover from timed effects</li>
+<li>Attempt to multiply</li>
+<li>Attempt a spell</li>
+<li>Try to move towards the player</li>
+</ol>
+<h1 id="cave-mapc-flow-code">cave-map.c: flow code</h1>
+<p>Each grid on the level (in <code>struct square</code>, see cave.h) has two pieces of data stored for monster flow: its distance from the player (&#39;noise&#39;) and the recentness of this information (&#39;scent&#39;).</p>
+<p>Noise is how far away the player is from a grid.  A value of 0 means that the player is on this grid, a value of 1 that the player is next door, 2 means one more away from that, etc.  You can see this visualised using the debug command &#39;_&#39;, somewhat confusingly referred to in the code as the &#39;Ben hack&#39;.</p>
+<p>Noise is only calculated for traversable terrain.</p>
+<p>Noise is only updated up to <code>z_info-&gt;max_flow_depth</code> (set as 32 at the moment), which means that it&#39;s not accurate after that point.  This is why we also store recentness.</p>
+<p>Scent indicates recentness of the noise.  Because this algorithm was written in 1997 when computing resources were somewhat scarcer than they ever are now, this is encoded in a funny way.</p>
+<p>The game keeps an internal scent counter, which is increased when flow is calculated, and when a grid&#39;s flow data is updated, its scent is set to this counter.  The counter starts out at 0 and increases by 1 each update until you reach 255 (this is because <code>scent</code> is one byte, see previous comment about 1997).  When it reaches 255, it rolls over to 128, and the game reduces the <code>scent</code> value of all grids by 128 (and any values below 128 are reset to 0), in effect preserving the last 128 updates&#39; worth of data.</p>
+<p>So, when updating flow information, the game marks:</p>
+<ul>
+<li>the grid with the player on as <code>{ noise = 0, scent = now }</code></li>
+<li>adjacent grids as <code>{ noise = 1, scent = now }</code></li>
+<li>grids surrounding those as <code>{ noise = 2, scent = now }</code>,</li>
+<li>and so on.</li>
+</ul>
+<p>This one set of flow information is used for all monsters.  It is efficient but means that monsters that can&#39;t open or bash down doors, or otherwise deal with obstacles, will find it impossible to flow around them and find a different way to the player.</p>
+<h2 id="examples">Examples</h2>
+<p>The noise information in this situation:</p>
+<pre><code>#################
+.@...............
+#################
+</code></pre>
+<p>will be as follows: (in hexidecimal)</p>
+<pre><code>#################
+10123456789abcdef
+#################
+</code></pre>
+<p><code>scent</code> in this case is the same for all displayed grids.</p>
+<h2 id="when-is-scent-used">When is scent used?</h2>
+<p>When the &#39;noise&#39; value is equal, monster start tracking the &#39;scent&#39; value instead.</p>
+<p>Assuming that <code>MONSTER_FLOW_DEPTH</code> is 10, in the following scene, assuming the player has moved from the left to the right:</p>
+<pre><code>###############
+..............@
+###############
+</code></pre>
+<p>The noise values will be as follows:</p>
+<pre><code>###############
+999999876543210
+###############
+</code></pre>
+<p>And the scent values will be as follows: (where 0 = now,
+                                                1 = now - 1,
+                                                2 = now - 2 etc.)</p>
+<pre><code>###############
+123456666666666
+###############
+</code></pre>
+<p>When the noise value is the same, monsters will track scent instead.  This means... [===]</p>
+<h2 id="when-do-updates-happen">When do updates happen?</h2>
+<p>Updates happen when <code>handle_stuff()</code> or <code>update_stuff()</code> are called and the <code>PU_UPDATE_FLOW</code> flag is set on the player upkeep &#39;update&#39; variable*.  Sometimes <code>PU_UPDATE_FLOW</code> is paired with <code>PU_FORGET_FLOW</code>, which forces a complete forgetting of existing data before calculating new flow info.</p>
+<p>The only time the update flag is set without the forget flag also being set is when the player moves.  Otherwise, both are set together i.e. when terrain changes from passable to impassable.</p>
+<p>In the future it might be worth making all the grid modification functions in cave.c set the &#39;update flow&#39; flag, since it would be less error-prone than the current set-up. (XXX)</p>
+<ul>
+<li>This is an obviously inappropriate place for this information, as it is not really about the player at all.  The cave struct itself should have update flags for this information. (XXX)</li>
+</ul>
+<h2 id="notes">Notes</h2>
+<p>Flow information is not saved in the savefile, so in theory if you quit the game and reload it when you&#39;ve teleported away from a major threat, they are less likely to find you.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

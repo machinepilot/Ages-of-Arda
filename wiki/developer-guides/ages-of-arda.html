@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ages of Arda | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Ages of Arda</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <h1 id="ages-of-arda">Ages of Arda</h1>
+<p>A First Age Angband Variant featuring AI-enhanced gameplay and narrative generation based on Tolkien&#39;s legendarium.</p>
+<h2 id="documentation">Documentation</h2>
+<p>Ages of Arda uses a unified documentation system that provides a single source of truth for all project documentation. The system automatically generates:</p>
+<ul>
+<li><strong>Wiki Site</strong>: A Netlify-deployed website divided into development and gameplay sections</li>
+<li><strong>Cursor Rules</strong>: Context-aware development guidelines integrated with the Cursor editor</li>
+<li><strong>GitHub Documentation</strong>: Core files like README.md and other GitHub-facing documentation</li>
+</ul>
+<h3 id="documentation-structure">Documentation Structure</h3>
+<p>All documentation is sourced from the <code>docs/_source</code> directory and organized into two main sections:</p>
+<ul>
+<li><strong>Development Documentation</strong>: Technical details for developers and contributors</li>
+<li><strong>Gameplay Documentation</strong>: Game information for players</li>
+</ul>
+<h3 id="contributing-to-documentation">Contributing to Documentation</h3>
+<p>To contribute to the documentation:</p>
+<ol>
+<li>Add or edit files in the appropriate section of <code>docs/_source/</code></li>
+<li>Build the documentation locally to verify your changes</li>
+<li>Submit a pull request</li>
+</ol>
+<p>For full details, see the <a href="docs/_source/development/guides/documentation-standards.md">Documentation Standards</a>.</p>
+<h3 id="building-locally">Building Locally</h3>
+<pre><code class="language-bash"># Install dependencies
+npm run docs:install
+
+# Build documentation
+npm run docs:build
+
+# Start development server with auto-rebuild
+npm run docs:dev
+</code></pre>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="for-players">For Players</h3>
+<p>See the <a href="docs/_source/gameplay/guides/quick-start.md">Quick Start Guide</a> for installation and gameplay instructions.</p>
+<h3 id="for-developers">For Developers</h3>
+<p>See the <a href="docs/_source/development/guides/getting-started.md">Development Guide</a> to set up your development environment.</p>
+<h2 id="license">License</h2>
+<p>GNU General Public License v3.0 - See <a href="LICENSE">LICENSE</a> for details. </p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

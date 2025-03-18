@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows API Reference for Angband | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Windows API Reference for Angband</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-13</div>
+        </header>
+        
+        <main>
+            <h1 id="windows-api-reference-for-angband">Windows API Reference for Angband</h1>
+<p>This document provides a reference for the Windows API functions commonly used in the Angband Windows port.</p>
+<h2 id="window-management">Window Management</h2>
+<h3 id="window-creation-and-handling">Window Creation and Handling</h3>
+<ul>
+<li><strong>CreateWindow</strong>: Creates a window with specified properties</li>
+<li><strong>RegisterClass</strong>: Registers a window class for use</li>
+<li><strong>ShowWindow</strong>: Sets the window&#39;s show state</li>
+<li><strong>UpdateWindow</strong>: Forces an immediate repaint of the window</li>
+<li><strong>DestroyWindow</strong>: Destroys a window</li>
+</ul>
+<h3 id="window-messaging">Window Messaging</h3>
+<ul>
+<li><strong>GetMessage</strong>: Retrieves a message from the thread&#39;s message queue</li>
+<li><strong>PeekMessage</strong>: Checks for messages without removing them from the queue</li>
+<li><strong>TranslateMessage</strong>: Translates virtual-key messages into character messages</li>
+<li><strong>DispatchMessage</strong>: Dispatches a message to a window procedure</li>
+<li><strong>PostMessage</strong>: Posts a message to a thread&#39;s message queue</li>
+<li><strong>SendMessage</strong>: Sends a message to a window and waits for processing</li>
+</ul>
+<h3 id="window-procedure">Window Procedure</h3>
+<ul>
+<li><strong>WNDPROC</strong>: Function pointer type for window procedures</li>
+<li><strong>DefWindowProc</strong>: Default window procedure for messages not handled by the application</li>
+</ul>
+<h2 id="graphics-and-display">Graphics and Display</h2>
+<h3 id="device-contexts">Device Contexts</h3>
+<ul>
+<li><strong>GetDC</strong>: Retrieves a device context for a window</li>
+<li><strong>ReleaseDC</strong>: Releases a device context</li>
+<li><strong>CreateCompatibleDC</strong>: Creates a memory device context</li>
+<li><strong>DeleteDC</strong>: Deletes a device context</li>
+</ul>
+<h3 id="bitmap-handling">Bitmap Handling</h3>
+<ul>
+<li><strong>CreateCompatibleBitmap</strong>: Creates a bitmap compatible with a device</li>
+<li><strong>SelectObject</strong>: Selects an object into a device context</li>
+<li><strong>DeleteObject</strong>: Deletes a GDI object</li>
+<li><strong>BitBlt</strong>: Performs a bit-block transfer of color data</li>
+<li><strong>StretchBlt</strong>: Copies a bitmap with stretching or compression</li>
+</ul>
+<h3 id="drawing-functions">Drawing Functions</h3>
+<ul>
+<li><strong>TextOut</strong>: Writes text at a specified location</li>
+<li><strong>ExtTextOut</strong>: Writes text with more formatting options</li>
+<li><strong>Rectangle</strong>: Draws a rectangle</li>
+<li><strong>FillRect</strong>: Fills a rectangle with a specified brush</li>
+<li><strong>DrawText</strong>: Draws formatted text in a rectangle</li>
+</ul>
+<h3 id="font-management">Font Management</h3>
+<ul>
+<li><strong>CreateFont</strong>: Creates a logical font with specified characteristics</li>
+<li><strong>GetTextMetrics</strong>: Retrieves metrics for the current font</li>
+</ul>
+<h2 id="input-handling">Input Handling</h2>
+<h3 id="keyboard-input">Keyboard Input</h3>
+<ul>
+<li><strong>GetAsyncKeyState</strong>: Determines if a key is currently pressed</li>
+<li><strong>GetKeyState</strong>: Retrieves the status of a virtual key</li>
+<li><strong>MapVirtualKey</strong>: Maps a virtual-key code to a scan code or character value</li>
+</ul>
+<h3 id="mouse-input">Mouse Input</h3>
+<ul>
+<li><strong>GetCursorPos</strong>: Retrieves the cursor&#39;s position</li>
+<li><strong>SetCursorPos</strong>: Moves the cursor to a specified position</li>
+<li><strong>ShowCursor</strong>: Shows or hides the cursor</li>
+<li><strong>SetCapture</strong>: Captures mouse input</li>
+<li><strong>ReleaseCapture</strong>: Releases mouse capture</li>
+</ul>
+<h2 id="resource-management">Resource Management</h2>
+<h3 id="icons-and-cursors">Icons and Cursors</h3>
+<ul>
+<li><strong>LoadIcon</strong>: Loads an icon resource</li>
+<li><strong>LoadCursor</strong>: Loads a cursor resource</li>
+<li><strong>SetCursor</strong>: Sets the cursor shape</li>
+</ul>
+<h3 id="menus">Menus</h3>
+<ul>
+<li><strong>LoadMenu</strong>: Loads a menu resource</li>
+<li><strong>GetMenu</strong>: Retrieves a handle to a window&#39;s menu</li>
+<li><strong>SetMenu</strong>: Assigns a menu to a window</li>
+<li><strong>EnableMenuItem</strong>: Enables or disables a menu item</li>
+</ul>
+<h3 id="dialog-boxes">Dialog Boxes</h3>
+<ul>
+<li><strong>DialogBox</strong>: Creates a modal dialog box</li>
+<li><strong>CreateDialog</strong>: Creates a modeless dialog box</li>
+<li><strong>EndDialog</strong>: Destroys a modal dialog box</li>
+<li><strong>GetDlgItem</strong>: Retrieves a handle to a control in a dialog box</li>
+<li><strong>SetDlgItemText</strong>: Sets the text of a control in a dialog box</li>
+</ul>
+<h2 id="file-operations">File Operations</h2>
+<h3 id="file-io">File I/O</h3>
+<ul>
+<li><strong>CreateFile</strong>: Creates or opens a file or device</li>
+<li><strong>ReadFile</strong>: Reads data from a file</li>
+<li><strong>WriteFile</strong>: Writes data to a file</li>
+<li><strong>CloseHandle</strong>: Closes an open object handle</li>
+</ul>
+<h3 id="file-system">File System</h3>
+<ul>
+<li><strong>FindFirstFile</strong>: Searches a directory for a file or subdirectory</li>
+<li><strong>FindNextFile</strong>: Continues a file search</li>
+<li><strong>FindClose</strong>: Closes a file search handle</li>
+</ul>
+<h2 id="sound-and-multimedia">Sound and Multimedia</h2>
+<h3 id="sound-playback">Sound Playback</h3>
+<ul>
+<li><strong>PlaySound</strong>: Plays a sound specified by a filename, resource, or system event</li>
+<li><strong>waveOutOpen</strong>: Opens a waveform audio output device</li>
+<li><strong>waveOutWrite</strong>: Sends a data block to a waveform audio output device</li>
+<li><strong>waveOutClose</strong>: Closes a waveform audio output device</li>
+</ul>
+<h2 id="memory-management">Memory Management</h2>
+<h3 id="heap-functions">Heap Functions</h3>
+<ul>
+<li><strong>GlobalAlloc</strong>: Allocates memory from the global heap</li>
+<li><strong>GlobalLock</strong>: Locks a global memory object and returns a pointer</li>
+<li><strong>GlobalUnlock</strong>: Unlocks a global memory object</li>
+<li><strong>GlobalFree</strong>: Frees a global memory object</li>
+<li><strong>VirtualAlloc</strong>: Reserves or commits memory pages</li>
+<li><strong>VirtualFree</strong>: Releases memory pages</li>
+</ul>
+<h2 id="registry-access">Registry Access</h2>
+<h3 id="registry-functions">Registry Functions</h3>
+<ul>
+<li><strong>RegOpenKeyEx</strong>: Opens a registry key</li>
+<li><strong>RegQueryValueEx</strong>: Retrieves the type and data for a registry value</li>
+<li><strong>RegSetValueEx</strong>: Sets the data and type of a registry value</li>
+<li><strong>RegCloseKey</strong>: Closes a registry key</li>
+</ul>
+<h2 id="common-structures">Common Structures</h2>
+<h3 id="window-related-structures">Window-Related Structures</h3>
+<ul>
+<li><strong>WNDCLASS</strong>: Contains window class information</li>
+<li><strong>MSG</strong>: Contains message information from a thread&#39;s message queue</li>
+<li><strong>RECT</strong>: Defines a rectangle by coordinates</li>
+<li><strong>POINT</strong>: Defines the x- and y-coordinates of a point</li>
+<li><strong>PAINTSTRUCT</strong>: Contains information for painting a window</li>
+</ul>
+<h3 id="graphics-related-structures">Graphics-Related Structures</h3>
+<ul>
+<li><strong>BITMAPINFO</strong>: Defines the dimensions and color information for a DIB</li>
+<li><strong>TEXTMETRIC</strong>: Contains metrics for a font</li>
+<li><strong>LOGFONT</strong>: Defines the attributes of a font</li>
+</ul>
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li><p><strong>Error Handling</strong>: Always check return values from Windows API functions</p>
+<pre><code class="language-c">HWND hwnd = CreateWindow(...);
+if (hwnd == NULL) {
+    // Handle error
+    DWORD error = GetLastError();
+    // Log or display error
+}
+</code></pre>
+</li>
+<li><p><strong>Resource Management</strong>: Release resources when done</p>
+<pre><code class="language-c">// Device contexts
+DeleteDC(hdc);
+
+// GDI objects
+DeleteObject(hBitmap);
+
+// Handles
+CloseHandle(hFile);
+</code></pre>
+</li>
+<li><p><strong>Unicode Support</strong>: Use the wide-character versions of functions for better internationalization</p>
+<pre><code class="language-c">// Instead of CreateWindowA, use:
+CreateWindowW(L&quot;ClassName&quot;, L&quot;Title&quot;, ...);
+</code></pre>
+</li>
+<li><p><strong>Thread Safety</strong>: Be careful with shared resources in multi-threaded code</p>
+<pre><code class="language-c">// Use synchronization objects
+EnterCriticalSection(&amp;cs);
+// Access shared resource
+LeaveCriticalSection(&amp;cs);
+</code></pre>
+</li>
+<li><p><strong>DPI Awareness</strong>: Handle high-DPI displays properly</p>
+<pre><code class="language-c">// Set DPI awareness
+SetProcessDPIAware();
+
+// Get DPI for scaling
+HDC hdc = GetDC(NULL);
+int dpiX = GetDeviceCaps(hdc, LOGPIXELSX);
+int dpiY = GetDeviceCaps(hdc, LOGPIXELSY);
+ReleaseDC(NULL, hdc);
+</code></pre>
+</li>
+</ol>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cmd-cave.c File Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>cmd-cave.c File Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-13</div>
+        </header>
+        
+        <main>
+            <h1 id="cmd-cavec-file-documentation">cmd-cave.c File Documentation</h1>
+<h2 id="1-file-overview">1. File Overview</h2>
+<p><code>cmd-cave.c</code> is a critical file in the Angband roguelike codebase that implements many of the game&#39;s core dungeon exploration mechanics. This includes handling player actions such as moving between dungeon levels, opening and closing doors, disarming traps, tunneling through walls, resting to recover HP/mana, and more.</p>
+<p>The file defines command functions for each of these actions that are called by the game&#39;s command handling system. It also contains various helper functions for testing the viability of actions and applying their effects to the game state.</p>
+<h2 id="2-data-structures">2. Data Structures</h2>
+<h3 id="struct-command">struct command</h3>
+<p>The <code>command</code> struct represents a game command with the following fields:</p>
+<ul>
+<li><code>code</code>: The command code identifying the action </li>
+<li><code>arg</code>: Optional argument data passed to the command</li>
+<li><code>repeat</code>: Number of times to repeat the command</li>
+<li><code>energy</code>: Energy cost of the command</li>
+</ul>
+<h2 id="3-global-variables">3. Global Variables</h2>
+<ul>
+<li><code>ddgrid</code>: Array of grid deltas representing the 8 cardinal and diagonal directions on the map</li>
+</ul>
+<h2 id="4-functions">4. Functions</h2>
+<h3 id="do_cmd_go_up">do_cmd_go_up</h3>
+<pre><code class="language-c">void do_cmd_go_up(struct command *cmd)
+</code></pre>
+<p>Attempts to make the player go up a dungeon level via stairs.</p>
+<p>Parameters:</p>
+<ul>
+<li><code>cmd</code>: The command being executed (unused)</li>
+</ul>
+<p>Mechanics:</p>
+<ul>
+<li>Checks for stairs in the player&#39;s current location</li>
+<li>Determines the destination level based on dungeon connectivity</li>
+<li>Takes an energy turn and saves the level for returning</li>
+<li>Updates player location and dungeon level</li>
+</ul>
+<h3 id="do_cmd_go_down">do_cmd_go_down</h3>
+<pre><code class="language-c">void do_cmd_go_down(struct command *cmd)  
+</code></pre>
+<p>Attempts to make the player go down a dungeon level via stairs.</p>
+<p>Parameters:</p>
+<ul>
+<li><code>cmd</code>: The command being executed (unused)</li>
+</ul>
+<p>Mechanics:  </p>
+<ul>
+<li>Checks for stairs in the player&#39;s current location</li>
+<li>Determines the destination level based on dungeon connectivity </li>
+<li>Takes an energy turn and saves the level for returning</li>
+<li>Updates player location and dungeon level</li>
+<li>Special handling for quest levels and forcing descent</li>
+</ul>
+<h3 id="do_cmd_open">do_cmd_open</h3>
+<pre><code class="language-c">void do_cmd_open(struct command *cmd)
+</code></pre>
+<p>Attempts to open a closed door or chest.</p>
+<p>Parameters:</p>
+<ul>
+<li><code>cmd</code>: The command being executed, contains a direction argument</li>
+</ul>
+<p>Mechanics:</p>
+<ul>
+<li>Gets a direction from the player or automatically finds an adjacent door/chest</li>
+<li>Determines if it&#39;s a door or chest and calls the appropriate helper function:<ul>
+<li><code>do_cmd_open_aux</code> for doors</li>
+<li><code>do_cmd_open_chest</code> for chests</li>
+</ul>
+</li>
+<li>Handles &quot;unlocking&quot; of locked doors based on player skill</li>
+<li>Consumes energy on success</li>
+</ul>
+<h3 id="do_cmd_close">do_cmd_close</h3>
+<pre><code class="language-c">void do_cmd_close(struct command *cmd)
+</code></pre>
+<p>Attempts to close an open door.</p>
+<p>Parameters:</p>
+<ul>
+<li><code>cmd</code>: The command being executed, contains a direction argument</li>
+</ul>
+<p>Mechanics:</p>
+<ul>
+<li>Gets a direction from the player or automatically finds an adjacent door</li>
+<li>Calls <code>do_cmd_close_aux</code> to actually close the door</li>
+<li>Consumes energy on success</li>
+</ul>
+<h3 id="do_cmd_tunnel">do_cmd_tunnel</h3>
+<pre><code class="language-c">void do_cmd_tunnel(struct command *cmd)
+</code></pre>
+<p>Attempts to tunnel through obstructing walls/rubble.</p>
+<p>Parameters: </p>
+<ul>
+<li><code>cmd</code>: The command being executed, contains a direction argument</li>
+</ul>
+<p>Mechanics:</p>
+<ul>
+<li>Gets a direction from the player</li>
+<li>Calls <code>do_cmd_tunnel_aux</code> to actually dig through the wall</li>
+<li>Takes an energy turn and determines success based on player digging ability</li>
+<li>May &quot;discover&quot; hidden treasure veins</li>
+</ul>
+<h3 id="move_player">move_player</h3>
+<pre><code class="language-c">void move_player(int dir, bool disarm)
+</code></pre>
+<p>Actually moves the player in the given direction, handling various terrain.</p>
+<p>Parameters:</p>
+<ul>
+<li><code>dir</code>: The direction to move</li>
+<li><code>disarm</code>: Whether to try disarming traps</li>
+</ul>
+<p>Mechanics:</p>
+<ul>
+<li>Determines the destination grid based on direction</li>
+<li>Attacks any monsters present</li>
+<li>Handles attempting to open closed doors</li>
+<li>Handles attempting to disarm traps</li>
+<li>Refuses to move into walls and other blocking terrain</li>
+<li>Actually moves the player and updates FOV/LOS</li>
+<li>Stops running if entering a trap detected area</li>
+</ul>
+<h3 id="do_cmd_rest">do_cmd_rest</h3>
+<pre><code class="language-c">void do_cmd_rest(struct command *cmd)
+</code></pre>
+<p>Makes the player rest for a specified number of turns (or until interrupted).</p>
+<p>Parameters:</p>
+<ul>
+<li><code>cmd</code>: The command being executed, contains a numeric &quot;choice&quot; argument for number of turns to rest</li>
+</ul>
+<p>Mechanics:</p>
+<ul>
+<li>Determines the number of turns to rest from the argument</li>
+<li>Starts resting and handles updating the game state each turn</li>
+<li>Stops when the requested number of turns has elapsed or HP/mana is fully restored</li>
+<li>Handles interruptions by canceling the resting state</li>
+</ul>
+<h3 id="do_cmd_alter">do_cmd_alter</h3>
+<pre><code class="language-c">void do_cmd_alter(struct command *cmd)
+</code></pre>
+<p>Alters the terrain in the specified direction (open, tunnel, close, disarm).</p>
+<p>Parameters:</p>
+<ul>
+<li><code>cmd</code>: The command being executed, contains a direction argument</li>
+</ul>
+<p>Mechanics:</p>
+<ul>
+<li>Gets a direction from the player</li>
+<li>Looks up the grid in that direction and chooses an action based on the terrain:<ul>
+<li>Attack any monster present</li>
+<li>Tunnel through walls/rubble</li>
+<li>Open closed doors</li>
+<li>Disarm traps</li>
+<li>Close open doors</li>
+</ul>
+</li>
+<li>Calls the appropriate <code>do_cmd_*</code> helper for the action</li>
+</ul>
+<h3 id="do_cmd_feeling">do_cmd_feeling</h3>
+<pre><code class="language-c">void do_cmd_feeling(void)
+</code></pre>
+<p>Displays the player&#39;s &quot;feeling&quot; about the level based on monster and object difficulty.</p>
+<p>Mechanics:</p>
+<ul>
+<li>Determines a monster feeling and object feeling independently based on level threat levels</li>
+<li>Prints a text description of the combined feeling to the player</li>
+<li>Suppressed if the player has disabled the birth option to display feelings</li>
+</ul>
+<h2 id="5-algorithms">5. Algorithms</h2>
+<h3 id="dungeon-traversal">Dungeon Traversal</h3>
+<p>The <code>do_cmd_go_up</code> and <code>do_cmd_go_down</code> functions implement the core mechanic of traversing between dungeon levels. The algorithm:</p>
+<ol>
+<li>Check the player is on a valid up or down staircase </li>
+<li>Determine the destination dungeon level depth by incrementing/decrementing the current depth</li>
+<li>Save the previous level&#39;s state for later return</li>
+<li>Move the player to the new level at the destination depth</li>
+<li>Generate a new level at that depth if not already visited</li>
+<li>Update the game state and redraw</li>
+</ol>
+<p>This allows the dungeon to be dynamically generated as the player progresses, with visited levels saved.</p>
+<h3 id="digging-tunnels">Digging Tunnels</h3>
+<p>The <code>do_cmd_tunnel</code> command allows tunneling through walls and rubble. The algorithm:</p>
+<ol>
+<li>Check the requested direction contains a diggable wall or rubble</li>
+<li>Check if the player&#39;s digging ability meets the difficulty of the terrain</li>
+<li>Consume energy and:<br>a. Permanently remove the wall/rubble on success
+b. Chip away at it on partial success
+c. Fail to affect it if the player is not strong enough</li>
+<li>Check for hidden treasure veins exposed by the digging</li>
+</ol>
+<p>This allows progressive tunneling through impassable terrain, with a degree of skill/strength vs difficulty.</p>
+<h2 id="6-dependencies">6. Dependencies</h2>
+<p><code>cmd-cave.c</code> depends on:</p>
+<ul>
+<li><code>angband.h</code>: Core Angband header with essential type and constant definitions</li>
+<li><code>cave.h</code>: Dungeon grid/level representation </li>
+<li><code>cmds.h</code>: Command definitions</li>
+<li><code>game-event.h</code>: Game event type definitions</li>
+<li><code>generate.h</code>: Dungeon generation</li>
+<li><code>init.h</code>: Initialization routines</li>
+<li><code>mon-attack.h</code>: Monster attacking </li>
+<li><code>mon-desc.h</code>: Monster description generation</li>
+<li><code>mon-lore.h</code>, <code>mon-spell.h</code>, <code>mon-timed.h</code>, <code>mon-util.h</code>: Monster data and utilities</li>
+<li><code>monster.h</code>: Monster type definitions</li>
+<li><code>obj-chest.h</code>, <code>obj-desc.h</code>: Object and treasure chest handling</li>
+<li><code>obj-gear.h</code>, <code>obj-ignore.h</code>, <code>obj-knowledge.h</code>, <code>obj-pile.h</code>, <code>obj-util.h</code>: Object utilities</li>
+<li><code>player-attack.h</code>, <code>player-calcs.h</code>, <code>player-path.h</code>, <code>player-timed.h</code>, <code>player-util.h</code>: Player data and utilities</li>
+<li><code>player-quest.h</code>: Quest handling</li>
+<li><code>project.h</code>: Projectile and effect handling</li>
+<li><code>store.h</code>: Store/shop definitions</li>
+<li><code>trap.h</code>: Trap definitions</li>
+</ul>
+<p>Files dependent on <code>cmd-cave.c</code>:</p>
+<ul>
+<li><code>cmd-core.h</code>: Core command processing that calls these dungeon commands</li>
+</ul>
+<h2 id="7-historical-context">7. Historical Context</h2>
+<p><code>cmd-cave.c</code> contains code dating back to the earliest Angband versions in the 1990s. The core dungeon exploration mechanics implemented here were established by the Moria and Umoria codebases that Angband derived from. While modernized over the years, the fundamental algorithms remain similar.</p>
+<p>Many roguelikes that branched off of Angband use a similar organization and share the concepts of manual actions for interacting with the dungeon terrain.</p>
+<p>The code is part of Angband&#39;s long history and still bears some &quot;cryptic&quot; elements, such as the heavy use of global variables and extremely terse naming. Modern refactoring aims to improve the organization while retaining compatibility.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

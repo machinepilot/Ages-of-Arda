@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>borg-item-enchant.h Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>borg-item-enchant.h Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="borg-item-enchanth-documentation">borg-item-enchant.h Documentation</h1>
+<h2 id="file-overview">File Overview</h2>
+<p>The <code>borg-item-enchant.h</code> file is a header file in the Angband roguelike game codebase that is part of the &quot;Borg&quot; AI system. The Borg is an automated player that can make decisions and take actions in the game, including enchanting items. This header file defines the interface for the item enchantment functionality within the Borg AI.</p>
+<p>The purpose of this file is to declare the <code>borg_enchanting()</code> function, which is responsible for handling the enchantment of items by the Borg AI. The function is only compiled if the <code>ALLOW_BORG</code> preprocessor directive is defined, indicating that the Borg AI system is enabled in the build.</p>
+<h2 id="data-structures">Data Structures</h2>
+<p>This file does not define any data structures.</p>
+<h2 id="global-variables">Global Variables</h2>
+<p>This file does not declare any global variables.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_enchanting"><code>borg_enchanting()</code></h3>
+<pre><code class="language-c">extern bool borg_enchanting(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: This function is responsible for handling the enchantment of items by the Borg AI.</li>
+<li><strong>Parameters</strong>: None</li>
+<li><strong>Return value</strong>: A boolean value indicating the success or failure of the enchantment operation.</li>
+<li><strong>Side effects</strong>: The function may modify the game state by enchanting items in the Borg&#39;s inventory.</li>
+<li><strong>Relationships to other functions</strong>: This function is likely called by other parts of the Borg AI system to initiate item enchantment when certain conditions are met.</li>
+<li><strong>Game mechanics implemented</strong>: The specific game mechanics related to item enchantment are not implemented in this header file. The actual implementation is likely located in a corresponding source file.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>This header file does not contain any complex algorithms. The implementation of the item enchantment algorithm is likely located in a corresponding source file.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>This file depends on the <code>angband.h</code> header file, which is included before the <code>ALLOW_BORG</code> preprocessor directive check. The <code>angband.h</code> file likely contains the necessary type definitions and other dependencies required for the Borg AI system.</p>
+<p>Other parts of the Borg AI system may depend on this file to access the <code>borg_enchanting()</code> function for item enchantment functionality.</p>
+<h2 id="historical-context">Historical Context</h2>
+<p>The file contains copyright notices indicating that it incorporates work from various contributors dating back to 1997. The original authors include Ben Harrison, James E. Wilson, and Robert A. Koeneke, with additional contributions from Andi Sidwell, Chris Carr, Ed Graham, and Erik Osheim in 2007-2009.</p>
+<p>The presence of the &quot;Angband License&quot; section in the copyright notice suggests that this file is part of the open-source Angband roguelike game project and can be distributed under the terms of the GNU General Public License or the Angband License.</p>
+<p>The Borg AI system is a unique feature of Angband that provides an automated player to assist in gameplay and decision-making. The inclusion of item enchantment functionality within the Borg AI demonstrates the complexity and depth of the AI system in mimicking human player actions and strategies.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

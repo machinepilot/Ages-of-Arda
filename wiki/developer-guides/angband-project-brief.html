@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angband Project Brief | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Angband Project Brief</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-13</div>
+        </header>
+        
+        <main>
+            <h1 id="angband-project-brief">Angband Project Brief</h1>
+<p>Angband is a free, single-player dungeon exploration roguelike game derived from the classics Moria and Umoria. It features turn-based gameplay, procedurally generated levels, permanent death, and complex character development.</p>
+<p>The game is set in the world of Angband, the fortress of Morgoth (the &quot;Black Enemy&quot;) from J.R.R. Tolkien&#39;s fictional universe. The player&#39;s goal is to descend through the dungeon, defeat increasingly difficult monsters, and eventually face Morgoth himself at the bottom level.</p>
+<p>Angband has been in continuous development since 1990, with numerous variants and forks created by the community. The codebase is written primarily in C and is designed to be portable across multiple platforms including Windows, macOS, Linux, and various other systems.</p>
+<p>Key features of the Angband codebase include:</p>
+<ul>
+<li>Modular design with separate systems for dungeon generation, monster AI, magic, combat, etc.</li>
+<li>Support for multiple display methods (ASCII, tiles)</li>
+<li>Extensible object, monster, and artifact systems</li>
+<li>Cross-platform compatibility</li>
+<li>Plugin architecture for variants and extensions</li>
+</ul>
+<p>The Windows port of Angband provides native integration with the Windows operating system, including support for multiple graphical display modes, sound effects, and Windows-specific user interface elements.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

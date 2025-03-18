@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+</head>
+<body class="gameplay-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Untitled</h1>
+        </header>
+        
+        <main>
+            <hr>
+<h2 id="title-lore-management-system-id-lore-management-system-section-gameplay-category-reference-created-2023-10-15-updated-2023-12-01-version-100-contributors-tolkien-scholar-tags-lore-tolkien-first-age-silmarillion-related-narrative-generation-memory-bank-publish_to-wiki-github">title: &quot;Lore Management System&quot;
+id: &quot;lore-management-system&quot;
+section: &quot;gameplay&quot;
+category: &quot;reference&quot;
+created: &quot;2023-10-15&quot;
+updated: &quot;2023-12-01&quot;
+version: &quot;1.0.0&quot;
+contributors: [&quot;tolkien-scholar&quot;]
+tags: [&quot;lore&quot;, &quot;tolkien&quot;, &quot;first-age&quot;, &quot;silmarillion&quot;]
+related: [&quot;narrative-generation&quot;, &quot;memory-bank&quot;]
+publish_to: [&quot;wiki&quot;, &quot;github&quot;]</h2>
+<h1 id="lore-management-system-for-ages-of-arda">Lore Management System for Ages of Arda</h1>
+<p>This document provides a comprehensive overview of the Lore Management System implemented in the Ages of Arda Angband variant. The system is designed to provide AI agents with accurate Tolkien lore to ensure consistent narrative generation and lore-authentic gameplay.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#system-overview">System Overview</a></li>
+<li><a href="#lore-database-structure">Lore Database Structure</a></li>
+<li><a href="#narrative-generation">Narrative Generation</a></li>
+<li><a href="#contributing-to-the-lore-database">Contributing to the Lore Database</a></li>
+<li><a href="#references-and-resources">References and Resources</a></li>
+</ul>
+<h2 id="system-overview">System Overview</h2>
+<p>The Lore Management System serves as a central repository for canonical Tolkien lore, organized by age and entity type. It provides:</p>
+<ol>
+<li><strong>Accurate Context</strong> for AI-driven narrative generation</li>
+<li><strong>Consistent World Building</strong> across gameplay sessions</li>
+<li><strong>Source Attribution</strong> to distinguish canonical from non-canonical content</li>
+<li><strong>Efficient Retrieval</strong> of lore information when needed</li>
+<li><strong>Memory Bank Integration</strong> for persistent context across sessions</li>
+</ol>
+<p>The system is designed to prevent hallucinations and ensure that all AI-generated content remains authentic to Tolkien&#39;s world.</p>
+<h2 id="lore-database-structure">Lore Database Structure</h2>
+<p>The lore database is organized with entries for different ages of Middle-earth history:</p>
+<ul>
+<li><strong>First Age</strong>: The earliest period, primarily covered in The Silmarillion</li>
+<li><strong>Second Age</strong>: The period of Númenor and the forging of the Rings of Power</li>
+<li><strong>Third Age</strong>: The period covered in The Hobbit and The Lord of the Rings</li>
+</ul>
+<p>Each age contains information about:</p>
+<ul>
+<li><strong>Characters</strong>: Notable individuals from Middle-earth history</li>
+<li><strong>Locations</strong>: Important places and realms</li>
+<li><strong>Artifacts</strong>: Powerful and significant items</li>
+<li><strong>Events</strong>: Major historical occurrences</li>
+</ul>
+<h3 id="example-lore-entry">Example Lore Entry</h3>
+<p>Each lore entry contains detailed information:</p>
+<pre><code>Minas Tirith
+The great city of Gondor, also known as the Tower of Guard
+
+Minas Tirith was built on seven levels, each carved out of the hill, and surrounded 
+by the White Mountains. The city was originally called Minas Anor, the Tower of the 
+Sun, but was renamed to Minas Tirith, the Tower of Guard, after Minas Ithil fell to 
+the forces of Mordor and became Minas Morgul.
+
+Notable features:
+- White Tower of Ecthelion
+- The Citadel
+- Seven levels
+</code></pre>
+<h2 id="narrative-generation">Narrative Generation</h2>
+<p>The lore system dynamically generates descriptions for locations, characters, and events you encounter during gameplay. The descriptions adapt based on your character&#39;s knowledge and background.</p>
+<h3 id="example-location-description">Example: Location Description</h3>
+<p>As you enter Gondolin for the first time:</p>
+<pre><code>Before you stretches the hidden city of Gondolin, jewel of the First Age and last 
+stronghold of the Noldor in Beleriand. White towers gleam in the sunlight, rising 
+from the encircling mountains of the Echoriath that have kept this realm secret from 
+the eyes of Morgoth.
+
+The Tower of the King stands tall at the center, home to Turgon, High King of the 
+Noldor. Fountains play in courtyards of marble, and the sound of elven voices raised 
+in song carries on the gentle breeze. Seven names has this city, and each captures 
+some element of its beauty - most commonly known as Gondolin, the Stone of Song.
+
+Few mortals have ever laid eyes on this wonder, and those who enter are bound by 
+oath never to reveal its location to the outside world.
+</code></pre>
+<p>As you progress in the game, the system will reveal more lore details, keeping track of your character&#39;s knowledge and adapting descriptions accordingly.</p>
+<h2 id="contributing-to-the-lore-database">Contributing to the Lore Database</h2>
+<p>Players can contribute to the lore database by:</p>
+<ol>
+<li>Submitting new lore entries with proper source citations</li>
+<li>Correcting existing entries for accuracy</li>
+<li>Adding details from lesser-known Tolkien works</li>
+<li>Providing feedback on narrative generation</li>
+</ol>
+<p>Contributions should always include canonical sources and page references where possible.</p>
+<h2 id="references-and-resources">References and Resources</h2>
+<p>The lore system draws from the following canonical Tolkien sources:</p>
+<ul>
+<li>The Silmarillion</li>
+<li>The Hobbit</li>
+<li>The Lord of the Rings (including appendices)</li>
+<li>Unfinished Tales</li>
+<li>The History of Middle-earth series</li>
+<li>The Children of Húrin</li>
+<li>Beren and Lúthien</li>
+<li>The Fall of Gondolin</li>
+<li>The Nature of Middle-earth</li>
+</ul>
+<h2 id="history">History</h2>
+<ul>
+<li><strong>2023-12-01</strong>: Added section on narrative generation examples</li>
+<li><strong>2023-10-15</strong>: Initial document creation</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

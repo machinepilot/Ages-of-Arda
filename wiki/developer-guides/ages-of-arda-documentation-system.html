@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ages of Arda Documentation System | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Ages of Arda Documentation System</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <h1 id="ages-of-arda-documentation-system">Ages of Arda Documentation System</h1>
+<p>This directory contains the unified documentation system for the Ages of Arda project. The system provides a single source of truth for all documentation, which is then automatically compiled into multiple formats:</p>
+<ul>
+<li>Wiki pages</li>
+<li>Cursor rules</li>
+<li>GitHub documentation</li>
+</ul>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Node.js 14.x or higher</li>
+<li>npm 6.x or higher</li>
+</ul>
+<h3 id="installation">Installation</h3>
+<pre><code class="language-bash">cd docs
+npm install
+</code></pre>
+<h3 id="building-documentation">Building Documentation</h3>
+<pre><code class="language-bash">npm run build
+</code></pre>
+<p>This will process all documentation in the <code>_source</code> directory and generate output formats based on the configuration in <code>_config.yml</code>.</p>
+<h3 id="migrating-existing-documentation">Migrating Existing Documentation</h3>
+<p>To migrate documentation from the old system to the new one:</p>
+<pre><code class="language-bash">npm run migrate
+</code></pre>
+<h3 id="development-mode">Development Mode</h3>
+<pre><code class="language-bash">npm run dev
+</code></pre>
+<p>This will start a local web server and watch for changes to documentation files, rebuilding when changes are detected.</p>
+<h2 id="documentation-structure">Documentation Structure</h2>
+<ul>
+<li><code>_source/</code> - Source documentation files<ul>
+<li><code>development/</code> - Developer documentation</li>
+<li><code>gameplay/</code> - Player documentation</li>
+</ul>
+</li>
+<li><code>_templates/</code> - Templates for output formats</li>
+<li><code>_scripts/</code> - Build scripts</li>
+<li><code>_schemas/</code> - Schema definitions</li>
+<li><code>_assets/</code> - Images and other assets</li>
+</ul>
+<h2 id="writing-documentation">Writing Documentation</h2>
+<p>All documentation should follow the <a href="./docs/_source/development/guides/documentation-standards.md">Documentation Standards</a>.</p>
+<h3 id="basic-document-template">Basic Document Template</h3>
+<pre><code class="language-markdown">---
+title: &quot;Document Title&quot;
+id: &quot;unique-document-identifier&quot;
+section: &quot;development|gameplay&quot;
+category: &quot;guides|architecture|reference&quot;
+created: &quot;YYYY-MM-DD&quot;
+updated: &quot;YYYY-MM-DD&quot;
+version: &quot;MAJOR.MINOR.PATCH&quot;
+---
+
+# Document Title
+
+Your content here...
+
+## History
+- **YYYY-MM-DD**: Initial document creation
+</code></pre>
+<h2 id="integration-with-cursor-rules">Integration with Cursor Rules</h2>
+<p>Documents can be automatically converted to Cursor rules by adding these frontmatter fields:</p>
+<pre><code class="language-yaml">cursor_rule: true
+glob: &quot;**/*.c&quot;  # Files this rule applies to
+priority: 800   # Rule priority
+rule_category: &quot;code-style&quot;  # Directory within rules
+</code></pre>
+<h2 id="building-the-wiki">Building the Wiki</h2>
+<p>The documentation system automatically builds wiki pages in the <code>../wiki</code> directory, maintaining the separation between development and gameplay sections.</p>
+<h2 id="continuous-integration">Continuous Integration</h2>
+<p>Documentation is automatically built and deployed on changes to the <code>docs/_source</code> directory through our CI/CD pipeline. </p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

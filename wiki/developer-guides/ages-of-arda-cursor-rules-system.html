@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ages of Arda Cursor Rules System | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Ages of Arda Cursor Rules System</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <p>Original Location: C:\working_directory\ages-project\clean-ages-of-arda.cursor\CURSOR_RULES_SYSTEM.md</p>
+<h1 id="ages-of-arda-cursor-rules-system">Ages of Arda Cursor Rules System</h1>
+<p>This document provides a comprehensive guide to the Ages of Arda Cursor rules system - a sophisticated framework for maintaining code quality, consistency, and development standards across the project. This system is designed to make game development more efficient by providing context-aware guidance directly within your code editor.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction-for-new-users">Introduction for New Users</a></li>
+<li><a href="#system-overview">System Overview</a></li>
+<li><a href="#directory-structure">Directory Structure</a></li>
+<li><a href="#rule-categories">Rule Categories</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#development-loop">Development Loop</a></li>
+<li><a href="#self-healing-system">Self-Healing System</a></li>
+<li><a href="#practical-implementation">Practical Implementation</a></li>
+<li><a href="#advanced-topics">Advanced Topics</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ol>
+<h2 id="introduction-for-new-users">Introduction for New Users</h2>
+<h3 id="what-is-the-cursor-rules-system">What is the Cursor Rules System?</h3>
+<p>The Cursor Rules System is an intelligent guidance framework that provides real-time development standards and best practices while you work in the Cursor editor. Think of it as having an expert looking over your shoulder as you code, offering advice specific to what you&#39;re working on.</p>
+<h3 id="why-use-it-for-game-development">Why Use It for Game Development?</h3>
+<p>Game development involves complex systems that must work together: graphics, AI, physics, user interface, storytelling, and more. The Cursor Rules System helps by:</p>
+<ol>
+<li><strong>Automatically loading relevant guidelines</strong> based on the file you&#39;re editing</li>
+<li><strong>Ensuring consistency</strong> across the codebase regardless of who&#39;s working on it</li>
+<li><strong>Reducing cognitive load</strong> by providing patterns and solutions for common problems</li>
+<li><strong>Improving code quality</strong> through standardized approaches</li>
+<li><strong>Accelerating onboarding</strong> for new team members</li>
+</ol>
+<h3 id="how-it-works-in-simple-terms">How It Works in Simple Terms</h3>
+<p>When you open a file in Cursor, the system:</p>
+<ol>
+<li>Looks at the file path and type</li>
+<li>Finds matching rules based on glob patterns</li>
+<li>Presents those rules within Cursor</li>
+<li>Updates the guidance as you switch between files</li>
+</ol>
+<p>For example, when editing an AI behavior file, you&#39;ll automatically see AI-specific guidelines, whereas editing a memory management file will show memory allocation best practices instead.</p>
+<h2 id="system-overview">System Overview</h2>
+<p>The Cursor rules system is an integrated set of guidelines that are automatically applied based on the context of files being edited. Each rule provides specific guidance for developing different aspects of the Ages of Arda game, an Angband variant focused on Tolkien&#39;s First Age.</p>
+<h3 id="key-components">Key Components</h3>
+<ul>
+<li><strong>Metadata-Driven Rules</strong>: Each rule file contains metadata in a YAML frontmatter that determines when it applies</li>
+<li><strong>Context-Aware Activation</strong>: Rules are automatically loaded based on file paths and types</li>
+<li><strong>Hierarchical Organization</strong>: Rules are structured in logical categories</li>
+<li><strong>Priority System</strong>: Higher priority rules take precedence when multiple rules apply</li>
+<li><strong>Related Rules</strong>: Rules can explicitly reference other related rules</li>
+</ul>
+<h3 id="rule-file-structure">Rule File Structure</h3>
+<p>Each rule file (.mdc) follows this structure:</p>
+<pre><code class="language-markdown">---
+title: Rule Title
+glob: &quot;pattern/to/match/**&quot;
+priority: 800
+related: [&quot;related-rule-1.mdc&quot;, &quot;related-rule-2.mdc&quot;]
+---
+
+# Main Title
+
+## Section 1
+Content with examples...
+
+## Section 2
+More specific guidance...
+
+## Examples
+
+```c
+// Code example demonstrating the rule
+</code></pre>
+<pre><code>
+### How Rules Are Applied
+
+1. When a file is opened, Cursor examines the file path
+2. The system matches the path against glob patterns in rule metadata
+3. Matching rules are loaded in order of priority (highest first)
+4. Related rules are also loaded if referenced
+
+### Rule Priorities Explained
+
+The priority number determines which rules take precedence:
+
+- **1000-900**: Master rules (always loaded)
+- **899-700**: Domain rules (language/technology specific)
+- **699-500**: Feature rules (feature-specific guidelines)
+- **499-300**: Specialized rules (very specific contexts)
+- **299-100**: Optional rules (guidelines that may not always apply)
+
+## Directory Structure
+
+The rules are organized into logical categories to make them easy to find and maintain:
+</code></pre>
+<p>.cursor/rules/
+├── README.mdc                 # Master rule file
+├── activators/                # Rule activation logic
+│   └── file-types.mdc         # Maps file types to rules
+├── ai/                        # AI-related guidelines
+│   ├── ai-gameplay.mdc        # Gameplay AI integration
+│   ├── ai-ux.mdc              # AI user experience
+│   └── multi-agent.mdc        # Multi-agent systems
+├── code-style/                # Programming standards
+│   ├── c-style.mdc            # C language style
+│   └── html.mdc               # HTML formatting
+├── game/                      # Game mechanics
+│   ├── angband-variant.mdc    # Angband variant development
+│   ├── lore-management.mdc    # Lore and world-building
+│   └── memory-bank.mdc        # Memory management
+├── infrastructure/            # Development infrastructure
+│   ├── github-standards.mdc   # GitHub workflow
+│   └── netlify.mdc            # Netlify deployment
+├── mcp/                       # Model Context Protocol
+│   ├── mcp-integration.mdc    # MCP integration
+│   └── mcp-server.mdc         # MCP server configuration
+└── self-healing/              # Self-improving system
+    ├── error-analyzer.ps1     # Error pattern detection
+    ├── schedule-analysis.ps1  # Scheduled analysis setup
+    └── integrate-rules.ps1    # Rule integration utilities</p>
+<pre><code>
+### Understanding Each Directory
+
+- **activators/**: Contains rules that determine which other rules to load based on file types and contexts
+- **ai/**: Guidelines specific to artificial intelligence implementation in the game
+- **code-style/**: Language-specific formatting and style guidelines
+- **game/**: Core game mechanics and design patterns
+- **infrastructure/**: Development and deployment environment configuration
+- **mcp/**: Model Context Protocol integration (for AI services)
+- **self-healing/**: Scripts and tools that improve the rules system over time
+
+## Rule Categories
+
+### Code Style
+- **C Programming**: Standard formatting, naming conventions, memory management
+  - Indentation: 4 spaces (no tabs)
+  - Max line length: 120 characters
+  - Braces: K&amp;R style (opening brace on same line)
+  - Function declarations: return type on separate line
+  - Variable naming: snake_case
+  - Constants: ALL_CAPS_WITH_UNDERSCORES
+
+- **HTML**: Markup standards and best practices
+  - Semantic HTML usage
+  - Proper indentation and formatting
+  - Accessibility considerations
+
+### Game Mechanics
+- **Angband Variant**: Core game structure, entity systems, game state management
+  - Turn-based mechanics implementation
+  - Procedural level generation
+  - Entity-component system patterns
+  - Save/load functionality
+
+- **Memory Management**: Resource allocation, ownership, tracking, optimization
+  - Explicit ownership principles
+  - Resource lifetime management
+  - Memory pooling strategies
+  - Error handling for allocation failures
+
+- **Lore Management**: World-building, canon adherence, discovery mechanisms
+  - Tolkien lore integration
+  - Layered discovery systems
+  - Consistency checking
+  - Dynamic lore generation
+
+### AI Systems
+- **AI Gameplay**: Integration of AI into game mechanics, emergent behavior
+  - NPC behavior systems
+  - Decision-making frameworks
+  - Procedural narrative generation
+  - Difficulty scaling
+
+- **AI UX**: User experience for AI-driven features, responsiveness, transparency
+  - Player feedback mechanisms
+  - AI response timing guidelines
+  - Transparency in AI decisions
+  - Player control over AI features
+
+- **Multi-Agent**: Agent types, communication patterns, coordination
+  - Specialized vs. coordinator agents
+  - Message passing protocols
+  - Collaborative problem-solving
+  - Memory systems
+
+### Infrastructure
+- **GitHub Workflow**: Branch management, PR standards, CI/CD integration
+  - Branch naming conventions
+  - Pull request templates
+  - Automated testing requirements
+  - Review processes
+
+- **Netlify Deployment**: Configuration, environment setup, deployment processes
+  - Environment variable management
+  - Build process configuration
+  - Preview deployments
+  - Performance optimization
+
+### MCP (Model Context Protocol)
+- **Integration**: API standards, error handling, context management
+  - Request/response patterns
+  - Error handling strategies
+  - Context window management
+  - Token optimization
+
+- **Server Configuration**: Service setup, deployment, monitoring
+  - Server environment requirements
+  - Monitoring and logging
+  - Scaling considerations
+  - Security configuration
+
+## Getting Started
+
+### Setting Up the Rules System
+
+1. **Clone the Repository**
+</code></pre>
+<p>   git clone <a href="https://github.com/your-org/ages-of-arda.git">https://github.com/your-org/ages-of-arda.git</a>
+   cd ages-of-arda</p>
+<pre><code>
+2. **Ensure Cursor is Installed**
+The Cursor editor is required to utilize this rules system. Download from https://cursor.sh if needed.
+
+3. **Verify Rules Structure**
+</code></pre>
+<p>   ls -la .cursor/rules</p>
+<pre><code>You should see the directory structure outlined above.
+
+4. **Initialize Self-Healing (Optional)**
+</code></pre>
+<p>   powershell -ExecutionPolicy Bypass -File .cursor/rules/self-healing/schedule-analysis.ps1</p>
+<pre><code>This sets up automated improvement of the rules system.
+
+### Working with the Rules System
+
+1. **Open a File in Cursor**
+</code></pre>
+<p>   cursor src/game/ai/npc_behavior.c</p>
+<pre><code>
+2. **View Active Rules**
+Look at the Rules panel in Cursor to see which rules have been automatically loaded.
+
+3. **Follow Guidance**
+As you code, follow the guidelines that appear in the Rules panel.
+
+4. **Reference Related Rules**
+Click on related rule links to explore connected guidelines.
+
+### Creating a New Rule
+
+1. **Choose the Category**
+Determine which directory your rule belongs in.
+
+2. **Create the Rule File**
+</code></pre>
+<p>   touch .cursor/rules/ai/custom-pathfinding.mdc</p>
+<pre><code>
+3. **Add Frontmatter**
+```yaml
+---
+title: Custom Pathfinding Implementation
+glob: &quot;**/pathfinding/**,**/navigation/**&quot;
+priority: 650
+related: [&quot;ai-gameplay.mdc&quot;, &quot;../game/memory-bank.mdc&quot;]
+---
+</code></pre>
+<ol start="4">
+<li><p><strong>Add Content</strong></p>
+<pre><code class="language-markdown"># Custom Pathfinding Implementation
+
+## Core Principles
+- Performance is critical for pathfinding
+- Pre-compute navigation meshes where possible
+- Implement hierarchical pathfinding for large maps
+
+## Implementation Pattern
+```c
+// Code example
+</code></pre>
+<pre><code>
+</code></pre>
+</li>
+<li><p><strong>Verify the Rule</strong></p>
+<pre><code>powershell -ExecutionPolicy Bypass -File .cursor/rules/verify-rules.ps1
+</code></pre>
+</li>
+</ol>
+<h2 id="development-loop">Development Loop</h2>
+<p>The Ages of Arda development follows a structured loop that leverages the rules system at each step:</p>
+<h3 id="1-feature-planning">1. Feature Planning</h3>
+<ul>
+<li><p><strong>Rule Reference</strong>: Review relevant rules for the feature domain</p>
+<pre><code># For an AI feature, look at:
+cursor .cursor/rules/ai/ai-gameplay.mdc
+cursor .cursor/rules/ai/multi-agent.mdc
+</code></pre>
+</li>
+<li><p><strong>Standards Adherence</strong>: Ensure planned implementation will follow guidelines</p>
+<ul>
+<li>Identify which rules will apply to your implementation</li>
+<li>Note any potential conflicts or special considerations</li>
+</ul>
+</li>
+<li><p><strong>Prerequisites</strong>: Identify related systems and dependencies</p>
+<ul>
+<li>Check the &quot;related&quot; metadata in relevant rules</li>
+<li>Review those dependencies before implementation</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-initial-implementation">2. Initial Implementation</h3>
+<ul>
+<li><p><strong>Active Guidance</strong>: Cursor loads appropriate rules while coding</p>
+<ul>
+<li>As you create files, Cursor will automatically load relevant rules</li>
+<li>Pay attention to the Rules panel for context-specific guidance</li>
+</ul>
+</li>
+<li><p><strong>Code Patterns</strong>: Follow established patterns from examples in rules</p>
+<pre><code class="language-c">// Example from ai-gameplay.mdc
+char *
+get_ai_response(game_state_t *state, const char *prompt_type, const char *context)
+{
+    char *response = NULL;
+    
+    /* Try primary AI system */
+    response = mcp_request(state, prompt_type, context);
+    
+    /* Fall back to template if AI unavailable */
+    if (response == NULL) {
+        response = get_template_response(prompt_type, context);
+    }
+    
+    return response;
+}
+</code></pre>
+</li>
+<li><p><strong>Consistency Check</strong>: Compare new code against standards in real-time</p>
+<ul>
+<li>Periodically review your code against the active rules</li>
+<li>Use the verification tools to catch inconsistencies</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-testing-and-validation">3. Testing and Validation</h3>
+<ul>
+<li><p><strong>Quality Metrics</strong>: Apply standards from rules to evaluate implementation</p>
+<ul>
+<li>Check memory management patterns</li>
+<li>Verify AI response handling</li>
+<li>Confirm proper error handling</li>
+</ul>
+</li>
+<li><p><strong>Heuristic Validation</strong>: Check against common issues documented in rules</p>
+<ul>
+<li>Look for patterns that rules warn against</li>
+<li>Verify that you&#39;re following recommended practices</li>
+</ul>
+</li>
+<li><p><strong>Edge Case Handling</strong>: Verify all scenarios outlined in rules are addressed</p>
+<ul>
+<li>Offline mode fallbacks</li>
+<li>Error recovery</li>
+<li>Resource constraints</li>
+<li>Unexpected inputs</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-code-review">4. Code Review</h3>
+<ul>
+<li><p><strong>Automated Checks</strong>: Verify compliance with style, memory, and other guidelines</p>
+<pre><code>powershell -ExecutionPolicy Bypass -File .cursor/rules/verify-rules.ps1
+</code></pre>
+</li>
+<li><p><strong>Manual Inspection</strong>: Compare implementation against domain-specific best practices</p>
+<ul>
+<li>Have reviewers check relevant rules during review</li>
+<li>Reference specific rule sections in PR description</li>
+</ul>
+</li>
+<li><p><strong>Documentation Verification</strong>: Ensure proper documentation following rule standards</p>
+<ul>
+<li>Check function header comments</li>
+<li>Verify parameter descriptions</li>
+<li>Confirm return value documentation</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-iteration-and-refinement">5. Iteration and Refinement</h3>
+<ul>
+<li><p><strong>Feedback Loop</strong>: Incorporate review findings back into the code</p>
+<ul>
+<li>Address issues identified during review</li>
+<li>Note repetitive feedback for potential rule additions</li>
+</ul>
+</li>
+<li><p><strong>Rules Refinement</strong>: Update rules if new patterns or best practices emerge</p>
+<ul>
+<li>If you discover a better approach, update relevant rules</li>
+<li>Document the rationale for changes</li>
+</ul>
+</li>
+<li><p><strong>Knowledge Sharing</strong>: Document learnings from implementation</p>
+<ul>
+<li>Update rules with new examples</li>
+<li>Add edge cases and their solutions</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-integration">6. Integration</h3>
+<ul>
+<li><p><strong>Cross-System Validation</strong>: Verify compatibility with related systems</p>
+<ul>
+<li>Test integration points with dependency systems</li>
+<li>Check for consistent API usage</li>
+</ul>
+</li>
+<li><p><strong>Interface Verification</strong>: Ensure consistent interfaces following established patterns</p>
+<ul>
+<li>Verify function signatures match established patterns</li>
+<li>Confirm error handling follows conventions</li>
+</ul>
+</li>
+<li><p><strong>Performance Testing</strong>: Validate against performance guidelines in rules</p>
+<ul>
+<li>Test under specified load conditions</li>
+<li>Verify memory usage patterns</li>
+<li>Check response time metrics</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-deployment">7. Deployment</h3>
+<ul>
+<li><p><strong>Release Process</strong>: Follow infrastructure rules for deployment</p>
+<ul>
+<li>Use designated CI/CD patterns</li>
+<li>Verify environment configurations</li>
+</ul>
+</li>
+<li><p><strong>Monitoring Setup</strong>: Configure monitors based on guidelines</p>
+<ul>
+<li>Set up specified metrics</li>
+<li>Configure alerting thresholds</li>
+</ul>
+</li>
+<li><p><strong>Documentation Update</strong>: Ensure user-facing documentation aligns with implementation</p>
+<ul>
+<li>Update user guides with any interface changes</li>
+<li>Document new features following established patterns</li>
+</ul>
+</li>
+</ul>
+<h2 id="self-healing-system">Self-Healing System</h2>
+<p>The Ages of Arda rules system includes a self-healing mechanism that learns from coding patterns and errors to continuously improve its guidance:</p>
+<h3 id="error-collection-and-analysis-framework">Error Collection and Analysis Framework</h3>
+<pre><code>┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│                 │     │                 │     │                 │
+│  Code Analysis  │────▶│  Error Parsing  │────▶│ Pattern Mining  │
+│                 │     │                 │     │                 │
+└─────────────────┘     └─────────────────┘     └────────┬────────┘
+                                                         │
+┌─────────────────┐     ┌─────────────────┐     ┌────────▼────────┐
+│                 │     │                 │     │                 │
+│   Rule Update   │◀────│ Rule Generation │◀────│ Pattern Analysis│
+│                 │     │                 │     │                 │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+</code></pre>
+<h3 id="how-the-self-healing-system-works">How the Self-Healing System Works</h3>
+<ol>
+<li><p><strong>Error Collection</strong></p>
+<ul>
+<li>The system monitors build logs, static analysis, and runtime errors</li>
+<li>Errors are cataloged with context (file, line, code snippet)</li>
+<li>Frequency and patterns are tracked over time</li>
+</ul>
+</li>
+<li><p><strong>Pattern Analysis</strong></p>
+<ul>
+<li>Similar errors are clustered by signature</li>
+<li>Common root causes are identified</li>
+<li>High-frequency patterns are prioritized</li>
+</ul>
+</li>
+<li><p><strong>Rule Generation</strong></p>
+<ul>
+<li>New rule proposals are created for common error patterns</li>
+<li>Each proposal includes:<ul>
+<li>Description of the issue</li>
+<li>Code examples showing the problem</li>
+<li>Recommended solution</li>
+<li>Implementation examples</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Human Review</strong></p>
+<ul>
+<li>Proposed rules are reviewed by developers</li>
+<li>Rules can be refined or rejected</li>
+<li>Approved rules are integrated into the system</li>
+</ul>
+</li>
+<li><p><strong>Continuous Improvement</strong></p>
+<ul>
+<li>The system tracks which rules reduce error rates</li>
+<li>Less effective rules are refined or removed</li>
+<li>The knowledge base grows more accurate over time</li>
+</ul>
+</li>
+</ol>
+<h3 id="using-the-self-healing-system">Using the Self-Healing System</h3>
+<h4 id="running-error-analysis-manually">Running Error Analysis Manually</h4>
+<pre><code class="language-powershell"># Navigate to project root and run:
+PowerShell -ExecutionPolicy Bypass -File .cursor\rules\self-healing\error-analyzer.ps1
+</code></pre>
+<p>This generates rule proposals in <code>.cursor/rules/self-healing/proposed-rules/</code>.</p>
+<h4 id="reviewing-and-integrating-proposed-rules">Reviewing and Integrating Proposed Rules</h4>
+<pre><code class="language-powershell">PowerShell -ExecutionPolicy Bypass -File .cursor\rules\self-healing\integrate-rules.ps1
+</code></pre>
+<p>This interactive script guides you through:</p>
+<ol>
+<li>Reviewing each proposed rule</li>
+<li>Editing rules if needed</li>
+<li>Selecting appropriate category</li>
+<li>Integrating approved rules</li>
+</ol>
+<h4 id="scheduling-automated-analysis">Scheduling Automated Analysis</h4>
+<pre><code class="language-powershell">PowerShell -ExecutionPolicy Bypass -File .cursor\rules\self-healing\schedule-analysis.ps1
+</code></pre>
+<p>This sets up a weekly task that:</p>
+<ol>
+<li>Analyzes recent errors</li>
+<li>Generates rule proposals</li>
+<li>Notifies developers of new proposals</li>
+</ol>
+<h4 id="customizing-the-process">Customizing the Process</h4>
+<p>Edit <code>.cursor/rules/self-healing/error-analyzer.ps1</code> to adjust:</p>
+<ul>
+<li><code>$ErrorThreshold</code>: Minimum occurrences to consider a pattern significant</li>
+<li><code>$LookbackDays</code>: How far back to analyze errors</li>
+<li>Error detection patterns for your compiler and logging format</li>
+</ul>
+<h2 id="practical-implementation">Practical Implementation</h2>
+<h3 id="real-world-example-implementing-an-npc-ai-system">Real-World Example: Implementing an NPC AI System</h3>
+<p>Let&#39;s walk through how the rules system guides development of a new NPC AI system:</p>
+<h4 id="1-planning-phase">1. Planning Phase</h4>
+<p>First, review relevant rule files:</p>
+<pre><code class="language-powershell">cursor .cursor/rules/ai/ai-gameplay.mdc
+cursor .cursor/rules/ai/multi-agent.mdc
+cursor .cursor/rules/game/memory-bank.mdc
+</code></pre>
+<p>From these rules, you learn:</p>
+<ul>
+<li>NPCs should have fallback behavior when AI is unavailable</li>
+<li>Agent systems should follow the established communication protocol</li>
+<li>Memory management for dynamic behaviors needs special attention</li>
+</ul>
+<h4 id="2-implementation">2. Implementation</h4>
+<p>Create the implementation file:</p>
+<pre><code class="language-powershell">touch src/ai/npc_behavior.c
+cursor src/ai/npc_behavior.c
+</code></pre>
+<p>Cursor automatically loads relevant rules because the path contains <code>ai/</code>.</p>
+<p>Follow the pattern from the rules:</p>
+<pre><code class="language-c">/**
+ * Process NPC behavior using the agent system
+ * 
+ * @param npc The NPC entity
+ * @param game_state Current game state
+ * @return bool Success or failure
+ */
+bool
+process_npc_behavior(entity_t *npc, game_state_t *game_state)
+{
+    agent_context_t *context = NULL;
+    behavior_result_t *result = NULL;
+    bool success = false;
+    
+    /* Create agent context */
+    context = create_agent_context(npc, game_state);
+    if (context == NULL) {
+        log_error(&quot;Failed to create agent context for NPC %s&quot;, npc-&gt;name);
+        return false;
+    }
+    
+    /* Request behavior from AI system */
+    result = ai_generate_behavior(context);
+    
+    /* Fall back to scripted behavior if AI unavailable */
+    if (result == NULL) {
+        result = get_scripted_behavior(npc, game_state);
+    }
+    
+    /* Apply behavior result */
+    if (result != NULL) {
+        success = apply_behavior_result(npc, result);
+        free_behavior_result(result);
+    }
+    
+    /* Clean up */
+    free_agent_context(context);
+    
+    return success;
+}
+</code></pre>
+<h4 id="3-testing">3. Testing</h4>
+<p>Based on rules, you know to test:</p>
+<ul>
+<li>Normal AI behavior generation</li>
+<li>Fallback to scripted behavior when AI is unavailable</li>
+<li>Memory management (leaks, use-after-free)</li>
+<li>Error handling for edge cases</li>
+</ul>
+<h4 id="4-code-review-1">4. Code Review</h4>
+<p>During review, Cursor highlights compliance with rules:</p>
+<ul>
+<li>Memory allocation pattern matches the memory-bank.mdc guidelines</li>
+<li>Error handling follows recommended patterns</li>
+<li>AI behavior generation includes the required fallback</li>
+</ul>
+<h4 id="5-integration">5. Integration</h4>
+<p>When integrating with the main game loop, you reference the angband-variant.mdc rule to ensure proper turn processing:</p>
+<pre><code class="language-c">/**
+ * Process all NPCs in the current level
+ */
+void
+process_npcs(game_state_t *state)
+{
+    for (int i = 0; i &lt; state-&gt;current_level-&gt;npc_count; i++) {
+        entity_t *npc = state-&gt;current_level-&gt;npcs[i];
+        
+        /* Skip inactive NPCs */
+        if (!npc-&gt;is_active) {
+            continue;
+        }
+        
+        /* Process behavior */
+        process_npc_behavior(npc, state);
+    }
+}
+</code></pre>
+<p>This process ensures the NPC AI system integrates seamlessly with the existing codebase and follows established patterns.</p>
+<h3 id="common-development-scenarios">Common Development Scenarios</h3>
+<h4 id="adding-a-new-feature">Adding a New Feature</h4>
+<ol>
+<li><p><strong>Identify Relevant Rules</strong></p>
+<ul>
+<li>Determine which categories apply to your feature</li>
+<li>Review those rule files first</li>
+</ul>
+</li>
+<li><p><strong>Create Implementation Files</strong></p>
+<ul>
+<li>Place files in appropriate directories to trigger relevant rules</li>
+<li>Follow structural patterns from the rules</li>
+</ul>
+</li>
+<li><p><strong>Follow the Development Loop</strong></p>
+<ul>
+<li>Reference the rules during each phase of development</li>
+<li>Use the self-healing system to identify common issues</li>
+</ul>
+</li>
+</ol>
+<h4 id="fixing-a-bug">Fixing a Bug</h4>
+<ol>
+<li><p><strong>Check Error Database</strong></p>
+<ul>
+<li>See if the bug matches known patterns</li>
+<li>Review proposed solutions</li>
+</ul>
+</li>
+<li><p><strong>Reference Relevant Rules</strong></p>
+<ul>
+<li>Identify which rules apply to the affected component</li>
+<li>Check for guidance on common issues</li>
+</ul>
+</li>
+<li><p><strong>Apply Consistent Fix</strong></p>
+<ul>
+<li>Ensure your fix follows established patterns</li>
+<li>Update tests to cover the edge case</li>
+</ul>
+</li>
+</ol>
+<h4 id="onboarding-a-new-developer">Onboarding a New Developer</h4>
+<ol>
+<li><p><strong>Walk Through CURSOR_RULES_SYSTEM.md</strong></p>
+<ul>
+<li>Provide this document as a comprehensive introduction</li>
+<li>Emphasize the self-guided nature of the system</li>
+</ul>
+</li>
+<li><p><strong>Start with Small Tasks</strong></p>
+<ul>
+<li>Begin with files that have clear rule coverage</li>
+<li>Use the rules as a learning tool</li>
+</ul>
+</li>
+<li><p><strong>Review Rule Applications</strong></p>
+<ul>
+<li>Discuss how rules influenced development decisions</li>
+<li>Point out examples of rule application in the codebase</li>
+</ul>
+</li>
+</ol>
+<h2 id="advanced-topics">Advanced Topics</h2>
+<h3 id="rule-composition-and-interaction">Rule Composition and Interaction</h3>
+<p>Rules can interact in complex ways:</p>
+<h4 id="layering-example">Layering Example</h4>
+<p>For a file at <code>src/ai/pathfinding/a_star.c</code>, these rules might apply:</p>
+<ol>
+<li><p><strong>code-style/c-style.mdc</strong> (Priority: 800)</p>
+<ul>
+<li>Provides base formatting and syntax guidelines</li>
+</ul>
+</li>
+<li><p><strong>game/memory-bank.mdc</strong> (Priority: 780)</p>
+<ul>
+<li>Adds memory management patterns on top of basic style</li>
+</ul>
+</li>
+<li><p><strong>ai/ai-gameplay.mdc</strong> (Priority: 700)</p>
+<ul>
+<li>Adds AI-specific patterns on top of previous layers</li>
+</ul>
+</li>
+<li><p><strong>Custom rule for pathfinding</strong> (Priority: 650)</p>
+<ul>
+<li>Adds pathfinding-specific optimizations</li>
+</ul>
+</li>
+</ol>
+<p>Each layer builds on previous layers, with conflicts resolved by priority.</p>
+<h4 id="precedence-resolution">Precedence Resolution</h4>
+<p>When rules conflict, the rule with higher priority takes precedence:</p>
+<pre><code>Rule A (Priority 800): &quot;Use 4-space indentation&quot;
+Rule B (Priority 600): &quot;Use 2-space indentation for nested loops&quot;
+</code></pre>
+<p>In this case, Rule A takes precedence due to higher priority.</p>
+<h4 id="rule-specialization">Rule Specialization</h4>
+<p>Rules can specialize more general rules:</p>
+<pre><code>General rule: &quot;Log all errors with appropriate context&quot;
+Specialized rule: &quot;For memory allocation errors, include allocation size and current memory usage&quot;
+</code></pre>
+<p>The specialized rule refines rather than contradicts the general rule.</p>
+<h3 id="customization-for-developers">Customization for Developers</h3>
+<p>Developers can tailor the rule system:</p>
+<h4 id="personal-overrides">Personal Overrides</h4>
+<p>Create a personal rules directory:</p>
+<pre><code>.cursor/rules/personal/&lt;username&gt;/
+</code></pre>
+<p>Add custom rule files that only apply to your work.</p>
+<h4 id="contextual-emphasis">Contextual Emphasis</h4>
+<h2 id="create-a-file-with-high-priority-that-emphasizes-aspects-youre-focusing-on-">Create a file with high priority that emphasizes aspects you&#39;re focusing on:
+```</h2>
+<h2 id="title-current-focus---memory-optimization-glob-c-priority-850">title: Current Focus - Memory Optimization
+glob: &quot;**/*.c&quot;
+priority: 850</h2>
+<h1 id="memory-optimization-focus">Memory Optimization Focus</h1>
+<p>Currently focusing on reducing memory allocations.
+Pay special attention to:</p>
+<ul>
+<li>Unnecessary allocations</li>
+<li>Pool allocation opportunities</li>
+<li>Temporary buffer reuse</li>
+</ul>
+<pre><code>
+#### Extensions and Annotations
+
+Add your own examples and notes to existing rules:
+</code></pre>
+<hr>
+<h2 id="title-extension-to-c-style-glob-c-priority-810-related-code-stylec-stylemdc">title: Extension to C Style
+glob: &quot;**/*.c&quot;
+priority: 810
+related: [&quot;../code-style/c-style.mdc&quot;]</h2>
+<h1 id="personal-c-style-extensions">Personal C Style Extensions</h1>
+<h2 id="function-organization">Function Organization</h2>
+<p>I prefer organizing functions in &quot;lifecycle&quot; order:</p>
+<ol>
+<li>Initialization functions</li>
+<li>Processing functions</li>
+<li>Cleanup functions</li>
+</ol>
+<pre><code>
+### Integration with External Tools
+
+The rules system connects with:
+
+#### Version Control Integration
+
+```powershell
+# Add a pre-commit hook to verify rule compliance
+Add-Content -Path .git/hooks/pre-commit -Value @&#39;
+#!/bin/sh
+powershell -ExecutionPolicy Bypass -File .cursor/rules/verify-rules.ps1
+if [ $? -ne 0 ]; then
+  echo &quot;Rule verification failed. Please fix issues before committing.&quot;
+  exit 1
+fi
+&#39;@
+</code></pre>
+<h4 id="cicd-pipeline-integration">CI/CD Pipeline Integration</h4>
+<pre><code class="language-yaml"># GitHub Actions workflow example
+name: Validate Rules
+
+on:
+  push:
+    paths:
+      - &#39;.cursor/rules/**&#39;
+
+jobs:
+  verify:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Verify Rules
+        run: powershell -ExecutionPolicy Bypass -File .cursor/rules/verify-rules.ps1
+</code></pre>
+<h4 id="documentation-generation">Documentation Generation</h4>
+<p>Create documentation from rules:</p>
+<pre><code class="language-powershell"># Extract code examples from rules
+Get-ChildItem -Path .cursor/rules -Filter &quot;*.mdc&quot; -Recurse | ForEach-Object {
+    $content = Get-Content $_.FullName -Raw
+    if ($content -match &#39;```c(.*?)```&#39;) {
+        $example = $matches[1]
+        # Process example...
+    }
+}
+</code></pre>
+<h3 id="performance-optimization">Performance Optimization</h3>
+<p>Rules application is optimized through:</p>
+<h4 id="caching">Caching</h4>
+<p>The system remembers which rules apply to previously opened files:</p>
+<pre><code class="language-powershell"># Pseudocode for rule caching
+$cachedRules = @{}
+
+function Get-ApplicableRules($filePath) {
+    if ($cachedRules.ContainsKey($filePath)) {
+        return $cachedRules[$filePath]
+    }
+    
+    $rules = Find-MatchingRules($filePath)
+    $cachedRules[$filePath] = $rules
+    return $rules
+}
+</code></pre>
+<h4 id="lazy-loading">Lazy Loading</h4>
+<p>Rules are only loaded when needed, not all at once:</p>
+<pre><code class="language-powershell">function Load-Rule($rulePath) {
+    # Only parse the rule file when requested
+    if (-not $loadedRules.ContainsKey($rulePath)) {
+        $content = Get-Content $rulePath -Raw
+        $loadedRules[$rulePath] = Parse-RuleContent($content)
+    }
+    
+    return $loadedRules[$rulePath]
+}
+</code></pre>
+<h4 id="rule-indexing">Rule Indexing</h4>
+<p>Fast lookup of applicable rules through indexing:</p>
+<pre><code class="language-powershell"># Build an index of glob patterns to rules
+$globIndex = @{}
+
+Get-ChildItem -Path .cursor/rules -Filter &quot;*.mdc&quot; -Recurse | ForEach-Object {
+    $content = Get-Content $_.FullName -Raw
+    if ($content -match &#39;glob:\s*&quot;(.+?)&quot;&#39;) {
+        $glob = $matches[1]
+        if (-not $globIndex.ContainsKey($glob)) {
+            $globIndex[$glob] = @()
+        }
+        $globIndex[$glob] += $_.FullName
+    }
+}
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues-and-solutions">Common Issues and Solutions</h3>
+<h4 id="rules-not-loading">Rules Not Loading</h4>
+<p><strong>Problem</strong>: Rules aren&#39;t appearing in Cursor for expected file types.</p>
+<p><strong>Solutions</strong>:</p>
+<ol>
+<li><p>Check glob patterns in rule frontmatter</p>
+<pre><code>cat .cursor/rules/activators/file-types.mdc | grep -A 5 &quot;your_file_extension&quot;
+</code></pre>
+</li>
+<li><p>Verify file path matches expected pattern</p>
+<pre><code># For src/ai/behavior.c
+# Glob should match &quot;**/ai/**/*.c&quot;
+</code></pre>
+</li>
+<li><p>Check rule file format</p>
+<pre><code># Ensure frontmatter has correct format with --- delimiters
+</code></pre>
+</li>
+</ol>
+<h4 id="conflicting-rules">Conflicting Rules</h4>
+<p><strong>Problem</strong>: Rules provide contradictory guidance.</p>
+<p><strong>Solutions</strong>:</p>
+<ol>
+<li><p>Check priorities to see which should take precedence</p>
+<pre><code>grep -r &quot;priority:&quot; .cursor/rules/ | sort -n
+</code></pre>
+</li>
+<li><p>Adjust priorities if needed</p>
+<pre><code># Edit the lower-priority rule to defer to the higher one
+# Or adjust priorities to change precedence
+</code></pre>
+</li>
+<li><p>Clarify rule scope with more specific glob patterns</p>
+<pre><code># Change &quot;**/*.c&quot; to &quot;**/&lt;specific_directory&gt;/*.c&quot;
+</code></pre>
+</li>
+</ol>
+<h4 id="self-healing-system-issues">Self-Healing System Issues</h4>
+<p><strong>Problem</strong>: Error analyzer isn&#39;t generating useful rules.</p>
+<p><strong>Solutions</strong>:</p>
+<ol>
+<li><p>Check error log collection</p>
+<pre><code>ls -la logs/build-*.log
+</code></pre>
+</li>
+<li><p>Adjust sensitivity threshold</p>
+<pre><code># Edit $ErrorThreshold in error-analyzer.ps1
+</code></pre>
+</li>
+<li><p>Review error parsing patterns</p>
+<pre><code># Ensure regex patterns match your compiler&#39;s error format
+</code></pre>
+</li>
+</ol>
+<h3 id="getting-help">Getting Help</h3>
+<p>If you encounter issues with the rules system:</p>
+<ol>
+<li><p>Check the logs</p>
+<pre><code>cat .cursor/rules/self-healing/logs/latest.log
+</code></pre>
+</li>
+<li><p>Run the verification script</p>
+<pre><code>powershell -ExecutionPolicy Bypass -File .cursor/rules/verify-rules.ps1
+</code></pre>
+</li>
+<li><p>Contact the development team</p>
+<ul>
+<li>Include specific error messages</li>
+<li>Describe the file types you&#39;re working with</li>
+<li>Mention any recent changes to the rules system</li>
+</ul>
+</li>
+</ol>
+<h3 id="submitting-improvements">Submitting Improvements</h3>
+<p>If you have ideas to improve the rules system:</p>
+<ol>
+<li><p>Create a new rule as a proposal</p>
+<pre><code># Place in your personal directory first
+mkdir -p .cursor/rules/personal/&lt;username&gt;
+touch .cursor/rules/personal/&lt;username&gt;/proposed-rule.mdc
+</code></pre>
+</li>
+<li><p>Test it with your workflow</p>
+</li>
+<li><p>Submit a pull request to add it to the main rules system</p>
+<pre><code>git checkout -b add-new-rule
+git add .cursor/rules/personal/&lt;username&gt;/proposed-rule.mdc
+git commit -m &quot;Add new rule for &lt;purpose&gt;&quot;
+git push origin add-new-rule
+# Create PR through GitHub
+</code></pre>
+</li>
+</ol>
+<hr>
+<p>This comprehensive guide should provide everything needed to understand and effectively use the Ages of Arda Cursor rules system. The system is designed to grow with your project, becoming more refined and useful over time through the self-healing mechanism and developer contributions. </p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lore Database for Ages of Arda | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Lore Database for Ages of Arda</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <p>Original Location: C:\working_directory\ages-project\clean-ages-of-arda.memory-bank\lore\README.md</p>
+<h1 id="lore-database-for-ages-of-arda">Lore Database for Ages of Arda</h1>
+<p>This directory contains lore extracted from Tolkien&#39;s works for use in the Ages of Arda companion system.</p>
+<h2 id="structure">Structure</h2>
+<ul>
+<li><code>lore_index.json</code>: Index of all books in the lore database</li>
+<li><code>first_age/</code>: Lore from the First Age</li>
+<li><code>second_age/</code>: Lore from the Second Age</li>
+<li><code>third_age/</code>: Lore from the Third Age</li>
+</ul>
+<h2 id="books">Books</h2>
+<ul>
+<li>The Hobbit (Third Age, Year 2941)</li>
+<li>The Lord of the Rings (Third Age, Year 3018)</li>
+<li>The Silmarillion (First Age, Year 1)</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

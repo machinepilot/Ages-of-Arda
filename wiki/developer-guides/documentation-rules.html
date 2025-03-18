@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Standards | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Documentation Standards</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <h1 id="documentation-standards">Documentation Standards</h1>
+<h2 id="core-principles">Core Principles</h2>
+<ul>
+<li>Every significant component must be documented</li>
+<li>Documentation lives in <code>docs/_source</code> directory</li>
+<li>Code comments reference documentation by ID</li>
+<li>Use standardized format with proper frontmatter</li>
+</ul>
+<h2 id="document-structure">Document Structure</h2>
+<h3 id="required-frontmatter">Required Frontmatter</h3>
+<pre><code class="language-yaml">---
+title: &quot;Document Title&quot;
+id: &quot;unique-document-identifier&quot;
+section: &quot;development|gameplay&quot;
+category: &quot;guides|architecture|reference&quot;
+created: &quot;YYYY-MM-DD&quot;
+updated: &quot;YYYY-MM-DD&quot;
+version: &quot;MAJOR.MINOR.PATCH&quot;
+---
+</code></pre>
+<h3 id="optional-frontmatter">Optional Frontmatter</h3>
+<pre><code class="language-yaml">contributors: [&quot;developer1&quot;, &quot;developer2&quot;]
+tags: [&quot;tag1&quot;, &quot;tag2&quot;]
+related: [&quot;related-doc-id1&quot;, &quot;related-doc-id2&quot;]
+cursor_rule: true  # If this should become a cursor rule
+github_doc: true   # If this should be published as a GitHub doc
+publish_to: [&quot;wiki&quot;, &quot;github&quot;]  # Output targets
+</code></pre>
+<h2 id="implementation-pattern">Implementation Pattern</h2>
+<h3 id="documentation-references-in-code">Documentation References in Code</h3>
+<pre><code class="language-c">/**
+ * Function description
+ * 
+ * @see docs:dev-gameplay-movement
+ */
+void player_movement_handler(player_t *player, movement_type_t move_type)
+{
+    // Implementation
+}
+</code></pre>
+<h3 id="history-tracking">History Tracking</h3>
+<p>Always maintain a history section at the end of your document:</p>
+<pre><code class="language-markdown">## History
+- **2023-12-01**: Updated section X with clarification on Y
+- **2023-10-15**: Initial document creation
+</code></pre>
+<h2 id="build-process">Build Process</h2>
+<p>Documentation is automatically processed by our build system:</p>
+<ol>
+<li>Changes in source files trigger documentation rebuild</li>
+<li>Documentation is compiled to multiple formats</li>
+<li>Output is generated for wiki, cursor rules, and GitHub</li>
+</ol>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

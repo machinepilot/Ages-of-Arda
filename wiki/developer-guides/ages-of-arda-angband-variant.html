@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ages of Arda - Angband Variant | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Ages of Arda - Angband Variant</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <p>Original Location: C:\working_directory\ages-project\clean-ages-of-arda\angband-doc-agent\README.md</p>
+<h1 id="ages-of-arda---angband-variant">Ages of Arda - Angband Variant</h1>
+<h2 id="overview">Overview</h2>
+<p>Ages of Arda is an Angband variant that integrates AI-driven companions through the Model Context Protocol (MCP). The game spans the Three Ages of Arda (First, Second, and Third Age) from Tolkien&#39;s legendarium, with each age featuring unique companions who guide the player through their journey.</p>
+<p>This project implements a companion system where players interact with notable characters from Tolkien&#39;s world. As players progress through the game and inevitably die, they are reborn in a new era with a new companion, creating a sense of continuity and progression across multiple playthroughs.</p>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li><strong>Timeline-Based Progression</strong>: The game spans the Three Ages of Arda, with each age featuring 10 unique companions.</li>
+<li><strong>AI-Driven Companions</strong>: Companions provide contextual dialogue, guidance, and lore based on the current game state.</li>
+<li><strong>Relationship System</strong>: Build relationships with companions through gameplay actions, unlocking deeper dialogue and assistance.</li>
+<li><strong>Persistent Memory</strong>: The game remembers your previous incarnations and relationships, creating a sense of continuity.</li>
+<li><strong>MCP Integration</strong>: Utilizes the Model Context Protocol to enable AI-driven gameplay elements.</li>
+<li><strong>Lore Management</strong>: Rich lore database from Tolkien&#39;s works with intelligent retrieval and generation.</li>
+</ul>
+<h2 id="project-structure">Project Structure</h2>
+<pre><code>angband-doc-agent/
+├── memory-bank/               # Memory storage for companions and timeline
+│   ├── ages/                  # Timeline information
+│   ├── companions/            # Companion profiles
+│   │   ├── first_age/         # First Age companions
+│   │   ├── second_age/        # Second Age companions
+│   │   └── third_age/         # Third Age companions
+│   ├── lore/                  # Lore database from Tolkien&#39;s works
+│   │   ├── first_age/         # First Age lore
+│   │   ├── second_age/        # Second Age lore
+│   │   └── third_age/         # Third Age lore
+│   └── player/                # Player relationship data
+├── src/                       # Source code
+│   ├── game_integration/      # C code for Angband integration
+│   └── mcp/                   # MCP server implementation
+│       ├── companions/        # Companion dialogue generation
+│       ├── lore/              # Lore management system
+│       │   ├── narrative_generator.py  # Narrative generation using lore
+│       │   └── lore_integration.py     # MCP integration for lore
+│       └── server/            # MCP server endpoints
+└── tests/                     # Test scripts
+</code></pre>
+<h2 id="companions">Companions</h2>
+<p>The game features 30 companions across the Three Ages of Arda:</p>
+<h3 id="first-age-companions">First Age Companions</h3>
+<ol>
+<li>Finrod Felagund (Year 1)</li>
+<li>Beleg Cúthalion (Year 60)</li>
+<li>Mablung of the Heavy Hand (Year 120)</li>
+<li>Huan (Year 180)</li>
+<li>Húrin Thalion (Year 240)</li>
+<li>Maedhros (Year 300)</li>
+<li>Azaghâl (Year 360)</li>
+<li>Tuor (Year 420)</li>
+<li>Eärendil (Year 480)</li>
+<li>Elrond (Year 540)</li>
+</ol>
+<h3 id="second-age-companions">Second Age Companions</h3>
+<ol>
+<li>Celebrimbor (Year 350)</li>
+<li>Tar-Aldarion (Year 700)</li>
+<li>Narvi (Year 1050)</li>
+<li>Galadriel (Year 1400)</li>
+<li>Círdan (Year 1750)</li>
+<li>Glorfindel (Year 2100)</li>
+<li>Elendil (Year 2450)</li>
+<li>Isildur (Year 2800)</li>
+<li>Anárion (Year 3150)</li>
+<li>Gil-galad (Year 3400)</li>
+</ol>
+<h3 id="third-age-companions">Third Age Companions</h3>
+<ol>
+<li>Eärnur (Year 300)</li>
+<li>Fram (Year 600)</li>
+<li>Thorin I (Year 900)</li>
+<li>Arveleg I (Year 1200)</li>
+<li>Malbeth the Seer (Year 1500)</li>
+<li>Aragorn I (Year 1800)</li>
+<li>Gandalf (Year 2100)</li>
+<li>Thorin Oakenshield (Year 2400)</li>
+<li>Denethor I (Year 2700)</li>
+<li>Aragorn II/Strider (Year 3000)</li>
+</ol>
+<h2 id="mcp-integration">MCP Integration</h2>
+<p>The Ages of Arda variant integrates with the Model Context Protocol (MCP) to enable AI-driven gameplay elements. The MCP server provides the following endpoints:</p>
+<h3 id="companion-system">Companion System</h3>
+<ul>
+<li><code>ages/companion/dialogue</code>: Generate dialogue for the current companion</li>
+<li><code>ages/companion/info</code>: Get information about a companion</li>
+<li><code>ages/relationship/update</code>: Update the relationship level with a companion</li>
+</ul>
+<h3 id="lore-system">Lore System</h3>
+<ul>
+<li><code>ages/lore/character</code>: Get lore about a character</li>
+<li><code>ages/lore/location</code>: Get lore about a location</li>
+<li><code>ages/lore/artifact</code>: Get lore about an artifact</li>
+<li><code>ages/lore/random</code>: Get random lore content</li>
+<li><code>ages/lore/age/set</code>: Set the current age</li>
+<li><code>ages/lore/age/get</code>: Get the current age</li>
+</ul>
+<h3 id="narrative-generation">Narrative Generation</h3>
+<ul>
+<li><code>ages/narrative/location</code>: Generate narrative descriptions for locations</li>
+<li><code>ages/narrative/companion</code>: Generate companion dialogue based on lore</li>
+<li><code>ages/narrative/quest</code>: Generate quests informed by lore</li>
+</ul>
+<h3 id="timeline-management">Timeline Management</h3>
+<ul>
+<li><code>ages/timeline/info</code>: Get information about the current timeline</li>
+<li><code>ages/player/death</code>: Handle player death and advance the timeline</li>
+</ul>
+<h2 id="game-integration">Game Integration</h2>
+<p>The Ages of Arda variant integrates with the Angband game through a C module that handles game events and communicates with the MCP server. The integration module provides the following features:</p>
+<ul>
+<li>Initialization and cleanup of the Ages of Arda integration</li>
+<li>Dialogue generation based on game context</li>
+<li>Relationship level tracking</li>
+<li>Timeline advancement on player death</li>
+<li>Event handling for game events (entering levels, finding artifacts, killing monsters, etc.)</li>
+<li>Lore retrieval and generation for game world elements</li>
+</ul>
+<h2 id="development">Development</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Python 3.8 or higher</li>
+<li>Angband source code</li>
+<li>MCP server implementation</li>
+</ul>
+<h3 id="setup">Setup</h3>
+<ol>
+<li>Clone the repository</li>
+<li>Install dependencies: <code>pip install -r requirements.txt</code></li>
+<li>Start the MCP server: <code>python src/mcp/server/main.py</code></li>
+<li>Build Angband with the Ages of Arda integration</li>
+</ol>
+<h3 id="testing">Testing</h3>
+<p>Run the test suite to verify the functionality of the Ages of Arda integration:</p>
+<pre><code>python -m unittest discover tests
+</code></pre>
+<h2 id="license">License</h2>
+<p>This project is licensed under the MIT License - see the LICENSE file for details.</p>
+<h2 id="acknowledgements">Acknowledgements</h2>
+<ul>
+<li>The Angband development team</li>
+<li>J.R.R. Tolkien for creating the rich world of Middle-earth</li>
+<li>The MCP project for enabling AI-driven gameplay</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

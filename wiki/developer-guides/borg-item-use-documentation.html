@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borg Item Use Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Borg Item Use Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="borg-item-use-documentation">Borg Item Use Documentation</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-item-use.h</code> is a header file that is part of the Borg AI system in Angband. It contains function declarations and enums related to the Borg&#39;s decision-making process for using items such as potions, scrolls, wands, staves, rods, rings, and dragon armor. The functions in this file implement the logic for the Borg to determine when and how to use these items effectively.</p>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="enum-borg_need">enum borg_need</h3>
+<p>An enumeration representing the Borg&#39;s need for using an item.</p>
+<ul>
+<li><code>BORG_NO_NEED</code>: The Borg does not need to use the item.</li>
+<li><code>BORG_MET_NEED</code>: The Borg&#39;s need for the item has been met.</li>
+<li><code>BORG_UNMET_NEED</code>: The Borg has an unmet need for the item.</li>
+</ul>
+<h2 id="global-variables">Global Variables</h2>
+<p>This header file does not contain any global variables.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_quaff_critbool-no_check">borg_quaff_crit(bool no_check)</h3>
+<ul>
+<li><strong>Purpose</strong>: Attempt to quaff a potion of cure critical wounds.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>no_check</code> (bool): If true, skip certain checks before quaffing the potion.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the potion was successfully quaffed, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if the potion is quaffed.</li>
+</ul>
+<h3 id="borg_quaff_potionint-sval">borg_quaff_potion(int sval)</h3>
+<ul>
+<li><strong>Purpose</strong>: Attempt to quaff the given potion (identified by its sval).</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>sval</code> (int): The sval (sub-type) of the potion to quaff.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the potion was successfully quaffed, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if the potion is quaffed.</li>
+</ul>
+<h3 id="borg_quaff_unknown">borg_quaff_unknown()</h3>
+<ul>
+<li><strong>Purpose</strong>: Attempt to quaff an unknown potion.</li>
+<li><strong>Parameters</strong>: None.</li>
+<li><strong>Return value</strong>: True if an unknown potion was successfully quaffed, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if a potion is quaffed.</li>
+</ul>
+<h3 id="borg_read_scrollint-sval">borg_read_scroll(int sval)</h3>
+<ul>
+<li><strong>Purpose</strong>: Attempt to read the given scroll (identified by its sval).</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>sval</code> (int): The sval (sub-type) of the scroll to read.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the scroll was successfully read, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if the scroll is read.</li>
+</ul>
+<h3 id="borg_read_unknown">borg_read_unknown()</h3>
+<ul>
+<li><strong>Purpose</strong>: Attempt to read an unknown scroll.</li>
+<li><strong>Parameters</strong>: None.</li>
+<li><strong>Return value</strong>: True if an unknown scroll was successfully read, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if a scroll is read.</li>
+</ul>
+<h3 id="borg_eatint-tval-int-sval">borg_eat(int tval, int sval)</h3>
+<ul>
+<li><strong>Purpose</strong>: Attempt to eat the given food or mushroom.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>tval</code> (int): The tval (type) of the item to eat (food or mushroom).</li>
+<li><code>sval</code> (int): The sval (sub-type) of the item to eat.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the item was successfully eaten, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if the item is eaten.</li>
+</ul>
+<h3 id="borg_eat_unknown">borg_eat_unknown()</h3>
+<ul>
+<li><strong>Purpose</strong>: Attempt to eat an unknown food or mushroom.</li>
+<li><strong>Parameters</strong>: None.</li>
+<li><strong>Return value</strong>: True if an unknown food or mushroom was successfully eaten, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if an item is eaten.</li>
+</ul>
+<h3 id="borg_eat_food_any">borg_eat_food_any()</h3>
+<ul>
+<li><strong>Purpose</strong>: Prevent starvation by any means possible (eating any food or mushroom).</li>
+<li><strong>Parameters</strong>: None.</li>
+<li><strong>Return value</strong>: True if the Borg successfully ate something to prevent starvation, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if an item is eaten.</li>
+</ul>
+<h3 id="borg_equips_rodint-sval">borg_equips_rod(int sval)</h3>
+<ul>
+<li><strong>Purpose</strong>: Check if the Borg is currently equipped with a rod of the given sval.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>sval</code> (int): The sval (sub-type) of the rod to check for.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the Borg is equipped with the specified rod, false otherwise.</li>
+</ul>
+<h3 id="borg_zap_rodint-sval">borg_zap_rod(int sval)</h3>
+<ul>
+<li><strong>Purpose</strong>: Attempt to zap (use) the given charged rod (identified by its sval).</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>sval</code> (int): The sval (sub-type) of the rod to zap.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the rod was successfully zapped, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if the rod is zapped.</li>
+</ul>
+<h3 id="borg_use_staffint-sval">borg_use_staff(int sval)</h3>
+<ul>
+<li><strong>Purpose</strong>: Attempt to use the given charged staff (identified by its sval).</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>sval</code> (int): The sval (sub-type) of the staff to use.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the staff was successfully used, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if the staff is used.</li>
+</ul>
+<h3 id="borg_use_unknown">borg_use_unknown()</h3>
+<ul>
+<li><strong>Purpose</strong>: Attempt to use an unknown staff.</li>
+<li><strong>Parameters</strong>: None.</li>
+<li><strong>Return value</strong>: True if an unknown staff was successfully used, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if a staff is used.</li>
+</ul>
+<h3 id="borg_use_staff_failint-sval">borg_use_staff_fail(int sval)</h3>
+<ul>
+<li><strong>Purpose</strong>: Attempt to use the given charged staff (identified by its sval) and make a failure check on it.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>sval</code> (int): The sval (sub-type) of the staff to use.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the staff was successfully used (and passed the failure check), false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if the staff is used.</li>
+</ul>
+<h3 id="borg_equips_staff_failint-sval">borg_equips_staff_fail(int sval)</h3>
+<ul>
+<li><strong>Purpose</strong>: Check if the Borg is currently equipped with a staff of the given sval and make a &quot;will I fail&quot; check on it.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>sval</code> (int): The sval (sub-type) of the staff to check for.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the Borg is equipped with the specified staff and it passes the failure check, false otherwise.</li>
+</ul>
+<h3 id="borg_aim_wandint-sval">borg_aim_wand(int sval)</h3>
+<ul>
+<li><strong>Purpose</strong>: Attempt to aim (use) the given charged wand (identified by its sval).</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>sval</code> (int): The sval (sub-type) of the wand to aim.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the wand was successfully aimed, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if the wand is aimed.</li>
+</ul>
+<h3 id="borg_equips_ringint-ring_sval">borg_equips_ring(int ring_sval)</h3>
+<ul>
+<li><strong>Purpose</strong>: Check if the Borg is currently equipped with a ring of the given sval and make a failure check on it.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>ring_sval</code> (int): The sval (sub-type) of the ring to check for.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the Borg is equipped with the specified ring and it passes the failure check, false otherwise.</li>
+</ul>
+<h3 id="borg_activate_ringint-ring_sval">borg_activate_ring(int ring_sval)</h3>
+<ul>
+<li><strong>Purpose</strong>: Attempt to activate (use) the given ring (identified by its sval).</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>ring_sval</code> (int): The sval (sub-type) of the ring to activate.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the ring was successfully activated, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if the ring is activated.</li>
+</ul>
+<h3 id="borg_equips_dragonint-drag_sval">borg_equips_dragon(int drag_sval)</h3>
+<ul>
+<li><strong>Purpose</strong>: Check if the Borg is currently equipped with dragon armor of the given sval and make a failure check on it.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>drag_sval</code> (int): The sval (sub-type) of the dragon armor to check for.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the Borg is equipped with the specified dragon armor and it passes the failure check, false otherwise.</li>
+</ul>
+<h3 id="borg_activate_dragonint-drag_sval">borg_activate_dragon(int drag_sval)</h3>
+<ul>
+<li><strong>Purpose</strong>: Attempt to activate (use) the given dragon armor (identified by its sval).</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>drag_sval</code> (int): The sval (sub-type) of the dragon armor to activate.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the dragon armor was successfully activated, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if the dragon armor is activated.</li>
+</ul>
+<h3 id="borg_activate_itemint-activation">borg_activate_item(int activation)</h3>
+<ul>
+<li><strong>Purpose</strong>: Attempt to activate (use) the given item (identified by its activation effect).</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>activation</code> (int): The activation effect of the item to use.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the item was successfully activated, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if the item is activated.</li>
+</ul>
+<h3 id="borg_equips_itemint-activation-bool-check_charge">borg_equips_item(int activation, bool check_charge)</h3>
+<ul>
+<li><strong>Purpose</strong>: Check if the Borg is currently equipped with an item that has the given activation effect.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>activation</code> (int): The activation effect to check for.</li>
+<li><code>check_charge</code> (bool): If true, also check if the item is charged (has enough charges to be used).</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the Borg is equipped with an item that has the specified activation effect (and is charged, if <code>check_charge</code> is true), false otherwise.</li>
+</ul>
+<h3 id="borg_activate_failureint-tval-int-sval">borg_activate_failure(int tval, int sval)</h3>
+<ul>
+<li><strong>Purpose</strong>: Return the relative chance for failure when activating an item of the given tval and sval.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>tval</code> (int): The tval (type) of the item.</li>
+<li><code>sval</code> (int): The sval (sub-type) of the item.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: An integer representing the relative chance of failure when activating the item (higher values indicate a higher chance of failure).</li>
+</ul>
+<h3 id="borg_use_things">borg_use_things()</h3>
+<ul>
+<li><strong>Purpose</strong>: Use things (items) in a useful, but non-essential, manner.</li>
+<li><strong>Parameters</strong>: None.</li>
+<li><strong>Return value</strong>: True if the Borg successfully used one or more items, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if items are used.</li>
+</ul>
+<h3 id="borg_recharging">borg_recharging()</h3>
+<ul>
+<li><strong>Purpose</strong>: Attempt to recharge items (wands, staves, rods) in the Borg&#39;s inventory.</li>
+<li><strong>Parameters</strong>: None.</li>
+<li><strong>Return value</strong>: True if the Borg successfully recharged one or more items, false otherwise.</li>
+<li><strong>Side effects</strong>: The Borg&#39;s state and inventory are updated if items are recharged.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>The functions in this file implement various decision-making algorithms for the Borg AI to determine when and how to use items effectively. These algorithms take into account factors such as the Borg&#39;s current state, inventory, and the specific effects of each item type.</p>
+<p>The item usage logic is based on the Borg&#39;s assessment of its needs and the potential benefits and risks associated with using each item. The Borg considers aspects such as healing, buffing, escaping dangerous situations, and maintaining its overall survivability and performance.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>This header file depends on the following files:</p>
+<ul>
+<li><code>angband.h</code>: The main Angband header file, which must be included before this file.</li>
+</ul>
+<p>Other files in the Borg AI system may depend on this header file to access the item usage functions and enums.</p>
+<h2 id="historical-context">Historical Context</h2>
+<p>The Borg AI system was developed as an autonomous player for Angband, designed to make intelligent decisions and navigate the game&#39;s challenges effectively. The item usage logic implemented in this file is a critical component of the Borg&#39;s decision-making process, enabling it to use items strategically to improve its chances of survival and success.</p>
+<p>The code in this file has evolved over time, with contributions from various developers, including Ben Harrison, James E. Wilson, Robert A. Koeneke, Andi Sidwell, Chris Carr, Ed Graham, and Erik Osheim, among others. The copyright notices at the beginning of the file acknowledge their contributions and the licensing terms under which the code is distributed.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

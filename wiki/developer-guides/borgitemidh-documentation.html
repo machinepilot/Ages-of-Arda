@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>borg-item-id.h Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>borg-item-id.h Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="borg-item-idh-documentation">borg-item-id.h Documentation</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-item-id.h</code> is a header file in the Angband roguelike game codebase, specifically within the &quot;borg&quot; AI module. This file contains function declarations related to identifying the properties and capabilities of game items, which is a key aspect of the borg AI decision-making process.</p>
+<p>The borg AI needs to understand the items it encounters in the dungeon in order to make informed decisions about equiping, using, and managing its inventory. The functions declared here provide an interface for the borg to query the identification status of items.</p>
+<h2 id="data-structures">Data Structures</h2>
+<p>This header file does not define any structs or typedefs. It relies on the <code>borg_item</code> struct which is defined in <code>borg-item.h</code>.</p>
+<h2 id="global-variables">Global Variables</h2>
+<p>This file does not declare any global variables.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_object_fully_id"><code>borg_object_fully_id</code></h3>
+<pre><code class="language-c">extern bool borg_object_fully_id(void);
+</code></pre>
+<ul>
+<li><strong>Purpose:</strong> This function checks whether there are any unidentified items in the borg&#39;s inventory.</li>
+<li><strong>Parameters:</strong> None</li>
+<li><strong>Return Value:</strong> Returns <code>true</code> if all items are fully identified, <code>false</code> otherwise.</li>
+<li><strong>Side Effects:</strong> None</li>
+<li><strong>Related Functions:</strong> Likely uses functions from <code>borg-item.c</code> to inspect the inventory.</li>
+<li><strong>Game Mechanics:</strong> In Angband, items can have unknown properties until they are identified via scrolls, spells, or usage. The borg needs to track identification status to decide when to use identification resources.</li>
+</ul>
+<h3 id="borg_item_note_needs_id"><code>borg_item_note_needs_id</code></h3>
+<pre><code class="language-c">extern bool borg_item_note_needs_id(const borg_item *item);
+</code></pre>
+<ul>
+<li><strong>Purpose:</strong> Checks whether a given item needs to be identified based on its inscription.</li>
+<li><strong>Parameters:</strong><ul>
+<li><code>item</code>: A pointer to a <code>borg_item</code> struct representing the item to check.</li>
+</ul>
+</li>
+<li><strong>Return Value:</strong> Returns <code>true</code> if the item has an inscription indicating it needs identification, <code>false</code> otherwise.</li>
+<li><strong>Side Effects:</strong> None</li>
+<li><strong>Related Functions:</strong> Likely implemented in <code>borg-item.c</code>.</li>
+<li><strong>Game Mechanics:</strong> In Angband, players can manually inscribe items with notes. The borg uses the <code>{??}</code> inscription to mark items that need identification. This function checks for that inscription.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>This header does not implement any complex algorithms directly. The algorithmic complexity is encapsulated in the corresponding <code>.c</code> file.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>Includes <code>angband.h</code> for core game definitions.</li>
+<li>Includes <code>borg-item.h</code> for the <code>borg_item</code> struct definition.</li>
+<li>The functions declared here are likely implemented in <code>borg-item.c</code>.</li>
+<li>Other borg AI source files probably call the functions declared here.</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>The borg AI was developed as an &quot;Automatic Winner&quot; for Angband - a program that plays the game autonomously with the goal of winning. It requires heuristics and decision-making logic for all aspects of the game, including inventory management and item identification.</p>
+<p>The comments indicate this code incorporates work from the late 1990s to late 2000s by several contributors. The borg AI was a significant achievement in demonstrating the kind of complex behavior that can be programmed into a roguelike game AI.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

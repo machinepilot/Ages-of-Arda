@@ -1,8 +1,10 @@
 ---
-description: 
-globs: 
-alwaysApply: false
+title: "Untitled Rule"
+glob: "**/*"
+priority: 500
+related: []
 ---
+
 ---
 title: Multi-Agent System Guidelines
 glob: "**/ai/agents/**,**/agents/**"
@@ -109,4 +111,4 @@ process_player_action_with_agents(game_state_t *state, player_action_t *action)
 - Prioritize agent processing based on importance
 - Implement timeouts for all agent operations
 - Use cached results when appropriate
-- Monitor token usage and latency 
+- Monitor token usage and latency  

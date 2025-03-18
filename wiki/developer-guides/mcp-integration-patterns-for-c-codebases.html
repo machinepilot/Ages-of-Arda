@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Integration Patterns for C Codebases | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>MCP Integration Patterns for C Codebases</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="mcp-integration-patterns-for-c-codebases">MCP Integration Patterns for C Codebases</h1>
+<h2 id="overview">Overview</h2>
+<p>This document outlines specific patterns and strategies for integrating Model Context Protocol (MCP) into C codebases, with a focus on Angband&#39;s architecture. These patterns enable AI-powered narrative generation while preserving the performance and structure of the original game.</p>
+<h2 id="c-client-implementation-patterns">C Client Implementation Patterns</h2>
+<h3 id="http-client-pattern">HTTP Client Pattern</h3>
+<p>A lightweight HTTP client implementation for C that can communicate with the MCP server:</p>
+<pre><code class="language-c">typedef struct mcp_client {
+    char server_url[256];
+    char api_key[64];
+    int timeout_ms;
+    // Optional connection pool/cache
+    void *connection_cache;
+} mcp_client_t;
+
+typedef struct mcp_response {
+    char *content;
+    size_t length;
+    int status_code;
+    char error_message[256];
+} mcp_response_t;
+
+// Initialize client
+mcp_client_t *mcp_client_init(const char *server_url, const char *api_key);
+
+// Make MCP tool request
+mcp_response_t *mcp_invoke_tool(mcp_client_t *client, const char *tool_name, 
+                             const char *json_params);
+
+// Free response resources
+void mcp_response_free(mcp_response_t *response);
+
+// Cleanup client
+void mcp_client_free(mcp_client_t *client);
+</code></pre>
+<h3 id="asynchronous-request-pattern">Asynchronous Request Pattern</h3>
+<p>Non-blocking requests to prevent game slowdown during API calls:</p>
+<pre><code class="language-c">typedef void (*mcp_callback_fn)(mcp_response_t *response, void *user_data);
+
+// Asynchronous tool invocation
+void mcp_invoke_tool_async(mcp_client_t *client, const char *tool_name,
+                       const char *json_params, mcp_callback_fn callback,
+                       void *user_data);
+
+// Check for completed requests
+void mcp_process_pending_requests(mcp_client_t *client);
+</code></pre>
+<h3 id="json-handling-pattern">JSON Handling Pattern</h3>
+<p>Lightweight JSON generation and parsing for C:</p>
+<pre><code class="language-c">// Simple JSON builder
+typedef struct json_builder json_builder_t;
+
+json_builder_t *json_builder_create();
+void json_builder_add_string(json_builder_t *builder, const char *key, const char *value);
+void json_builder_add_int(json_builder_t *builder, const char *key, int value);
+void json_builder_add_bool(json_builder_t *builder, const char *key, bool value);
+void json_builder_start_array(json_builder_t *builder, const char *key);
+void json_builder_end_array(json_builder_t *builder);
+void json_builder_start_object(json_builder_t *builder, const char *key);
+void json_builder_end_object(json_builder_t *builder);
+char *json_builder_get_string(json_builder_t *builder);
+void json_builder_free(json_builder_t *builder);
+
+// Simple JSON parser
+typedef struct json_parser json_parser_t;
+
+json_parser_t *json_parser_create(const char *json_str);
+const char *json_parser_get_string(json_parser_t *parser, const char *key);
+int json_parser_get_int(json_parser_t *parser, const char *key);
+bool json_parser_get_bool(json_parser_t *parser, const char *key);
+void json_parser_free(json_parser_t *parser);
+</code></pre>
+<h2 id="game-integration-patterns">Game Integration Patterns</h2>
+<h3 id="event-hook-pattern">Event Hook Pattern</h3>
+<p>Strategic placement of hooks in the game code to trigger narrative generation:</p>
+<pre><code class="language-c">// Hook definition
+typedef void (*narrative_hook_fn)(game_event_type event, game_event_data *data);
+
+// Register hook for specific event type
+void register_narrative_hook(game_event_type event, narrative_hook_fn hook);
+
+// Example event types for narrative triggers
+typedef enum {
+    EVENT_PLAYER_LEVEL_UP,
+    EVENT_MONSTER_DEATH,
+    EVENT_FIND_ARTIFACT,
+    EVENT_ENTER_NEW_LEVEL,
+    EVENT_NEAR_DEATH_ESCAPE,
+    EVENT_QUEST_COMPLETE,
+    // ... other narrative-worthy events
+} narrative_event_type;
+
+// Example hook implementation
+void on_monster_death(game_event_type event, game_event_data *data) {
+    monster_type *m_ptr = data-&gt;monster;
+    
+    // Only trigger for noteworthy monsters
+    if (m_ptr-&gt;level &gt;= player-&gt;level + 10 || m_ptr-&gt;is_unique) {
+        char json_params[1024];
+        
+        // Build JSON parameters for the narrative request
+        sprintf(json_params, 
+                &quot;{&quot;
+                &quot;\&quot;event\&quot;:\&quot;monster_death\&quot;,&quot;
+                &quot;\&quot;monster_name\&quot;:\&quot;%s\&quot;,&quot;
+                &quot;\&quot;monster_level\&quot;:%d,&quot;
+                &quot;\&quot;unique\&quot;:%s,&quot;
+                &quot;\&quot;player_name\&quot;:\&quot;%s\&quot;,&quot;
+                &quot;\&quot;player_level\&quot;:%d,&quot;
+                &quot;\&quot;player_class\&quot;:\&quot;%s\&quot;,&quot;
+                &quot;\&quot;dungeon_level\&quot;:%d&quot;
+                &quot;}&quot;,
+                m_ptr-&gt;name, m_ptr-&gt;level, 
+                m_ptr-&gt;is_unique ? &quot;true&quot; : &quot;false&quot;,
+                player-&gt;name, player-&gt;level, 
+                player-&gt;class-&gt;name, player-&gt;depth);
+        
+        // Queue async request
+        mcp_invoke_tool_async(mcp_client, &quot;generateNarrative&quot;, 
+                          json_params, on_narrative_received, NULL);
+    }
+}
+</code></pre>
+<h3 id="narrative-display-pattern">Narrative Display Pattern</h3>
+<p>Integration with the game&#39;s text display system:</p>
+<pre><code class="language-c">// Narrative text display structure
+typedef struct {
+    char text[1024];
+    int importance;  // How important this narrative is (affects display duration)
+    bool is_spoken; // Whether this is spoken dialog from the Bard
+    char speaker[32]; // Name of speaker if is_spoken is true
+} narrative_text_t;
+
+// Queue of pending narratives
+narrative_text_t narrative_queue[NARRATIVE_QUEUE_SIZE];
+int narrative_queue_size = 0;
+
+// Add narrative to display queue
+void queue_narrative(const char *text, int importance, bool is_spoken, const char *speaker) {
+    if (narrative_queue_size &lt; NARRATIVE_QUEUE_SIZE) {
+        narrative_text_t *narrative = &amp;narrative_queue[narrative_queue_size++];
+        my_strcpy(narrative-&gt;text, text, sizeof(narrative-&gt;text));
+        narrative-&gt;importance = importance;
+        narrative-&gt;is_spoken = is_spoken;
+        
+        if (is_spoken &amp;&amp; speaker) {
+            my_strcpy(narrative-&gt;speaker, speaker, sizeof(narrative-&gt;speaker));
+        } else {
+            narrative-&gt;speaker[0] = &#39;\0&#39;;
+        }
+    }
+}
+
+// Process narratives during game loop
+void process_narrative_queue(void) {
+    if (narrative_queue_size &gt; 0) {
+        narrative_text_t *narrative = &amp;narrative_queue[0];
+        
+        // Display the narrative text appropriately
+        if (narrative-&gt;is_spoken) {
+            display_message(&quot;%s: %s&quot;, narrative-&gt;speaker, narrative-&gt;text);
+        } else {
+            display_message(&quot;%s&quot;, narrative-&gt;text);
+        }
+        
+        // Remove from queue
+        memmove(&amp;narrative_queue[0], &amp;narrative_queue[1], 
+                (narrative_queue_size - 1) * sizeof(narrative_text_t));
+        narrative_queue_size--;
+    }
+}
+</code></pre>
+<h3 id="state-serialization-pattern">State Serialization Pattern</h3>
+<p>Efficiently packaging game state for narrative context:</p>
+<pre><code class="language-c">// Build a compact representation of relevant game state
+char *build_game_state_json(void) {
+    json_builder_t *builder = json_builder_create();
+    
+    // Player information
+    json_builder_start_object(builder, &quot;player&quot;);
+    json_builder_add_string(builder, &quot;name&quot;, player-&gt;name);
+    json_builder_add_int(builder, &quot;level&quot;, player-&gt;level);
+    json_builder_add_string(builder, &quot;race&quot;, player-&gt;race-&gt;name);
+    json_builder_add_string(builder, &quot;class&quot;, player-&gt;class-&gt;name);
+    json_builder_add_int(builder, &quot;hp&quot;, player-&gt;chp);
+    json_builder_add_int(builder, &quot;max_hp&quot;, player-&gt;mhp);
+    json_builder_end_object(builder);
+    
+    // Location information
+    json_builder_start_object(builder, &quot;location&quot;);
+    json_builder_add_int(builder, &quot;dungeon_level&quot;, player-&gt;depth);
+    json_builder_add_string(builder, &quot;level_feeling&quot;, describe_level_feeling());
+    json_builder_end_object(builder);
+    
+    // Recent events (from circular buffer)
+    json_builder_start_array(builder, &quot;recent_events&quot;);
+    for (int i = 0; i &lt; recent_event_count; i++) {
+        json_builder_start_object(builder, NULL);
+        json_builder_add_string(builder, &quot;type&quot;, recent_events[i].type);
+        json_builder_add_string(builder, &quot;description&quot;, recent_events[i].description);
+        json_builder_add_int(builder, &quot;turn&quot;, recent_events[i].turn);
+        json_builder_end_object(builder);
+    }
+    json_builder_end_array(builder);
+    
+    char *result = json_builder_get_string(builder);
+    json_builder_free(builder);
+    
+    return result;
+}
+</code></pre>
+<h3 id="memory-persistence-pattern">Memory Persistence Pattern</h3>
+<p>Save and load narrative context across game sessions:</p>
+<pre><code class="language-c">// Save narrative context to savefile
+void save_narrative_context(savefile_ptr file) {
+    // Write version info
+    wr_u16b(file, NARRATIVE_CONTEXT_VERSION);
+    
+    // Write event history size
+    wr_u16b(file, recent_event_count);
+    
+    // Write each event
+    for (int i = 0; i &lt; recent_event_count; i++) {
+        wr_string(file, recent_events[i].type);
+        wr_string(file, recent_events[i].description);
+        wr_u32b(file, recent_events[i].turn);
+    }
+    
+    // Write relationship data
+    wr_u16b(file, relationship_count);
+    for (int i = 0; i &lt; relationship_count; i++) {
+        wr_string(file, relationships[i].entity_name);
+        wr_s16b(file, relationships[i].affinity);
+        wr_string(file, relationships[i].last_interaction);
+    }
+}
+
+// Load narrative context from savefile
+void load_narrative_context(savefile_ptr file) {
+    // Read version info
+    u16b version = rd_u16b(file);
+    
+    // Read event history
+    recent_event_count = rd_u16b(file);
+    for (int i = 0; i &lt; recent_event_count; i++) {
+        recent_events[i].type = rd_string(file);
+        recent_events[i].description = rd_string(file);
+        recent_events[i].turn = rd_u32b(file);
+    }
+    
+    // Read relationship data
+    relationship_count = rd_u16b(file);
+    for (int i = 0; i &lt; relationship_count; i++) {
+        relationships[i].entity_name = rd_string(file);
+        relationships[i].affinity = rd_s16b(file);
+        relationships[i].last_interaction = rd_string(file);
+    }
+}
+</code></pre>
+<h2 id="performance-optimization-patterns">Performance Optimization Patterns</h2>
+<h3 id="request-batching-pattern">Request Batching Pattern</h3>
+<p>Group multiple narrative requests to reduce API calls:</p>
+<pre><code class="language-c">// Narrative request structure
+typedef struct {
+    narrative_event_type event;
+    void *event_data;
+    game_turn_t game_turn;
+    mcp_callback_fn callback;
+    void *user_data;
+} narrative_request_t;
+
+// Batch of pending requests
+narrative_request_t request_batch[MAX_BATCH_SIZE];
+int batch_size = 0;
+
+// Add request to batch
+void batch_narrative_request(narrative_event_type event, void *event_data,
+                          mcp_callback_fn callback, void *user_data) {
+    if (batch_size &lt; MAX_BATCH_SIZE) {
+        narrative_request_t *req = &amp;request_batch[batch_size++];
+        req-&gt;event = event;
+        req-&gt;event_data = event_data;
+        req-&gt;game_turn = game_turn;
+        req-&gt;callback = callback;
+        req-&gt;user_data = user_data;
+    }
+}
+
+// Process batched requests
+void process_narrative_batch(void) {
+    if (batch_size == 0)
+        return;
+        
+    // Only process batch periodically or when full
+    if (batch_size &lt; MAX_BATCH_SIZE &amp;&amp; (game_turn % BATCH_PROCESSING_INTERVAL != 0))
+        return;
+    
+    // Build combined JSON for all requests
+    json_builder_t *builder = json_builder_create();
+    json_builder_start_array(builder, &quot;events&quot;);
+    
+    for (int i = 0; i &lt; batch_size; i++) {
+        narrative_request_t *req = &amp;request_batch[i];
+        json_builder_start_object(builder, NULL);
+        json_builder_add_string(builder, &quot;type&quot;, event_type_to_string(req-&gt;event));
+        
+        // Serialize event-specific data
+        switch (req-&gt;event) {
+            case EVENT_MONSTER_DEATH:
+                add_monster_death_data(builder, req-&gt;event_data);
+                break;
+            case EVENT_FIND_ARTIFACT:
+                add_artifact_data(builder, req-&gt;event_data);
+                break;
+            // ... other event types
+        }
+        
+        json_builder_add_int(builder, &quot;turn&quot;, req-&gt;game_turn);
+        json_builder_end_object(builder);
+    }
+    
+    json_builder_end_array(builder);
+    
+    // Add current game state
+    json_builder_add_string(builder, &quot;game_state&quot;, build_game_state_json());
+    
+    char *json_params = json_builder_get_string(builder);
+    json_builder_free(builder);
+    
+    // Make the batch request
+    mcp_invoke_tool_async(mcp_client, &quot;generateNarrativeBatch&quot;, 
+                      json_params, on_batch_narrative_received, NULL);
+    
+    // Clear the batch
+    batch_size = 0;
+}
+</code></pre>
+<h3 id="cache-pattern">Cache Pattern</h3>
+<p>Cache responses to reduce API calls:</p>
+<pre><code class="language-c">#define NARRATIVE_CACHE_SIZE 128
+
+typedef struct {
+    char key[64];
+    char narrative[1024];
+    game_turn_t timestamp;
+} narrative_cache_entry_t;
+
+narrative_cache_entry_t narrative_cache[NARRATIVE_CACHE_SIZE];
+int cache_count = 0;
+
+// Generate cache key from request parameters
+void generate_cache_key(const char *event_type, const void *event_data, char *key, size_t key_size) {
+    // Implementation depends on event type
+    // Example for monster death:
+    if (strcmp(event_type, &quot;monster_death&quot;) == 0) {
+        const monster_type *m_ptr = (const monster_type *)event_data;
+        snprintf(key, key_size, &quot;death_%s_%d&quot;, m_ptr-&gt;name, m_ptr-&gt;level);
+    }
+    // ...other event types
+}
+
+// Look up narrative in cache
+const char *find_cached_narrative(const char *key) {
+    for (int i = 0; i &lt; cache_count; i++) {
+        if (strcmp(narrative_cache[i].key, key) == 0) {
+            // Check if cache entry is still valid (not too old)
+            if (game_turn - narrative_cache[i].timestamp &lt; CACHE_TTL) {
+                return narrative_cache[i].narrative;
+            }
+            break;
+        }
+    }
+    return NULL;
+}
+
+// Add narrative to cache
+void cache_narrative(const char *key, const char *narrative) {
+    // Replace oldest entry if cache is full
+    int target_idx = cache_count &lt; NARRATIVE_CACHE_SIZE ? cache_count++ : 0;
+    game_turn_t oldest_time = narrative_cache[0].timestamp;
+    
+    for (int i = 1; i &lt; cache_count; i++) {
+        if (narrative_cache[i].timestamp &lt; oldest_time) {
+            oldest_time = narrative_cache[i].timestamp;
+            target_idx = i;
+        }
+    }
+    
+    // Store in cache
+    my_strcpy(narrative_cache[target_idx].key, key, sizeof(narrative_cache[target_idx].key));
+    my_strcpy(narrative_cache[target_idx].narrative, narrative, 
+             sizeof(narrative_cache[target_idx].narrative));
+    narrative_cache[target_idx].timestamp = game_turn;
+}
+</code></pre>
+<h2 id="testing-and-debugging-patterns">Testing and Debugging Patterns</h2>
+<h3 id="mock-server-pattern">Mock Server Pattern</h3>
+<p>Test MCP integration without real server calls:</p>
+<pre><code class="language-c">// Mock MCP responses for testing
+typedef struct {
+    char tool_name[64];
+    char params_pattern[256];
+    char response[1024];
+} mock_response_t;
+
+mock_response_t mock_responses[MAX_MOCK_RESPONSES];
+int mock_response_count = 0;
+
+// Add mock response
+void add_mock_response(const char *tool, const char *params_pattern, const char *response) {
+    if (mock_response_count &lt; MAX_MOCK_RESPONSES) {
+        mock_response_t *mock = &amp;mock_responses[mock_response_count++];
+        my_strcpy(mock-&gt;tool_name, tool, sizeof(mock-&gt;tool_name));
+        my_strcpy(mock-&gt;params_pattern, params_pattern, sizeof(mock-&gt;params_pattern));
+        my_strcpy(mock-&gt;response, response, sizeof(mock-&gt;response));
+    }
+}
+
+// Find matching mock response
+const char *find_mock_response(const char *tool, const char *params) {
+    for (int i = 0; i &lt; mock_response_count; i++) {
+        if (strcmp(mock_responses[i].tool_name, tool) == 0 &amp;&amp; 
+            strstr(params, mock_responses[i].params_pattern) != NULL) {
+            return mock_responses[i].response;
+        }
+    }
+    return NULL;
+}
+
+// Mock client implementation
+mcp_response_t *mock_mcp_invoke_tool(mcp_client_t *client, const char *tool_name, 
+                                  const char *json_params) {
+    mcp_response_t *response = malloc(sizeof(mcp_response_t));
+    memset(response, 0, sizeof(mcp_response_t));
+    
+    const char *mock_content = find_mock_response(tool_name, json_params);
+    if (mock_content) {
+        response-&gt;content = strdup(mock_content);
+        response-&gt;length = strlen(response-&gt;content);
+        response-&gt;status_code = 200;
+    } else {
+        response-&gt;status_code = 404;
+        strcpy(response-&gt;error_message, &quot;No mock response found&quot;);
+    }
+    
+    return response;
+}
+</code></pre>
+<h2 id="resources">Resources</h2>
+<ul>
+<li>Angband C Coding Style Guide</li>
+<li>MCP C Client Reference Implementation</li>
+<li>Narrative Integration Best Practices</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

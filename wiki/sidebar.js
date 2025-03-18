@@ -1,38 +1,87 @@
-// Function to load the sidebar content
-function loadSidebar() {
-    // Determine the relative path to the root based on current page depth
-    const path = getPathToRoot();
+// Get the root path based on the current page
+function getRootPath() {
+    const path = window.location.pathname;
+    const parts = path.split('/');
     
-    console.log('Path prefix for sidebar:', path);
+    // If we're in a subdirectory (developer-guides or game-design)
+    if (parts.length > 2) {
+        return '../';
+    }
     
-    // Load the sidebar content
-    fetch(path + 'sidebar.html')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Failed to load sidebar: ${response.status} ${response.statusText}`);
-            }
-            return response.text();
-        })
-        .then(data => {
-            // Replace the sidebar content
-            const sidebarElement = document.querySelector('.sidebar');
-            if (sidebarElement) {
-                sidebarElement.innerHTML = data;
+    return './';
+}
+
+// Load sidebar content
+function loadSidebar(sidebarPath) {
+    const rootPath = getRootPath();
+    const xhr = new XMLHttpRequest();
+    
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            document.getElementById('sidebar-container').innerHTML = xhr.responseText;
+            
+            // Update links to be relative to the current page
+            const links = document.querySelectorAll('#sidebar-container a');
+            links.forEach(link => {
+                // Skip if the link is already absolute
+                if (link.href.startsWith('http')) {
+                    return;
+                }
                 
-                // Fix the links in the sidebar based on current depth
-                fixSidebarLinks(path);
+                // Fix the relative path
+                const href = link.getAttribute('href');
+                if (href && !href.startsWith('/') && !href.startsWith('http')) {
+                    link.href = rootPath + href;
+                }
+            });
+            
+            // Add active class to current page link
+            const currentPath = window.location.pathname;
+            const currentPageLink = document.querySelector(`#sidebar-container a[href$="${currentPath}"]`);
+            if (currentPageLink) {
+                currentPageLink.classList.add('active');
                 
-                // Highlight the current page in the navigation
-                highlightCurrentPage();
-            } else {
-                console.error('Sidebar element not found in the document');
+                // Expand parent if in a dropdown
+                const parentDropdown = currentPageLink.closest('.dropdown-content');
+                if (parentDropdown) {
+                    parentDropdown.style.display = 'block';
+                    parentDropdown.previousElementSibling.classList.add('active');
+                }
             }
-        })
-        .catch(error => {
-            console.error('Error loading sidebar:', error);
-            // Fallback: If sidebar.html fails to load, create a minimal navigation
-            createFallbackSidebar();
+            
+            // Set up dropdown toggles
+            initializeSidebar();
+        }
+    };
+    
+    xhr.open('GET', rootPath + sidebarPath, true);
+    xhr.send();
+}
+
+// Initialize sidebar interactions
+function initializeSidebar() {
+    // Toggle sidebar on mobile
+    const sidebarToggle = document.querySelector('.sidebar-toggle');
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', function() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('open');
         });
+    }
+    
+    // Toggle dropdowns
+    const dropdownButtons = document.querySelectorAll('.dropdown-btn');
+    dropdownButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === 'block') {
+                dropdownContent.style.display = 'none';
+            } else {
+                dropdownContent.style.display = 'block';
+            }
+        });
+    });
 }
 
 // Create a fallback sidebar with minimal navigation if the sidebar fails to load

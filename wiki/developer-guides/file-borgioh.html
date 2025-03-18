@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File: borg-io.h | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>File: borg-io.h</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="file-borg-ioh">File: borg-io.h</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-io.h</code> is a header file in the Angband codebase that provides input/output functionality for the Borg AI player. The Borg is an automated player that can play Angband on its own, making decisions based on game state and heuristics.</p>
+<p>This file defines functions for interacting with the game&#39;s user interface, such as querying screen contents, simulating keypresses, and handling messages. It also provides functions for managing the Borg&#39;s input queue and keypress history.</p>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="struct-keypress"><code>struct keypress</code></h3>
+<p>This struct is not defined in this file, but is used as a parameter type for the <code>save_keypress_history</code> function. It likely represents a single keypress event, but its fields are not visible in this context.</p>
+<h2 id="global-variables">Global Variables</h2>
+<h3 id="borg_confirm_target"><code>borg_confirm_target</code></h3>
+<ul>
+<li>Type: <code>bool</code></li>
+<li>Purpose: Indicates whether the Borg should confirm its selected target before attacking.</li>
+</ul>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_what_text"><code>borg_what_text</code></h3>
+<ul>
+<li>Purpose: Query the attribute and characters at a given location on the screen.</li>
+<li>Parameters:<ul>
+<li><code>x</code>, <code>y</code>: The coordinates of the screen location to query.</li>
+<li><code>n</code>: The maximum number of characters to retrieve.</li>
+<li><code>a</code>: A pointer to a <code>uint8_t</code> array to store the attribute of each character.</li>
+<li><code>s</code>: A pointer to a <code>char</code> array to store the characters.</li>
+</ul>
+</li>
+<li>Return value: An <code>errr</code> code indicating the status of the operation.</li>
+<li>Side effects: Modifies the contents of the <code>a</code> and <code>s</code> arrays.</li>
+</ul>
+<h3 id="borg_note"><code>borg_note</code></h3>
+<ul>
+<li>Purpose: Memorize, log, search, and display a message in pieces.</li>
+<li>Parameters:<ul>
+<li><code>what</code>: The message to process.</li>
+</ul>
+</li>
+<li>Return value: None.</li>
+<li>Side effects: Modifies the Borg&#39;s internal state and may display output to the user.</li>
+</ul>
+<h3 id="borg_warning"><code>borg_warning</code></h3>
+<ul>
+<li>Purpose: Memorize, log, search, and display a warning message in pieces.</li>
+<li>Parameters:<ul>
+<li><code>what</code>: The warning message to process.</li>
+</ul>
+</li>
+<li>Return value: None.</li>
+<li>Side effects: Modifies the Borg&#39;s internal state and may display output to the user.</li>
+</ul>
+<h3 id="borg_keypress"><code>borg_keypress</code></h3>
+<ul>
+<li>Purpose: Add a keypress to the Borg&#39;s input queue.</li>
+<li>Parameters:<ul>
+<li><code>k</code>: The keycode to add to the queue.</li>
+</ul>
+</li>
+<li>Return value: An <code>errr</code> code indicating the status of the operation.</li>
+<li>Side effects: Modifies the Borg&#39;s input queue.</li>
+</ul>
+<h3 id="borg_keypresses"><code>borg_keypresses</code></h3>
+<ul>
+<li>Purpose: Add a string of keypresses to the Borg&#39;s input queue.</li>
+<li>Parameters:<ul>
+<li><code>str</code>: The string of keypresses to add to the queue.</li>
+</ul>
+</li>
+<li>Return value: An <code>errr</code> code indicating the status of the operation.</li>
+<li>Side effects: Modifies the Borg&#39;s input queue.</li>
+</ul>
+<h3 id="save_keypress_history"><code>save_keypress_history</code></h3>
+<ul>
+<li>Purpose: Add a keypress to the Borg&#39;s keypress history.</li>
+<li>Parameters:<ul>
+<li><code>k</code>: A pointer to the <code>keypress</code> struct to add to the history.</li>
+</ul>
+</li>
+<li>Return value: None.</li>
+<li>Side effects: Modifies the Borg&#39;s keypress history.</li>
+</ul>
+<h3 id="borg_dump_recent_keys"><code>borg_dump_recent_keys</code></h3>
+<ul>
+<li>Purpose: Dump the Borg&#39;s recent keypress history.</li>
+<li>Parameters:<ul>
+<li><code>num</code>: The number of recent keypresses to dump.</li>
+</ul>
+</li>
+<li>Return value: None.</li>
+<li>Side effects: Displays output to the user.</li>
+</ul>
+<h3 id="borg_inkey"><code>borg_inkey</code></h3>
+<ul>
+<li>Purpose: Get the next keypress from the Borg&#39;s input queue.</li>
+<li>Parameters:<ul>
+<li><code>take</code>: Whether to remove the keypress from the queue.</li>
+</ul>
+</li>
+<li>Return value: The keycode of the next keypress.</li>
+<li>Side effects: May modify the Borg&#39;s input queue if <code>take</code> is true.</li>
+</ul>
+<h3 id="borg_flush"><code>borg_flush</code></h3>
+<ul>
+<li>Purpose: Clear all keypresses from the Borg&#39;s input queue.</li>
+<li>Parameters: None.</li>
+<li>Return value: None.</li>
+<li>Side effects: Modifies the Borg&#39;s input queue.</li>
+</ul>
+<h3 id="borg_queue_direction"><code>borg_queue_direction</code></h3>
+<ul>
+<li>Purpose: Save a directional keypress for later retrieval.</li>
+<li>Parameters:<ul>
+<li><code>k</code>: The keycode of the directional keypress.</li>
+</ul>
+</li>
+<li>Return value: None.</li>
+<li>Side effects: Modifies the Borg&#39;s saved directional keypress.</li>
+</ul>
+<h3 id="borg_get_queued_direction"><code>borg_get_queued_direction</code></h3>
+<ul>
+<li>Purpose: Retrieve the previously saved directional keypress.</li>
+<li>Parameters: None.</li>
+<li>Return value: The keycode of the saved directional keypress.</li>
+<li>Side effects: None.</li>
+</ul>
+<h3 id="borg_massage_special_chars"><code>borg_massage_special_chars</code></h3>
+<ul>
+<li>Purpose: Handle special characters (� and �) in names.</li>
+<li>Parameters:<ul>
+<li><code>name</code>: The name string to process.</li>
+</ul>
+</li>
+<li>Return value: A pointer to the processed name string.</li>
+<li>Side effects: May modify the contents of the <code>name</code> string.</li>
+</ul>
+<h3 id="borg_init_io"><code>borg_init_io</code></h3>
+<ul>
+<li>Purpose: Initialize the Borg&#39;s input/output functionality.</li>
+<li>Parameters: None.</li>
+<li>Return value: None.</li>
+<li>Side effects: Initializes the Borg&#39;s internal I/O state.</li>
+</ul>
+<h3 id="borg_free_io"><code>borg_free_io</code></h3>
+<ul>
+<li>Purpose: Clean up the Borg&#39;s input/output functionality.</li>
+<li>Parameters: None.</li>
+<li>Return value: None.</li>
+<li>Side effects: Frees any resources used by the Borg&#39;s I/O system.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>This file does not implement any complex algorithms directly, but provides an interface for the Borg AI to interact with the game&#39;s input/output systems.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li><code>angband.h</code>: The main Angband header file, which must be included before <code>borg-io.h</code>.</li>
+<li><code>ui-event.h</code>: Defines the <code>keycode_t</code> type used for representing keypresses.</li>
+</ul>
+<p>This file is likely used by other Borg-related source files to handle input and output.</p>
+<h2 id="historical-context">Historical Context</h2>
+<p>The code in this file is based on work by several contributors over the years, as indicated by the copyright notice at the top of the file. The Borg AI player has been a part of Angband since at least 1997, with continuous improvements and updates by the community.</p>
+<p>The presence of special handling for the <code>�</code> and <code>�</code> characters suggests that this code may have been written before Unicode support was common, as these characters often appeared in place of proper accented letters in older character encodings.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

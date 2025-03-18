@@ -2,15 +2,17 @@
 title: Self-Healing Rules System
 id: selfhealing-rules-system
 section: development
-category: guides
-created: '2025-03-17'
+category: architecture
+created: '2025-03-18'
 updated: '2025-03-18'
 version: 0.1.0
-cursor_rule: true
-glob: '**/*'
-priority: 500
+auto_generated: true
+cursor_rules:
+  - architecture/selfhealing-rules-system.mdc
+tags:
+  - cursor-rule
+  - architecture
 ---
-
 
 Original Location: C:\working_directory\ages-project\clean-ages-of-arda\.cursor\rules\self-healing\README.md
 # Self-Healing Rules System

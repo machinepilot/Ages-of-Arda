@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narrative Memory Systems for Storytelling Continuity | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Narrative Memory Systems for Storytelling Continuity</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="narrative-memory-systems-for-storytelling-continuity">Narrative Memory Systems for Storytelling Continuity</h1>
+<h2 id="overview">Overview</h2>
+<p>This document outlines the architecture and implementation of memory systems for Lute the Bard in Tower of Babel. Effective narrative memory is crucial for maintaining storytelling continuity across game sessions and creating a cohesive player experience.</p>
+<h2 id="memory-system-architecture">Memory System Architecture</h2>
+<h3 id="key-components">Key Components</h3>
+<ol>
+<li><p><strong>Event Repository</strong></p>
+<ul>
+<li>Persistent storage of significant game events</li>
+<li>Structured data format for efficient retrieval</li>
+<li>Priority scoring system for memory importance</li>
+</ul>
+</li>
+<li><p><strong>Character Memory</strong></p>
+<ul>
+<li>Player character attributes and evolution</li>
+<li>Relationships with NPCs and factions</li>
+<li>Personal narrative arc tracking</li>
+</ul>
+</li>
+<li><p><strong>World State Memory</strong></p>
+<ul>
+<li>Discovered locations and their significance</li>
+<li>Major world changes from player actions</li>
+<li>Current threats and opportunities</li>
+</ul>
+</li>
+<li><p><strong>Meta Memory</strong></p>
+<ul>
+<li>Player narrative preferences</li>
+<li>Response to previous narrative styles</li>
+<li>Session frequency and duration patterns</li>
+</ul>
+</li>
+</ol>
+<h3 id="memory-hierarchies">Memory Hierarchies</h3>
+<h4 id="by-persistence">By Persistence</h4>
+<ul>
+<li><strong>Ephemeral</strong> (current session only)</li>
+<li><strong>Short-term</strong> (persists across several sessions)</li>
+<li><strong>Long-term</strong> (permanent record of major events)</li>
+<li><strong>Foundational</strong> (core world lore, never forgotten)</li>
+</ul>
+<h4 id="by-importance">By Importance</h4>
+<ul>
+<li><strong>Critical</strong> (unique monsters, artifacts, major achievements)</li>
+<li><strong>Significant</strong> (level gains, special encounters, near-death experiences)</li>
+<li><strong>Contextual</strong> (environmental details, routine encounters)</li>
+<li><strong>Ambient</strong> (mood, atmosphere, general progression)</li>
+</ul>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="event-record">Event Record</h3>
+<pre><code class="language-json">{
+  &quot;event_id&quot;: &quot;uuid-string&quot;,
+  &quot;event_type&quot;: &quot;monster_defeat&quot;,
+  &quot;timestamp&quot;: {
+    &quot;game_turn&quot;: 145678,
+    &quot;real_time&quot;: &quot;2023-03-15T21:34:12Z&quot;,
+    &quot;dungeon_level&quot;: 23
+  },
+  &quot;importance&quot;: 85,
+  &quot;entities&quot;: {
+    &quot;monster&quot;: {
+      &quot;name&quot;: &quot;Shelob&quot;,
+      &quot;unique&quot;: true,
+      &quot;level&quot;: 45,
+      &quot;type&quot;: &quot;spider&quot;,
+      &quot;special_properties&quot;: [&quot;poisonous&quot;, &quot;webspinner&quot;]
+    },
+    &quot;player&quot;: {
+      &quot;name&quot;: &quot;Elendil&quot;,
+      &quot;level&quot;: 28,
+      &quot;race&quot;: &quot;High-Elf&quot;,
+      &quot;class&quot;: &quot;Ranger&quot;,
+      &quot;hp_remaining_pct&quot;: 15
+    }
+  },
+  &quot;location&quot;: {
+    &quot;area_name&quot;: &quot;Webbed Cavern&quot;,
+    &quot;area_type&quot;: &quot;special room&quot;,
+    &quot;notable_features&quot;: [&quot;spider webs&quot;, &quot;bone pile&quot;, &quot;treasure chest&quot;]
+  },
+  &quot;narrative_summary&quot;: &quot;A desperate battle against the ancient spider queen Shelob, nearly ending in defeat before a critical arrow shot found its mark.&quot;,
+  &quot;narrative_detail&quot;: &quot;Full narrative text generated at the time...&quot;,
+  &quot;narrative_impact&quot;: [&quot;established_as_spider_slayer&quot;, &quot;near_death_experience&quot;, &quot;major_unique_defeated&quot;],
+  &quot;references&quot;: [&quot;event_id_of_first_encounter&quot;, &quot;event_id_of_finding_special_arrow&quot;]
+}
+</code></pre>
+<h3 id="character-memory-record">Character Memory Record</h3>
+<pre><code class="language-json">{
+  &quot;character_id&quot;: &quot;uuid-string&quot;,
+  &quot;base_info&quot;: {
+    &quot;name&quot;: &quot;Elendil&quot;,
+    &quot;race&quot;: &quot;High-Elf&quot;,
+    &quot;class&quot;: &quot;Ranger&quot;,
+    &quot;significant_attributes&quot;: [&quot;exceptional_dexterity&quot;, &quot;eagle_eyed&quot;]
+  },
+  &quot;narrative_identity&quot;: {
+    &quot;defining_moments&quot;: [&quot;event_id1&quot;, &quot;event_id2&quot;, &quot;event_id3&quot;],
+    &quot;character_arc&quot;: &quot;reluctant_hero&quot;,
+    &quot;behavioral_patterns&quot;: [&quot;cautious_explorer&quot;, &quot;monster_specialist&quot;],
+    &quot;recurring_themes&quot;: [&quot;vengeance_against_undead&quot;, &quot;seeking_ancient_knowledge&quot;]
+  },
+  &quot;relationships&quot;: {
+    &quot;lute_the_bard&quot;: {
+      &quot;affinity&quot;: 85,
+      &quot;key_moments&quot;: [&quot;event_id4&quot;, &quot;event_id5&quot;],
+      &quot;relationship_arc&quot;: &quot;initial_skepticism_to_trusted_companion&quot;
+    },
+    &quot;npcs&quot;: [
+      {
+        &quot;name&quot;: &quot;Town Healer&quot;,
+        &quot;affinity&quot;: 65,
+        &quot;key_moments&quot;: [&quot;event_id6&quot;],
+        &quot;relationship_traits&quot;: [&quot;respectful&quot;, &quot;professional&quot;]
+      }
+    ],
+    &quot;factions&quot;: [
+      {
+        &quot;name&quot;: &quot;Mages Guild&quot;,
+        &quot;standing&quot;: &quot;allied&quot;,
+        &quot;key_moments&quot;: [&quot;event_id7&quot;, &quot;event_id8&quot;]
+      }
+    ]
+  },
+  &quot;achievements&quot;: {
+    &quot;uniques_defeated&quot;: [&quot;Shelob&quot;, &quot;Wormtongue&quot;, &quot;Azog&quot;],
+    &quot;artifacts_found&quot;: [&quot;Sting&quot;, &quot;Phial of Galadriel&quot;],
+    &quot;depths_reached&quot;: 45,
+    &quot;quests_completed&quot;: [&quot;The Dark Spire&quot;, &quot;Moria&#39;s Depths&quot;]
+  }
+}
+</code></pre>
+<h2 id="memory-management-algorithms">Memory Management Algorithms</h2>
+<h3 id="event-selection-algorithm">Event Selection Algorithm</h3>
+<p>The system must determine which events to include in narrative context. Key factors:</p>
+<ol>
+<li><strong>Recency</strong>: More recent events receive higher priority</li>
+<li><strong>Importance</strong>: Events marked as critical take precedence</li>
+<li><strong>Relevance</strong>: Events related to current situation get boosted priority</li>
+<li><strong>Continuity</strong>: Events that connect narrative threads are preserved</li>
+<li><strong>Uniqueness</strong>: Preference for diverse event types over repetition</li>
+</ol>
+<p>Pseudo-code implementation:</p>
+<pre><code class="language-python">def select_narrative_context_events(current_state, event_repository, token_budget):
+    # Get all events
+    candidate_events = event_repository.get_all_events()
+    
+    # Initialize scores
+    for event in candidate_events:
+        event.context_score = 0
+        
+        # Base score from importance
+        event.context_score += event.importance * 0.5
+        
+        # Recency factor (inverse log decay)
+        turns_ago = current_state.game_turn - event.timestamp.game_turn
+        event.context_score += 100 / math.log(turns_ago + 10) 
+        
+        # Relevance to current situation
+        if event.location.area_type == current_state.location.area_type:
+            event.context_score *= 1.2
+        if any(entity in current_state.visible_entities for entity in event.entities):
+            event.context_score *= 1.5
+            
+        # Narrative continuity
+        if event.narrative_impact:
+            for impact in event.narrative_impact:
+                if impact in current_state.active_narrative_threads:
+                    event.context_score *= 1.3
+    
+    # Sort by score
+    candidate_events.sort(key=lambda e: e.context_score, reverse=True)
+    
+    # Select events up to token budget
+    selected_events = []
+    current_tokens = 0
+    
+    for event in candidate_events:
+        event_tokens = estimate_tokens(event)
+        if current_tokens + event_tokens &lt;= token_budget:
+            selected_events.append(event)
+            current_tokens += event_tokens
+        elif is_critical_event(event):
+            # Try to fit critical events by using summary instead of full detail
+            summary_tokens = estimate_tokens(event.narrative_summary)
+            if current_tokens + summary_tokens &lt;= token_budget:
+                summarized_event = summarize_event(event)
+                selected_events.append(summarized_event)
+                current_tokens += summary_tokens
+    
+    return selected_events
+</code></pre>
+<h3 id="memory-compression-algorithm">Memory Compression Algorithm</h3>
+<p>As memory grows, older events need compression to conserve space:</p>
+<ol>
+<li><strong>Summarization</strong>: Convert detailed narratives to summaries</li>
+<li><strong>Aggregation</strong>: Combine similar or related events</li>
+<li><strong>Prioritization</strong>: Retain only highest-impact details</li>
+<li><strong>Pattern Extraction</strong>: Identify and store recurring themes instead of instances</li>
+</ol>
+<p>Example implementation:</p>
+<pre><code class="language-python">def compress_memory(event_repository, character_memory, compression_threshold):
+    # Find old events eligible for compression
+    old_events = [e for e in event_repository.get_all_events() 
+                 if e.timestamp.game_turn &lt; current_game_turn - compression_threshold]
+    
+    # Group events by type and proximity
+    event_clusters = cluster_events_by_similarity(old_events)
+    
+    for cluster in event_clusters:
+        if len(cluster) &lt;= 1:
+            continue  # No compression needed for single events
+            
+        if are_similar_combat_events(cluster):
+            # Create a summary combat record
+            summary = create_combat_summary(cluster)
+            event_repository.add_event(summary)
+            
+            # Remove the individual events, but keep references
+            for event in cluster:
+                summary.references.append(event.event_id)
+                event_repository.archive_event(event.event_id)
+        
+        elif are_exploration_events(cluster):
+            # Summarize exploration into area knowledge
+            area_knowledge = create_area_knowledge(cluster)
+            character_memory.add_area_knowledge(area_knowledge)
+            
+            # Archive exploration events
+            for event in cluster:
+                event_repository.archive_event(event.event_id)
+                
+    # Extract recurring patterns into character traits
+    recurring_behaviors = identify_recurring_behaviors(event_repository)
+    for behavior in recurring_behaviors:
+        if not character_memory.has_trait(behavior.trait_name):
+            character_memory.add_character_trait(behavior.trait_name, 
+                                               behavior.confidence,
+                                               behavior.supporting_events)
+</code></pre>
+<h2 id="persistence-implementation">Persistence Implementation</h2>
+<h3 id="file-based-storage">File-Based Storage</h3>
+<pre><code class="language-javascript">// In the MCP server
+const fs = require(&#39;fs&#39;);
+const path = require(&#39;path&#39;);
+
+// Base path for memory storage
+const MEMORY_PATH = path.join(__dirname, &#39;..&#39;, &#39;memory-bank&#39;, &#39;narrative-memory&#39;);
+
+// Ensure directories exist
+if (!fs.existsSync(MEMORY_PATH)) {
+    fs.mkdirSync(MEMORY_PATH, { recursive: true });
+}
+
+// Character memory persistence
+async function saveCharacterMemory(characterId, memoryData) {
+    const charPath = path.join(MEMORY_PATH, &#39;characters&#39;);
+    if (!fs.existsSync(charPath)) {
+        fs.mkdirSync(charPath, { recursive: true });
+    }
+    
+    const filePath = path.join(charPath, `${characterId}.json`);
+    await fs.promises.writeFile(filePath, JSON.stringify(memoryData, null, 2), &#39;utf8&#39;);
+    
+    console.log(`Character memory saved for ${characterId}`);
+}
+
+// Event repository persistence
+async function saveEventToRepository(event) {
+    const eventsPath = path.join(MEMORY_PATH, &#39;events&#39;);
+    if (!fs.existsSync(eventsPath)) {
+        fs.mkdirSync(eventsPath, { recursive: true });
+    }
+    
+    // Organize events by type for easier retrieval
+    const typePath = path.join(eventsPath, event.event_type);
+    if (!fs.existsSync(typePath)) {
+        fs.mkdirSync(typePath);
+    }
+    
+    const filePath = path.join(typePath, `${event.event_id}.json`);
+    await fs.promises.writeFile(filePath, JSON.stringify(event, null, 2), &#39;utf8&#39;);
+    
+    // Also maintain an index for quick lookups
+    await updateEventIndex(event);
+    
+    console.log(`Event saved: ${event.event_id} (${event.event_type})`);
+}
+</code></pre>
+<h3 id="database-storage-alternative">Database Storage (Alternative)</h3>
+<p>For larger implementations, a NoSQL document database like MongoDB can be used:</p>
+<pre><code class="language-javascript">// MongoDB implementation example
+const { MongoClient } = require(&#39;mongodb&#39;);
+
+const uri = process.env.MONGODB_URI || &quot;mongodb://localhost:27017&quot;;
+const client = new MongoClient(uri);
+
+async function connectToDatabase() {
+    await client.connect();
+    return client.db(&quot;towerOfBabelNarrativeMemory&quot;);
+}
+
+async function saveEventToRepository(event) {
+    try {
+        const database = await connectToDatabase();
+        const events = database.collection(&quot;events&quot;);
+        
+        // Add created timestamp if not present
+        if (!event.system_metadata) {
+            event.system_metadata = {
+                created_at: new Date(),
+                last_accessed: new Date()
+            };
+        }
+        
+        // Insert or update
+        await events.updateOne(
+            { event_id: event.event_id },
+            { $set: event },
+            { upsert: true }
+        );
+        
+        console.log(`Event saved to database: ${event.event_id}`);
+    } catch (error) {
+        console.error(&quot;Error saving event to database:&quot;, error);
+        throw error;
+    }
+}
+</code></pre>
+<h2 id="mcp-integration">MCP Integration</h2>
+<h3 id="memory-aware-narrative-tools">Memory-Aware Narrative Tools</h3>
+<p>The MCP server should expose memory-aware tools for generating narratives:</p>
+<pre><code class="language-javascript">// Example MCP tool definition
+const memoryAwareNarrativeTools = [
+    {
+        name: &#39;generateEventNarrative&#39;,
+        description: &#39;Generate a narrative for a game event with memory awareness&#39;,
+        parameters: {
+            type: &#39;object&#39;,
+            properties: {
+                eventType: {
+                    type: &#39;string&#39;,
+                    description: &#39;Type of event (monster_encounter, item_discovery, etc.)&#39;
+                },
+                eventData: {
+                    type: &#39;object&#39;,
+                    description: &#39;Data specific to the event type&#39;
+                },
+                characterId: {
+                    type: &#39;string&#39;,
+                    description: &#39;ID of the player character&#39;
+                },
+                narrativeStyle: {
+                    type: &#39;string&#39;,
+                    enum: [&#39;brief&#39;, &#39;standard&#39;, &#39;detailed&#39;],
+                    description: &#39;Desired length and detail level&#39;
+                },
+                toneHint: {
+                    type: &#39;string&#39;,
+                    description: &#39;Suggested emotional tone for the narrative&#39;
+                }
+            },
+            required: [&#39;eventType&#39;, &#39;eventData&#39;, &#39;characterId&#39;]
+        },
+        handler: async (params) =&gt; {
+            // Load character memory
+            const characterMemory = await loadCharacterMemory(params.characterId);
+            
+            // Select relevant past events
+            const relevantEvents = await selectRelevantEvents(
+                params.characterId, 
+                params.eventType, 
+                params.eventData
+            );
+            
+            // Build context for Claude
+            const context = buildNarrativeContext(characterMemory, relevantEvents, params);
+            
+            // Generate narrative with Claude
+            const narrative = await generateWithClaude(context, params);
+            
+            // Create new event record
+            const eventRecord = createEventRecord(
+                params.eventType,
+                params.eventData,
+                narrative
+            );
+            
+            // Save to repository
+            await saveEventToRepository(eventRecord);
+            
+            // Update character memory if needed
+            if (isSignificantEvent(params.eventType, params.eventData)) {
+                await updateCharacterMemory(params.characterId, eventRecord);
+            }
+            
+            return {
+                narrative: narrative.text,
+                tone: narrative.tone,
+                eventId: eventRecord.event_id
+            };
+        }
+    }
+];
+</code></pre>
+<h3 id="context-builder-function">Context Builder Function</h3>
+<pre><code class="language-javascript">function buildNarrativeContext(characterMemory, relevantEvents, params) {
+    // Start with character information
+    let context = `# Character Information\n`;
+    context += `Name: ${characterMemory.base_info.name}\n`;
+    context += `Race: ${characterMemory.base_info.race}\n`;
+    context += `Class: ${characterMemory.base_info.class}\n\n`;
+    
+    // Add defining character traits
+    context += `## Character Traits\n`;
+    for (const trait of characterMemory.narrative_identity.recurring_themes) {
+        context += `- ${trait}\n`;
+    }
+    context += &#39;\n&#39;;
+    
+    // Add relationship with Lute
+    context += `## Relationship with Lute\n`;
+    const luteRelationship = characterMemory.relationships.lute_the_bard;
+    context += `Affinity: ${luteRelationship.affinity}/100\n`;
+    context += `Arc: ${luteRelationship.relationship_arc}\n\n`;
+    
+    // Add relevant past events
+    context += `# Relevant Past Events\n`;
+    for (const event of relevantEvents) {
+        context += `## ${formatEventTitle(event)}\n`;
+        context += `${event.narrative_summary}\n\n`;
+    }
+    
+    // Add current event details
+    context += `# Current Event\n`;
+    context += `Type: ${params.eventType}\n`;
+    context += JSON.stringify(params.eventData, null, 2);
+    context += &#39;\n\n&#39;;
+    
+    // Add tone guidance
+    if (params.toneHint) {
+        context += `# Tone Guidance\n`;
+        context += `Suggested tone: ${params.toneHint}\n\n`;
+    }
+    
+    // Add narrative style guidance
+    context += `# Narrative Style\n`;
+    context += `Style: ${params.narrativeStyle || &#39;standard&#39;}\n`;
+    context += narrativeStyleGuidance(params.narrativeStyle);
+    
+    return context;
+}
+</code></pre>
+<h2 id="memory-visualization">Memory Visualization</h2>
+<p>To help debug and understand the narrative memory system:</p>
+<pre><code class="language-javascript">// MCP tool for visualizing character memory
+const memoryVisualizationTool = {
+    name: &#39;visualizeCharacterMemory&#39;,
+    description: &#39;Generate a visualization of the character memory for debugging&#39;,
+    parameters: {
+        type: &#39;object&#39;,
+        properties: {
+            characterId: {
+                type: &#39;string&#39;,
+                description: &#39;ID of the character to visualize&#39;
+            },
+            format: {
+                type: &#39;string&#39;,
+                enum: [&#39;markdown&#39;, &#39;html&#39;, &#39;json&#39;],
+                description: &#39;Output format&#39;
+            }
+        },
+        required: [&#39;characterId&#39;]
+    },
+    handler: async (params) =&gt; {
+        const characterMemory = await loadCharacterMemory(params.characterId);
+        const recentEvents = await loadRecentEvents(params.characterId, 10);
+        
+        let visualization;
+        
+        switch (params.format || &#39;markdown&#39;) {
+            case &#39;html&#39;:
+                visualization = generateHTMLVisualization(characterMemory, recentEvents);
+                break;
+            case &#39;json&#39;:
+                visualization = JSON.stringify({characterMemory, recentEvents}, null, 2);
+                break;
+            case &#39;markdown&#39;:
+            default:
+                visualization = generateMarkdownVisualization(characterMemory, recentEvents);
+                break;
+        }
+        
+        return { visualization };
+    }
+};
+</code></pre>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ol>
+<li><strong>Indexing</strong>: Implement efficient indexing for quick event retrieval</li>
+<li><strong>Caching</strong>: Cache frequently accessed memory records</li>
+<li><strong>Lazy Loading</strong>: Only load detailed events when needed</li>
+<li><strong>Background Processing</strong>: Compress and organize memory during idle time</li>
+<li><strong>Throttling</strong>: Limit memory updates to prevent I/O bottlenecks</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>A well-implemented narrative memory system creates the foundation for Lute the Bard to provide consistent, contextually rich storytelling that evolves with the player&#39;s journey. The layered approach to memory management ensures both performance and narrative depth, creating a more immersive Tower of Babel experience. </p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File: borg-home-power.h | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>File: borg-home-power.h</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="file-borg-home-powerh">File: borg-home-power.h</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-home-power.h</code> is a header file in the Angband source code that declares a function for calculating the &quot;power&quot; of the player&#39;s home in the Borg (an AI player for Angband). The power of the home likely refers to a heuristic value representing the strength and resources available to the player in their home town.</p>
+<p>This file is part of the Borg AI system and is only compiled when the <code>ALLOW_BORG</code> preprocessor directive is defined.</p>
+<h2 id="data-structures">Data Structures</h2>
+<p>This header file does not define any data structures.</p>
+<h2 id="global-variables">Global Variables</h2>
+<p>This header file does not declare any global variables.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_power_home"><code>borg_power_home</code></h3>
+<pre><code class="language-c">extern int32_t borg_power_home(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Calculate the basic &quot;power&quot; of the player&#39;s home.</li>
+<li><strong>Parameters</strong>: None</li>
+<li><strong>Return value</strong>: An <code>int32_t</code> value representing the calculated power of the home.</li>
+<li><strong>Side effects</strong>: None apparent from the function declaration.</li>
+<li><strong>Relationships to other functions</strong>: This function is likely called by other Borg AI functions to assess the strength of the player&#39;s home and make decisions accordingly.</li>
+<li><strong>Game mechanics implemented</strong>: The specifics of how the home power is calculated are not apparent from this header file. The implementation likely considers various factors such as the player&#39;s level, equipment, resources, and other game state to arrive at a numeric value representing the overall strength of the home.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>No algorithms are directly implemented in this header file. The complexity lies in the implementation of the <code>borg_power_home</code> function, which is not provided here.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>This header file depends on the following files:</p>
+<ul>
+<li><code>angband.h</code>: The main Angband header file, which must be included before this file.</li>
+</ul>
+<p>No other files in the Angband codebase directly depend on this header file, as it is specific to the Borg AI system.</p>
+<h2 id="historical-context">Historical Context</h2>
+<p>The Borg AI was developed as an automated player for Angband to help test and balance the game. It has a long history within the Angband community, with various developers contributing to its improvement over the years.</p>
+<p>The presence of the <code>ALLOW_BORG</code> preprocessor directive suggests that the Borg AI can be optionally compiled into the game, allowing the developers to easily enable or disable it as needed.</p>
+<p>The copyright notice at the top of the file acknowledges the contributions of several individuals to the Borg AI codebase, including Ben Harrison, James E. Wilson, Robert A. Koeneke, Andi Sidwell, Chris Carr, Ed Graham, and Erik Osheim, spanning from 1997 to 2009.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

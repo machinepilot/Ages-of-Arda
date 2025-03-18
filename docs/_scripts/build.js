@@ -13,6 +13,7 @@ const yaml = require('js-yaml');
 const marked = require('marked');
 const handlebars = require('handlebars');
 const glob = require('glob');
+const { buildSearchIndex } = require('./search');
 
 // Build context for documentation processing
 class BuildContext {
@@ -28,8 +29,28 @@ class BuildContext {
     loadDocuments() {
         console.log('Loading documents from:', this.sourceDir);
         
+        // Use fs.readdirSync recursively to find all .md files
+        const getAllFiles = function(dirPath, arrayOfFiles) {
+            const files = fs.readdirSync(dirPath);
+            
+            arrayOfFiles = arrayOfFiles || [];
+            
+            files.forEach(file => {
+                if (fs.statSync(path.join(dirPath, file)).isDirectory()) {
+                    arrayOfFiles = getAllFiles(path.join(dirPath, file), arrayOfFiles);
+                } else {
+                    if (file.endsWith('.md')) {
+                        arrayOfFiles.push(path.join(dirPath, file));
+                    }
+                }
+            });
+            
+            return arrayOfFiles;
+        };
+        
         // Find all markdown files in source directory
-        const files = glob.sync(`${this.sourceDir}/**/*.md`);
+        const files = getAllFiles(this.sourceDir);
+        console.log('Files found:', files);
         
         this.documents = files.map(file => {
             try {
@@ -38,6 +59,7 @@ class BuildContext {
                 
                 // Parse frontmatter and content
                 const { frontmatter, markdown } = this.parseFrontmatter(content);
+                console.log(`Processed file ${file}, frontmatter:`, frontmatter ? 'yes' : 'no');
                 
                 return {
                     path: file,
@@ -71,7 +93,7 @@ class BuildContext {
 
     // Parse frontmatter from markdown content
     parseFrontmatter(content) {
-        const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+        const frontmatterRegex = /^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*[\r\n]+([\s\S]*)$/;
         const match = content.match(frontmatterRegex);
         
         if (!match) {
@@ -95,7 +117,11 @@ class BuildContext {
         console.log('Loading templates from:', templateDir);
         
         try {
-            const files = glob.sync(path.join(templateDir, '**', '*.hbs'));
+            // Use a simpler glob pattern and manually check for .hbs extension
+            const files = fs.readdirSync(templateDir)
+                .filter(file => file.endsWith('.hbs'))
+                .map(file => path.join(templateDir, file));
+            
             console.log('Template files found:', files);
             
             files.forEach(file => {
@@ -299,25 +325,28 @@ class BuildContext {
 
 // Main function to run the build process
 function main() {
+    console.log('Starting build process...');
+    
     try {
         // Load configuration
         const configPath = path.resolve('./_config.yml');
         const config = yaml.load(fs.readFileSync(configPath, 'utf8'));
         
-        console.log('Loaded configuration:', configPath);
-        
         // Create build context
         const context = new BuildContext(config);
         
-        // Run build process
-        context
-            .loadTemplates()
-            .loadDocuments()
-            .generateOutputs();
+        // Process
+        context.loadDocuments()
+               .loadTemplates()
+               .generateOutputs();
         
-        console.log('Documentation build completed successfully');
+        // Generate search index
+        console.log('Generating search index...');
+        buildSearchIndex();
+        
+        console.log('Build completed successfully!');
     } catch (error) {
-        console.error('Error building documentation:', error);
+        console.error('Build failed:', error);
         process.exit(1);
     }
 }

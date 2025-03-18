@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ages of Arda - MCP System | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Ages of Arda - MCP System</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <p>original location: C:\working_directory\ages-project\clean-ages-of-arda\README-MCP.md</p>
+<h1 id="ages-of-arda---mcp-system">Ages of Arda - MCP System</h1>
+<p>This document explains how to use the Model Context Protocol (MCP) system with Ages of Arda.</p>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="option-1-all-in-one-launcher">Option 1: All-in-One Launcher</h3>
+<p>Run <code>scripts/start.bat</code> to:</p>
+<ul>
+<li>Check for Node.js installation</li>
+<li>Find an available port for the MCP server</li>
+<li>Start the MCP server in the background</li>
+<li>Launch the game with companion support</li>
+</ul>
+<h3 id="option-2-individual-scripts">Option 2: Individual Scripts</h3>
+<ol>
+<li>Start the MCP server: <code>scripts/mcp-server.bat</code></li>
+<li>Start the game: <code>scripts/game.bat</code></li>
+</ol>
+<h3 id="option-3-reset-and-utilities">Option 3: Reset and Utilities</h3>
+<ul>
+<li>Reset window configurations: <code>scripts/reset-windows.bat</code></li>
+<li>Kill running MCP server processes: <code>scripts/kill-mcp.bat</code></li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="port-already-in-use">Port Already in Use</h3>
+<p>If you see an &quot;EADDRINUSE&quot; error:</p>
+<ol>
+<li>Run <code>scripts/kill-mcp.bat</code> to terminate any running MCP server processes</li>
+<li>Try starting the server again</li>
+</ol>
+<h3 id="game-executable-not-found">Game Executable Not Found</h3>
+<p>If the game launcher cannot find <code>angband.exe</code>:</p>
+<ol>
+<li>Make sure you&#39;re running the scripts from the main game directory</li>
+<li>The game executable should be in one of these locations:<ul>
+<li>Main directory: <code>./angband.exe</code></li>
+<li>Source directory: <code>./src/angband.exe</code></li>
+<li>Binary directory: <code>./bin/angband.exe</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="companion-window-not-showing">Companion Window Not Showing</h3>
+<ol>
+<li>Run <code>scripts/reset-windows.bat</code> to clear window configurations</li>
+<li>Start the game again and reconfigure windows</li>
+</ol>
+<h2 id="technical-details">Technical Details</h2>
+<p>The MCP system uses a Node.js server to provide AI-driven companion responses in the game. When the MCP server is not running, the game will fall back to template-based responses.</p>
+<p>The server listens on port 3000 by default but will automatically find an alternative port (3001-3010) if the default is unavailable.</p>
+<h2 id="script-descriptions">Script Descriptions</h2>
+<ul>
+<li><code>scripts/start.bat</code> - Main launcher that starts both the MCP server and game</li>
+<li><code>scripts/mcp-server.bat</code> - Starts only the MCP server with port availability checking</li>
+<li><code>scripts/game.bat</code> - Starts only the game with executable location detection</li>
+<li><code>scripts/reset-windows.bat</code> - Resets window configurations for a fresh setup</li>
+<li><code>scripts/kill-mcp.bat</code> - Terminates any running MCP server processes</li>
+</ul>
+<h2 id="system-architecture">System Architecture</h2>
+<p>The MCP system consists of:</p>
+<ol>
+<li><strong>MCP Server</strong>: A Node.js server that handles narrative generation requests</li>
+<li><strong>MCP Client</strong>: C code integrated into the game that communicates with the server</li>
+<li><strong>Companion UI</strong>: A game window that displays companion information and dialogue</li>
+</ol>
+<h2 id="technical-details-1">Technical Details</h2>
+<h3 id="mcp-server">MCP Server</h3>
+<p>The server provides several endpoints:</p>
+<ul>
+<li><code>/mcp/tools/generateNarrative</code>: Generates narrative text for game events</li>
+<li><code>/mcp/tools/queryMemory</code>: Retrieves stored memories for a character</li>
+<li><code>/health</code>: Health check endpoint</li>
+</ul>
+<p>The server uses template-based narrative generation when running in offline mode.</p>
+<h3 id="mcp-client">MCP Client</h3>
+<p>The C client (<code>mcp-client.c</code>) provides functions for:</p>
+<ul>
+<li>Connecting to the MCP server</li>
+<li>Sending narrative generation requests</li>
+<li>Processing responses asynchronously</li>
+<li>Fallback to template-based responses when the server is unavailable</li>
+</ul>
+<h3 id="companion-ui">Companion UI</h3>
+<p>The companion UI is implemented in the game&#39;s SDL2 interface and displays:</p>
+<ul>
+<li>Companion portrait</li>
+<li>Dialogue and narrative text</li>
+<li>Relationship status</li>
+<li>Interaction options</li>
+</ul>
+<h2 id="troubleshooting-1">Troubleshooting</h2>
+<h3 id="mcp-server-wont-start">MCP Server Won&#39;t Start</h3>
+<ol>
+<li>Ensure Node.js is installed (v14+ recommended)</li>
+<li>Check that all dependencies are installed (<code>npm install</code> in the <code>angband-doc-agent</code> directory)</li>
+<li>Verify the <code>.env</code> file has the correct <code>ANGBAND_SOURCE_PATH</code></li>
+<li>Try running <code>start-mcp-standalone.bat</code> to see any error messages</li>
+</ol>
+<h3 id="companion-window-not-showing-1">Companion Window Not Showing</h3>
+<ol>
+<li>Ensure you&#39;ve enabled &quot;Display companion information&quot; for Term-2</li>
+<li>Check that the game was started with <code>-n3</code> parameter</li>
+<li>Verify the MCP server is running</li>
+</ol>
+<h3 id="no-ai-generated-responses">No AI-Generated Responses</h3>
+<ol>
+<li>The system falls back to template-based responses when the AI server is unavailable</li>
+<li>This is normal behavior and allows the game to function offline</li>
+</ol>
+<h2 id="advanced-configuration">Advanced Configuration</h2>
+<h3 id="environment-variables">Environment Variables</h3>
+<ul>
+<li><code>ANGBAND_SOURCE_PATH</code>: Path to the game source code</li>
+<li><code>PORT</code>: Port for the MCP server (default: 3000)</li>
+</ul>
+<h3 id="custom-templates">Custom Templates</h3>
+<p>You can add custom narrative templates by editing the <code>generateTemplateNarrative</code> function in <code>simple-mcp-server.js</code>.</p>
+<h2 id="development">Development</h2>
+<p>To extend the MCP system:</p>
+<ol>
+<li>Add new event types in the client code</li>
+<li>Add corresponding templates in the server</li>
+<li>Update the companion UI to display the new content</li>
+</ol>
+<h2 id="license">License</h2>
+<p>This MCP system is part of the Ages of Arda project and is subject to the same license terms. </p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

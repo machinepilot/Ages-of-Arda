@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File: src/borg/borg-item-decurse.h | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>File: src/borg/borg-item-decurse.h</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="file-srcborgborg-item-decurseh">File: src/borg/borg-item-decurse.h</h1>
+<h2 id="file-overview">File Overview</h2>
+<p>This header file is part of the Angband roguelike game&#39;s &quot;borg&quot; module, which implements an AI player (bot) for the game. The file specifically deals with the AI&#39;s ability to handle cursed items by attempting to remove curses from the character&#39;s equipped armor and weapons.</p>
+<p>The header defines three functions that the AI uses to manage cursed items:</p>
+<ol>
+<li><code>borg_decurse_armour()</code>: Attempts to remove curses from equipped armor.</li>
+<li><code>borg_decurse_weapon()</code>: Attempts to remove curses from equipped weapons.</li>
+<li><code>borg_decurse_any()</code>: Attempts to remove curses from any equipped item.</li>
+</ol>
+<h2 id="data-structures">Data Structures</h2>
+<p>This header file does not define any data structures.</p>
+<h2 id="global-variables">Global Variables</h2>
+<p>This header file does not define any global variables.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_decurse_armour"><code>borg_decurse_armour()</code></h3>
+<pre><code class="language-c">extern bool borg_decurse_armour(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Attempts to remove curses from the character&#39;s equipped armor.</li>
+<li><strong>Parameters</strong>: None</li>
+<li><strong>Return value</strong>: <code>true</code> if the function managed to remove a curse, <code>false</code> otherwise.</li>
+<li><strong>Side effects</strong>: May modify the character&#39;s inventory and equipped items.</li>
+<li><strong>Game mechanics implemented</strong>: <ul>
+<li>Checks if any equipped armor is cursed.</li>
+<li>Attempts to uncurse the armor using various methods (scrolls, spells, etc.).</li>
+<li>If successful, re-equips the uncursed armor.</li>
+</ul>
+</li>
+</ul>
+<h3 id="borg_decurse_weapon"><code>borg_decurse_weapon()</code></h3>
+<pre><code class="language-c">extern bool borg_decurse_weapon(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Attempts to remove curses from the character&#39;s equipped weapons.</li>
+<li><strong>Parameters</strong>: None</li>
+<li><strong>Return value</strong>: <code>true</code> if the function managed to remove a curse, <code>false</code> otherwise.</li>
+<li><strong>Side effects</strong>: May modify the character&#39;s inventory and equipped items.</li>
+<li><strong>Game mechanics implemented</strong>:<ul>
+<li>Checks if any equipped weapons are cursed. </li>
+<li>Attempts to uncurse the weapons using various methods (scrolls, spells, etc.).</li>
+<li>If successful, re-equips the uncursed weapons.</li>
+</ul>
+</li>
+</ul>
+<h3 id="borg_decurse_any"><code>borg_decurse_any()</code></h3>
+<pre><code class="language-c">extern bool borg_decurse_any(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Attempts to remove curses from any of the character&#39;s equipped items.</li>
+<li><strong>Parameters</strong>: None</li>
+<li><strong>Return value</strong>: <code>true</code> if the function managed to remove a curse, <code>false</code> otherwise.</li>
+<li><strong>Side effects</strong>: May modify the character&#39;s inventory and equipped items.</li>
+<li><strong>Game mechanics implemented</strong>:<ul>
+<li>Checks if any equipped items are cursed.</li>
+<li>Attempts to uncurse the items using various methods (scrolls, spells, etc.).</li>
+<li>If successful, re-equips the uncursed items.</li>
+</ul>
+</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>This header does not implement any complex algorithms directly. The actual implementations of the curse removal mechanics would be found in the corresponding .c file.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>This header file depends on the core Angband header <code>angband.h</code>.</li>
+<li>The actual implementations of these functions in <code>borg-item-decurse.c</code> likely depend on various other borg and core Angband files.</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>The borg module was originally developed by Ben Harrison and has been maintained and expanded by various Angband developers over the years. The curse removal functionality is an important part of the AI&#39;s item management capabilities, as cursed items in roguelikes often have significant negative effects on the character until removed.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

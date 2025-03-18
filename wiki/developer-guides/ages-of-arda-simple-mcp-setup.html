@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ages of Arda - Simple MCP Setup | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Ages of Arda - Simple MCP Setup</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <p>original location: C:\working_directory\ages-project\clean-ages-of-arda\README-SIMPLE.md</p>
+<h1 id="ages-of-arda---simple-mcp-setup">Ages of Arda - Simple MCP Setup</h1>
+<p>This document explains how to use the simplified MCP system with your Ages of Arda game.</p>
+<h2 id="quick-start-two-step-process">Quick Start (Two-Step Process)</h2>
+<h3 id="step-1-start-the-mcp-server">Step 1: Start the MCP Server</h3>
+<p>Run <code>start-mcp.bat</code> to:</p>
+<ul>
+<li>Check for Node.js</li>
+<li>Install required dependencies</li>
+<li>Start the MCP server</li>
+</ul>
+<h3 id="step-2-start-the-game">Step 2: Start the Game</h3>
+<p>Run <code>start-game.bat</code> to:</p>
+<ul>
+<li>Launch the game with multi-window support</li>
+<li>You&#39;ll need to configure the companion window</li>
+</ul>
+<h2 id="configuring-the-companion-window">Configuring the Companion Window</h2>
+<p>Once in the game:</p>
+<ol>
+<li>Press <code>=</code> to access options</li>
+<li>Select <code>Window options</code> (press <code>w</code>)</li>
+<li>For Term-2, enable &quot;Display companion information&quot;</li>
+<li>Press ESC to save and return to the game</li>
+</ol>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="nodejs-not-found">Node.js Not Found</h3>
+<p>If you receive a &quot;Node.js not found&quot; error:</p>
+<ol>
+<li>Download and install Node.js from <a href="https://nodejs.org/">https://nodejs.org/</a></li>
+<li>Make sure it&#39;s added to your PATH</li>
+<li>Restart your computer</li>
+<li>Try running the scripts again</li>
+</ol>
+<h3 id="port-already-in-use">Port Already in Use</h3>
+<p>If port 3000 is already in use:</p>
+<ol>
+<li>Close any applications that might be using it</li>
+<li>Or manually edit the <code>.env</code> file in the <code>angband-doc-agent</code> folder to use a different port</li>
+</ol>
+<h3 id="game-not-finding-the-mcp-server">Game Not Finding the MCP Server</h3>
+<p>The game needs to be started with the <code>-n3</code> parameter to enable multiple windows. This is handled automatically by the <code>start-game.bat</code> script. </p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

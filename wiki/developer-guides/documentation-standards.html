@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Standards | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Documentation Standards</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <hr>
+<h2 id="title-documentation-standards-id-documentation-standards-section-development-category-guides-created-2023-10-15-updated-2023-12-01-version-100-contributors-developer1-tags-documentation-standards-guidelines-related-code-style-cursor_rule-true-glob-mdch-priority-900-rule_category-code-style">title: &quot;Documentation Standards&quot;
+id: &quot;documentation-standards&quot;
+section: &quot;development&quot;
+category: &quot;guides&quot;
+created: &quot;2023-10-15&quot;
+updated: &quot;2023-12-01&quot;
+version: &quot;1.0.0&quot;
+contributors: [&quot;developer1&quot;]
+tags: [&quot;documentation&quot;, &quot;standards&quot;, &quot;guidelines&quot;]
+related: [&quot;code-style&quot;]
+cursor_rule: true
+glob: &quot;<strong>/*.md,</strong>/<em>.c,**/</em>.h&quot;
+priority: 900
+rule_category: &quot;code-style&quot;</h2>
+<h1 id="documentation-standards">Documentation Standards</h1>
+<h2 id="core-principles">Core Principles</h2>
+<ul>
+<li>Every significant component must be documented</li>
+<li>Documentation lives in <code>docs/_source</code> directory</li>
+<li>Code comments reference documentation by ID</li>
+<li>Use standardized format with proper frontmatter</li>
+</ul>
+<h2 id="document-structure">Document Structure</h2>
+<h3 id="required-frontmatter">Required Frontmatter</h3>
+<pre><code class="language-yaml">---
+title: &quot;Document Title&quot;
+id: &quot;unique-document-identifier&quot;
+section: &quot;development|gameplay&quot;
+category: &quot;guides|architecture|reference&quot;
+created: &quot;YYYY-MM-DD&quot;
+updated: &quot;YYYY-MM-DD&quot;
+version: &quot;MAJOR.MINOR.PATCH&quot;
+---
+</code></pre>
+<h3 id="optional-frontmatter">Optional Frontmatter</h3>
+<pre><code class="language-yaml">contributors: [&quot;developer1&quot;, &quot;developer2&quot;]
+tags: [&quot;tag1&quot;, &quot;tag2&quot;]
+related: [&quot;related-doc-id1&quot;, &quot;related-doc-id2&quot;]
+cursor_rule: true  # If this should become a cursor rule
+github_doc: true   # If this should be published as a GitHub doc
+publish_to: [&quot;wiki&quot;, &quot;github&quot;]  # Output targets
+</code></pre>
+<h3 id="content-guidelines">Content Guidelines</h3>
+<ul>
+<li>Use proper Markdown formatting</li>
+<li>Start with a level-1 heading matching the title</li>
+<li>Use level-2 headings for major sections</li>
+<li>Use level-3 headings for subsections</li>
+<li>Include code examples with proper language indicators</li>
+<li>Keep line length under 120 characters</li>
+<li>Use relative links to other documentation files</li>
+</ul>
+<h2 id="implementation-pattern">Implementation Pattern</h2>
+<h3 id="documentation-references-in-code">Documentation References in Code</h3>
+<pre><code class="language-c">/**
+ * Function description
+ * 
+ * @see docs:dev-gameplay-movement
+ */
+void player_movement_handler(player_t *player, movement_type_t move_type)
+{
+    // Implementation
+}
+</code></pre>
+<h3 id="history-tracking">History Tracking</h3>
+<p>Always maintain a history section at the end of your document:</p>
+<pre><code class="language-markdown">## History
+- **2023-12-01**: Updated section X with clarification on Y
+- **2023-10-15**: Initial document creation
+</code></pre>
+<h2 id="naming-convention">Naming Convention</h2>
+<p>Standardized document IDs follow the pattern:</p>
+<pre><code>{section}-{category}-{descriptor}
+</code></pre>
+<p>Examples:</p>
+<ul>
+<li><code>dev-ai-multiagent-system</code></li>
+<li><code>gameplay-guide-character-creation</code></li>
+<li><code>dev-architecture-memory-management</code></li>
+</ul>
+<h2 id="build-process">Build Process</h2>
+<p>Documentation is automatically processed by our build system:</p>
+<ol>
+<li>Changes in source files trigger documentation rebuild</li>
+<li>Documentation is compiled to multiple formats</li>
+<li>Output is generated for wiki, cursor rules, and GitHub</li>
+</ol>
+<h2 id="history">History</h2>
+<ul>
+<li><strong>2023-12-01</strong>: Added build process information</li>
+<li><strong>2023-10-15</strong>: Initial documentation standards</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

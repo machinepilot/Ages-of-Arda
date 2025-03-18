@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File: src/borg/borg-flow.h | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>File: src/borg/borg-flow.h</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="file-srcborgborg-flowh">File: src/borg/borg-flow.h</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-flow.h</code> is a header file that contains definitions, data structures, and function prototypes related to the Borg&#39;s &quot;flow&quot; and pathfinding algorithms in the Angband roguelike game. The Borg is an AI player that navigates the dungeon, makes decisions, and fights monsters autonomously. This file plays a crucial role in the Borg&#39;s decision-making process by providing the necessary data structures and functions for the Borg to find optimal paths and navigate the dungeon effectively.</p>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="struct-borg_track">struct borg_track</h3>
+<p>The <code>borg_track</code> structure is used to track the locations of certain things in the dungeon.</p>
+<ul>
+<li><code>num</code>: The number of elements being tracked.</li>
+<li><code>size</code>: The maximum size of the track array.</li>
+<li><code>x</code>: An array of x-coordinates for the tracked elements.</li>
+<li><code>y</code>: An array of y-coordinates for the tracked elements.</li>
+</ul>
+<h3 id="struct-borg_data">struct borg_data</h3>
+<p>The <code>borg_data</code> structure encapsulates a 2D array of bytes, representing various data about each grid in the dungeon.</p>
+<ul>
+<li><code>data[AUTO_MAX_Y][AUTO_MAX_X]</code>: A 2D array of bytes holding the data for each grid.</li>
+</ul>
+<h2 id="global-variables">Global Variables</h2>
+<ul>
+<li><code>borg_flow_n</code>: The number of grids in the &quot;flow&quot; array.</li>
+<li><code>borg_flow_y[AUTO_FLOW_MAX]</code>: An array of y-coordinates for the grids in the &quot;flow&quot; array.</li>
+<li><code>borg_flow_x[AUTO_FLOW_MAX]</code>: An array of x-coordinates for the grids in the &quot;flow&quot; array.</li>
+<li><code>flow_head</code>: The head index of the &quot;flow&quot; array queue.</li>
+<li><code>flow_tail</code>: The tail index of the &quot;flow&quot; array queue.</li>
+<li><code>borg_data_flow</code>: A pointer to the current &quot;flow&quot; data.</li>
+<li><code>borg_data_cost</code>: A pointer to the current &quot;cost&quot; data.</li>
+<li><code>borg_data_hard</code>: A pointer to the constant &quot;hard&quot; data.</li>
+<li><code>borg_data_know</code>: A pointer to the current &quot;know&quot; flags.</li>
+<li><code>borg_data_icky</code>: A pointer to the current &quot;icky&quot; flags.</li>
+<li><code>borg_temp_n</code>: The number of grids in the &quot;temp&quot; array.</li>
+<li><code>borg_temp_y[AUTO_TEMP_MAX]</code>: An array of y-coordinates for the grids in the &quot;temp&quot; array.</li>
+<li><code>borg_temp_x[AUTO_TEMP_MAX]</code>: An array of x-coordinates for the grids in the &quot;temp&quot; array.</li>
+<li><code>track_step</code>: A <code>borg_track</code> structure for tracking steps.</li>
+<li><code>track_door</code>: A <code>borg_track</code> structure for tracking closed doors which the Borg has closed.</li>
+<li><code>track_closed</code>: A <code>borg_track</code> structure for tracking closed doors which started closed.</li>
+<li><code>borg_desperate</code>: A boolean indicating if the Borg is in a desperate situation.</li>
+<li><code>vault_on_level</code>: A boolean indicating if there is a vault on the current level.</li>
+<li><code>borg_t_antisummon</code>: An integer used for anti-summoning.</li>
+<li><code>borg_as_position</code>: A boolean related to anti-summoning position.</li>
+<li><code>borg_digging</code>: A boolean indicating if the Borg is currently digging.</li>
+<li><code>my_need_alter</code>: A boolean indicating if the Borg needs to alter something.</li>
+<li><code>my_no_alter</code>: A boolean indicating if the Borg is not allowed to alter something.</li>
+<li><code>my_need_redraw</code>: A boolean indicating if the Borg needs to redraw the screen.</li>
+<li><code>avoidance</code>: The current danger threshold for the Borg.</li>
+<li><code>borg_ddx_ddd[24]</code>: An array of x-coordinate offsets for search grids.</li>
+<li><code>borg_ddy_ddd[24]</code>: An array of y-coordinate offsets for search grids.</li>
+</ul>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_can_dig">borg_can_dig</h3>
+<pre><code class="language-c">bool borg_can_dig(bool check_fail, uint8_t feat);
+</code></pre>
+<p>Checks if the Borg can dig through a specific feature.</p>
+<ul>
+<li>Parameters:<ul>
+<li><code>check_fail</code>: A boolean indicating whether to check for failure conditions.</li>
+<li><code>feat</code>: The feature to check for diggability.</li>
+</ul>
+</li>
+<li>Returns: A boolean indicating whether the Borg can dig through the specified feature.</li>
+<li>Side Effects: None.</li>
+<li>Related Functions: None.</li>
+<li>Game Mechanics: Determines if the Borg has the necessary equipment and capabilities to dig through a specific dungeon feature.</li>
+</ul>
+<h3 id="borg_flow_clear">borg_flow_clear</h3>
+<pre><code class="language-c">void borg_flow_clear(void);
+</code></pre>
+<p>Clears the &quot;flow&quot; information.</p>
+<ul>
+<li>Parameters: None.</li>
+<li>Returns: None.</li>
+<li>Side Effects: Clears the &quot;flow&quot; data structures.</li>
+<li>Related Functions: None.</li>
+<li>Game Mechanics: Resets the &quot;flow&quot; information used by the Borg&#39;s pathfinding algorithms.</li>
+</ul>
+<h3 id="borg_flow_spread">borg_flow_spread</h3>
+<pre><code class="language-c">void borg_flow_spread(int depth, bool optimize, bool avoid, bool tunneling, int stair_idx, bool sneak);
+</code></pre>
+<p>Spreads a &quot;flow&quot; from the &quot;destination&quot; grids outwards.</p>
+<ul>
+<li>Parameters:<ul>
+<li><code>depth</code>: The maximum depth to spread the flow.</li>
+<li><code>optimize</code>: A boolean indicating whether to optimize the flow.</li>
+<li><code>avoid</code>: A boolean indicating whether to avoid certain grids.</li>
+<li><code>tunneling</code>: A boolean indicating whether tunneling is allowed.</li>
+<li><code>stair_idx</code>: The index of the stairs to consider.</li>
+<li><code>sneak</code>: A boolean indicating whether the Borg is sneaking.</li>
+</ul>
+</li>
+<li>Returns: None.</li>
+<li>Side Effects: Modifies the &quot;flow&quot; data structures.</li>
+<li>Related Functions: None.</li>
+<li>Game Mechanics: Implements the core of the Borg&#39;s pathfinding algorithm, spreading a &quot;flow&quot; from the destination grids to determine optimal paths.</li>
+</ul>
+<h3 id="borg_flow_enqueue_grid">borg_flow_enqueue_grid</h3>
+<pre><code class="language-c">void borg_flow_enqueue_grid(int y, int x);
+</code></pre>
+<p>Enqueues a fresh (legal) starting grid, if it is safe.</p>
+<ul>
+<li>Parameters:<ul>
+<li><code>y</code>: The y-coordinate of the grid to enqueue.</li>
+<li><code>x</code>: The x-coordinate of the grid to enqueue.</li>
+</ul>
+</li>
+<li>Returns: None.</li>
+<li>Side Effects: Modifies the &quot;flow&quot; data structures.</li>
+<li>Related Functions: None.</li>
+<li>Game Mechanics: Adds a new starting grid to the &quot;flow&quot; queue for pathfinding.</li>
+</ul>
+<h3 id="borg_flow_commit">borg_flow_commit</h3>
+<pre><code class="language-c">bool borg_flow_commit(const char *who, int why);
+</code></pre>
+<p>Commits the current &quot;flow&quot;.</p>
+<ul>
+<li>Parameters:<ul>
+<li><code>who</code>: A string identifying who is committing the flow.</li>
+<li><code>why</code>: An integer indicating the reason for committing the flow.</li>
+</ul>
+</li>
+<li>Returns: A boolean indicating whether the flow was successfully committed.</li>
+<li>Side Effects: Modifies the &quot;flow&quot; data structures.</li>
+<li>Related Functions: None.</li>
+<li>Game Mechanics: Finalizes the current &quot;flow&quot; and prepares it for use in pathfinding.</li>
+</ul>
+<h3 id="borg_flow_old">borg_flow_old</h3>
+<pre><code class="language-c">bool borg_flow_old(int why);
+</code></pre>
+<p>Attempts to take an optimal step towards the current goal location.</p>
+<ul>
+<li>Parameters:<ul>
+<li><code>why</code>: An integer indicating the reason for the step.</li>
+</ul>
+</li>
+<li>Returns: A boolean indicating whether a step was successfully taken.</li>
+<li>Side Effects: Modifies the Borg&#39;s position and state.</li>
+<li>Related Functions: None.</li>
+<li>Game Mechanics: Uses the current &quot;flow&quot; to determine the optimal step for the Borg to take towards its goal location.</li>
+</ul>
+<h3 id="borg_init_track">borg_init_track</h3>
+<pre><code class="language-c">void borg_init_track(struct borg_track *track, int size);
+</code></pre>
+<p>Initializes a <code>borg_track</code> structure.</p>
+<ul>
+<li>Parameters:<ul>
+<li><code>track</code>: A pointer to the <code>borg_track</code> structure to initialize.</li>
+<li><code>size</code>: The maximum size of the track array.</li>
+</ul>
+</li>
+<li>Returns: None.</li>
+<li>Side Effects: Modifies the <code>borg_track</code> structure.</li>
+<li>Related Functions: <code>borg_free_track</code>.</li>
+<li>Game Mechanics: Sets up a <code>borg_track</code> structure for tracking dungeon elements.</li>
+</ul>
+<h3 id="borg_free_track">borg_free_track</h3>
+<pre><code class="language-c">void borg_free_track(struct borg_track *track);
+</code></pre>
+<p>Frees the memory associated with a <code>borg_track</code> structure.</p>
+<ul>
+<li>Parameters:<ul>
+<li><code>track</code>: A pointer to the <code>borg_track</code> structure to free.</li>
+</ul>
+</li>
+<li>Returns: None.</li>
+<li>Side Effects: Frees memory.</li>
+<li>Related Functions: <code>borg_init_track</code>.</li>
+<li>Game Mechanics: Cleans up a <code>borg_track</code> structure when it is no longer needed.</li>
+</ul>
+<h3 id="borg_init_flow">borg_init_flow</h3>
+<pre><code class="language-c">void borg_init_flow(void);
+</code></pre>
+<p>Initializes the Borg&#39;s flow-related data structures.</p>
+<ul>
+<li>Parameters: None.</li>
+<li>Returns: None.</li>
+<li>Side Effects: Modifies the Borg&#39;s flow-related data structures.</li>
+<li>Related Functions: <code>borg_free_flow</code>.</li>
+<li>Game Mechanics: Sets up the necessary data structures for the Borg&#39;s pathfinding algorithms.</li>
+</ul>
+<h3 id="borg_free_flow">borg_free_flow</h3>
+<pre><code class="language-c">void borg_free_flow(void);
+</code></pre>
+<p>Frees the memory associated with the Borg&#39;s flow-related data structures.</p>
+<ul>
+<li>Parameters: None.</li>
+<li>Returns: None.</li>
+<li>Side Effects: Frees memory.</li>
+<li>Related Functions: <code>borg_init_flow</code>.</li>
+<li>Game Mechanics: Cleans up the Borg&#39;s flow-related data structures when they are no longer needed.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>The main algorithm in this file is the Borg&#39;s pathfinding algorithm, implemented in the <code>borg_flow_spread</code> function. This function uses a flood-fill approach to spread a &quot;flow&quot; from the destination grids outwards, assigning costs to each grid based on various factors such as distance, terrain, and obstacles. The Borg then uses this &quot;flow&quot; information to determine the optimal path to its goal location.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>This file depends on the following files:</p>
+<ul>
+<li><code>../angband.h</code>: The main Angband header file.</li>
+<li><code>borg-cave.h</code>: Header file containing definitions related to the Borg&#39;s cave management.</li>
+</ul>
+<p>Other files that may depend on this file:</p>
+<ul>
+<li>Other Borg-related source files that use the functions and data structures defined here.</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>The Borg AI player was a significant addition to the Angband roguelike game, providing players with an automated way to explore the dungeon and fight monsters. The code in this file represents a crucial part of the Borg&#39;s decision-making process, particularly in terms of pathfinding and navigation. Over time, the Borg AI has been refined and improved to better handle the challenges of the Angband dungeon.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

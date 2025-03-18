@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borg Item Activation Header File Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Borg Item Activation Header File Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="borg-item-activation-header-file-documentation">Borg Item Activation Header File Documentation</h1>
+<h2 id="file-overview">File Overview</h2>
+<p>The <code>borg-item-activation.h</code> file is part of the Borg AI system in the Angband roguelike game. It contains declarations for variables representing various item activation effects and a function to initialize them. These activations are used by the Borg AI to make decisions about using items during gameplay.</p>
+<h2 id="data-structures">Data Structures</h2>
+<p>This header file does not define any structs or typedefs.</p>
+<h2 id="global-variables">Global Variables</h2>
+<p>The file declares numerous global variables, each representing a specific item activation effect. These variables are of type <code>int</code> and are intended to store the index or identifier of the corresponding activation effect within the game&#39;s activation system.</p>
+<p>Some examples of the activation effect variables include:</p>
+<ul>
+<li><code>act_dragon_power</code>, <code>act_dragon_shining</code>, <code>act_dragon_balance</code>, etc.: Activations related to dragon-themed items.</li>
+<li><code>act_ring_lightning</code>, <code>act_ring_ice</code>, <code>act_ring_flames</code>, <code>act_ring_acid</code>: Activations for rings with elemental powers.</li>
+<li><code>act_staff_holy</code>, <code>act_staff_magi</code>: Activations for holy and magic staves.</li>
+<li><code>act_heal1</code>, <code>act_heal2</code>, <code>act_heal3</code>: Activations for healing effects of varying potency.</li>
+<li><code>act_cure_confusion</code>, <code>act_cure_paranoia</code>, <code>act_cure_mind</code>, <code>act_cure_body</code>: Activations for curing various status ailments.</li>
+</ul>
+<p>The full list of activation variables covers a wide range of effects, including offensive spells, defensive buffs, restorative actions, and utility functions.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_findact"><code>borg_findact</code></h3>
+<pre><code class="language-c">extern int borg_findact(const char *act_name);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Finds the index of an activation effect based on its name.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>act_name</code>: A string representing the name of the activation effect to find.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: The index of the activation effect if found, or some default value if not found.</li>
+<li><strong>Side effects</strong>: None.</li>
+<li><strong>Relationships</strong>: This function likely interacts with the game&#39;s activation system to map activation names to their corresponding indices.</li>
+</ul>
+<h3 id="borg_init_item_activation"><code>borg_init_item_activation</code></h3>
+<pre><code class="language-c">extern void borg_init_item_activation(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Initializes the item activation variables used by the Borg AI.</li>
+<li><strong>Parameters</strong>: None.</li>
+<li><strong>Return value</strong>: None.</li>
+<li><strong>Side effects</strong>: Modifies the global activation variables declared in this file, setting them to their appropriate values based on the game&#39;s activation system.</li>
+<li><strong>Relationships</strong>: This function is likely called during the initialization phase of the Borg AI to set up the activation variables for use in decision-making.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>This header file does not implement any complex algorithms. It mainly serves to declare variables and functions related to item activations for the Borg AI.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>This file depends on the main Angband header file <code>angband.h</code> for basic type definitions and game-related declarations.</li>
+<li>The contents of this file are conditionally compiled based on the presence of the <code>ALLOW_BORG</code> macro, which enables the Borg AI functionality.</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>The Borg AI is a unique feature of Angband that allows the game to play itself by making decisions based on pre-defined rules and heuristics. The item activation system is an essential part of the Borg AI&#39;s decision-making process, as it allows the AI to evaluate and use various items to overcome challenges and progress through the dungeon.</p>
+<p>The presence of numerous activation variables in this file suggests that the Borg AI has been designed to handle a wide variety of item effects, reflecting the diverse range of items available in Angband. The inclusion of dragon-themed activations, elemental rings, and various utility effects demonstrates the depth and complexity of the game&#39;s item system.</p>
+<p>The use of global variables for activation indices, rather than enums or constants, may be a historical design choice or a requirement of the Borg AI&#39;s integration with the game&#39;s codebase.</p>
+<p>Overall, this header file plays a crucial role in enabling the Borg AI to make informed decisions about item usage based on the available activation effects, enhancing the AI&#39;s capability to autonomously navigate the complex world of Angband.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

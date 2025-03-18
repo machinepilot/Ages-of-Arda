@@ -1,8 +1,10 @@
 ---
-description: 
-globs: 
-alwaysApply: false
+title: "Untitled Rule"
+glob: "**/*"
+priority: 500
+related: []
 ---
+
 ---
 title: Angband Variant Development Rules
 glob: "**/src/**/*.c,**/src/**/*.h,**/include/**/*.h"
@@ -98,4 +100,4 @@ The Ages of Arda extends Angband with modern AI capabilities:
 - Follow Angband difficulty curve conventions
 - Balance all new races and classes against vanilla options
 - Maintain challenging but fair progression
-- Document all balance changes carefully 
+- Document all balance changes carefully  

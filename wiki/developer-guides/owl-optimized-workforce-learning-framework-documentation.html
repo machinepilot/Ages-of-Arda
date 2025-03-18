@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWL (Optimized Workforce Learning) Framework Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>OWL (Optimized Workforce Learning) Framework Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="owl-optimized-workforce-learning-framework-documentation">OWL (Optimized Workforce Learning) Framework Documentation</h1>
+<h2 id="overview">Overview</h2>
+<p>OWL (Optimized Workforce Learning) is an open-source multi-agent collaboration framework built on CAMEL-AI, designed to revolutionize real-world task automation. It enables efficient, natural, and robust AI agent interactions across diverse domains, positioning itself as an open-source alternative to proprietary solutions like Manus AI.</p>
+<h2 id="key-capabilities">Key Capabilities</h2>
+<ul>
+<li><strong>Multi-Agent Collaboration</strong>: Enables dynamic interactions between specialized AI agents</li>
+<li><strong>Real-World Task Automation</strong>: Handles complex tasks like research, coding, and web browsing</li>
+<li><strong>Benchmark Performance</strong>: Achieves 58.18 average score on the GAIA benchmark, ranking #1 among open-source frameworks</li>
+<li><strong>Model Flexibility</strong>: Integrates with Claude 3.7 Sonnet, DeepSeek, GPT-4o, and local LLMs via Ollama</li>
+<li><strong>100% Open-Source</strong>: Freely available on GitHub for customization and extension</li>
+</ul>
+<h2 id="architecture">Architecture</h2>
+<h3 id="agent-types">Agent Types</h3>
+<p>OWL implements a multi-agent system with specialized roles:</p>
+<ul>
+<li><strong>User Agent</strong>: Interface between human users and the system</li>
+<li><strong>Actor Agent</strong>: Executes actions and coordinates with specialized agents</li>
+<li><strong>Web Agent</strong>: Browses and extracts information from the internet</li>
+<li><strong>Search Agent</strong>: Performs targeted information retrieval</li>
+<li><strong>Coding Agent</strong>: Writes, tests, and debugs code</li>
+<li><strong>Document Agent</strong>: Processes and analyzes documents</li>
+</ul>
+<h3 id="communication-protocol">Communication Protocol</h3>
+<p>Agents interact through structured messages that include:</p>
+<ul>
+<li><strong>Task Context</strong>: Current objective and parameters</li>
+<li><strong>Agent Role</strong>: Specialized function in the collaboration</li>
+<li><strong>Action Requests</strong>: Specific tasks for other agents</li>
+<li><strong>Results</strong>: Output from completed tasks</li>
+<li><strong>Next Steps</strong>: Suggested follow-up actions</li>
+</ul>
+<h2 id="implementation">Implementation</h2>
+<h3 id="installation">Installation</h3>
+<pre><code class="language-bash"># Clone the repository
+git clone https://github.com/camel-ai/owl
+
+# Set up virtual environment
+python -m venv owl_env
+source owl_env/bin/activate  # On Windows: owl_env\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Configure API keys
+# Create .env file based on .env_example
+</code></pre>
+<h3 id="basic-usage">Basic Usage</h3>
+<pre><code class="language-python">from owl import OWLFramework
+
+# Initialize OWL
+owl = OWLFramework(model=&quot;claude-3-7-sonnet&quot;)
+
+# Set up a task
+task = &quot;Research recent developments in quantum computing and summarize key findings&quot;
+
+# Run the task
+result = owl.run(task)
+
+# View results
+print(result.summary)
+print(result.sources)
+</code></pre>
+<h3 id="advanced-configuration">Advanced Configuration</h3>
+<pre><code class="language-python"># Configure with custom agent settings
+owl = OWLFramework(
+    model=&quot;claude-3-7-sonnet&quot;,
+    web_browsing=True,
+    code_execution=True,
+    local_models={
+        &quot;coding&quot;: &quot;ollama/codellama&quot;,
+        &quot;search&quot;: &quot;gpt-4o&quot;
+    },
+    max_iterations=10,
+    verbose=True
+)
+</code></pre>
+<h2 id="performance-benchmarks">Performance Benchmarks</h2>
+<p>OWL achieves top performance among open-source frameworks on the GAIA benchmark:</p>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>GAIA Score</th>
+<th>Reasoning</th>
+<th>Multi-modality</th>
+<th>Web Browsing</th>
+<th>Tool-use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OWL</td>
+<td>58.18</td>
+<td>64.2</td>
+<td>52.7</td>
+<td>59.4</td>
+<td>56.4</td>
+</tr>
+<tr>
+<td>Framework B</td>
+<td>53.42</td>
+<td>58.1</td>
+<td>49.2</td>
+<td>55.8</td>
+<td>50.6</td>
+</tr>
+<tr>
+<td>Framework C</td>
+<td>49.76</td>
+<td>54.3</td>
+<td>45.8</td>
+<td>51.2</td>
+<td>47.7</td>
+</tr>
+</tbody></table>
+<h2 id="use-cases">Use Cases</h2>
+<ul>
+<li><strong>Research Automation</strong>: Gathering, analyzing, and summarizing information from multiple sources</li>
+<li><strong>Software Development</strong>: Writing code, debugging issues, and implementing features</li>
+<li><strong>Data Analysis</strong>: Processing datasets, generating insights, and creating visualizations</li>
+<li><strong>Content Creation</strong>: Drafting, editing, and optimizing written content</li>
+<li><strong>Web Automation</strong>: Navigating websites, extracting data, and performing actions</li>
+</ul>
+<h2 id="integration-with-other-tools">Integration with Other Tools</h2>
+<p>OWL can integrate with:</p>
+<ul>
+<li><strong>Version Control</strong>: GitHub, GitLab</li>
+<li><strong>Development Environments</strong>: VS Code, Jupyter</li>
+<li><strong>Data Processing Tools</strong>: Pandas, NumPy</li>
+<li><strong>Visualization Libraries</strong>: Matplotlib, Plotly</li>
+<li><strong>Local LLM Systems</strong>: Ollama, LM Studio</li>
+</ul>
+<h2 id="best-practices">Best Practices</h2>
+<ul>
+<li><strong>Clear Task Definition</strong>: Provide specific objectives and constraints</li>
+<li><strong>Appropriate Model Selection</strong>: Choose models based on task requirements</li>
+<li><strong>Iteration Limits</strong>: Set reasonable bounds on processing cycles</li>
+<li><strong>Verification</strong>: Review outputs for critical applications</li>
+<li><strong>Resource Management</strong>: Monitor API usage for external models</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li>GitHub Repository: <a href="https://github.com/camel-ai/owl">https://github.com/camel-ai/owl</a></li>
+<li>Documentation: Available in the repository</li>
+<li>Community: Growing ecosystem of developers building on CAMEL-AI</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

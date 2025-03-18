@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Untitled</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <hr>
+<h2 id="description-model-context-protocol-mcp-integration-guidelines-globs-srcmcp-angband-doc-agent-alwaysapply-false">description: Model Context Protocol (MCP) Integration Guidelines
+globs: [&quot;<strong>/src/mcp/</strong>&quot;, &quot;<strong>/angband-doc-agent/</strong>&quot;]
+alwaysApply: false</h2>
+<h1 id="model-context-protocol-mcp-integration-guidelines">Model Context Protocol (MCP) Integration Guidelines</h1>
+<h2 id="overview">Overview</h2>
+<p>The Ages of Arda project uses Model Context Protocol (MCP) to integrate AI-driven narrative generation and companion features. This document outlines the implementation patterns and best practices.</p>
+<h2 id="server-architecture">Server Architecture</h2>
+<h3 id="simple-mcp-server">Simple MCP Server</h3>
+<p>The primary implementation is <code>simple-mcp-server.js</code>, which provides:</p>
+<ul>
+<li>File system access to the codebase</li>
+<li>Template-based narrative generation</li>
+<li>Memory storage for character experiences</li>
+</ul>
+<pre><code class="language-javascript">// Example narrative generation endpoint
+app.post(&#39;/mcp/tools/generateNarrative&#39;, async (req, res) =&gt; {
+  try {
+    const { event_type, event_data, character_id, style, tone } = req.body;
+    // Generate narrative based on templates or AI
+    let narrative = generateTemplateNarrative(event_type, eventData, style, tone);
+    
+    // Store in character memories
+    if (character_id) {
+      storeCharacterMemory(character_id, narrative);
+    }
+    
+    res.json(narrative);
+  } catch (error) {
+    // Provide fallback response
+    res.json({ 
+      text: &quot;The bard seems at a loss for words...&quot;,
+      tone: &quot;confused&quot;,
+      is_spoken: true,
+      importance: 30
+    });
+  }
+});
+</code></pre>
+<h3 id="client-integration">Client Integration</h3>
+<p>The C client (<code>mcp-client.c</code>) provides a bridge between the game and the MCP server:</p>
+<pre><code class="language-c">/**
+ * Request AI-generated content with fallback
+ */
+narrative_text_t *
+mcp_generate_narrative(mcp_client_t *client, const char *event_type,
+                     const char *event_data, const char *character_id,
+                     const char *style, const char *tone)
+{
+    // Try to get response from MCP server
+    mcp_response_t *response = mcp_invoke_tool(client, &quot;generateNarrative&quot;, json_params_str);
+    
+    // Process response or use fallback
+    narrative_text_t *narrative = process_narrative_response(response);
+    
+    return narrative;
+}
+</code></pre>
+<h2 id="implementation-patterns">Implementation Patterns</h2>
+<h3 id="fallback-mechanism">Fallback Mechanism</h3>
+<p>Always implement fallback mechanisms for when the MCP server is unavailable:</p>
+<pre><code class="language-c">char *
+get_ai_response(game_state_t *state, const char *prompt_type, const char *context)
+{
+    char *response = NULL;
+    
+    /* Try primary AI system */
+    response = mcp_request(state, prompt_type, context);
+    
+    /* Fall back to template if AI unavailable */
+    if (response == NULL) {
+        response = get_template_response(prompt_type, context);
+    }
+    
+    return response;
+}
+</code></pre>
+<h3 id="asynchronous-processing">Asynchronous Processing</h3>
+<p>Use asynchronous processing to avoid blocking the game:</p>
+<pre><code class="language-c">bool
+request_narrative_async(const char *event_type, const char *event_data)
+{
+    return mcp_generate_narrative_async(
+        mcp_client,
+        event_type,
+        event_data,
+        player_uuid,
+        &quot;standard&quot;,
+        NULL,
+        narrative_callback,
+        NULL
+    );
+}
+</code></pre>
+<h3 id="memory-management">Memory Management</h3>
+<p>Store important character memories for future reference:</p>
+<pre><code class="language-javascript">// Store character memories
+function storeCharacterMemory(characterId, narrative) {
+  if (!characterMemories[characterId]) {
+    characterMemories[characterId] = [];
+  }
+  
+  characterMemories[characterId].push({
+    timestamp: new Date(),
+    narrative: narrative.text,
+    importance: narrative.importance
+  });
+  
+  // Sort by importance
+  characterMemories[characterId].sort((a, b) =&gt; b.importance - a.importance);
+}
+</code></pre>
+<h2 id="testing">Testing</h2>
+<h3 id="server-testing">Server Testing</h3>
+<p>Test the MCP server independently:</p>
+<pre><code class="language-bash"># Start the server
+cd angband-doc-agent/src
+node simple-mcp-server.js
+
+# Test with curl
+curl -X POST http://localhost:3000/mcp/tools/generateNarrative \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;event_type&quot;:&quot;monster_death&quot;,&quot;event_data&quot;:{&quot;monster_name&quot;:&quot;Ancient Dragon&quot;}}&#39;
+</code></pre>
+<h3 id="client-testing">Client Testing</h3>
+<p>Test the C client with the test program:</p>
+<pre><code class="language-bash"># Compile the test client
+gcc -o test-mcp-client test-mcp-client.c mcp-client.c -lcurl -ljansson
+
+# Run the test
+./test-mcp-client
+</code></pre>
+<h2 id="companion-ui-integration">Companion UI Integration</h2>
+<p>The companion UI is integrated through the SDL2 interface:</p>
+<pre><code class="language-c">/**
+ * Initialize companion data for a subwindow
+ */
+errr
+companion_init(struct subwindow *subwindow)
+{
+    /* Allocate companion data */
+    subwindow-&gt;companion = mem_zalloc(sizeof(struct companion_data));
+    
+    /* Initialize MCP client */
+    subwindow-&gt;companion-&gt;mcp_client = mcp_client_init(MCP_SERVER_URL, NULL);
+    
+    return 0;
+}
+
+/**
+ * Render companion window
+ */
+void
+render_companion_window(struct subwindow *subwindow)
+{
+    /* Render companion portrait */
+    render_companion_portrait(subwindow);
+    
+    /* Render dialogue text */
+    render_companion_dialogue(subwindow);
+    
+    /* Render interaction options */
+    render_companion_options(subwindow);
+}
+</code></pre>
+<h2 id="deployment">Deployment</h2>
+<h3 id="server-startup">Server Startup</h3>
+<p>Use the provided batch file to start the server:</p>
+<pre><code class="language-batch">@echo off
+echo Starting MCP server...
+cd angband-doc-agent\src
+node simple-mcp-server.js
+</code></pre>
+<h3 id="game-integration">Game Integration</h3>
+<p>Start the game with the companion window enabled:</p>
+<pre><code class="language-batch">@echo off
+echo Starting MCP server in background...
+start &quot;MCP Server&quot; cmd /c &quot;cd angband-doc-agent\src &amp;&amp; node simple-mcp-server.js&quot;
+echo Starting game...
+angband.exe -n3
+</code></pre>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

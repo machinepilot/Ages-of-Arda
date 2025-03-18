@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File: src/borg/borg-attack-munchkin.h | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>File: src/borg/borg-attack-munchkin.h</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="file-srcborgborg-attack-munchkinh">File: src/borg/borg-attack-munchkin.h</h1>
+<h2 id="file-overview">File Overview</h2>
+<p>The <code>borg-attack-munchkin.h</code> file is a header file in the Angband roguelike game, specifically within the &quot;borg&quot; AI player module. It declares functions related to the AI&#39;s &quot;munchkin&quot; attack strategies, which are presumably aggressive or exploitative approaches to combat.</p>
+<p>The file is guarded by an <code>ALLOW_BORG</code> conditional compilation directive, indicating that it is only compiled when the borg AI module is enabled.</p>
+<h2 id="data-structures">Data Structures</h2>
+<p>This file does not define any structs or typedefs.</p>
+<h2 id="global-variables">Global Variables</h2>
+<p>This file does not declare any global variables.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_munchkin_mage"><code>borg_munchkin_mage</code></h3>
+<pre><code class="language-c">extern bool borg_munchkin_mage(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Presumably implements the borg AI&#39;s munchkin attack strategy for mage-type characters.</li>
+<li><strong>Parameters</strong>: None</li>
+<li><strong>Return value</strong>: A boolean value, likely indicating the success or failure of the munchkin mage attack strategy.</li>
+<li><strong>Side effects</strong>: Unknown, as the implementation is not provided in this header file.</li>
+<li><strong>Relationships</strong>: May call other borg AI functions or interact with game state.</li>
+<li><strong>Game mechanics</strong>: Specific munchkin attack strategies for mage characters are not described in this file.</li>
+</ul>
+<h3 id="borg_munchkin_melee"><code>borg_munchkin_melee</code></h3>
+<pre><code class="language-c">extern bool borg_munchkin_melee(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Presumably implements the borg AI&#39;s munchkin attack strategy for melee-type characters.</li>
+<li><strong>Parameters</strong>: None</li>
+<li><strong>Return value</strong>: A boolean value, likely indicating the success or failure of the munchkin melee attack strategy.</li>
+<li><strong>Side effects</strong>: Unknown, as the implementation is not provided in this header file.</li>
+<li><strong>Relationships</strong>: May call other borg AI functions or interact with game state.</li>
+<li><strong>Game mechanics</strong>: Specific munchkin attack strategies for melee characters are not described in this file.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>This file does not implement any algorithms directly, as it is a header file. The actual implementations of the munchkin attack strategies would be found in corresponding .c files.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>This file includes &quot;../angband.h&quot; before the <code>ALLOW_BORG</code> check to avoid empty compilation units.</li>
+<li>Other files may depend on this header to access the munchkin attack functions for the borg AI.</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>The file includes a copyright notice indicating contributions from several individuals between 1997 and 2009, suggesting a long development history.</p>
+<p>The term &quot;munchkin&quot; in gaming often refers to a player who aggressively exploits the game&#39;s mechanics to gain an advantage, sometimes in ways not intended by the game designers. The presence of explicit &quot;munchkin attack&quot; functions in the borg AI may indicate an attempt to model or simulate such aggressive playstyles.</p>
+<p>Note: Without access to the actual implementation (.c) files, it is difficult to provide more detailed documentation on the specific game mechanics and algorithms involved in these munchkin attack strategies. The information provided is based on inferences from the limited content in the header file.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

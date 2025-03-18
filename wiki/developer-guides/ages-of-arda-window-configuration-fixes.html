@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ages of Arda - Window Configuration Fixes | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Ages of Arda - Window Configuration Fixes</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <p>original location: C:\working_directory\ages-project\clean-ages-of-arda\WINDOW-CONFIGURATION-FIXES.md</p>
+<h1 id="ages-of-arda---window-configuration-fixes">Ages of Arda - Window Configuration Fixes</h1>
+<h2 id="overview">Overview</h2>
+<p>This document summarizes the changes made to fix window overlap issues and improve the fullscreen experience in Ages of Arda.</p>
+<h2 id="issues-fixed">Issues Fixed</h2>
+<ol>
+<li><p><strong>Overlapping Windows</strong>: The original configuration had windows that overlapped, making it difficult to see content in multiple windows simultaneously.</p>
+</li>
+<li><p><strong>Fullscreen Mode</strong>: The game window was not properly set to fullscreen mode.</p>
+</li>
+</ol>
+<h2 id="solutions-implemented">Solutions Implemented</h2>
+<h3 id="1-improved-sdl2-configuration-generator">1. Improved SDL2 Configuration Generator</h3>
+<p>The SDL2 configuration generator was updated with the following improvements:</p>
+<ul>
+<li><strong>Better Window Positioning</strong>: Adjusted the position and size calculations for all windows to prevent overlap.</li>
+<li><strong>Fullscreen Mode</strong>: Set the default mode to fullscreen.</li>
+<li><strong>Responsive Layout</strong>: Improved the layout to better scale with different screen resolutions.</li>
+<li><strong>Window Proportions</strong>: Adjusted the proportions of the game windows for better visibility.</li>
+</ul>
+<h3 id="2-enhanced-configuration-management">2. Enhanced Configuration Management</h3>
+<p>Added configuration options and tools:</p>
+<ul>
+<li><strong>Fullscreen Toggle</strong>: Added a configuration option to toggle between fullscreen and windowed mode.</li>
+<li><strong>Configuration Utility</strong>: Created reset-window-config.bat and reset-window-config.sh utilities for users to:<ul>
+<li>Reset window configuration</li>
+<li>Toggle fullscreen mode</li>
+<li>Backup current configurations</li>
+<li>Restore from backups</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-updated-startup-scripts">3. Updated Startup Scripts</h3>
+<p>Modified the startup scripts to better handle window configuration:</p>
+<ul>
+<li><strong>Force Regeneration</strong>: Added a command-line option to force regeneration of the SDL2 configuration.</li>
+<li><strong>Fullscreen Setting</strong>: Properly reads and applies the fullscreen setting from the configuration file.</li>
+<li><strong>Test Mode</strong>: Added a test mode for script verification without launching the game.</li>
+</ul>
+<h2 id="technical-details">Technical Details</h2>
+<h3 id="window-layout">Window Layout</h3>
+<p>The new window layout follows this arrangement:</p>
+<pre><code>┌─────────────┬────────────────────────────┬─────────────┐
+│             │                            │             │
+│             │                            │             │
+│ Inventory   │                            │ Monsters    │
+│ (Left)      │       Main Game            │ in Sight    │
+│             │        Window              │ (Right Top) │
+│             │                            │             │
+│             │                            │             │
+├─────────────┤                            ├─────────────┤
+│             │                            │             │
+│             │                            │ Inventory   │
+│ Monster     │                            │ (Right Mid) │
+│ Recall      │                            │             │
+│ (Left Bot)  │                            │             │
+│             │                            ├─────────────┤
+│             │                            │             │
+├─────────────┴────────────────────────────┤ Companion   │
+│                                          │ (Right Bot) │
+│           Message Window                 │             │
+│                                          │             │
+└──────────────────────────────────────────┴─────────────┘
+</code></pre>
+<h3 id="configuration-file-changes">Configuration File Changes</h3>
+<p>Added a new <code>fullscreen</code> option to the <code>[WINDOW_PREFERENCES]</code> section:</p>
+<pre><code class="language-ini">[WINDOW_PREFERENCES]
+use_graphics=true
+graphics_mode=3
+fullscreen=true  # New option
+</code></pre>
+<h2 id="user-instructions">User Instructions</h2>
+<h3 id="resetting-window-configuration">Resetting Window Configuration</h3>
+<p>If windows still overlap or display incorrectly:</p>
+<ol>
+<li>Run <code>reset-window-config.bat</code> (Windows) or <code>reset-window-config.sh</code> (Linux/Unix)</li>
+<li>Select option 1 to reset the window configuration</li>
+<li>Start the game using <code>start-ages-of-arda.bat</code> or <code>start-ages-of-arda.sh</code></li>
+</ol>
+<h3 id="toggling-fullscreen-mode">Toggling Fullscreen Mode</h3>
+<p>To switch between fullscreen and windowed mode:</p>
+<ol>
+<li>Run <code>reset-window-config.bat</code> (Windows) or <code>reset-window-config.sh</code> (Linux/Unix)</li>
+<li>Select option 2 to toggle fullscreen mode</li>
+<li>Start the game using <code>start-ages-of-arda.bat</code> or <code>start-ages-of-arda.sh</code></li>
+</ol>
+<h3 id="force-regenerating-configuration">Force Regenerating Configuration</h3>
+<p>To force regeneration of the SDL2 configuration:</p>
+<pre><code>start-ages-of-arda.bat force_config_regen
+</code></pre>
+<p>or </p>
+<pre><code>./start-ages-of-arda.sh force_config_regen
+</code></pre>
+<h2 id="future-improvements">Future Improvements</h2>
+<p>Potential future improvements for window handling:</p>
+<ol>
+<li><strong>In-Game Configuration</strong>: Add the ability to configure windows from within the game.</li>
+<li><strong>Layout Presets</strong>: Create multiple layout presets for different play styles.</li>
+<li><strong>Multi-Monitor Support</strong>: Enhanced support for multi-monitor setups.</li>
+<li><strong>Resolution Detection</strong>: More robust screen resolution detection.</li>
+<li><strong>Adaptive Fonts</strong>: Automatically adjust font sizes based on resolution.</li>
+</ol>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

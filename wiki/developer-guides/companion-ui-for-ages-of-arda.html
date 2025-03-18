@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Companion UI for Ages of Arda | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Companion UI for Ages of Arda</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <p>original location: C:\working_directory\ages-project\clean-ages-of-arda\README-COMPANION.md</p>
+<h1 id="companion-ui-for-ages-of-arda">Companion UI for Ages of Arda</h1>
+<p>This document describes the Companion UI feature added to Ages of Arda. The Companion UI provides a dedicated window that displays information about your current companion, their status, and their interactions with you during gameplay.</p>
+<h2 id="overview">Overview</h2>
+<p>The Companion UI window displays:</p>
+<ul>
+<li>Companion portrait</li>
+<li>Companion name and health status</li>
+<li>Relationship level with your character</li>
+<li>Recent dialogue and thoughts from your companion</li>
+<li>Status effects and conditions affecting your companion</li>
+</ul>
+<h2 id="setup-instructions">Setup Instructions</h2>
+<p>To enable and use the Companion UI:</p>
+<ol>
+<li>Start the game with multiple terminal windows (e.g., <code>angband.exe -n2</code> to have Term-2 available)</li>
+<li>Press <code>=</code> (equals) to access the options menu</li>
+<li>Press <code>w</code> to access window display options</li>
+<li>Navigate to Term-2 and make sure &quot;Display companion information&quot; is selected</li>
+<li>Press Escape to exit the options menu</li>
+</ol>
+<p>The Companion UI will now be visible in Term-2 and will update automatically as you play.</p>
+<h2 id="technical-implementation">Technical Implementation</h2>
+<p>The Companion UI is implemented using the following components:</p>
+<ul>
+<li><code>ui-companion.c/h</code>: Core companion UI code</li>
+<li><code>ui-display.c</code>: Window flag management and event handling</li>
+<li><code>ui-init.c</code>: Default window flag initialization</li>
+</ul>
+<p>The Companion UI uses the <code>PW_COMPANION</code> window flag (0x80000000) to determine which terminal should display companion information.</p>
+<h2 id="companion-interactions">Companion Interactions</h2>
+<p>The Companion UI responds to various game events:</p>
+<ul>
+<li>Monster deaths</li>
+<li>Entering/leaving dungeons or levels</li>
+<li>Inventory changes</li>
+<li>Combat situations</li>
+</ul>
+<p>Your companion will offer dialogue, thoughts, and commentary based on these events. The relationship with your companion can evolve based on your actions in the game.</p>
+<h2 id="testing">Testing</h2>
+<p>A test script is provided to verify the Companion UI functionality:</p>
+<pre><code>test-companion-window.bat
+</code></pre>
+<p>This script will:</p>
+<ol>
+<li>Reset your window configuration</li>
+<li>Launch the game with Term-2 active</li>
+<li>Guide you through setting up and testing the Companion UI</li>
+</ol>
+<h2 id="customization">Customization</h2>
+<p>Future updates may include:</p>
+<ul>
+<li>Customizable companion portraits</li>
+<li>Additional dialogue options</li>
+<li>Companion-specific quests</li>
+<li>Mood and relationship system improvements</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>If the Companion UI is not visible:</p>
+<ol>
+<li>Ensure you have selected &quot;Display companion information&quot; in the Term-2 window options</li>
+<li>Check that Term-2 is visible on your screen</li>
+<li>Try resetting your window configuration using <code>reset-window-config.bat</code></li>
+<li>Restart the game with multiple terminals using <code>angband.exe -n2</code></li>
+</ol>
+<p>If &quot;Display companion information&quot; is not showing up in the window options:</p>
+<ol>
+<li>Make sure you&#39;re running the latest version of the game</li>
+<li>Try using the test script <code>test-companion-window.bat</code> which ensures proper configuration</li>
+<li>Delete your preferences file located at <code>%USERPROFILE%\Documents\Angband\user\windows.prf</code></li>
+<li>If the issue persists, try resetting your entire configuration using <code>reset-window-config.bat</code></li>
+<li>Alternatively, edit your <code>sdl2init.txt</code> file to manually add the companion window flag (0x80000000) to Term-2</li>
+</ol>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

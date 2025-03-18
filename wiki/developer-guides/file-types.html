@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Type Rule Mapping | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>File Type Rule Mapping</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <h1 id="file-type-rule-mapping">File Type Rule Mapping</h1>
+<p>This rule automatically applies the appropriate rule files based on file type and location. It serves as a central dispatch mechanism for the rule system.</p>
+<h2 id="source-code-files">Source Code Files</h2>
+<table>
+<thead>
+<tr>
+<th>File Pattern</th>
+<th>Applied Rules</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>**/*.c</code></td>
+<td>code-style/c-style.mdc, game/memory-bank.mdc</td>
+</tr>
+<tr>
+<td><code>**/*.h</code></td>
+<td>code-style/c-style.mdc, game/memory-bank.mdc</td>
+</tr>
+<tr>
+<td><code>**/src/**/*.c</code></td>
+<td>game/angband-variant.mdc</td>
+</tr>
+<tr>
+<td><code>**/html/**/*.html</code></td>
+<td>code-style/html.mdc</td>
+</tr>
+<tr>
+<td><code>**/ai/**/*.c</code></td>
+<td>ai/ai-gameplay.mdc, ai/ai-ux.mdc</td>
+</tr>
+<tr>
+<td><code>**/mcp/**/*.c</code></td>
+<td>mcp/mcp-integration.mdc, mcp/mcp-server.mdc</td>
+</tr>
+</tbody></table>
+<h2 id="configuration-files">Configuration Files</h2>
+<table>
+<thead>
+<tr>
+<th>File Pattern</th>
+<th>Applied Rules</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>netlify.toml</code></td>
+<td>infrastructure/netlify.mdc</td>
+</tr>
+<tr>
+<td><code>.github/**</code></td>
+<td>infrastructure/github-standards.mdc</td>
+</tr>
+<tr>
+<td><code>**/mcp/config.json</code></td>
+<td>mcp/mcp-server.mdc</td>
+</tr>
+</tbody></table>
+<h2 id="game-content-files">Game Content Files</h2>
+<table>
+<thead>
+<tr>
+<th>File Pattern</th>
+<th>Applied Rules</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>**/lore/**</code></td>
+<td>game/lore-management.mdc</td>
+</tr>
+<tr>
+<td><code>**/npc/**</code></td>
+<td>ai/ai-gameplay.mdc</td>
+</tr>
+<tr>
+<td><code>**/gameplay/**</code></td>
+<td>game/angband-variant.mdc, ai/ai-gameplay.mdc</td>
+</tr>
+</tbody></table>
+<h2 id="usage">Usage</h2>
+<p>This file does not need to be explicitly referenced. It automatically runs at priority 950 to ensure all appropriate rules are applied based on the file types being edited.</p>
+<p>Each mapping indicates:</p>
+<ol>
+<li>The glob pattern to match file paths</li>
+<li>The rule files that should be applied when working with these files</li>
+</ol>
+<p>When multiple rules apply, they are loaded in order of priority from highest to lowest. </p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>borg-flow-misc.h File Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>borg-flow-misc.h File Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="borg-flow-misch-file-documentation">borg-flow-misc.h File Documentation</h1>
+<h2 id="file-overview">File Overview</h2>
+<p>The <code>borg-flow-misc.h</code> file is part of the Borg AI system in Angband, which is an automated player that can play the game independently. This header file declares various functions and data structures used by the Borg AI to make decisions related to movement, exploration, and recovery.</p>
+<p>The primary purpose of the code in this file is to handle the &quot;flow&quot; of the Borg AI, which involves navigating the dungeon, searching for items, and managing resources. The functions declared here are responsible for tasks such as locating store doors, tracking mineral veins, checking for safe resting spots, and moving towards light sources or vault grids.</p>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="borg_track-structure"><code>borg_track</code> Structure</h3>
+<p>The <code>borg_track</code> structure is used to track the mineral veins with treasure. It likely contains fields to store the location and properties of the veins, but the actual definition is not provided in this header file.</p>
+<h2 id="global-variables">Global Variables</h2>
+<h3 id="track_shop_x-and-track_shop_y-variables"><code>track_shop_x</code> and <code>track_shop_y</code> Variables</h3>
+<ul>
+<li>Type: <code>int *</code></li>
+<li>Purpose: Arrays to store the x and y coordinates of store doors in the dungeon.</li>
+</ul>
+<h3 id="track_vein-variable"><code>track_vein</code> Variable</h3>
+<ul>
+<li>Type: <code>struct borg_track</code></li>
+<li>Purpose: Tracks the mineral veins with treasure in the dungeon.</li>
+</ul>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_check_rest-function"><code>borg_check_rest</code> Function</h3>
+<ul>
+<li>Purpose: Checks if there are any monsters around that should prevent resting at a given location.</li>
+<li>Parameters:<ul>
+<li><code>y</code>: The y-coordinate of the resting location.</li>
+<li><code>x</code>: The x-coordinate of the resting location.</li>
+</ul>
+</li>
+<li>Return Value: Returns <code>true</code> if it is safe to rest at the specified location, <code>false</code> otherwise.</li>
+</ul>
+<h3 id="borg_flow_reverse-function"><code>borg_flow_reverse</code> Function</h3>
+<ul>
+<li>Purpose: Performs a &quot;reverse&quot; flow from the player outwards, likely to explore or escape the dungeon.</li>
+<li>Parameters:<ul>
+<li><code>depth</code>: The depth of the dungeon level.</li>
+<li><code>optimize</code>: A boolean indicating whether to optimize the flow.</li>
+<li><code>avoid</code>: A boolean indicating whether to avoid certain grids during the flow.</li>
+<li><code>tunneling</code>: A boolean indicating whether tunneling is allowed during the flow.</li>
+<li><code>stair_idx</code>: The index of the stairs to consider during the flow.</li>
+<li><code>sneak</code>: A boolean indicating whether the Borg should sneak during the flow.</li>
+</ul>
+</li>
+<li>Return Value: None</li>
+<li>Side Effects: Modifies the Borg&#39;s internal state and may cause the Borg to move or perform actions.</li>
+</ul>
+<h3 id="borg_happy_grid_bold-function"><code>borg_happy_grid_bold</code> Function</h3>
+<ul>
+<li>Purpose: Checks if a given floor grid is &quot;happy&quot; for the Borg, likely meaning it is safe or desirable.</li>
+<li>Parameters:<ul>
+<li><code>y</code>: The y-coordinate of the grid to check.</li>
+<li><code>x</code>: The x-coordinate of the grid to check.</li>
+</ul>
+</li>
+<li>Return Value: Returns <code>true</code> if the grid is considered &quot;happy,&quot; <code>false</code> otherwise.</li>
+</ul>
+<h3 id="borg_flow_recover-function"><code>borg_flow_recover</code> Function</h3>
+<ul>
+<li>Purpose: Makes the Borg go to a safe place to rest and recover.</li>
+<li>Parameters:<ul>
+<li><code>viewable</code>: A boolean indicating whether the recovery spot should be viewable by the player.</li>
+<li><code>dist</code>: The maximum distance to search for a recovery spot.</li>
+</ul>
+</li>
+<li>Return Value: Returns <code>true</code> if a suitable recovery spot was found and the Borg moved there, <code>false</code> otherwise.</li>
+<li>Side Effects: Modifies the Borg&#39;s internal state and may cause the Borg to move.</li>
+</ul>
+<h3 id="borg_flow_vein-function"><code>borg_flow_vein</code> Function</h3>
+<ul>
+<li>Purpose: Prepares the Borg to &quot;flow&quot; towards mineral veins with treasure.</li>
+<li>Parameters:<ul>
+<li><code>viewable</code>: A boolean indicating whether the mineral veins should be viewable by the player.</li>
+<li><code>nearness</code>: The maximum distance to search for mineral veins.</li>
+</ul>
+</li>
+<li>Return Value: Returns <code>true</code> if mineral veins were found and the Borg prepared to flow towards them, <code>false</code> otherwise.</li>
+<li>Side Effects: Modifies the Borg&#39;s internal state and may cause the Borg to move.</li>
+</ul>
+<h3 id="borg_flow_spastic-function"><code>borg_flow_spastic</code> Function</h3>
+<ul>
+<li>Purpose: Makes the Borg search carefully for secret doors and other hidden features.</li>
+<li>Parameters:<ul>
+<li><code>bored</code>: A boolean indicating whether the Borg is bored and should search more thoroughly.</li>
+</ul>
+</li>
+<li>Return Value: Returns <code>true</code> if the Borg performed a spastic search, <code>false</code> otherwise.</li>
+<li>Side Effects: Modifies the Borg&#39;s internal state and may cause the Borg to move or perform actions.</li>
+</ul>
+<h3 id="borg_flow_shop_entry-function"><code>borg_flow_shop_entry</code> Function</h3>
+<ul>
+<li>Purpose: Prepares the Borg to flow towards a specific shop entry.</li>
+<li>Parameters:<ul>
+<li><code>i</code>: The index of the shop entry to flow towards.</li>
+</ul>
+</li>
+<li>Return Value: Returns <code>true</code> if the Borg prepared to flow towards the specified shop entry, <code>false</code> otherwise.</li>
+<li>Side Effects: Modifies the Borg&#39;s internal state and may cause the Borg to move.</li>
+</ul>
+<h3 id="borg_flow_light-function"><code>borg_flow_light</code> Function</h3>
+<ul>
+<li>Purpose: Prepares the Borg to flow towards light sources in the dungeon.</li>
+<li>Parameters:<ul>
+<li><code>why</code>: An integer indicating the reason for flowing towards light (not explained in the header).</li>
+</ul>
+</li>
+<li>Return Value: Returns <code>true</code> if the Borg prepared to flow towards light, <code>false</code> otherwise.</li>
+<li>Side Effects: Modifies the Borg&#39;s internal state and may cause the Borg to move.</li>
+</ul>
+<h3 id="borg_flow_vault-function"><code>borg_flow_vault</code> Function</h3>
+<ul>
+<li>Purpose: Prepares the Borg to flow towards a vault grid which can be excavated.</li>
+<li>Parameters:<ul>
+<li><code>nearness</code>: The maximum distance to search for a vault grid.</li>
+</ul>
+</li>
+<li>Return Value: Returns <code>true</code> if a suitable vault grid was found and the Borg prepared to flow towards it, <code>false</code> otherwise.</li>
+<li>Side Effects: Modifies the Borg&#39;s internal state and may cause the Borg to move.</li>
+</ul>
+<h3 id="borg_twitchy-function"><code>borg_twitchy</code> Function</h3>
+<ul>
+<li>Purpose: Makes the Borg act twitchy, likely to simulate human-like behavior or to avoid detection by monsters.</li>
+<li>Parameters: None</li>
+<li>Return Value: Returns <code>true</code> if the Borg performed a twitchy action, <code>false</code> otherwise.</li>
+<li>Side Effects: Modifies the Borg&#39;s internal state and may cause the Borg to move or perform actions.</li>
+</ul>
+<h3 id="borg_extract_dir-function"><code>borg_extract_dir</code> Function</h3>
+<ul>
+<li>Purpose: Extracts a direction given a source and target location.</li>
+<li>Parameters:<ul>
+<li><code>y1</code>: The y-coordinate of the source location.</li>
+<li><code>x1</code>: The x-coordinate of the source location.</li>
+<li><code>y2</code>: The y-coordinate of the target location.</li>
+<li><code>x2</code>: The x-coordinate of the target location.</li>
+</ul>
+</li>
+<li>Return Value: Returns an integer representing the direction from the source to the target.</li>
+</ul>
+<h3 id="borg_goto_dir-function"><code>borg_goto_dir</code> Function</h3>
+<ul>
+<li>Purpose: Moves the Borg in a given direction from a source to a target location.</li>
+<li>Parameters:<ul>
+<li><code>y1</code>: The y-coordinate of the source location.</li>
+<li><code>x1</code>: The x-coordinate of the source location.</li>
+<li><code>y2</code>: The y-coordinate of the target location.</li>
+<li><code>x2</code>: The x-coordinate of the target location.</li>
+</ul>
+</li>
+<li>Return Value: Returns an integer indicating the result of the movement (not explained in the header).</li>
+<li>Side Effects: Modifies the Borg&#39;s internal state and may cause the Borg to move.</li>
+</ul>
+<h3 id="borg_flow_far_from_stairs-function"><code>borg_flow_far_from_stairs</code> Function</h3>
+<ul>
+<li>Purpose: Checks if a given square is &quot;too far&quot; from the stairs.</li>
+<li>Parameters:<ul>
+<li><code>x</code>: The x-coordinate of the square to check.</li>
+<li><code>y</code>: The y-coordinate of the square to check.</li>
+<li><code>b_stair</code>: The index of the stairs to consider.</li>
+</ul>
+</li>
+<li>Return Value: Returns <code>true</code> if the square is considered too far from the stairs, <code>false</code> otherwise.</li>
+</ul>
+<h3 id="borg_flow_far_from_stairs_dist-function"><code>borg_flow_far_from_stairs_dist</code> Function</h3>
+<ul>
+<li>Purpose: Checks if a given square is &quot;too far&quot; from the stairs, considering a specific distance.</li>
+<li>Parameters:<ul>
+<li><code>x</code>: The x-coordinate of the square to check.</li>
+<li><code>y</code>: The y-coordinate of the square to check.</li>
+<li><code>b_stair</code>: The index of the stairs to consider.</li>
+<li><code>distance</code>: The maximum distance to consider.</li>
+</ul>
+</li>
+<li>Return Value: Returns <code>true</code> if the square is considered too far from the stairs within the specified distance, <code>false</code> otherwise.</li>
+</ul>
+<h3 id="borg_init_flow_misc-function"><code>borg_init_flow_misc</code> Function</h3>
+<ul>
+<li>Purpose: Initializes the data structures and variables used by the flow-related functions in the Borg AI.</li>
+<li>Parameters: None</li>
+<li>Return Value: None</li>
+<li>Side Effects: Initializes the <code>track_shop_x</code>, <code>track_shop_y</code>, and <code>track_vein</code> variables.</li>
+</ul>
+<h3 id="borg_free_flow_misc-function"><code>borg_free_flow_misc</code> Function</h3>
+<ul>
+<li>Purpose: Frees the memory allocated for the data structures and variables used by the flow-related functions in the Borg AI.</li>
+<li>Parameters: None</li>
+<li>Return Value: None</li>
+<li>Side Effects: Frees the memory allocated for the <code>track_shop_x</code>, <code>track_shop_y</code>, and <code>track_vein</code> variables.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>The specific algorithms used by the functions in this file are not evident from the header alone. The implementations of these functions would need to be examined to determine the exact algorithms employed.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>This header file depends on the <code>angband.h</code> header file, which is included at the beginning of the file. The functions and data structures declared in this file are likely used by other parts of the Borg AI system, but the specific dependencies are not clear from the header alone.</p>
+<h2 id="historical-context">Historical Context</h2>
+<p>The Borg AI system in Angband has a long history, with contributions from various developers over the years. The comments at the beginning of the file mention the original authors (Ben Harrison, James E. Wilson, and Robert A. Koeneke) as well as more recent contributors (Andi Sidwell, Chris Carr, Ed Graham, and Erik Osheim). The code in this file is part of the ongoing development and improvement of the Borg AI system.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

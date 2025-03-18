@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>borg-caution.h Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>borg-caution.h Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="borg-cautionh-documentation">borg-caution.h Documentation</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-caution.h</code> is a header file in the Angband roguelike game&#39;s source code, specifically related to the &quot;Borg&quot; AI player. The file declares the <code>borg_caution()</code> function, which is responsible for making the Borg play cautiously and attempt to prevent death or dishonor.</p>
+<p>The header file is guarded by an <code>#ifdef ALLOW_BORG</code> directive, ensuring that the Borg-related code is only compiled when the <code>ALLOW_BORG</code> macro is defined.</p>
+<h2 id="data-structures">Data Structures</h2>
+<p>This header file does not define any data structures.</p>
+<h2 id="global-variables">Global Variables</h2>
+<p>This header file does not declare any global variables.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_caution"><code>borg_caution()</code></h3>
+<pre><code class="language-c">extern bool borg_caution(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: This function implements the cautious behavior of the Borg AI player, attempting to prevent death or dishonor.</li>
+<li><strong>Parameters</strong>: None</li>
+<li><strong>Return value</strong>: A boolean value indicating whether the Borg should take a cautious action or not.</li>
+<li><strong>Side effects</strong>: The function may modify the Borg&#39;s internal state and make decisions based on the current game state.</li>
+<li><strong>Relationships to other functions</strong>: This function is likely called from the main Borg decision-making code to influence the Borg&#39;s actions.</li>
+<li><strong>Game mechanics implemented</strong>: The specific game mechanics implemented in this function are not visible in the header file. The implementation details would be found in the corresponding source file.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>The algorithms used in the <code>borg_caution()</code> function are not visible in this header file. The implementation details would be found in the corresponding source file.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>This header file includes <code>&quot;../angband.h&quot;</code>, which is the main header file for the Angband game.</li>
+<li>The inclusion of <code>borg-caution.h</code> is guarded by the <code>ALLOW_BORG</code> macro, which suggests that other Borg-related files may depend on this header.</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>The copyright notice in the header file indicates that this code has been part of the Angband project since at least 1997, with contributions from several developers over the years. The Borg AI player is a unique feature of Angband that allows the game to be played automatically by an AI agent.</p>
+<p>The concept of a &quot;cautious&quot; playstyle for the Borg AI is interesting, as it suggests that the developers aimed to create an AI that could make informed decisions to survive the dangers of the dungeon, rather than simply playing recklessly.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

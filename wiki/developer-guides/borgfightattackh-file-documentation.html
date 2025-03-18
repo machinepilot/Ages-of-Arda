@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>borg-fight-attack.h File Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>borg-fight-attack.h File Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="borg-fight-attackh-file-documentation">borg-fight-attack.h File Documentation</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-fight-attack.h</code> is a header file in the Angband roguelike game&#39;s codebase, specifically for the Borg AI system. The Borg is an AI player that attempts to play the game optimally. This file contains declarations and definitions related to the Borg&#39;s combat and attack decision-making process.</p>
+<p>The file defines various constants, enumerations, and function prototypes that handle different types of attacks the Borg can perform, such as melee attacks, missile attacks, spells, prayers, wands, rods, staves, scrolls, activatable items, and more. The functions defined here are used to evaluate and select the most effective attack method in a given situation.</p>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="enum-for-attack-types"><code>enum</code> for Attack Types</h3>
+<p>The file defines a large enumeration of constants representing different attack types available to the Borg. These include:</p>
+<ul>
+<li><code>BORG_ATTACK_MISSILE</code>: Missile attacks</li>
+<li><code>BORG_ATTACK_ARROW</code>: Arrow attacks</li>
+<li><code>BORG_ATTACK_MANA</code>: Mana-based attacks</li>
+<li><code>BORG_ATTACK_METEOR</code>: Meteor attacks</li>
+<li>... (many more attack types)</li>
+</ul>
+<p>These constants are used to identify and select specific attack methods.</p>
+<h3 id="enum-for-attack-methods"><code>enum</code> for Attack Methods</h3>
+<p>Another enumeration is defined to represent various attack methods the Borg can use, such as:</p>
+<ul>
+<li><code>BF_REST</code>: Resting</li>
+<li><code>BF_THRUST</code>: Melee attacks</li>
+<li><code>BF_OBJECT</code>: Using objects</li>
+<li><code>BF_LAUNCH</code>: Launching missiles</li>
+<li>... (many more attack methods)</li>
+</ul>
+<p>Each constant corresponds to a specific function that evaluates and executes the attack.</p>
+<h2 id="global-variables">Global Variables</h2>
+<ul>
+<li><code>successful_target</code>: Indicates if the last attack successfully targeted a monster.</li>
+<li><code>target_closest</code>: Indicates if the target is the closest monster.</li>
+<li><code>borg_tp_other_n</code>: Count of special grids used for Teleport Other.</li>
+<li><code>borg_tp_other_x</code>: Array of x-coordinates for Teleport Other grids.</li>
+<li><code>borg_tp_other_y</code>: Array of y-coordinates for Teleport Other grids.</li>
+<li><code>borg_tp_other_index</code>: Array of indices for Teleport Other grids.</li>
+</ul>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_mon_blow_effect"><code>borg_mon_blow_effect</code></h3>
+<pre><code class="language-c">int borg_mon_blow_effect(const char *name);
+</code></pre>
+<ul>
+<li>Purpose: Determines the effect of a blow from a monster.</li>
+<li>Parameters:<ul>
+<li><code>name</code>: The name of the monster.</li>
+</ul>
+</li>
+<li>Return value: The effect of the monster&#39;s blow.</li>
+</ul>
+<h3 id="borg_launch_bolt"><code>borg_launch_bolt</code></h3>
+<pre><code class="language-c">int borg_launch_bolt(int rad, int dam, int typ, int max, int ammo_location);
+</code></pre>
+<ul>
+<li>Purpose: Simulates or applies the optimal result of launching a beam/bolt/ball.</li>
+<li>Parameters:<ul>
+<li><code>rad</code>: Radius of the attack.</li>
+<li><code>dam</code>: Damage of the attack.</li>
+<li><code>typ</code>: Type of the attack.</li>
+<li><code>max</code>: Maximum range of the attack.</li>
+<li><code>ammo_location</code>: Location of the ammunition.</li>
+</ul>
+</li>
+<li>Return value: The effectiveness of the attack.</li>
+</ul>
+<h3 id="borg_attack_aux_launch"><code>borg_attack_aux_launch</code></h3>
+<pre><code class="language-c">int borg_attack_aux_launch(void);
+</code></pre>
+<ul>
+<li>Purpose: Simulates or applies the optimal result of launching a missile.</li>
+<li>Return value: The effectiveness of the missile attack.</li>
+</ul>
+<h3 id="borg_attack_aux_spell_bolt"><code>borg_attack_aux_spell_bolt</code></h3>
+<pre><code class="language-c">int borg_attack_aux_spell_bolt(
+    const enum borg_spells spell, int rad, int dam, int typ, int max_range, bool is_arc);
+</code></pre>
+<ul>
+<li>Purpose: Simulates or applies the optimal result of using a &quot;normal&quot; attack spell.</li>
+<li>Parameters:<ul>
+<li><code>spell</code>: The specific spell being used.</li>
+<li><code>rad</code>: Radius of the spell.</li>
+<li><code>dam</code>: Damage of the spell.</li>
+<li><code>typ</code>: Type of the spell.</li>
+<li><code>max_range</code>: Maximum range of the spell.</li>
+<li><code>is_arc</code>: Indicates if the spell is an arc.</li>
+</ul>
+</li>
+<li>Return value: The effectiveness of the spell attack.</li>
+</ul>
+<h3 id="borg_calculate_attack_effectiveness"><code>borg_calculate_attack_effectiveness</code></h3>
+<pre><code class="language-c">int borg_calculate_attack_effectiveness(int attack_type);
+</code></pre>
+<ul>
+<li>Purpose: Simulates or applies the optimal result of using the given type of attack.</li>
+<li>Parameters:<ul>
+<li><code>attack_type</code>: The type of attack to evaluate.</li>
+</ul>
+</li>
+<li>Return value: The effectiveness of the attack.</li>
+</ul>
+<h3 id="borg_attack"><code>borg_attack</code></h3>
+<pre><code class="language-c">bool borg_attack(bool boosted_bravery);
+</code></pre>
+<ul>
+<li>Purpose: Attacks nearby monsters in the best possible way, if any.</li>
+<li>Parameters:<ul>
+<li><code>boosted_bravery</code>: Indicates if the Borg&#39;s bravery is boosted.</li>
+</ul>
+</li>
+<li>Return value: <code>true</code> if an attack was performed, <code>false</code> otherwise.</li>
+<li>Side effects: Performs the selected attack action.</li>
+</ul>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>Includes <code>&quot;../angband.h&quot;</code> for core Angband definitions.</li>
+<li>Depends on <code>&quot;borg-magic.h&quot;</code> for Borg&#39;s magic-related definitions.</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>The file includes copyright notices dating back to 1997, indicating that this code has been part of the Angband project for a long time. The Borg AI system was a significant addition to the game, allowing players to observe and learn from an AI player&#39;s decisions.</p>
+<p>The code has been maintained and updated by various contributors over the years, with the latest modifications in 2009 based on the copyright notices.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

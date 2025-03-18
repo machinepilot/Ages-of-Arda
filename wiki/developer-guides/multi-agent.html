@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Untitled</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <hr>
+<h2 id="title-multi-agent-system-guidelines-glob-aiagentsagents-priority-650-related-ai-gameplaymdc-ai-uxmdc-mcpmcp-integrationmdc">title: Multi-Agent System Guidelines
+glob: &quot;<strong>/ai/agents/</strong>,<strong>/agents/</strong>&quot;
+priority: 650
+related: [&quot;ai-gameplay.mdc&quot;, &quot;ai-ux.mdc&quot;, &quot;../mcp/mcp-integration.mdc&quot;]</h2>
+<h1 id="multi-agent-system-guidelines">Multi-Agent System Guidelines</h1>
+<p>This document outlines the architecture and best practices for implementing multi-agent AI systems in the Ages of Arda.</p>
+<h2 id="core-concepts">Core Concepts</h2>
+<ol>
+<li><p><strong>Agent Types</strong></p>
+<ul>
+<li><strong>Specialized Agents</strong>: Focus on specific domains (combat, dialogue, lore)</li>
+<li><strong>Coordinator Agents</strong>: Orchestrate specialized agents</li>
+<li><strong>Memory Agents</strong>: Maintain and retrieve contextual information</li>
+<li><strong>Critic Agents</strong>: Evaluate and refine outputs from other agents</li>
+</ul>
+</li>
+<li><p><strong>Communication Patterns</strong></p>
+<ul>
+<li>Agent-to-agent communication via structured messages</li>
+<li>Centralized coordinator for complex decisions</li>
+<li>Event-based notifications for world changes</li>
+<li>Shared context for collaborative tasks</li>
+</ul>
+</li>
+<li><p><strong>System Architecture</strong></p>
+<ul>
+<li>Modular design with well-defined interfaces</li>
+<li>Asynchronous processing for non-blocking operation</li>
+<li>Fallback mechanisms for agent failures</li>
+<li>Centralized logging and monitoring</li>
+</ul>
+</li>
+</ol>
+<h2 id="implementation-example">Implementation Example</h2>
+<pre><code class="language-c">/**
+ * Process a player action through the multi-agent system
+ */
+action_result_t *
+process_player_action_with_agents(game_state_t *state, player_action_t *action)
+{
+    agent_context_t *context = NULL;
+    agent_message_t *messages = NULL;
+    action_result_t *result = NULL;
+    
+    /* Create shared context for agents */
+    context = create_agent_context(state, action);
+    
+    /* Dispatch to appropriate specialized agents */
+    if (action-&gt;type == ACTION_COMBAT) {
+        messages = combat_agent_process(context);
+    } else if (action-&gt;type == ACTION_DIALOGUE) {
+        messages = dialogue_agent_process(context);
+    } else {
+        messages = generic_agent_process(context);
+    }
+    
+    /* Let critic agent review the results */
+    messages = critic_agent_review(context, messages);
+    
+    /* Let coordinator make final decision */
+    result = coordinator_agent_decide(context, messages);
+    
+    /* Clean up */
+    free_agent_messages(messages);
+    free_agent_context(context);
+    
+    return result;
+}
+</code></pre>
+<h2 id="agent-interaction-protocols">Agent Interaction Protocols</h2>
+<ol>
+<li><p><strong>Request-Response</strong></p>
+<ul>
+<li>Agent A sends structured request to Agent B</li>
+<li>Agent B processes and returns a response</li>
+<li>Synchronous operation with timeout handling</li>
+</ul>
+</li>
+<li><p><strong>Publish-Subscribe</strong></p>
+<ul>
+<li>Agents publish events to topics</li>
+<li>Interested agents subscribe to relevant topics</li>
+<li>Asynchronous operation with queuing</li>
+</ul>
+</li>
+<li><p><strong>Blackboard</strong></p>
+<ul>
+<li>Shared memory space for collaborative problem-solving</li>
+<li>Agents read from and write to the blackboard</li>
+<li>Supports complex multi-step reasoning</li>
+</ul>
+</li>
+</ol>
+<h2 id="memory-architecture">Memory Architecture</h2>
+<ul>
+<li><strong>Short-term Memory</strong>: Current game state and recent events</li>
+<li><strong>Working Memory</strong>: Active reasoning and problem-solving</li>
+<li><strong>Long-term Memory</strong>: Historical events and player patterns</li>
+<li><strong>Semantic Memory</strong>: Game world knowledge and rules</li>
+</ul>
+<h2 id="testing-and-evaluation">Testing and Evaluation</h2>
+<ul>
+<li>Unit test individual agents in isolation</li>
+<li>Integration test agent interactions</li>
+<li>Scenario-based testing for complex situations</li>
+<li>A/B testing for agent variations</li>
+<li>Player feedback collection and analysis</li>
+</ul>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Prioritize agent processing based on importance</li>
+<li>Implement timeouts for all agent operations</li>
+<li>Use cached results when appropriate</li>
+<li>Monitor token usage and latency</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

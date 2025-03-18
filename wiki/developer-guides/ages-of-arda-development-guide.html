@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ages of Arda Development Guide | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Ages of Arda Development Guide</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <p>original location: C:\working_directory\ages-project\clean-ages-of-arda\DEVELOPMENT.md</p>
+<h1 id="ages-of-arda-development-guide">Ages of Arda Development Guide</h1>
+<p>This document provides essential information for developers working on the Ages of Arda Angband variant, with a particular focus on the lore management system integration.</p>
+<h2 id="development-environment-setup">Development Environment Setup</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>C Compiler (GCC 10+ or Clang 12+)</li>
+<li>Python 3.8+</li>
+<li>Ollama for local LLM integration</li>
+<li>CMake 3.15+</li>
+<li>Git</li>
+</ul>
+<h3 id="getting-started">Getting Started</h3>
+<ol>
+<li>Clone the repository:</li>
+</ol>
+<pre><code>git clone https://github.com/your-username/ages-of-arda.git
+cd ages-of-arda
+</code></pre>
+<ol start="2">
+<li>Install Python dependencies:</li>
+</ol>
+<pre><code>pip install -r requirements.txt
+</code></pre>
+<ol start="3">
+<li>Build the game:</li>
+</ol>
+<pre><code>mkdir build
+cd build
+cmake ..
+make
+</code></pre>
+<ol start="4">
+<li>Set up Ollama (for AI-driven features):</li>
+</ol>
+<pre><code># Install Ollama from https://ollama.ai
+ollama pull llama2:13b
+ollama pull codellama:13b
+ollama pull mistral:7b
+</code></pre>
+<h2 id="project-structure">Project Structure</h2>
+<h3 id="key-directories">Key Directories</h3>
+<ul>
+<li><code>src/</code>: Core game source code<ul>
+<li><code>src/mcp/</code>: Model Context Protocol implementation</li>
+<li><code>src/mcp/lore/</code>: Lore management and narrative generation</li>
+</ul>
+</li>
+<li><code>memory-bank/</code>: Structured memory for AI systems<ul>
+<li><code>memory-bank/lore/</code>: Lore database organized by age</li>
+</ul>
+</li>
+<li><code>tests/</code>: Test suite</li>
+<li><code>docs/</code>: Documentation</li>
+</ul>
+<h2 id="lore-management-system">Lore Management System</h2>
+<p>The lore management system is a critical component that provides AI agents with accurate Tolkien lore to ensure consistent narrative generation.</p>
+<h3 id="file-organization">File Organization</h3>
+<p>All lore content is organized in the <code>memory-bank/lore</code> directory with the following structure:</p>
+<pre><code>memory-bank/lore/
+├── first_age/
+│   ├── characters/
+│   ├── locations/
+│   ├── artifacts/
+│   └── events/
+├── second_age/
+└── third_age/
+</code></pre>
+<h3 id="lore-file-format">Lore File Format</h3>
+<p>Lore entries are stored as JSON files with the following format:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Entity Name&quot;,
+  &quot;description&quot;: &quot;Short description&quot;,
+  &quot;content&quot;: &quot;Detailed lore content&quot;,
+  &quot;source&quot;: &quot;Source book or material&quot;,
+  &quot;year&quot;: 1234,
+  &quot;is_canonical&quot;: true,
+  &quot;type&quot;: &quot;character|location|artifact|event&quot;,
+  &quot;additional_fields&quot;: &quot;as needed for specific entity types&quot;
+}
+</code></pre>
+<h3 id="api-usage">API Usage</h3>
+<h4 id="c-code-integration">C Code Integration</h4>
+<pre><code class="language-c">// Initialize the lore manager
+lore_manager_t *manager = init_lore_manager(&quot;path/to/memory-bank&quot;);
+
+// Get character lore
+lore_data_t *character_lore = get_character_lore(manager, &quot;Aragorn&quot;, &quot;third_age&quot;);
+if (character_lore) {
+    printf(&quot;Lore: %s\n&quot;, character_lore-&gt;content);
+    free_lore_data(character_lore);
+}
+
+// Clean up
+free_lore_manager(manager);
+</code></pre>
+<h4 id="python-integration">Python Integration</h4>
+<pre><code class="language-python">from src.mcp.lore.lore_integration import LoreIntegration
+
+# Initialize the lore integration
+lore = LoreIntegration(memory_bank_path=&quot;path/to/memory-bank&quot;)
+
+# Get location lore
+location_info = lore.get_location_lore(&quot;Minas Tirith&quot;, age=&quot;third_age&quot;)
+print(f&quot;Description: {location_info[&#39;content&#39;]}&quot;)
+
+# Generate narrative
+description = lore.generate_location_description(&quot;Minas Tirith&quot;, &quot;third_age&quot;)
+print(description)
+</code></pre>
+<h2 id="ai-driven-gameplay-features">AI-Driven Gameplay Features</h2>
+<h3 id="narrative-generation">Narrative Generation</h3>
+<p>The narrative generator creates dynamic, lore-accurate descriptions and dialogue:</p>
+<pre><code class="language-python">from src.mcp.lore.narrative_generator import NarrativeGenerator
+
+generator = NarrativeGenerator(lore_integration=lore)
+
+# Generate location description
+description = generator.describe_location(&quot;Moria&quot;, age=&quot;third_age&quot;, context={
+    &quot;time_of_day&quot;: &quot;night&quot;,
+    &quot;player_race&quot;: &quot;dwarf&quot;,
+    &quot;previous_events&quot;: [&quot;encountered_balrog&quot;, &quot;lost_companion&quot;]
+})
+</code></pre>
+<h3 id="mcp-integration">MCP Integration</h3>
+<p>The lore management system is integrated with the MCP server to provide AI agents with accurate context:</p>
+<pre><code class="language-c">// Register lore-related tools with the MCP server
+mcp_server_t *server = init_mcp_server(&quot;AgesOfArda&quot;, 8000);
+register_lore_tools(server, lore_manager);
+</code></pre>
+<h2 id="testing">Testing</h2>
+<h3 id="running-tests">Running Tests</h3>
+<pre><code>cd build
+ctest
+</code></pre>
+<h3 id="lore-accuracy-testing">Lore Accuracy Testing</h3>
+<p>To test lore accuracy:</p>
+<pre><code>python tests/test_lore_accuracy.py
+</code></pre>
+<h2 id="documentation">Documentation</h2>
+<h3 id="generating-documentation">Generating Documentation</h3>
+<pre><code>cd docs
+doxygen Doxyfile
+</code></pre>
+<h2 id="contribution-guidelines">Contribution Guidelines</h2>
+<h3 id="lore-contributions">Lore Contributions</h3>
+<p>When adding new lore entries:</p>
+<ol>
+<li>Ensure all content is sourced from Tolkien&#39;s works when possible</li>
+<li>Clearly mark non-canonical extensions</li>
+<li>Format JSON files according to the specification</li>
+<li>Add a test case for each new lore entry</li>
+<li>Update relevant documentation</li>
+</ol>
+<h3 id="code-style">Code Style</h3>
+<ul>
+<li>Follow the C style guidelines in <code>.cursor/rules/c-style.mdc</code></li>
+<li>Use 4 spaces for indentation</li>
+<li>Keep line length under 120 characters</li>
+<li>Document all functions with appropriate comments</li>
+</ul>
+<h3 id="review-process">Review Process</h3>
+<p>All changes require:</p>
+<ol>
+<li>Code review from at least one maintainer</li>
+<li>Passing all automated tests</li>
+<li>For lore additions, verification against canonical sources</li>
+</ol>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<h4 id="mcp-server-connection-issues">MCP Server Connection Issues</h4>
+<ul>
+<li>Ensure Ollama is running</li>
+<li>Check port configuration (default: 11434)</li>
+<li>Verify network permissions</li>
+</ul>
+<h4 id="lore-retrieval-failures">Lore Retrieval Failures</h4>
+<ul>
+<li>Check file paths and JSON formatting</li>
+<li>Verify memory bank directory structure</li>
+<li>Enable debug logging for detailed error messages</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="http://tolkiengateway.net/">Tolkien Gateway</a> - Reference for lore verification</li>
+<li><a href="https://github.com/ollama/ollama/blob/main/docs/modelfile.md">LLM Documentation</a> - For model configuration</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

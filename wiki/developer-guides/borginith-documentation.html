@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>borg-init.h Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>borg-init.h Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="borg-inith-documentation">borg-init.h Documentation</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-init.h</code> is a header file in the Angband codebase that contains declarations and definitions related to the initialization of the Borg, an AI player for the game. This file is part of the Borg module, which is an optional feature that can be enabled with the <code>ALLOW_BORG</code> macro.</p>
+<p>The purpose of this file is to provide the necessary structures, variables, and function prototypes for initializing and managing the Borg&#39;s settings and resources. It also includes some utility functions for preparing race and class information and cleaning up allocated resources.</p>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="borg_setting-struct"><code>borg_setting</code> struct</h3>
+<p>The <code>borg_setting</code> struct represents a single Borg setting. It contains the following fields:</p>
+<ul>
+<li><code>setting_string</code>: A pointer to a constant character string that represents the name of the setting.</li>
+<li><code>setting_type</code>: A character that indicates the type of the setting. It can be either &#39;b&#39; for boolean or &#39;i&#39; for integer.</li>
+<li><code>default_value</code>: An integer that represents the default value of the setting.</li>
+</ul>
+<h2 id="global-variables">Global Variables</h2>
+<ul>
+<li><code>borg_init_failure</code>: A boolean variable that indicates whether the Borg initialization has failed.</li>
+<li><code>borg_initialized</code>: A boolean variable that indicates whether the Borg has been initialized.</li>
+<li><code>game_closed</code>: A boolean variable that indicates whether the game has been closed.</li>
+<li><code>borg_settings</code>: An array of <code>borg_setting</code> structs that holds the Borg&#39;s settings.</li>
+</ul>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_init_txt_file"><code>borg_init_txt_file</code></h3>
+<pre><code class="language-c">extern bool borg_init_txt_file(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Initializes the <code>borg.txt</code> file.</li>
+<li><strong>Parameters</strong>: None.</li>
+<li><strong>Return value</strong>: Returns <code>true</code> if a warning was given during the initialization, <code>false</code> otherwise.</li>
+<li><strong>Side effects</strong>: None.</li>
+<li><strong>Relationships</strong>: This function is called during the Borg initialization process.</li>
+<li><strong>Game mechanics</strong>: Initializes the Borg&#39;s configuration file.</li>
+</ul>
+<h3 id="borg_reinit_options"><code>borg_reinit_options</code></h3>
+<pre><code class="language-c">extern void borg_reinit_options(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Resets the required options when returning from user control.</li>
+<li><strong>Parameters</strong>: None.</li>
+<li><strong>Return value</strong>: None.</li>
+<li><strong>Side effects</strong>: Modifies the Borg&#39;s options.</li>
+<li><strong>Relationships</strong>: This function is called when the user takes control of the game and then returns control to the Borg.</li>
+<li><strong>Game mechanics</strong>: Resets the Borg&#39;s options to ensure a consistent state.</li>
+</ul>
+<h3 id="borg_prepare_race_class_info"><code>borg_prepare_race_class_info</code></h3>
+<pre><code class="language-c">extern void borg_prepare_race_class_info(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Prepares some information based on the player&#39;s race and class.</li>
+<li><strong>Parameters</strong>: None.</li>
+<li><strong>Return value</strong>: None.</li>
+<li><strong>Side effects</strong>: Modifies the Borg&#39;s internal state based on the player&#39;s race and class.</li>
+<li><strong>Relationships</strong>: This function is called during the Borg initialization process.</li>
+<li><strong>Game mechanics</strong>: Prepares race and class-specific information for the Borg&#39;s decision-making process.</li>
+</ul>
+<h3 id="borg_init"><code>borg_init</code></h3>
+<pre><code class="language-c">extern void borg_init(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Initializes the Borg.</li>
+<li><strong>Parameters</strong>: None.</li>
+<li><strong>Return value</strong>: None.</li>
+<li><strong>Side effects</strong>: Initializes the Borg&#39;s internal state and resources.</li>
+<li><strong>Relationships</strong>: This function is called when the Borg is enabled.</li>
+<li><strong>Game mechanics</strong>: Initializes the Borg AI player.</li>
+</ul>
+<h3 id="borg_free"><code>borg_free</code></h3>
+<pre><code class="language-c">extern void borg_free(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Cleans up resources allocated for the Borg.</li>
+<li><strong>Parameters</strong>: None.</li>
+<li><strong>Return value</strong>: None.</li>
+<li><strong>Side effects</strong>: Frees memory and resources used by the Borg.</li>
+<li><strong>Relationships</strong>: This function is called when the Borg is disabled or the game is closed.</li>
+<li><strong>Game mechanics</strong>: Cleans up the Borg&#39;s resources to prevent memory leaks.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>This file does not contain any complex algorithms or game mechanics implementations. It primarily deals with initialization and resource management for the Borg AI player.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>This file depends on the <code>angband.h</code> header file, which is included before the <code>ALLOW_BORG</code> macro check.</li>
+<li>Other files in the Borg module may depend on this file for the structures, variables, and function prototypes it provides.</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>The Borg AI player has been a part of the Angband codebase for a long time. The code in this file has been contributed to and maintained by various developers over the years, as indicated by the copyright notices at the beginning of the file.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

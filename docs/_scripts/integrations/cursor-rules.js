@@ -9,11 +9,10 @@
 
 const fs = require('fs');
 const path = require('path');
-const glob = require('glob');
 const yaml = require('js-yaml');
 
 // Configuration
-const CONFIG_FILE = path.resolve('docs/_config.yml');
+const CONFIG_FILE = path.resolve('./_config.yml');
 let config;
 
 try {
@@ -24,24 +23,50 @@ try {
 }
 
 // Paths
-const DOCS_DIR = path.resolve('docs/_source');
-const RULE_DIR = path.resolve(config.cursor_rules.rule_directory || '../.cursor/rules');
+const DOCS_DIR = path.resolve('_source');
+const RULE_DIR = path.resolve('../.cursor/rules');
+
+// Helper functions
+const getAllFiles = function(dirPath, arrayOfFiles, extension) {
+    if (!fs.existsSync(dirPath)) {
+        console.log(`Directory does not exist: ${dirPath}`);
+        return arrayOfFiles || [];
+    }
+    
+    const files = fs.readdirSync(dirPath);
+    
+    arrayOfFiles = arrayOfFiles || [];
+    
+    files.forEach(file => {
+        const filePath = path.join(dirPath, file);
+        if (fs.statSync(filePath).isDirectory()) {
+            arrayOfFiles = getAllFiles(filePath, arrayOfFiles, extension);
+        } else {
+            if (file.endsWith(extension)) {
+                arrayOfFiles.push(filePath);
+            }
+        }
+    });
+    
+    return arrayOfFiles;
+};
 
 /**
- * Find all documents with links to Cursor rules
+ * Find all documents with rule links
  */
 function findDocumentsWithRuleLinks() {
     console.log('Finding documents with rule links...');
     
     // Get all markdown files
-    const files = glob.sync(`${DOCS_DIR}/**/*.md`);
+    const files = getAllFiles(DOCS_DIR, [], '.md');
+    console.log(`Found ${files.length} markdown files`);
     
     // Filter for those with cursor_rule: true or cursor_rules array
-    return files
+    const ruleDocuments = files
         .map(file => {
             try {
                 const content = fs.readFileSync(file, 'utf8');
-                const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+                const frontmatterMatch = content.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*[\r\n]+([\s\S]*)$/);
                 
                 if (!frontmatterMatch) {
                     return null;
@@ -65,6 +90,9 @@ function findDocumentsWithRuleLinks() {
             }
         })
         .filter(Boolean);
+    
+    console.log(`Found ${ruleDocuments.length} documents with rule links`);
+    return ruleDocuments;
 }
 
 /**
@@ -74,7 +102,8 @@ function findOrphanedRules() {
     console.log('Finding orphaned rules...');
     
     // Get all rules
-    const rules = glob.sync(`${RULE_DIR}/**/*.mdc`);
+    const rules = getAllFiles(RULE_DIR, [], '.mdc');
+    console.log(`Found ${rules.length} cursor rules`);
     
     // Get all documents with rule links
     const docRules = findDocumentsWithRuleLinks();
@@ -84,19 +113,24 @@ function findOrphanedRules() {
     
     docRules.forEach(doc => {
         if (doc.frontmatter.cursor_rule === true) {
-            // This creates a rule, but it's not linked to an existing one
-            return;
+            // Get the expected path based on category
+            const ruleCategory = doc.frontmatter.rule_category || 'guides';
+            const ruleFileName = `${doc.frontmatter.id || path.basename(doc.path, '.md')}.mdc`;
+            const rulePath = path.resolve(path.join(RULE_DIR, ruleCategory, ruleFileName));
+            linkedRules.add(rulePath);
         }
         
         if (doc.frontmatter.cursor_rules) {
             doc.frontmatter.cursor_rules.forEach(rule => {
-                linkedRules.add(path.resolve(RULE_DIR, rule));
+                linkedRules.add(path.resolve(path.join(RULE_DIR, rule)));
             });
         }
     });
     
     // Return rules that aren't linked to any document
-    return rules.filter(rule => !linkedRules.has(path.resolve(rule)));
+    const orphanedRules = rules.filter(rule => !linkedRules.has(path.resolve(rule)));
+    console.log(`Found ${orphanedRules.length} orphaned rules`);
+    return orphanedRules;
 }
 
 /**
@@ -108,10 +142,11 @@ function updateDocFromRule(docPath, rulePath) {
     try {
         // Read the rule file
         const ruleContent = fs.readFileSync(rulePath, 'utf8');
-        const ruleMatch = ruleContent.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+        const ruleMatch = ruleContent.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*[\r\n]+([\s\S]*)$/);
         
         if (!ruleMatch) {
             console.error(`Rule file ${rulePath} has invalid format.`);
+            console.log('Content starts with:', ruleContent.substring(0, 100));
             return false;
         }
         
@@ -120,10 +155,11 @@ function updateDocFromRule(docPath, rulePath) {
         
         // Read the doc file
         const docContent = fs.readFileSync(docPath, 'utf8');
-        const docMatch = docContent.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+        const docMatch = docContent.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*[\r\n]+([\s\S]*)$/);
         
         if (!docMatch) {
             console.error(`Doc file ${docPath} has invalid format.`);
+            console.log('Content starts with:', docContent.substring(0, 100));
             return false;
         }
         
@@ -156,10 +192,11 @@ function updateRuleFromDoc(rulePath, docPath) {
     try {
         // Read the doc file
         const docContent = fs.readFileSync(docPath, 'utf8');
-        const docMatch = docContent.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+        const docMatch = docContent.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*[\r\n]+([\s\S]*)$/);
         
         if (!docMatch) {
             console.error(`Doc file ${docPath} has invalid format.`);
+            console.log('Content starts with:', docContent.substring(0, 100));
             return false;
         }
         
@@ -179,7 +216,7 @@ function updateRuleFromDoc(rulePath, docPath) {
         if (ruleExists) {
             // Read existing rule
             const ruleContent = fs.readFileSync(rulePath, 'utf8');
-            const ruleMatch = ruleContent.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+            const ruleMatch = ruleContent.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*[\r\n]+([\s\S]*)$/);
             
             if (ruleMatch) {
                 ruleFrontmatter = yaml.load(ruleMatch[1]);
@@ -222,10 +259,13 @@ function generateDocFromRule(rulePath) {
     try {
         // Read the rule file
         const ruleContent = fs.readFileSync(rulePath, 'utf8');
-        const ruleMatch = ruleContent.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+        
+        // More flexible frontmatter regex that handles different line endings
+        const ruleMatch = ruleContent.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*[\r\n]+([\s\S]*)$/);
         
         if (!ruleMatch) {
             console.error(`Rule file ${rulePath} has invalid format.`);
+            console.log('Content starts with:', ruleContent.substring(0, 100));
             return false;
         }
         
@@ -234,7 +274,7 @@ function generateDocFromRule(rulePath) {
         
         // Determine the document section and category
         const section = 'development';
-        const category = path.basename(path.dirname(rulePath)) === RULE_DIR ? 
+        const category = path.basename(path.dirname(rulePath)) === path.basename(RULE_DIR) ? 
             'guides' : path.basename(path.dirname(rulePath));
         
         // Generate a document ID
@@ -250,7 +290,7 @@ function generateDocFromRule(rulePath) {
             updated: new Date().toISOString().split('T')[0],
             version: '0.1.0',
             auto_generated: true,
-            cursor_rules: [path.relative(RULE_DIR, rulePath)],
+            cursor_rules: [path.relative(RULE_DIR, rulePath).replace(/\\/g, '/')],
             tags: ['cursor-rule', category]
         };
         
@@ -281,50 +321,62 @@ function generateDocFromRule(rulePath) {
  * Sync documentation with Cursor rules
  */
 function syncCursorRules() {
-    console.log('Syncing documentation with Cursor rules...');
-    
-    // Find documents with rule links
-    const ruleDocs = findDocumentsWithRuleLinks();
-    console.log(`Found ${ruleDocs.length} documents with rule links.`);
-    
-    // Process each document
-    ruleDocs.forEach(doc => {
-        // If document should become a rule
-        if (doc.frontmatter.cursor_rule === true) {
-            // Determine rule path
-            let ruleCategory = doc.frontmatter.rule_category || path.basename(path.dirname(doc.path));
-            let rulePath = path.join(RULE_DIR, ruleCategory, `${doc.frontmatter.id || path.basename(doc.path, '.md')}.mdc`);
-            
-            // Update the rule
-            updateRuleFromDoc(rulePath, doc.path);
-        }
+    try {
+        console.log('Syncing documentation with Cursor rules...');
         
-        // If document links to existing rules
-        if (doc.frontmatter.cursor_rules && doc.frontmatter.cursor_rules.length > 0) {
-            doc.frontmatter.cursor_rules.forEach(ruleRef => {
-                const rulePath = path.join(RULE_DIR, ruleRef);
-                
-                if (doc.frontmatter.auto_generated) {
-                    // Document is generated from rule - update from rule
-                    updateDocFromRule(doc.path, rulePath);
-                } else {
-                    // Rule should reflect documentation - update rule
+        // Find documents with rule links
+        const ruleDocs = findDocumentsWithRuleLinks();
+        console.log(`Found ${ruleDocs.length} documents with rule links.`);
+        
+        // Process each document
+        ruleDocs.forEach(doc => {
+            try {
+                // If document should become a rule
+                if (doc.frontmatter.cursor_rule === true) {
+                    // Determine rule path
+                    let ruleCategory = doc.frontmatter.rule_category || path.basename(path.dirname(doc.path));
+                    let rulePath = path.join(RULE_DIR, ruleCategory, `${doc.frontmatter.id || path.basename(doc.path, '.md')}.mdc`);
+                    
+                    // Update the rule
                     updateRuleFromDoc(rulePath, doc.path);
                 }
-            });
-        }
-    });
-    
-    // Find orphaned rules
-    const orphanedRules = findOrphanedRules();
-    console.log(`Found ${orphanedRules.length} orphaned rules.`);
-    
-    // Generate documentation from orphaned rules
-    orphanedRules.forEach(rule => {
-        generateDocFromRule(rule);
-    });
-    
-    console.log('Cursor rules sync completed.');
+                
+                // If document links to existing rules
+                if (doc.frontmatter.cursor_rules && doc.frontmatter.cursor_rules.length > 0) {
+                    doc.frontmatter.cursor_rules.forEach(ruleRef => {
+                        const rulePath = path.join(RULE_DIR, ruleRef);
+                        
+                        if (doc.frontmatter.auto_generated) {
+                            // Document is generated from rule - update from rule
+                            updateDocFromRule(doc.path, rulePath);
+                        } else {
+                            // Rule should reflect documentation - update rule
+                            updateRuleFromDoc(rulePath, doc.path);
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error(`Error processing document ${doc.path}:`, error);
+            }
+        });
+        
+        // Find orphaned rules
+        const orphanedRules = findOrphanedRules();
+        console.log(`Found ${orphanedRules.length} orphaned rules.`);
+        
+        // Generate documentation from orphaned rules
+        orphanedRules.forEach(rule => {
+            try {
+                generateDocFromRule(rule);
+            } catch (error) {
+                console.error(`Error processing orphaned rule ${rule}:`, error);
+            }
+        });
+        
+        console.log('Cursor rules sync completed.');
+    } catch (error) {
+        console.error('Error during cursor rules sync:', error);
+    }
 }
 
 // Run the sync

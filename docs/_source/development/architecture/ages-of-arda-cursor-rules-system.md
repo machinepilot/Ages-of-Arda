@@ -3,14 +3,16 @@ title: Ages of Arda Cursor Rules System
 id: ages-of-arda-cursor-rules-system
 section: development
 category: architecture
-created: '2025-03-17'
+created: '2025-03-18'
 updated: '2025-03-18'
 version: 0.1.0
-cursor_rule: true
-glob: '**/*'
-priority: 500
+auto_generated: true
+cursor_rules:
+  - architecture/ages-of-arda-cursor-rules-system.mdc
+tags:
+  - cursor-rule
+  - architecture
 ---
-
 
 Original Location: C:\working_directory\ages-project\clean-ages-of-arda\.cursor\CURSOR_RULES_SYSTEM.md
 # Ages of Arda Cursor Rules System

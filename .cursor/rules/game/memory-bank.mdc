@@ -1,8 +1,10 @@
 ---
-description: 
-globs: 
-alwaysApply: false
+title: "Untitled Rule"
+glob: "**/*"
+priority: 500
+related: []
 ---
+
 ---
 title: Memory Management Guidelines
 glob: "**/*.c,**/*.h"
@@ -126,4 +128,4 @@ entity_free(entity_t *entity)
 - Return meaningful error codes on allocation failures
 - Log detailed information about memory errors
 - Implement recovery strategies for low-memory conditions
-- Avoid silent failures 
+- Avoid silent failures  

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>borg-flow-stairs.h Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>borg-flow-stairs.h Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="borg-flow-stairsh-documentation">borg-flow-stairs.h Documentation</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-flow-stairs.h</code> is a header file in the Angband roguelike game codebase that handles pathfinding logic related to navigating stairs within the dungeon. It is part of the &quot;Borg&quot; system, which is an AI player that can autonomously navigate the game.</p>
+<p>This file provides functions for calculating the cost of moving to stairs, preparing to use stairs to flee or navigate levels, and casting preparatory spells before level transitions. It also defines data structures for tracking the location of upward and downward stairs.</p>
+<h2 id="data-structures">Data Structures</h2>
+<p>The file defines two main data structures:</p>
+<ol>
+<li><p><code>struct borg_track track_less</code>: Tracks the location of upward stairs (&quot;stairs up&quot;).</p>
+</li>
+<li><p><code>struct borg_track track_more</code>: Tracks the location of downward stairs (&quot;stairs down&quot;).</p>
+</li>
+</ol>
+<p>The <code>borg_track</code> struct is defined in <code>borg-flow.h</code>, which is included by this file.</p>
+<h2 id="global-variables">Global Variables</h2>
+<ul>
+<li><p><code>track_less</code>: An instance of <code>struct borg_track</code> that holds information about the location of upward stairs.</p>
+</li>
+<li><p><code>track_more</code>: An instance of <code>struct borg_track</code> that holds information about the location of downward stairs.</p>
+</li>
+</ul>
+<h2 id="functions">Functions</h2>
+<ol>
+<li><p><code>borg_flow_cost_stair(int y, int x, int b_stair)</code></p>
+<ul>
+<li>Purpose: Calculates the cost of moving to a specific grid location based on its proximity to the closest upward or downward stair.</li>
+<li>Parameters:<ul>
+<li><code>y</code>, <code>x</code>: The coordinates of the grid to calculate the cost for.</li>
+<li><code>b_stair</code>: The type of stair to consider (upward or downward).</li>
+</ul>
+</li>
+<li>Return value: The cost of moving to the specified grid location.</li>
+<li>Side effects: None.</li>
+<li>Relationships: Used by other pathfinding functions to determine optimal paths.</li>
+<li>Game mechanics: Implements a cost heuristic for AI pathfinding based on stair proximity.</li>
+</ul>
+</li>
+<li><p><code>borg_flow_stair_both(int why, bool sneak)</code></p>
+<ul>
+<li>Purpose: Prepares the Borg AI to flee the current level using either upward or downward stairs.</li>
+<li>Parameters:<ul>
+<li><code>why</code>: The reason for fleeing (e.g., low health, dangerous situation).</li>
+<li><code>sneak</code>: Whether to use sneaking/stealth during the flee operation.</li>
+</ul>
+</li>
+<li>Return value: True if successfully prepared to flee, False otherwise.</li>
+<li>Side effects: Modifies Borg AI state and may initiate level transition.</li>
+<li>Relationships: Calls <code>borg_flow_stair_less()</code> and <code>borg_flow_stair_more()</code> internally.</li>
+<li>Game mechanics: Implements AI decision-making for fleeing levels based on situational factors.</li>
+</ul>
+</li>
+<li><p><code>borg_flow_stair_less(int why, bool sneak)</code></p>
+<ul>
+<li>Purpose: Prepares the Borg AI to navigate towards the upward stairs on the current level.</li>
+<li>Parameters:<ul>
+<li><code>why</code>: The reason for navigating to the upward stairs.</li>
+<li><code>sneak</code>: Whether to use sneaking/stealth during the navigation.</li>
+</ul>
+</li>
+<li>Return value: True if successfully prepared to navigate to upward stairs, False otherwise.</li>
+<li>Side effects: Modifies Borg AI state and may initiate level transition.</li>
+<li>Relationships: Called by <code>borg_flow_stair_both()</code>.</li>
+<li>Game mechanics: Implements AI pathfinding to upward stairs.</li>
+</ul>
+</li>
+<li><p><code>borg_flow_stair_more(int why, bool sneak, bool brave)</code></p>
+<ul>
+<li>Purpose: Prepares the Borg AI to navigate towards the downward stairs on the current level.</li>
+<li>Parameters:<ul>
+<li><code>why</code>: The reason for navigating to the downward stairs.</li>
+<li><code>sneak</code>: Whether to use sneaking/stealth during the navigation.</li>
+<li><code>brave</code>: Whether to navigate aggressively or cautiously.</li>
+</ul>
+</li>
+<li>Return value: True if successfully prepared to navigate to downward stairs, False otherwise.</li>
+<li>Side effects: Modifies Borg AI state and may initiate level transition.</li>
+<li>Relationships: Called by <code>borg_flow_stair_both()</code>.</li>
+<li>Game mechanics: Implements AI pathfinding to downward stairs, considering bravery/caution.</li>
+</ul>
+</li>
+<li><p><code>borg_prep_leave_level_spells(void)</code></p>
+<ul>
+<li>Purpose: Prepares and casts necessary spells before the Borg AI leaves the current level.</li>
+<li>Parameters: None.</li>
+<li>Return value: True if successfully prepared spells, False otherwise.</li>
+<li>Side effects: Casts spells and modifies Borg AI state.</li>
+<li>Relationships: Called as part of the level transition process.</li>
+<li>Game mechanics: Implements AI spell-casting logic for pre-transition buffs and effects.</li>
+</ul>
+</li>
+<li><p><code>borg_init_flow_stairs(void)</code></p>
+<ul>
+<li>Purpose: Initializes the stair tracking data structures (<code>track_less</code> and <code>track_more</code>).</li>
+<li>Parameters: None.</li>
+<li>Return value: None.</li>
+<li>Side effects: Modifies global stair tracking variables.</li>
+<li>Relationships: Should be called during Borg AI initialization.</li>
+<li>Game mechanics: Sets up initial state for stair-related pathfinding.</li>
+</ul>
+</li>
+<li><p><code>borg_free_flow_stairs(void)</code></p>
+<ul>
+<li>Purpose: Frees any resources associated with the stair tracking data structures.</li>
+<li>Parameters: None.</li>
+<li>Return value: None.</li>
+<li>Side effects: Deallocates memory and cleans up stair tracking state.</li>
+<li>Relationships: Should be called during Borg AI shutdown.</li>
+<li>Game mechanics: Cleans up stair-related pathfinding state.</li>
+</ul>
+</li>
+</ol>
+<h2 id="algorithms">Algorithms</h2>
+<p>The main algorithmic component in this file is the <code>borg_flow_cost_stair()</code> function, which calculates the cost of moving to a specific grid location based on its proximity to the closest upward or downward stair. The exact algorithm is not shown in the header file, but it likely uses a heuristic based on the Manhattan distance or similar metric to estimate the cost of reaching the stairs from the given location.</p>
+<p>The other functions in the file use this cost calculation to make decisions about navigating to stairs, fleeing levels, and preparing spells before level transitions. The specific algorithms for these behaviors are not detailed in the header file.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li><code>borg-flow-stairs.h</code> includes <code>../angband.h</code> for access to core Angband game definitions and data structures.</li>
+<li>It also includes <code>borg-flow.h</code>, which likely defines the <code>borg_track</code> struct and other Borg AI pathfinding components.</li>
+<li>Other Borg AI source files may include and use the functions and data structures defined in <code>borg-flow-stairs.h</code>.</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>The code in this file is part of the larger Borg AI system, which has been developed and refined by multiple contributors over the years. The header comment indicates that the code is based on work by Ben Harrison, James E. Wilson, and Robert A. Koeneke, with further contributions and modifications by Andi Sidwell, Chris Carr, Ed Graham, and Erik Osheim.</p>
+<p>The Borg AI was a significant advancement in roguelike game AI, demonstrating the possibility of creating an autonomous player that could navigate the complex game world and make strategic decisions based on game state. The stair navigation logic in this file is one component of the larger Borg AI system.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

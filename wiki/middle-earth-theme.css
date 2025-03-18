@@ -37,10 +37,11 @@ body {
     border: none;
     border-radius: 0;
     box-shadow: 0 0 15px var(--shadow-dark);
-    margin-left: 176px;
-    padding: 30px;
+    padding: 20px 40px;
     position: relative;
     min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 #bodyContent {
@@ -88,7 +89,7 @@ h1 {
     font-size: 2.5em;
     text-align: center;
     border-bottom: 2px solid var(--dwarf-bronze);
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     padding-bottom: 10px;
     text-shadow: 1px 1px 2px var(--shadow-dark);
 }
@@ -97,6 +98,8 @@ h2 {
     font-size: 1.8em;
     border-bottom: 1px solid var(--dwarf-bronze);
     padding-bottom: 5px;
+    margin-top: 35px;
+    margin-bottom: 20px;
     text-shadow: 1px 1px 1px var(--shadow-dark);
 }
 
@@ -110,12 +113,12 @@ h3 {
     background-color: var(--parchment-dark);
     border: 2px solid var(--dwarf-bronze);
     border-radius: 8px;
-    padding: 15px;
-    margin: 15px 0;
+    padding: 20px;
+    margin: 25px 0;
     box-shadow: 2px 2px 10px var(--shadow-dark);
-    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    max-width: 100%;
 }
 
 .card:hover, .feature-card:hover, button:hover, .btn:hover {
@@ -153,7 +156,7 @@ h3 {
     right: 30px;
     width: 100px;
     height: 100px;
-    background-image: url('images/compass-icon.png');
+    background-image: url('images/compass-icon.svg');
     background-size: contain;
     background-repeat: no-repeat;
     cursor: grab;
@@ -168,6 +171,11 @@ h3 {
 
 .arda-compass:active {
     cursor: grabbing;
+}
+
+/* Timeline Bar - HIDDEN PER REQUEST */
+.age-timeline {
+    display: none !important;
 }
 
 /* Timeline Bar */
@@ -335,11 +343,11 @@ h3 {
 }
 
 .lore-nugget-icon.ring {
-    background-image: url('images/ring-icon.png');
+    background-image: url('images/ring-icon.svg');
 }
 
 .lore-nugget-icon.sword {
-    background-image: url('images/sword-icon.png');
+    background-image: url('images/sword-icon.svg');
 }
 
 .lore-nugget-content {
@@ -560,18 +568,8 @@ h3 {
 /* Responsive design */
 @media (max-width: 768px) {
     #content {
-        margin-left: 0;
-        padding: 20px;
-    }
-    
-    .age-timeline {
-        padding: 10px 5%;
-    }
-    
-    .timeline-orb {
-        width: 40px;
-        height: 40px;
-        font-size: 0.8em;
+        padding: 15px;
+        margin: 0;
     }
     
     .arda-compass {
@@ -599,4 +597,143 @@ h3 {
     .gear-rack {
         width: 100%;
     }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+    }
+    
+    .index-sections {
+        flex-direction: column;
+    }
+    
+    .index-section {
+        min-width: 100%;
+    }
+    
+    .section-card {
+        padding: 15px;
+    }
+    
+    main {
+        padding: 15px;
+    }
+    
+    header {
+        padding: 10px 15px;
+    }
+}
+
+/* Index page sections styling */
+.index-sections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.index-section {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+}
+
+.section-card {
+    padding: 25px;
+    background-color: var(--parchment-dark);
+    border: 2px solid var(--dwarf-bronze);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px var(--shadow-dark);
+}
+
+/* Enhanced typography */
+p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.2em;
+    max-width: 80ch;
+}
+
+li {
+    margin-bottom: 0.8em;
+    line-height: 1.7;
+}
+
+blockquote {
+    border-left: 3px solid var(--dwarf-bronze);
+    padding-left: 20px;
+    margin: 25px 0;
+    font-style: italic;
+    color: #555;
+}
+
+code, pre {
+    font-family: "Courier New", monospace;
+    background-color: var(--parchment-dark);
+    border: 1px solid var(--dwarf-bronze);
+    border-radius: 4px;
+}
+
+code {
+    padding: 2px 4px;
+}
+
+pre {
+    padding: 15px;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+/* Additional spacing improvements */
+section {
+    margin-bottom: 40px;
+}
+
+article {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    border: 2px solid var(--dwarf-bronze);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--dwarf-bronze);
+}
+
+th {
+    background-color: var(--parchment-dark);
+    font-family: 'Cinzel', serif;
+}
+
+tr:hover {
+    background-color: var(--parchment-dark);
+}
+
+/* Reading position indicator */
+.reading-position-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--dwarf-gold), var(--elvish-glow));
+    width: 0%;
+    z-index: 2000;
+    transition: width 0.1s ease;
 } 

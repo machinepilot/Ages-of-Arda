@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File: borg-item-analyze.h | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>File: borg-item-analyze.h</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="file-borg-item-analyzeh">File: borg-item-analyze.h</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-item-analyze.h</code> is a header file in the Borg module of the Angband codebase. The Borg is an AI player that can play the game autonomously. This file contains function declarations for analyzing and evaluating items based on their properties and effects. It provides essential functionality for the Borg to make decisions about which items to use, equip, or discard.</p>
+<h2 id="data-structures">Data Structures</h2>
+<p>This header file does not define any data structures directly. However, it includes <code>borg-item.h</code>, which likely contains relevant data structures for representing items in the Borg AI.</p>
+<h2 id="global-variables">Global Variables</h2>
+<p>This header file does not declare any global variables.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_item_analyze"><code>borg_item_analyze</code></h3>
+<pre><code class="language-c">extern void borg_item_analyze(borg_item *item, const struct object *real_item, char *desc, bool in_store);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Analyze an item and populate a <code>borg_item</code> structure based on the item&#39;s properties and description.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>item</code>: Pointer to a <code>borg_item</code> structure to be populated with the analyzed data.</li>
+<li><code>real_item</code>: Pointer to the actual game <code>object</code> structure representing the item.</li>
+<li><code>desc</code>: String containing the textual description of the item.</li>
+<li><code>in_store</code>: Boolean indicating whether the item is in a store inventory.</li>
+</ul>
+</li>
+<li><strong>Return Value</strong>: None</li>
+<li><strong>Side Effects</strong>: Modifies the <code>borg_item</code> structure pointed to by <code>item</code>.</li>
+<li><strong>Relationships</strong>: This function likely uses data from the game&#39;s object system to populate the <code>borg_item</code> structure.</li>
+<li><strong>Game Mechanics</strong>: Implements the Borg&#39;s item analysis logic, extracting relevant properties and effects from the item description and game object data.</li>
+</ul>
+<h3 id="borg_obj_has_effect"><code>borg_obj_has_effect</code></h3>
+<pre><code class="language-c">extern bool borg_obj_has_effect(uint32_t kind, int index, int subtype);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Check if an item produces a specific effect.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>kind</code>: The type of effect to check for.</li>
+<li><code>index</code>: The index of the effect within the item&#39;s effect list.</li>
+<li><code>subtype</code>: The subtype of the effect (if applicable).</li>
+</ul>
+</li>
+<li><strong>Return Value</strong>: Boolean indicating whether the item has the specified effect.</li>
+<li><strong>Side Effects</strong>: None</li>
+<li><strong>Relationships</strong>: This function likely uses data from the game&#39;s object and effect systems.</li>
+<li><strong>Game Mechanics</strong>: Allows the Borg to determine if an item has a particular effect, which can influence its decision-making.</li>
+</ul>
+<h3 id="borg_ego_has_random_power"><code>borg_ego_has_random_power</code></h3>
+<pre><code class="language-c">extern bool borg_ego_has_random_power(struct ego_item *e_ptr);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Check if an ego item (an item with special properties) has a random power.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>e_ptr</code>: Pointer to the <code>ego_item</code> structure representing the ego item.</li>
+</ul>
+</li>
+<li><strong>Return Value</strong>: Boolean indicating whether the ego item has a random power.</li>
+<li><strong>Side Effects</strong>: None</li>
+<li><strong>Relationships</strong>: This function uses data from the game&#39;s ego item system.</li>
+<li><strong>Game Mechanics</strong>: Allows the Borg to identify ego items with unpredictable powers, which may affect how it values or uses them.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>This header file does not implement any complex algorithms directly. The actual implementations of the declared functions likely contain the relevant algorithms for item analysis and effect checking.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li><code>angband.h</code>: The main Angband header file, included before the <code>ALLOW_BORG</code> conditional compilation directive.</li>
+<li><code>borg-item.h</code>: Header file containing data structures and definitions related to items in the Borg AI.</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>The code includes copyright notices indicating contributions from several developers between 1997 and 2009. The Borg AI has been a long-standing feature of Angband, allowing players to observe and learn from an autonomous player. The item analysis functionality has likely evolved over time to support the Borg&#39;s decision-making capabilities.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

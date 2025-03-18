@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building MCP Servers Strategy | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Building MCP Servers Strategy</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="building-mcp-servers-strategy">Building MCP Servers Strategy</h1>
+<h2 id="overview">Overview</h2>
+<p>This document outlines strategies for building effective Model Context Protocol (MCP) servers, enabling AI models to interact with external tools, data sources, and services. Based on observed best practices from tools like Cline and community implementations, this guide provides a structured approach to MCP server development.</p>
+<h2 id="core-development-workflow">Core Development Workflow</h2>
+<h3 id="1-planning-phase">1. Planning Phase</h3>
+<p>Before writing any code, thoroughly plan your MCP server:</p>
+<ul>
+<li><strong>Define Purpose</strong>: Clearly articulate what your server will do and which services it will interact with</li>
+<li><strong>Identify API Endpoints</strong>: Map out the external API endpoints you&#39;ll need to access</li>
+<li><strong>Design Authentication Flow</strong>: Determine how you&#39;ll handle authentication (API keys, OAuth, etc.)</li>
+<li><strong>Define Tool Specifications</strong>: Outline each tool&#39;s parameters, expected inputs, and outputs</li>
+<li><strong>Error Handling Strategy</strong>: Plan how you&#39;ll handle failures and edge cases</li>
+</ul>
+<h4 id="planning-checklist">Planning Checklist</h4>
+<pre><code class="language-markdown">- [ ] Defined server&#39;s primary purpose and scope
+- [ ] Mapped external API endpoints and requirements
+- [ ] Designed authentication approach
+- [ ] Outlined each tool&#39;s specification (parameters, inputs, outputs)
+- [ ] Created error handling strategy
+- [ ] Identified rate limits and usage constraints
+- [ ] Planned testing approach
+</code></pre>
+<h3 id="2-implementation-phase">2. Implementation Phase</h3>
+<p>Implement your MCP server following these core steps:</p>
+<h4 id="basic-setup">Basic Setup</h4>
+<pre><code class="language-javascript">// Example: Setting up a basic MCP server
+const { createServer } = require(&#39;@modelcontextprotocol/server&#39;);
+
+// Define your server configuration
+const serverConfig = {
+  name: &quot;example-mcp-server&quot;,
+  version: &quot;1.0.0&quot;,
+  description: &quot;Example MCP server for external service integration&quot;,
+  tools: [] // We&#39;ll add tools here
+};
+
+// Initialize the server
+const server = createServer(serverConfig);
+</code></pre>
+<h4 id="implementing-tools">Implementing Tools</h4>
+<p>Each tool should follow this pattern:</p>
+<pre><code class="language-javascript">// Tool template
+const exampleTool = {
+  name: &quot;toolName&quot;,
+  description: &quot;Clear description of what this tool does&quot;,
+  parameters: {
+    type: &quot;object&quot;,
+    properties: {
+      param1: {
+        type: &quot;string&quot;,
+        description: &quot;Description of parameter 1&quot;
+      },
+      param2: {
+        type: &quot;number&quot;,
+        description: &quot;Description of parameter 2&quot;
+      }
+    },
+    required: [&quot;param1&quot;]
+  },
+  handler: async ({ param1, param2 }) =&gt; {
+    try {
+      // Implement the actual functionality
+      const result = await someExternalApiCall(param1, param2);
+      return { success: true, data: result };
+    } catch (error) {
+      // Handle errors properly
+      console.error(`Error in toolName: ${error.message}`);
+      return { success: false, error: error.message };
+    }
+  }
+};
+
+// Add the tool to your server
+serverConfig.tools.push(exampleTool);
+</code></pre>
+<h4 id="authentication-implementation">Authentication Implementation</h4>
+<pre><code class="language-javascript">// OAuth 2.0 example
+const authTool = {
+  name: &quot;getAuthUrl&quot;,
+  description: &quot;Get authorization URL for OAuth flow&quot;,
+  parameters: {
+    type: &quot;object&quot;,
+    properties: {
+      userId: {
+        type: &quot;string&quot;,
+        description: &quot;Unique user identifier for state management&quot;
+      },
+      scopes: {
+        type: &quot;array&quot;,
+        items: { type: &quot;string&quot; },
+        description: &quot;List of required access scopes&quot;
+      }
+    },
+    required: [&quot;userId&quot;]
+  },
+  handler: async ({ userId, scopes = [&quot;read&quot;] }) =&gt; {
+    const authUrl = generateOAuthUrl(userId, scopes);
+    return { authUrl };
+  }
+};
+
+// Store the tokens securely
+// In production, use a database or secure storage
+const tokens = {};
+
+// Set up callback handling (separate from MCP tools)
+app.get(&#39;/oauth/callback&#39;, async (req, res) =&gt; {
+  const { code, state } = req.query;
+  const token = await exchangeCodeForToken(code);
+  tokens[state] = token;
+  res.send(&#39;Authentication successful&#39;);
+});
+</code></pre>
+<h4 id="starting-the-server">Starting the Server</h4>
+<pre><code class="language-javascript">// Start listening on the specified port
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () =&gt; {
+  console.log(`MCP server running on port ${PORT}`);
+});
+</code></pre>
+<h3 id="3-testing-phase">3. Testing Phase</h3>
+<p>Thoroughly test your MCP server before deployment:</p>
+<h4 id="unit-testing">Unit Testing</h4>
+<pre><code class="language-javascript">// Example unit test for a tool handler
+test(&#39;searchItems returns correct results&#39;, async () =&gt; {
+  const mockResponse = { items: [{ id: 1, name: &#39;Test Item&#39; }] };
+  
+  // Mock external API call
+  jest.spyOn(externalAPI, &#39;search&#39;).mockResolvedValue(mockResponse);
+  
+  // Test tool handler directly
+  const result = await searchTool.handler({ query: &#39;test&#39; });
+  
+  expect(result.success).toBe(true);
+  expect(result.data.items).toHaveLength(1);
+  expect(result.data.items[0].name).toBe(&#39;Test Item&#39;);
+});
+</code></pre>
+<h4 id="integration-testing">Integration Testing</h4>
+<pre><code class="language-javascript">// Example integration test with a real MCP client
+test(&#39;MCP client can call searchItems tool&#39;, async () =&gt; {
+  const client = new MCPClient(&#39;http://localhost:3000&#39;);
+  
+  const response = await client.callTool(&#39;searchItems&#39;, {
+    query: &#39;test query&#39;
+  });
+  
+  expect(response.success).toBe(true);
+  expect(response.data.items).toBeDefined();
+});
+</code></pre>
+<h4 id="manual-testing">Manual Testing</h4>
+<ul>
+<li>Test with actual LLM interactions</li>
+<li>Verify error handling with invalid inputs</li>
+<li>Check authentication flows end-to-end</li>
+<li>Test rate limiting and performance under load</li>
+</ul>
+<h2 id="clines-3-step-mcp-development-protocol">Cline&#39;s 3-Step MCP Development Protocol</h2>
+<p>Cline&#39;s approach to MCP server development provides a structured framework:</p>
+<h3 id="1-planning-with-clinerules">1. Planning with .clinerules</h3>
+<p>Create a <code>.clinerules</code> file in your project root to guide Cline in MCP development:</p>
+<pre><code class="language-json">{
+  &quot;project&quot;: &quot;MCP Server for [Service]&quot;,
+  &quot;rules&quot;: [
+    &quot;Follow the 3-step MCP development protocol&quot;,
+    &quot;Define clear tool specifications with detailed parameters&quot;,
+    &quot;Implement comprehensive error handling&quot;,
+    &quot;Ensure proper authentication flow&quot;,
+    &quot;Document all tools and their usage&quot;
+  ],
+  &quot;constraints&quot;: {
+    &quot;security&quot;: &quot;Implement proper authentication and rate limiting&quot;,
+    &quot;testing&quot;: &quot;Write tests for all tool handlers&quot;,
+    &quot;documentation&quot;: &quot;Generate clear usage documentation&quot;
+  }
+}
+</code></pre>
+<h3 id="2-implementation-workflow">2. Implementation Workflow</h3>
+<p>Follow this implementation workflow:</p>
+<ol>
+<li><p><strong>Set up project structure</strong>:</p>
+<pre><code class="language-bash">npx @modelcontextprotocol/create-server my-service-mcp
+cd my-service-mcp
+npm install
+</code></pre>
+</li>
+<li><p><strong>Define tool specifications</strong>:</p>
+<ul>
+<li>Create a <code>tools/</code> directory</li>
+<li>Implement each tool in a separate file</li>
+<li>Export them from an index file</li>
+</ul>
+</li>
+<li><p><strong>Implement authentication</strong>:</p>
+<ul>
+<li>Set up secure credential storage</li>
+<li>Implement appropriate auth flows (API key, OAuth)</li>
+<li>Add credential validation</li>
+</ul>
+</li>
+<li><p><strong>Add error handling</strong>:</p>
+<ul>
+<li>Implement try/catch blocks</li>
+<li>Return meaningful error messages</li>
+<li>Log errors for debugging</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-testing-and-validation">3. Testing and Validation</h3>
+<ul>
+<li>Run automated tests for all tools</li>
+<li>Test with real LLM interactions</li>
+<li>Verify error cases are handled properly</li>
+<li>Document usage patterns</li>
+</ul>
+<h2 id="monetization-strategies">Monetization Strategies</h2>
+<p>For developers creating commercial MCP servers:</p>
+<h3 id="1-tiered-access-model">1. Tiered Access Model</h3>
+<pre><code class="language-javascript">// Example: Implementing usage tracking and limits
+const apiKeyAuth = {
+  name: &quot;apiKey&quot;,
+  description: &quot;API key for authentication&quot;,
+  validate: async (key) =&gt; {
+    const user = await validateApiKey(key);
+    if (!user) return null;
+    return user;
+  }
+};
+
+// Track usage for rate limiting
+const usageTracker = {
+  incrementUsage: async (userId) =&gt; {
+    // Increment usage count in database
+    await db.increment(`usage:${userId}`);
+    
+    // Check if user has exceeded limits
+    const usage = await db.get(`usage:${userId}`);
+    const tier = await db.get(`tier:${userId}`);
+    
+    const limits = {
+      &#39;free&#39;: 10,
+      &#39;basic&#39;: 100,
+      &#39;premium&#39;: 1000
+    };
+    
+    return usage &lt;= limits[tier];
+  }
+};
+
+// Apply to tool handlers
+const searchWithAuth = {
+  ...searchTool,
+  handler: async (params, context) =&gt; {
+    // Check if user can make this request
+    const canProceed = await usageTracker.incrementUsage(context.user.id);
+    if (!canProceed) {
+      return { success: false, error: &quot;Rate limit exceeded&quot; };
+    }
+    
+    // Proceed with original handler
+    return searchTool.handler(params);
+  }
+};
+</code></pre>
+<h3 id="2-subscription-tiers">2. Subscription Tiers</h3>
+<p>Implement these common subscription tiers:</p>
+<ul>
+<li><strong>Free Tier</strong>: 5-10 requests per day</li>
+<li><strong>Basic Tier</strong>: $20/month for 100 requests per day</li>
+<li><strong>Premium Tier</strong>: $50/month for unlimited requests</li>
+</ul>
+<h3 id="3-enterprise-licensing">3. Enterprise Licensing</h3>
+<p>For larger organizations:</p>
+<ul>
+<li>Custom deployment options</li>
+<li>Dedicated support</li>
+<li>SLA guarantees</li>
+<li>Customized tool development</li>
+</ul>
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="security">Security</h3>
+<ul>
+<li><strong>Never hardcode credentials</strong> in your server code</li>
+<li><strong>Validate all inputs</strong> to prevent injection attacks</li>
+<li><strong>Implement rate limiting</strong> to prevent abuse</li>
+<li><strong>Use HTTPS</strong> for all external API calls</li>
+<li><strong>Sanitize outputs</strong> to prevent data leakage</li>
+</ul>
+<h3 id="performance">Performance</h3>
+<ul>
+<li><strong>Cache frequently accessed data</strong> to reduce external API calls</li>
+<li><strong>Implement connection pooling</strong> for database access</li>
+<li><strong>Use asynchronous handlers</strong> for better concurrency</li>
+<li><strong>Add timeouts</strong> to prevent hanging on slow external services</li>
+<li><strong>Monitor performance metrics</strong> for optimization opportunities</li>
+</ul>
+<h3 id="maintainability">Maintainability</h3>
+<ul>
+<li><strong>Modularize your code</strong> with one tool per file</li>
+<li><strong>Document all parameters</strong> clearly</li>
+<li><strong>Use consistent error handling</strong> patterns</li>
+<li><strong>Implement logging</strong> for debugging</li>
+<li><strong>Follow semantic versioning</strong> for API changes</li>
+</ul>
+<h3 id="documentation">Documentation</h3>
+<p>Create comprehensive documentation:</p>
+<ul>
+<li><strong>Tool Overview</strong>: What each tool does</li>
+<li><strong>Parameter Details</strong>: All inputs with examples</li>
+<li><strong>Authentication Guide</strong>: How to authenticate</li>
+<li><strong>Error Reference</strong>: Common errors and resolutions</li>
+<li><strong>Example Usage</strong>: Code samples for common use cases</li>
+</ul>
+<h2 id="example-mcp-server-for-github">Example: MCP Server for GitHub</h2>
+<pre><code class="language-javascript">// Example GitHub MCP server implementation
+const { createServer } = require(&#39;@modelcontextprotocol/server&#39;);
+const { Octokit } = require(&#39;@octokit/rest&#39;);
+
+// Set up Octokit with authentication
+const getOctokit = (token) =&gt; {
+  return new Octokit({ auth: token });
+};
+
+// Tool: Create repository
+const createRepoTool = {
+  name: &quot;createRepository&quot;,
+  description: &quot;Create a new GitHub repository&quot;,
+  parameters: {
+    type: &quot;object&quot;,
+    properties: {
+      name: {
+        type: &quot;string&quot;,
+        description: &quot;Repository name&quot;
+      },
+      description: {
+        type: &quot;string&quot;,
+        description: &quot;Repository description&quot;
+      },
+      isPrivate: {
+        type: &quot;boolean&quot;,
+        description: &quot;Whether repository should be private&quot;
+      }
+    },
+    required: [&quot;name&quot;]
+  },
+  handler: async ({ name, description = &quot;&quot;, isPrivate = false }, context) =&gt; {
+    try {
+      const octokit = getOctokit(context.user.token);
+      
+      const response = await octokit.repos.createForAuthenticatedUser({
+        name,
+        description,
+        private: isPrivate
+      });
+      
+      return {
+        success: true,
+        repository: {
+          name: response.data.name,
+          url: response.data.html_url,
+          id: response.data.id
+        }
+      };
+    } catch (error) {
+      console.error(`Error creating repository: ${error.message}`);
+      return {
+        success: false,
+        error: error.message
+      };
+    }
+  }
+};
+
+// Create and start the server
+const server = createServer({
+  name: &quot;github-mcp&quot;,
+  version: &quot;1.0.0&quot;,
+  description: &quot;MCP server for GitHub integration&quot;,
+  tools: [createRepoTool]
+});
+
+server.listen(3000);
+</code></pre>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://github.com/anthropics/model-context-protocol">Model Context Protocol Documentation</a></li>
+<li><a href="https://docs.cline.bot/mcp-servers/mcp-server-from-scratch">Cline MCP Development Guide</a></li>
+<li><a href="./registry_MCPServers.md">MCP Server Registry</a></li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

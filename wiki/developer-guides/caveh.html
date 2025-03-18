@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cave.h | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>cave.h</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-13</div>
+        </header>
+        
+        <main>
+            <h1 id="caveh">cave.h</h1>
+<h2 id="file-overview">File Overview</h2>
+<p>This file is located at <code>src/cave.h</code> in the Angband codebase.</p>
+<h2 id="error-generating-documentation">Error Generating Documentation</h2>
+<p>An error occurred while generating documentation: Error code: 429 - {&#39;type&#39;: &#39;error&#39;, &#39;error&#39;: {&#39;type&#39;: &#39;rate_limit_error&#39;, &#39;message&#39;: &#39;This request would exceed the rate limit for your organization (ca0567f9-a66c-44e9-8bd6-dfea5ad83443) of 10,000 input tokens per minute. For details, refer to: <a href="https://docs.anthropic.com/en/api/rate-limits">https://docs.anthropic.com/en/api/rate-limits</a>. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at <a href="https://www.anthropic.com/contact-sales">https://www.anthropic.com/contact-sales</a> to discuss your options for a rate limit increase.&#39;}}</p>
+<h2 id="raw-file-content">Raw File Content</h2>
+<pre><code class="language-c">/**
+
+ * \file cave.h
+
+ * \brief Matters relating to the current dungeon level
+
+ *
+
+ * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke
+
+ *
+
+ * This work is free software; you can redistribute it and/or modify it
+
+ * under the terms of either:
+
+ *
+
+ * a) the GNU General Public License as published by the Free Software
+
+ *    Foundation, version 2, or
+
+ *
+
+ * b) the &quot;Angband licence&quot;:
+
+ *    This software may be copied and distributed for educational, research,
+
+ *    and not for profit purposes provided that this copyright and statement
+
+ *    are included in all such copies.  Other copyrights may also apply.
+
+ */
+
+
+
+#ifndef CAVE_H
+
+#define CAVE_H
+
+
+
+#include &quot;z-type.h&quot;
+
+#include &quot;z-bitflag.h&quot;
+
+
+
+struct player;
+
+struct monster;
+
+struct monster_group;
+
+
+
+extern const int16_t ddd[9];
+
+extern const int16_t ddx[10];
+
+extern const int16_t ddy[10];
+
+extern const struct loc ddgrid[10];
+
+extern const int16_t ddx_ddd[9];
+
+extern const int16_t ddy_ddd[9];
+
+extern const struct l
+...
+</code></pre>
+<p><em>Note: File content truncated for brevity.</em></p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

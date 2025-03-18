@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angband Code Context | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Angband Code Context</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-13</div>
+        </header>
+        
+        <main>
+            <h1 id="angband-code-context">Angband Code Context</h1>
+<h2 id="c-language-features-used">C Language Features Used</h2>
+<p>Angband is written in C89/C90 with some C99 features. The codebase uses:</p>
+<ul>
+<li>Structs and typedefs extensively for game objects</li>
+<li>Function pointers for callbacks and polymorphic behavior</li>
+<li>Macros for common operations and constants</li>
+<li>Bitfields for flags and attributes</li>
+<li>Dynamic memory allocation with careful management</li>
+<li>Pointer arithmetic for efficiency</li>
+</ul>
+<h2 id="code-organization">Code Organization</h2>
+<p>The Angband codebase is organized into several logical modules:</p>
+<ol>
+<li><p><strong>Core Engine</strong></p>
+<ul>
+<li>Main game loop</li>
+<li>Turn management</li>
+<li>Event handling</li>
+</ul>
+</li>
+<li><p><strong>Dungeon Generation</strong></p>
+<ul>
+<li>Level creation algorithms</li>
+<li>Room templates</li>
+<li>Terrain features</li>
+</ul>
+</li>
+<li><p><strong>Entity Management</strong></p>
+<ul>
+<li>Player character</li>
+<li>Monsters</li>
+<li>Objects and items</li>
+<li>Artifacts and special items</li>
+</ul>
+</li>
+<li><p><strong>Game Mechanics</strong></p>
+<ul>
+<li>Combat system</li>
+<li>Magic system</li>
+<li>Character progression</li>
+<li>Status effects</li>
+</ul>
+</li>
+<li><p><strong>User Interface</strong></p>
+<ul>
+<li>Display routines</li>
+<li>Input handling</li>
+<li>Menus and commands</li>
+<li>Message system</li>
+</ul>
+</li>
+<li><p><strong>Platform-Specific Code</strong></p>
+<ul>
+<li>Terminal/console handling</li>
+<li>Graphics rendering</li>
+<li>Sound systems</li>
+<li>File I/O</li>
+</ul>
+</li>
+</ol>
+<h2 id="coding-conventions">Coding Conventions</h2>
+<ul>
+<li>Function names typically use snake_case</li>
+<li>Global variables often prefixed with appropriate identifiers</li>
+<li>Extensive use of enums and #define for constants</li>
+<li>Structs often typedef&#39;d with _type naming pattern</li>
+<li>Heavy use of bitflags for object/monster properties</li>
+</ul>
+<h2 id="memory-management">Memory Management</h2>
+<ul>
+<li>Custom allocators for game objects</li>
+<li>Careful tracking of allocated memory</li>
+<li>Reuse of memory for temporary operations</li>
+<li>Zone-based allocation for level generation</li>
+</ul>
+<h2 id="cross-platform-considerations">Cross-Platform Considerations</h2>
+<ul>
+<li>Conditional compilation with #ifdef for platform-specific code</li>
+<li>Abstraction layers for system-dependent operations</li>
+<li>Separate implementation files for platform-specific functionality</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borg Flow Take Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Borg Flow Take Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="borg-flow-take-documentation">Borg Flow Take Documentation</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-flow-take.h</code> is a header file in the Angband roguelike game codebase, specifically for the Borg AI system. The Borg is an automated player that makes decisions based on game state analysis. This file defines data structures and function prototypes related to the Borg&#39;s decision-making process for taking (picking up) objects in the dungeon.</p>
+<p>The primary purpose of this code is to allow the Borg to evaluate and prioritize objects on the ground, then navigate towards high-value targets to collect them. This involves tracking object locations, properties, and values, as well as providing algorithms for optimal pathfinding.</p>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="borg_take"><code>borg_take</code></h3>
+<p>The <code>borg_take</code> struct represents an object that the Borg is tracking and considering taking.</p>
+<ul>
+<li><code>kind</code>: Pointer to the <code>object_kind</code> (type) of the object.</li>
+<li><code>known</code>: Boolean indicating if the object&#39;s kind has been verified.</li>
+<li><code>seen</code>: Boolean indicating if the Borg has assigned a motion to reach this object.</li>
+<li><code>extra</code>: Unused boolean flag for additional state tracking.</li>
+<li><code>orbed</code>: Boolean indicating if the Orb of Draining spell has been cast on this object.</li>
+<li><code>x</code>, <code>y</code>: Coordinates of the object&#39;s location in the dungeon.</li>
+<li><code>when</code>: Turn counter for when the object was last seen by the Borg.</li>
+<li><code>value</code>: The Borg&#39;s estimated value of the object, used for prioritization.</li>
+<li><code>tval</code>: The known <code>tval</code> (type value) of the object.</li>
+</ul>
+<h2 id="global-variables">Global Variables</h2>
+<ul>
+<li><code>borg_takes_cnt</code>: Current number of objects being tracked in the <code>borg_takes</code> array.</li>
+<li><code>borg_takes_nxt</code>: Index of the next available slot in the <code>borg_takes</code> array.</li>
+<li><code>borg_takes</code>: Array of <code>borg_take</code> structs representing the objects being tracked.</li>
+</ul>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_get_top_object"><code>borg_get_top_object</code></h3>
+<pre><code class="language-c">struct object *borg_get_top_object(struct chunk *c, struct loc grid);
+</code></pre>
+<ul>
+<li>Purpose: Helper function to get the top non-ignored object at a given dungeon grid location.</li>
+<li>Parameters:<ul>
+<li><code>c</code>: Pointer to the current dungeon <code>chunk</code>.</li>
+<li><code>grid</code>: The dungeon grid location to check.</li>
+</ul>
+</li>
+<li>Return value: Pointer to the top non-ignored <code>object</code> at the specified grid, or NULL if no suitable object is found.</li>
+<li>Side effects: None.</li>
+</ul>
+<h3 id="borg_delete_take"><code>borg_delete_take</code></h3>
+<pre><code class="language-c">void borg_delete_take(int i);
+</code></pre>
+<ul>
+<li>Purpose: Delete an old &quot;object&quot; record from the <code>borg_takes</code> array.</li>
+<li>Parameters:<ul>
+<li><code>i</code>: Index of the object record to delete.</li>
+</ul>
+</li>
+<li>Return value: None.</li>
+<li>Side effects: Removes the object record at index <code>i</code> from the <code>borg_takes</code> array, updating <code>borg_takes_cnt</code> and shuffling subsequent records down.</li>
+</ul>
+<h3 id="borg_follow_take"><code>borg_follow_take</code></h3>
+<pre><code class="language-c">void borg_follow_take(int i);
+</code></pre>
+<ul>
+<li>Purpose: Attempt to &quot;follow&quot; a missing object by updating its location based on other objects moving in the same direction.</li>
+<li>Parameters:<ul>
+<li><code>i</code>: Index of the object record to follow.</li>
+</ul>
+</li>
+<li>Return value: None.</li>
+<li>Side effects: Updates the location of the object record at index <code>i</code> in the <code>borg_takes</code> array if a matching object is found to follow.</li>
+</ul>
+<h3 id="observe_take_diff"><code>observe_take_diff</code></h3>
+<pre><code class="language-c">bool observe_take_diff(int y, int x, uint8_t a, wchar_t c);
+</code></pre>
+<ul>
+<li>Purpose: Attempt to notice a changing &quot;take&quot; by comparing the current dungeon state with the Borg&#39;s tracked object list.</li>
+<li>Parameters:<ul>
+<li><code>y</code>, <code>x</code>: Coordinates of the dungeon grid to check.</li>
+<li><code>a</code>: Attribute (color) of the object glyph.</li>
+<li><code>c</code>: Character code for the object glyph.</li>
+</ul>
+</li>
+<li>Return value: Boolean indicating if a difference was observed and processed.</li>
+<li>Side effects: May update the <code>borg_takes</code> array based on observed differences.</li>
+</ul>
+<h3 id="observe_take_move"><code>observe_take_move</code></h3>
+<pre><code class="language-c">bool observe_take_move(int y, int x, int d, uint8_t a, wchar_t c);
+</code></pre>
+<ul>
+<li>Purpose: Attempt to &quot;track&quot; a &quot;take&quot; at the given location by updating the <code>borg_takes</code> array based on observed object movement.</li>
+<li>Parameters:<ul>
+<li><code>y</code>, <code>x</code>: Coordinates of the dungeon grid where the object was seen.</li>
+<li><code>d</code>: Direction the object is moving (based on relative offset from previous position).</li>
+<li><code>a</code>: Attribute (color) of the object glyph.</li>
+<li><code>c</code>: Character code for the object glyph.</li>
+</ul>
+</li>
+<li>Return value: Boolean indicating if the object was successfully tracked.</li>
+<li>Side effects: May add a new record to the <code>borg_takes</code> array or update an existing one.</li>
+</ul>
+<h3 id="borg_flow_take"><code>borg_flow_take</code></h3>
+<pre><code class="language-c">bool borg_flow_take(bool viewable, int nearness);
+</code></pre>
+<ul>
+<li>Purpose: Prepare to &quot;flow&quot; towards objects to &quot;take&quot; by calculating paths and priorities.</li>
+<li>Parameters:<ul>
+<li><code>viewable</code>: Boolean indicating if only viewable (in line of sight) objects should be considered.</li>
+<li><code>nearness</code>: Maximum distance from the Borg to consider objects for taking.</li>
+</ul>
+</li>
+<li>Return value: Boolean indicating if a suitable object was found to flow towards.</li>
+<li>Side effects: Calculates flow paths and priorities for reachable objects, updating Borg state variables.</li>
+</ul>
+<h3 id="borg_flow_take_scum"><code>borg_flow_take_scum</code></h3>
+<pre><code class="language-c">bool borg_flow_take_scum(bool viewable, int nearness);
+</code></pre>
+<ul>
+<li>Purpose: Prepare to &quot;flow&quot; towards special &quot;scum&quot; objects to &quot;take&quot; by calculating paths and priorities. &quot;Scum&quot; objects are those which the Borg should only pursue if no other goals are available.</li>
+<li>Parameters:<ul>
+<li><code>viewable</code>: Boolean indicating if only viewable (in line of sight) objects should be considered.</li>
+<li><code>nearness</code>: Maximum distance from the Borg to consider objects for taking.</li>
+</ul>
+</li>
+<li>Return value: Boolean indicating if a suitable &quot;scum&quot; object was found to flow towards.</li>
+<li>Side effects: Calculates flow paths and priorities for reachable &quot;scum&quot; objects, updating Borg state variables.</li>
+</ul>
+<h3 id="borg_flow_take_lunal"><code>borg_flow_take_lunal</code></h3>
+<pre><code class="language-c">bool borg_flow_take_lunal(bool viewable, int nearness);
+</code></pre>
+<ul>
+<li>Purpose: Prepare to &quot;flow&quot; towards special &quot;lunal&quot; objects to &quot;take&quot; by calculating paths and priorities. &quot;Lunal&quot; objects are those which are only relevant in certain special dungeon branches or areas.</li>
+<li>Parameters:<ul>
+<li><code>viewable</code>: Boolean indicating if only viewable (in line of sight) objects should be considered.</li>
+<li><code>nearness</code>: Maximum distance from the Borg to consider objects for taking.</li>
+</ul>
+</li>
+<li>Return value: Boolean indicating if a suitable &quot;lunal&quot; object was found to flow towards.</li>
+<li>Side effects: Calculates flow paths and priorities for reachable &quot;lunal&quot; objects, updating Borg state variables.</li>
+</ul>
+<h3 id="borg_init_flow_take"><code>borg_init_flow_take</code></h3>
+<pre><code class="language-c">void borg_init_flow_take(void);
+</code></pre>
+<ul>
+<li>Purpose: Initialize the <code>borg_takes</code> array and related state variables for a new game or level.</li>
+<li>Parameters: None.</li>
+<li>Return value: None.</li>
+<li>Side effects: Clears the <code>borg_takes</code> array and resets <code>borg_takes_cnt</code> and <code>borg_takes_nxt</code>.</li>
+</ul>
+<h3 id="borg_free_flow_take"><code>borg_free_flow_take</code></h3>
+<pre><code class="language-c">void borg_free_flow_take(void);
+</code></pre>
+<ul>
+<li>Purpose: Free any resources associated with the <code>borg_takes</code> array and related state variables.</li>
+<li>Parameters: None.</li>
+<li>Return value: None.</li>
+<li>Side effects: Deallocates memory used by the <code>borg_takes</code> array (if any).</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>The main algorithms in this file relate to the Borg&#39;s decision-making process for taking objects:</p>
+<ol>
+<li><p>Object tracking: The Borg maintains a list of objects in the dungeon that it considers valuable. When the Borg observes changes in the dungeon state (objects appearing, disappearing, or moving), it updates its object list accordingly. This involves comparing the current state to the previous state and making inferences about object movements.</p>
+</li>
+<li><p>Object evaluation: Each tracked object is assigned a value based on the Borg&#39;s assessment of its worth. This value takes into account factors such as the object&#39;s type, rarity, potential usefulness to the character, and distance from the Borg. The Borg uses these values to prioritize which objects to pursue.</p>
+</li>
+<li><p>Pathfinding: Once the Borg has identified a high-value object to take, it needs to navigate the dungeon to reach the object&#39;s location. The <code>borg_flow_take</code> functions handle this by calculating a path from the Borg&#39;s current location to the target object. The pathfinding algorithm likely takes into account factors such as distance, obstacles, and potential dangers along the route.</p>
+</li>
+<li><p>Special case handling: The <code>borg_flow_take_scum</code> and <code>borg_flow_take_lunal</code> functions provide specialized handling for certain categories of objects. &quot;Scum&quot; objects are low-priority items that the Borg should only pursue if no other goals are available, while &quot;lunal&quot; objects are those that are only relevant in specific dungeon areas or branches. These functions allow the Borg to adapt its object-taking behavior based on the current game context.</p>
+</li>
+</ol>
+<h2 id="dependencies">Dependencies</h2>
+<p>This file depends on:</p>
+<ul>
+<li><code>angband.h</code>: The main Angband header file, which defines core game data structures and constants.</li>
+<li><code>borg-flow.h</code>: Header file defining data structures and functions related to the Borg&#39;s general &quot;flow&quot; algorithms for navigation and decision-making.</li>
+</ul>
+<p>Other files that depend on <code>borg-flow-take.h</code> may include:</p>
+<ul>
+<li><code>borg-think.c</code>: The main Borg &quot;thinking&quot; logic which decides on high-level goals and actions.</li>
+<li><code>borg-flow.c</code>: Implementation of general Borg &quot;flow&quot; algorithms which may call the <code>borg_flow_take</code> functions.</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>The Borg AI system was originally developed by Ben Harrison, James E. Wilson, and Robert A. Koeneke for earlier versions of Angband. The code in this file, however, is attributed to more recent contributors including Andi Sidwell, Chris Carr, Ed Graham, and Erik Osheim, with modifications made between 2007-2009.</p>
+<p>The Borg represents an early attempt at creating an automated player for roguelike games, with the goal of demonstrating how an AI system can navigate the complex decision spaces and challenges posed by these games. While newer and more sophisticated game AI techniques have since been developed, the Borg remains an interesting historical example and a testament to the long-running community efforts to extend and enhance the Angband codebase.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

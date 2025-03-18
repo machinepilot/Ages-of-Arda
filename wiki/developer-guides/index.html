@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Development Documentation</h1>
+            <p>Technical documentation for Ages of Arda developers</p>
+        </header>
+        
+        <main>
+            <div class="category-list">
+                <div class="category">
+                    <h2>Activators</h2>
+                    <div class="document-list">
+                        <a href="file-types.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File Type Rule Mapping</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="category">
+                    <h2>Ai</h2>
+                    <div class="document-list">
+                        <a href="ai-gameplay.html" class="document-link">
+                            <div class="document-card">
+                                <h3>ai-gameplay</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="ai-ux.html" class="document-link">
+                            <div class="document-card">
+                                <h3>ai-ux</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="multi-agent.html" class="document-link">
+                            <div class="document-card">
+                                <h3>multi-agent</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="category">
+                    <h2>Architecture</h2>
+                    <div class="document-list">
+                        <a href="ages-of-arda-implementation-notes.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Ages of Arda - Implementation Notes</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="ages-of-arda-mcp-system.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Ages of Arda - MCP System</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="ages-of-arda-startup-implementation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Ages of Arda - Startup Implementation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="ages-of-arda-cursor-rules-system.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Ages of Arda Cursor Rules System</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="lore-management-implementation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Lore Management System - Implementation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2023-12-01</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="lute-the-bard-architecture-overview.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Lute the Bard - Architecture Overview</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="lute-the-bard-ai-companion-implementation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Lute the Bard: AI Companion Implementation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="mcp-architecture-for-game-integration.html" class="document-link">
+                            <div class="document-card">
+                                <h3>MCP Architecture for Game Integration</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="narrative-memory-systems-for-storytelling-continuity.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Narrative Memory Systems for Storytelling Continuity</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="selfhealing-rules-system.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Self-Healing Rules System</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="category">
+                    <h2>Code-style</h2>
+                    <div class="document-list">
+                        <a href="c-style.html" class="document-link">
+                            <div class="document-card">
+                                <h3>c-style</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="category">
+                    <h2>Game</h2>
+                    <div class="document-list">
+                        <a href="angband-variant.html" class="document-link">
+                            <div class="document-card">
+                                <h3>angband-variant</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="lore-management.html" class="document-link">
+                            <div class="document-card">
+                                <h3>lore-management</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="memory-bank.html" class="document-link">
+                            <div class="document-card">
+                                <h3>memory-bank</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="category">
+                    <h2>Guides</h2>
+                    <div class="document-list">
+                        <a href="ages-of-arda.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Ages of Arda</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="ages-of-arda-angband-variant.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Ages of Arda - Angband Variant</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="ages-of-arda-manual-setup-guide.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Ages of Arda - Manual Setup Guide</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="ages-of-arda-mcp-system.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Ages of Arda - MCP System</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="ages-of-arda-simple-mcp-setup.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Ages of Arda - Simple MCP Setup</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="ages-of-arda-startup-guide.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Ages of Arda - Startup Guide</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="ages-of-arda-window-configuration-fixes.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Ages of Arda - Window Configuration Fixes</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="ages-of-arda-development-guide.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Ages of Arda Development Guide</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="readme.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Ages of Arda Development Guidelines</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="ages-of-arda-documentation-system.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Ages of Arda Documentation System</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="ages-of-arda-wiki-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Ages of Arda Wiki Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="aiassisted-software-development-use-cases.html" class="document-link">
+                            <div class="document-card">
+                                <h3>AI-Assisted Software Development Use Cases</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="aidriven-ux-design-strategy.html" class="document-link">
+                            <div class="document-card">
+                                <h3>AI-Driven UX Design Strategy</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="an-overview-of-some-of-the-monster-intelligence-code.html" class="document-link">
+                            <div class="document-card">
+                                <h3>An overview of (some of) the monster intelligence code</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-13</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="angband-code-context.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Angband Code Context</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-13</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="angband-documentation-generator-with-rate-limiting.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Angband Documentation Generator with Rate Limiting</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="angband-game-context.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Angband Game Context</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-13</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="angband-project-brief.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Angband Project Brief</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-13</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="angband-with-mcp-server-startup-guide.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Angband with MCP Server - Startup Guide</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-15</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="angbandh-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>angband.h Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="bard-narrative-design-principles.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Bard Narrative Design Principles</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="borg-cave-view-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Borg Cave View Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="borg-flow-take-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Borg Flow Take Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="borg-inventory-header-file-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Borg Inventory Header File Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="borg-item-activation-header-file-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Borg Item Activation Header File Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="borg-item-use-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Borg Item Use Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="borgcautionh-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>borg-caution.h Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="borgcaveh-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>borg-cave.h Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="borgdangerh-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>borg-danger.h Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="borgfightattackh-file-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>borg-fight-attack.h File Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="borgflowmisch-file-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>borg-flow-misc.h File Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="borgflowstairsh-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>borg-flow-stairs.h Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="borgformulash-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>borg-formulas.h Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="borginith-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>borg-init.h Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="borgitemenchanth-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>borg-item-enchant.h Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="borgitemidh-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>borg-item-id.h Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="borgitemvalc-file-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>borg-item-val.c File Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="buildidh.html" class="document-link">
+                            <div class="document-card">
+                                <h3>buildid.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-13</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="building-mcp-servers-strategy.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Building MCP Servers Strategy</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="cavemapc.html" class="document-link">
+                            <div class="document-card">
+                                <h3>cave-map.c</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-13</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="cavesquarec.html" class="document-link">
+                            <div class="document-card">
+                                <h3>cave-square.c</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-13</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="caveviewc.html" class="document-link">
+                            <div class="document-card">
+                                <h3>cave-view.c</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-13</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="caveh.html" class="document-link">
+                            <div class="document-card">
+                                <h3>cave.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-13</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="cline-tool-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Cline Tool Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="cmdcavec-file-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>cmd-cave.c File Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-13</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="cmdcorec.html" class="document-link">
+                            <div class="document-card">
+                                <h3>cmd-core.c</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-13</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="companion-ui-for-ages-of-arda.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Companion UI for Ages of Arda</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="contributing-to-angband.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Contributing to Angband</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="documentation-for-srcborgborgfightdefendh.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Documentation for src/borg/borg-fight-defend.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="documentation-rules.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Documentation Standards</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="documentation-standards.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Documentation Standards</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="file-documentation-borgescapeh.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File Documentation: borg-escape.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="file-documentation-borgformulascalch.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File Documentation: borg-formulas-calc.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="file-borgcavelighth.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File: borg-cave-light.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="file-borgcaveutilh.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File: borg-cave-util.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="file-borgfightpermh.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File: borg-fight-perm.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="file-borgflowglyphh.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File: borg-flow-glyph.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="file-borgflowkillh.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File: borg-flow-kill.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="file-borghomenoticeh.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File: borg-home-notice.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="file-borghomepowerh.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File: borg-home-power.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="file-borgioh.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File: borg-io.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="file-borgitemanalyzeh.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File: borg-item-analyze.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="file-srcalloch.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File: src/alloc.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="file-srcborgborgattackmunchkinh.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File: src/borg/borg-attack-munchkin.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="file-srcborgborgflowdarkh.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File: src/borg/borg-flow-dark.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="file-srcborgborgflowh.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File: src/borg/borg-flow.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="file-srcborgborgitemdecurseh.html" class="document-link">
+                            <div class="document-card">
+                                <h3>File: src/borg/borg-item-decurse.h</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="lore-database-for-ages-of-arda.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Lore Database for Ages of Arda</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="lute-the-bard-mcp-test-results.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Lute the Bard - MCP Test Results</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="manus-ai-tool-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Manus AI Tool Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="mcp-integration-patterns-for-c-codebases.html" class="document-link">
+                            <div class="document-card">
+                                <h3>MCP Integration Patterns for C Codebases</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="mcp-server-registry.html" class="document-link">
+                            <div class="document-card">
+                                <h3>MCP Server Registry</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="mcp-service-integration-patterns.html" class="document-link">
+                            <div class="document-card">
+                                <h3>MCP Service Integration Patterns</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="memory-bank-implementation-strategy.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Memory Bank Implementation Strategy</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="model-context-protocol-mcp-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Model Context Protocol (MCP) Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="model-context-protocol-mcp-ecosystem-overview.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Model Context Protocol (MCP) Ecosystem Overview</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="owl-optimized-workforce-learning-framework-documentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>OWL (Optimized Workforce Learning) Framework Documentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="readme24.html" class="document-link">
+                            <div class="document-card">
+                                <h3>README24</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="selfhealing-rules-system.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Self-Healing Rules System</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="tower-of-babel.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Tower of Babel</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-14</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="wiki-changelog.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Wiki Changelog</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="windows-compilation-methods-for-angband.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Windows Compilation Methods for Angband</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-13</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="windowsdocumentation.html" class="document-link">
+                            <div class="document-card">
+                                <h3>windowsDocumentation</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-13</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="windowstemplate.html" class="document-link">
+                            <div class="document-card">
+                                <h3>windowsTemplate</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-13</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="category">
+                    <h2>Mcp</h2>
+                    <div class="document-list">
+                        <a href="mcp-integration.html" class="document-link">
+                            <div class="document-card">
+                                <h3>mcp-integration</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-18</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="category">
+                    <h2>Reference</h2>
+                    <div class="document-list">
+                        <a href="windows-api-reference-for-angband.html" class="document-link">
+                            <div class="document-card">
+                                <h3>Windows API Reference for Angband</h3>
+                                <div class="document-meta">
+                                    <span class="updated">Updated: 2025-03-13</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html>

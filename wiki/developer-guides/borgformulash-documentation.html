@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>borg-formulas.h Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>borg-formulas.h Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="borg-formulash-documentation">borg-formulas.h Documentation</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-formulas.h</code> is a header file in the Angband roguelike game codebase that provides data structures, enums, and function declarations for the Borg AI system&#39;s formula handling. The Borg is an automated player that makes decisions based on predefined formulas and heuristics.</p>
+<p>This file defines the data structures used to represent formulas, provides functions for parsing and evaluating these formulas, and includes declarations for functions that calculate various aspects of the Borg&#39;s decision-making process, such as its power level and readiness to descend to deeper dungeon levels.</p>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="struct-borg_array"><code>struct borg_array</code></h3>
+<p>A simple growing array of pointers.</p>
+<ul>
+<li><code>int max</code>: The maximum number of items the array can hold.</li>
+<li><code>int count</code>: The current number of items in the array.</li>
+<li><code>void **items</code>: The array of pointers to the items.</li>
+</ul>
+<h3 id="enum-value_type"><code>enum value_type</code></h3>
+<p>An enumeration of possible types for values used in formulas.</p>
+<ul>
+<li><code>VT_NONE = -1</code>: Indicates an error.</li>
+<li><code>VT_RANGE_INDEX</code>: The index into range processing.</li>
+<li><code>VT_TRAIT</code>: A Borg trait value.</li>
+<li><code>VT_CONFIG</code>: A configuration value.</li>
+<li><code>VT_ACTIVATION</code>: An activation value.</li>
+<li><code>VT_CLASS</code>: A character class value.</li>
+<li><code>VT_*</code>: Various tval types (e.g., <code>VT_SWORD</code>, <code>VT_POTION</code>, etc.).</li>
+<li><code>VT_MAX</code>: The maximum valid value type.</li>
+</ul>
+<h3 id="struct-value_sec"><code>struct value_sec</code></h3>
+<p>Represents a value section in a formula.</p>
+<ul>
+<li><code>enum value_type type</code>: The type of the value.</li>
+<li><code>int32_t index</code>: The index associated with the value.</li>
+</ul>
+<h2 id="global-variables">Global Variables</h2>
+<p>None.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="int-borg_array_addstruct-borg_array-a-void-item"><code>int borg_array_add(struct borg_array *a, void *item)</code></h3>
+<p>Adds an item to a <code>borg_array</code>.</p>
+<ul>
+<li>Parameters:<ul>
+<li><code>struct borg_array *a</code>: The array to add the item to.</li>
+<li><code>void *item</code>: The item to add.</li>
+</ul>
+</li>
+<li>Returns: The index of the added item in the array.</li>
+<li>Side effects: Modifies the <code>borg_array</code> by adding the item.</li>
+</ul>
+<h3 id="void-borg_formula_errorconst-char-section-const-char-full_line-const-char-section_label-const-char-error"><code>void borg_formula_error(const char *section, const char *full_line, const char *section_label, const char *error)</code></h3>
+<p>Notes an error in a formula.</p>
+<ul>
+<li>Parameters:<ul>
+<li><code>const char *section</code>: The section of the line where the error occurred.</li>
+<li><code>const char *full_line</code>: The full line as read from <code>borg.txt</code>.</li>
+<li><code>const char *section_label</code>: The current parsing location.</li>
+<li><code>const char *error</code>: Additional error text to clarify the error.</li>
+</ul>
+</li>
+<li>Returns: None.</li>
+<li>Side effects: Prints an error message.</li>
+</ul>
+<h3 id="int32_t-calculate_from_valuestruct-value_sec-value-int-range_index"><code>int32_t calculate_from_value(struct value_sec *value, int range_index)</code></h3>
+<p>Calculates a value from a <code>value_sec</code> structure.</p>
+<ul>
+<li>Parameters:<ul>
+<li><code>struct value_sec *value</code>: The value section to calculate from.</li>
+<li><code>int range_index</code>: The index into range processing.</li>
+</ul>
+</li>
+<li>Returns: The calculated value.</li>
+</ul>
+<h3 id="struct-value_sec-parse_valuechar-line-const-char-full_line"><code>struct value_sec *parse_value(char *line, const char *full_line)</code></h3>
+<p>Parses a &quot;value(x, y)&quot; string into a <code>value_sec</code> structure.</p>
+<ul>
+<li>Parameters:<ul>
+<li><code>char *line</code>: The string containing the value section.</li>
+<li><code>const char *full_line</code>: The full line as read from <code>borg.txt</code>.</li>
+</ul>
+</li>
+<li>Returns: A pointer to the parsed <code>value_sec</code> structure.</li>
+</ul>
+<h3 id="int32_t-borg_power_dynamicvoid"><code>int32_t borg_power_dynamic(void)</code></h3>
+<p>Calculates the basic &quot;power&quot; of the Borg.</p>
+<ul>
+<li>Returns: The calculated power value.</li>
+</ul>
+<h3 id="const-char-borg_prepared_dynamicint-depth"><code>const char *borg_prepared_dynamic(int depth)</code></h3>
+<p>Determines the level the Borg is prepared to dive to.</p>
+<ul>
+<li>Parameters:<ul>
+<li><code>int depth</code>: The current depth.</li>
+</ul>
+</li>
+<li>Returns: A string indicating the Borg&#39;s preparedness.</li>
+</ul>
+<h3 id="const-char-borg_restock_dynamicint-depth"><code>const char *borg_restock_dynamic(int depth)</code></h3>
+<p>Determines if the Borg is out of &quot;crucial&quot; supplies.</p>
+<ul>
+<li>Parameters:<ul>
+<li><code>int depth</code>: The current depth.</li>
+</ul>
+</li>
+<li>Returns: A string indicating the Borg&#39;s supply status.</li>
+</ul>
+<h3 id="bool-borg_load_formulasang_file-fp"><code>bool borg_load_formulas(ang_file *fp)</code></h3>
+<p>Loads the FORMULA SECTION from <code>borg.txt</code>.</p>
+<ul>
+<li>Parameters:<ul>
+<li><code>ang_file *fp</code>: The file pointer to <code>borg.txt</code>.</li>
+</ul>
+</li>
+<li>Returns: <code>true</code> if the formulas were loaded successfully, <code>false</code> otherwise.</li>
+</ul>
+<h3 id="void-borg_free_formulasvoid"><code>void borg_free_formulas(void)</code></h3>
+<p>Frees all memory used by formulas.</p>
+<h2 id="algorithms">Algorithms</h2>
+<p>This file does not contain any complex algorithms. It primarily focuses on data structures and function declarations related to formula handling for the Borg AI system.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>Includes <code>&quot;../angband.h&quot;</code> for basic Angband definitions.</li>
+<li>Includes <code>&quot;borg-trait.h&quot;</code> for Borg trait definitions.</li>
+<li>Depends on <code>&quot;../list-tvals.h&quot;</code> for tval type definitions.</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>The Borg AI system was originally developed by Ben Harrison, James E. Wilson, and Robert A. Koeneke in 1997. It was later maintained and updated by Andi Sidwell, Chris Carr, Ed Graham, and Erik Osheim in 2007-2009. The purpose of the Borg is to provide an automated player that can make intelligent decisions based on predefined formulas and heuristics, helping to test and balance the game.</p>
+<p>The code in this file is part of the larger Borg AI system and focuses on the data structures and functions needed to handle the formulas used by the Borg to make decisions. These formulas are loaded from the <code>borg.txt</code> file and are used to calculate various aspects of the Borg&#39;s behavior, such as its power level, readiness to descend to deeper dungeon levels, and supply management.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

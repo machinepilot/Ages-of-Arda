@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation for src/borg/borg-fight-defend.h | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Documentation for src/borg/borg-fight-defend.h</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="documentation-for-srcborgborg-fight-defendh">Documentation for src/borg/borg-fight-defend.h</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-fight-defend.h</code> is a header file in the Angband roguelike game&#39;s &quot;borg&quot; module, which is an AI player that can play the game autonomously. This file specifically deals with the borg&#39;s defensive combat behaviors and decisions.</p>
+<p>The header includes two key components:</p>
+<ol>
+<li>Declaration of the global variable <code>borg_attempting_refresh_resist</code></li>
+<li>Prototype for the function <code>borg_defend()</code></li>
+</ol>
+<p>These components are guarded by the <code>ALLOW_BORG</code> preprocessor directive to allow exclusion of borg-related code during compilation if desired.</p>
+<h2 id="data-structures">Data Structures</h2>
+<p>This header file does not define any structs or typedefs.</p>
+<h2 id="global-variables">Global Variables</h2>
+<ul>
+<li><code>borg_attempting_refresh_resist</code>: A boolean variable indicating whether the borg is currently attempting to refresh its resistances. This likely ties into the borg&#39;s decision-making process for using resistance-granting items or abilities.</li>
+</ul>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_defend"><code>borg_defend()</code></h3>
+<pre><code class="language-c">bool borg_defend(int p1);
+</code></pre>
+<ul>
+<li><p><strong>Purpose</strong>: This function likely encapsulates the borg&#39;s defensive combat decision-making process. It would be called during the borg&#39;s turn to determine what defensive action, if any, the borg should take.</p>
+</li>
+<li><p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>int p1</code>: The meaning of this parameter is not clear from the context provided. It likely provides some additional context for the borg&#39;s decision, such as the severity of the threat or the type of defensive action to consider.</li>
+</ul>
+</li>
+<li><p><strong>Return Value</strong>: The function returns a boolean value. A <code>true</code> value likely indicates that the borg has decided to take a defensive action, while a <code>false</code> value suggests the borg will not take a defensive action.</p>
+</li>
+<li><p><strong>Side Effects</strong>: Without the function definition, it&#39;s difficult to say for certain, but this function likely modifies the game state in some way if the borg decides to take a defensive action. This could involve using items, casting spells, or changing the borg&#39;s position in the dungeon.</p>
+</li>
+<li><p><strong>Relationships to Other Functions</strong>: This function is probably called from the main borg AI routine that determines the borg&#39;s actions for each turn. It may also call other borg-related functions to gather information about the current situation or to execute the chosen defensive action.</p>
+</li>
+<li><p><strong>Game Mechanics Implemented</strong>: The specifics would be in the function definition, but in general, this function would handle things like:</p>
+<ul>
+<li>Assessing the current threat level based on visible monsters and their capabilities</li>
+<li>Checking the borg&#39;s current resistances and deciding if they need to be refreshed</li>
+<li>Choosing between different defensive options like quaffing potions, reading scrolls, casting spells, or retreating to a safer position</li>
+<li>Executing the chosen defensive action</li>
+</ul>
+</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>Without the function definition, we cannot discuss the specific algorithms implemented. However, the defensive decision-making process likely involves some form of threat assessment and cost-benefit analysis to choose the optimal defensive action for the current situation.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>This header file directly includes the main <code>angband.h</code> header, which suggests it depends on definitions and declarations from that file.</p>
+<p>Other files in the <code>borg</code> module likely include this header to access the <code>borg_defend()</code> function and the <code>borg_attempting_refresh_resist</code> variable.</p>
+<h2 id="historical-context">Historical Context</h2>
+<p>The copyright notice at the top of the file attributes the code to several individuals and spans a range from 1997 to 2009. This suggests that the borg module, and possibly this specific file, has a long history with contributions from multiple developers over more than a decade of Angband&#39;s development.</p>
+<p>The licensing options provided (GPL2 or the &quot;Angband License&quot;) reflect the open-source nature of the Angband project and the desire to allow free use and modification of the code for non-commercial purposes.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

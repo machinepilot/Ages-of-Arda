@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ages of Arda Development Guidelines | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Ages of Arda Development Guidelines</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <h1 id="ages-of-arda-development-guidelines">Ages of Arda Development Guidelines</h1>
+<p>This is the master rule file that coordinates all other rule files in the project. It is automatically loaded for all files and provides the foundation for our rule system.</p>
+<h2 id="directory-structure">Directory Structure</h2>
+<p>Our rules are organized into logical categories:</p>
+<pre><code>.cursor/rules/
+├── README.mdc                 # This master rule file
+├── activators/                # Rule activation logic
+│   └── file-types.mdc         # Maps file types to rules
+├── ai/                        # AI-related guidelines
+│   ├── ai-gameplay.mdc        # Gameplay AI integration
+│   ├── ai-ux.mdc              # AI user experience
+│   └── multi-agent.mdc        # Multi-agent systems
+├── code-style/                # Programming standards
+│   ├── c-style.mdc            # C language style
+│   └── html.mdc               # HTML formatting
+├── game/                      # Game mechanics
+│   ├── angband-variant.mdc    # Angband variant development
+│   ├── lore-management.mdc    # Lore and world-building
+│   └── memory-bank.mdc        # Memory management
+├── infrastructure/            # Development infrastructure
+│   ├── github-standards.mdc   # GitHub workflow
+│   └── netlify.mdc            # Netlify deployment
+└── mcp/                       # Model Context Protocol
+    ├── mcp-integration.mdc    # MCP integration
+    └── mcp-server.mdc         # MCP server configuration
+</code></pre>
+<h2 id="rule-categories">Rule Categories</h2>
+<ul>
+<li><strong>Code Style</strong>: Language-specific coding standards</li>
+<li><strong>Game Mechanics</strong>: Angband variant gameplay and development</li>
+<li><strong>AI Systems</strong>: AI-driven gameplay and user experience</li>
+<li><strong>Infrastructure</strong>: Deployment, builds, and repository management</li>
+<li><strong>MCP</strong>: Model Context Protocol integration and configuration</li>
+<li><strong>Lore</strong>: Story and world-building for the Ages of Arda universe</li>
+</ul>
+<h2 id="automated-rule-selection-logic">Automated Rule Selection Logic</h2>
+<p>This rule system uses glob patterns and priorities to automatically load the appropriate rules:</p>
+<h3 id="priority-levels">Priority Levels</h3>
+<ul>
+<li><strong>1000-900</strong>: Master rules (always loaded)</li>
+<li><strong>899-700</strong>: Domain rules (language/technology specific)</li>
+<li><strong>699-500</strong>: Feature rules (feature-specific guidelines)</li>
+<li><strong>499-300</strong>: Specialized rules (very specific contexts)</li>
+<li><strong>299-100</strong>: Optional rules (guidelines that may not always apply)</li>
+</ul>
+<h3 id="glob-pattern-examples">Glob Pattern Examples</h3>
+<ul>
+<li>C source files (<code>**/*.c</code>) → Load C style guidelines</li>
+<li>AI components (<code>**/ai/**</code>) → Load AI gameplay rules</li>
+<li>MCP integration (<code>**/mcp/**</code>) → Load MCP integration guidelines</li>
+</ul>
+<h2 id="how-to-use-these-rules">How to Use These Rules</h2>
+<p>When working in this codebase, the appropriate rules will be automatically loaded based on the files you&#39;re editing. The rule activation is determined by:</p>
+<ol>
+<li>File path and name matching via glob patterns</li>
+<li>Rule priority (higher priority rules are applied first)</li>
+<li>Explicit relationships between rules</li>
+</ol>
+<h2 id="adding-new-rules">Adding New Rules</h2>
+<h2 id="when-adding-a-new-rule-file-include-the-following-metadata-">When adding a new rule file, include the following metadata:
+```</h2>
+<h2 id="title-rule-title-glob-patterntomatch-priority-priority_number-related-related-rule-1mdc-related-rule-2mdc">title: Rule Title
+glob: &quot;pattern/to/match/**&quot;
+priority: priority_number
+related: [&quot;related-rule-1.mdc&quot;, &quot;related-rule-2.mdc&quot;]</h2>
+<pre><code>
+Place the new rule in the appropriate category directory and update any related rules to reference it.
+</code></pre>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

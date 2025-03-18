@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Architecture for Game Integration | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>MCP Architecture for Game Integration</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="mcp-architecture-for-game-integration">MCP Architecture for Game Integration</h1>
+<h2 id="overview">Overview</h2>
+<p>Model Context Protocol (MCP) provides a standardized way to connect AI models like Claude to external systems. For the Tower of Babel Angband variant, MCP enables the integration of an AI bard character (Lute) that narrates the player&#39;s journey using Claude.</p>
+<h2 id="core-mcp-concepts-for-game-integration">Core MCP Concepts for Game Integration</h2>
+<h3 id="bidirectional-communication">Bidirectional Communication</h3>
+<ul>
+<li><strong>Game → AI</strong>: Send game state, events, and player actions to Claude</li>
+<li><strong>AI → Game</strong>: Receive narrative text, decisions, and suggestions from Claude</li>
+<li><strong>Stateful Context</strong>: Maintain conversation history for coherent storytelling</li>
+</ul>
+<h3 id="mcp-server-architecture">MCP Server Architecture</h3>
+<ul>
+<li><strong>Node.js Server</strong>: Lightweight server to handle communication between game and AI</li>
+<li><strong>RESTful API</strong>: Exposes endpoints for game client to connect to</li>
+<li><strong>Tool Definitions</strong>: Specialized functions that Claude can invoke to interact with the game</li>
+<li><strong>Memory System</strong>: Persistence layer for storing narrative history and context</li>
+</ul>
+<h3 id="game-specific-mcp-tools">Game-Specific MCP Tools</h3>
+<ul>
+<li><strong>EventNarration</strong>: Generate narrative descriptions of game events</li>
+<li><strong>CharacterMemory</strong>: Access and update the bard&#39;s knowledge of game world</li>
+<li><strong>PlayerHistory</strong>: Retrieve player&#39;s past achievements and notable moments</li>
+<li><strong>WorldLore</strong>: Access lore database about game locations, monsters, and items</li>
+<li><strong>RelationshipTracker</strong>: Track NPC relationships and story developments</li>
+</ul>
+<h2 id="integration-points">Integration Points</h2>
+<h3 id="c-client-integration">C Client Integration</h3>
+<ul>
+<li><strong>MCP Client Library</strong>: Lightweight C implementation to connect to MCP server</li>
+<li><strong>Event Hooks</strong>: Strategic points in game code to trigger narrative generation</li>
+<li><strong>Asynchronous Communication</strong>: Non-blocking design to prevent game slowdown</li>
+<li><strong>Caching</strong>: Local storage of recent narratives to reduce API calls</li>
+</ul>
+<h3 id="memory-management">Memory Management</h3>
+<ul>
+<li><strong>Circular Buffers</strong>: Efficient storage of recent events for context</li>
+<li><strong>Compression</strong>: Techniques to maximize context within token limits</li>
+<li><strong>Prioritization</strong>: Algorithms to determine most relevant past events</li>
+<li><strong>Persistence</strong>: Save/load system for narrative state across game sessions</li>
+</ul>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<h3 id="latency-management">Latency Management</h3>
+<ul>
+<li><strong>Preemptive Generation</strong>: Request narratives before they&#39;re needed</li>
+<li><strong>Fallback Content</strong>: Default text when AI response is delayed</li>
+<li><strong>Progressive Enhancement</strong>: Simple text first, enhanced when AI responds</li>
+<li><strong>Timeout Handling</strong>: Graceful degradation when MCP server is unresponsive</li>
+</ul>
+<h3 id="resource-utilization">Resource Utilization</h3>
+<ul>
+<li><strong>Batched Requests</strong>: Group multiple narrative requests when appropriate</li>
+<li><strong>Selective Invocation</strong>: Only use AI for significant game moments</li>
+<li><strong>Context Pruning</strong>: Remove irrelevant details from prompt context</li>
+<li><strong>Token Optimization</strong>: Structured prompts to minimize token usage</li>
+</ul>
+<h2 id="security-considerations">Security Considerations</h2>
+<h3 id="data-protection">Data Protection</h3>
+<ul>
+<li><strong>Minimal Data Transfer</strong>: Only send necessary game state</li>
+<li><strong>Local Processing</strong>: Perform sensitive operations on client side</li>
+<li><strong>Authentication</strong>: Secure communication between game and MCP server</li>
+<li><strong>Rate Limiting</strong>: Prevent abuse of AI generation endpoints</li>
+</ul>
+<h2 id="architecture-diagram">Architecture Diagram</h2>
+<pre><code>┌──────────────┐      ┌───────────────┐      ┌─────────────┐
+│  Angband     │      │  MCP Server   │      │  Claude AI  │
+│  (Tower of   │◄────►│  (Node.js)    │◄────►│  (Anthropic)│
+│   Babel)     │      │               │      │             │
+└──────────────┘      └───────────────┘      └─────────────┘
+       │                     │                      │
+       │                     │                      │
+┌──────▼─────────┐    ┌─────▼───────┐      ┌───────▼──────┐
+│  MCP Client    │    │ Memory      │      │ Prompt       │
+│  (C Library)   │    │ Persistence │      │ Engineering  │
+└────────────────┘    └─────────────┘      └──────────────┘
+</code></pre>
+<h2 id="implementation-strategy">Implementation Strategy</h2>
+<ol>
+<li><strong>Start small</strong>: Begin with basic event narration for key game moments</li>
+<li><strong>Iterative enhancement</strong>: Add memory and relationship features incrementally</li>
+<li><strong>Optimize prompts</strong>: Refine prompt engineering for better narratives</li>
+<li><strong>Performance tuning</strong>: Monitor and adjust based on actual usage patterns</li>
+<li><strong>User feedback</strong>: Incorporate player reactions to improve narrative quality</li>
+</ol>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0cca3" />
+      <stop offset="100%" stop-color="#d4af37" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="16" cy="16" r="15" fill="url(#bg-gradient)" stroke="#8a7651" stroke-width="1" />
+  
+  <!-- Three Ages Rings -->
+  <circle cx="16" cy="16" r="12" fill="none" stroke="#5a7c96" stroke-width="1.5" opacity="0.8" />
+  <circle cx="16" cy="16" r="9" fill="none" stroke="#2e5741" stroke-width="1.5" opacity="0.8" />
+  <circle cx="16" cy="16" r="6" fill="none" stroke="#8b2e2e" stroke-width="1.5" opacity="0.8" />
+  
+  <!-- Central Rune -->
+  <text x="16" y="20" font-family="serif" font-size="14" text-anchor="middle" fill="#3a2e21">A</text>
+</svg> 

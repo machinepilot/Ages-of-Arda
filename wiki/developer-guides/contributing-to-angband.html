@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contributing to Angband | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Contributing to Angband</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <p>original location: C:\working_directory\ages-project\clean-ages-of-arda\CONTRIBUTING.md</p>
+<h1 id="contributing-to-angband">Contributing to Angband</h1>
+<p>This document is a guide to contributing to Angband.  It is largely a compilation of previous advice from various authors, updated as needed.</p>
+<h2 id="offering-your-contribution-to-angband">Offering your contribution to Angband</h2>
+<p>When you&#39;ve fixed a bug or implemented a new feature, please let us know.  The preferred way to do this is to submit a pull request on Github.</p>
+<h3 id="general-git-knowledge">General git knowledge</h3>
+<p>git is a version control system designed to keep track of the progress of a software codebase.  This advice assumes you are using git on the command line (a terminal in Linux or MacOS, or a tool like Github&#39;s git shell for Windows).</p>
+<p>To create a local copy of the official angband repository, use <code>git clone git://github.com/angband/angband.git</code>.  But if you want to participate in development, it is best not to do this straight away.  Instead, get an account at ​<a href="http://github.com">Github</a>, go to the official angband/angband repository and click Fork. This will create a new repository at ​<code>https://github.com/yourlogin/angband</code>.  This is the one you should clone locally using <code>git clone git://github.com/yourlogin/angband.git</code>.</p>
+<p>This will create a local repository with several branches. Use <code>git branch -a</code> to see them:</p>
+<ul>
+<li>master</li>
+<li>origin/master</li>
+<li>(release branches and other things you don&#39;t need to worry about)</li>
+</ul>
+<p>Do NOT do your work in your master branch: this is asking for trouble.  Create a new branch using <code>git checkout -b newbranch</code>, and do your work there.  Use <code>git commit -a</code> to commit your changes to your new branch and then build and test them.</p>
+<p>Once you have tested your commits to your satisfaction, you can share them.  Assuming you have created a new branch and made your changes as described above, you can publish your changes to the world by using <code>git push origin newbranch</code> - this will make your new branch appear on Github for others to test. (It is advisable, but not essential, to use ssh keys for access to Github.)</p>
+<p>Keep your thinking clear: separate your work into different branches for different things.  Create a branch called &#39;docs&#39; if you want to work on some docs.  Create one called &#39;stores&#39; if you want to make changes to stores.  And so on.  There is no limit to the number of branches you can have, and you can use <code>git checkout branchname</code> to switch between branches at any time. (Ideally you should commit any changes in the current branch before switching branches, but git does not like people undoing things so read up on <code>git stash</code> if you need to switch branches and don&#39;t want to either commit or lose the current changes.)</p>
+<h3 id="submitting-a-pull-request">Submitting a pull request</h3>
+<p>To submit a pull request, you will need to have a Github account and a repository &quot;forked&quot; from the offical angband repository.  We will call the repository &quot;yourfork&quot; and the branch with the bugfix or new feature &quot;yourbranch&quot;.  We assume that you have called your remote of the official repo &quot;official&quot;.</p>
+<ol>
+<li><p>When you&#39;ve finished and tested your work, publish it to Github using <code>git push origin yourbranch</code>.  Don&#39;t forget to rebase and fix any conflicts before pushing if necessary (<code>git fetch official; git rebase official/master</code>) - incorporating your work is much easier if it applies cleanly to the official/master branch.  Note that you must rebase before pushing, as rebase changes the commit IDs - this doesn&#39;t matter at all if the only place they exist is in your local repo. </p>
+<ul>
+<li>Please make sure that yourbranch contains only commits you want merged to the official repository.  If you have not kept your branches separate and there are commits relating to local changes or other work in yourbranch, things will get messy.  To solve this, create a copy of master (<code>git checkout official/master; git checkout -b yourbranch2</code>) and cherry-pick the commits you actually want to offer up (this method can also be used to avoid rebase conflicts, or at least isolate which commits are causing them.)  From yourbranch2 you can use <code>git rebase -i yourbranch</code> as a sort of batch cherry-pick mechanism: it offers you a list of all the commits which are in yourbranch but not in master, and you can choose the ones to add.  Note that rebase will say &quot;nothing to do&quot; if yourbranch will apply cleanly (i.e. fast-forward merge) to master - so this is a good test.</li>
+</ul>
+</li>
+<li><p>Go to your Github account in your browser and click on your fork. Don&#39;t forget to click the Branches tab and make sure you&#39;re looking at the right branch (Github will always default to the master branch).  Note that if you created yourbranch2 as described above, in order to tidy it up and offer only the right commits, then this is the one you need to look at. </p>
+</li>
+<li><p>Click the &quot;Pull Request&quot; button, which is up near the top-right (just below the Search box). If you don&#39;t get a screen inviting you to write a description of the pull request, something has gone wrong (maybe you were not looking at the right branch, or your push didn&#39;t work). </p>
+</li>
+<li><p>Write a description of what you&#39;re offering in the pull request. Please include details of any remaining issues (e.g. dependent on other tasks) or further related work you intend to do. Also, please include the issue number(s) (with a <code>#</code> in front of it) of any <a href="https://github.com/angband/angband/issues">issue</a> that the request addresses (even if only partially).</p>
+</li>
+<li><p>Click the &quot;Send Pull Request&quot; button.</p>
+</li>
+</ol>
+<h4 id="after-youve-issued-the-pull-request">After you&#39;ve issued the pull request</h4>
+<p>Often you&#39;ll think of some important fix or change after you&#39;ve submitted a pull request. Don&#39;t worry - Github handles this very cleanly.  Just commit your additional changes to the branch from which you issued the pull request (i.e. from yourbranch, or from yourbranch2 if you had to cherry-pick and tidy it up), and push again.  Github will automatically add those commits to the pull request.</p>
+<p>Please note, though, that you cannot rebase after submitting a pull request.  But that&#39;s not really your problem - once you&#39;ve submitted the request, it&#39;s the Angband development team&#39;s job to review and merge it as soon as we can.  If we merge something else first, we&#39;ll fix any merge conflicts when we merge yours.</p>
+<p>After your work is merged, please don&#39;t continue working on that branch.  Even if you&#39;re continuing development of the same feature, please fetch from official/master and start a new branch from there for your next pull request (there is no limit to the number of branches you can make).  If for any reason you don&#39;t want to do this, then you must rebase your branch on official/master before pushing and offering up your next pull request.  You should use rebase instead of merging from official/master, to avoid a proliferation of merge commits.</p>
+<p>So the ideal loop is:</p>
+<ol>
+<li><code>git fetch official/master</code></li>
+<li><code>git checkout official/master</code></li>
+<li><code>git checkout -b newbranch</code></li>
+<li>... do your work in newbranch ...</li>
+<li><code>git fetch official/master</code> again (to see if it has updated while you were working) <ul>
+<li>(if it has) <code>git rebase official/master</code> (and fix any conflicts)</li>
+</ul>
+</li>
+<li><code>git push origin newbranch</code></li>
+<li>Go to Github and open pull request</li>
+<li>Wait for pull request to be merged (you can push more commits while waiting)</li>
+<li>Go back to 1 and start again</li>
+</ol>
+<h3 id="general-tips">General tips</h3>
+<p>Don&#39;t be afraid to create and delete lots of branches.  They&#39;re totally expendable, and a new branch is a fresh start.</p>
+<p>Always update your local copy of the official repository (<code>git fetch official</code>) before pushing your work.  If possible, use <code>git rebase official/master</code> to ensure that your changes are on top of the very latest commits from the official repo - that will make them easier to merge, and is much neater than merging official branches into your branches and having the Angband development team merge them back again.  If you are nervous about trying rebase on a branch with lots of your hard work in it, create a new copy of that branch first - so if the rebase goes horribly wrong, your original branch is untouched.  Do not use rebase if you have published your branch on Github though, as this will mess up anyone who is tracking it.</p>
+<p>When submitting pull requests on Github, please ensure that you choose only the commits relevant to this request - try and avoid choosing merge commits or commits which are part of another pull request. </p>
+<h2 id="coding-guidelines">Coding Guidelines</h2>
+<p>This section describes what Angband code and its documentation should look like.  You may also want to read the old <a href="/src/doc/security.txt">Angband security guide</a>, although the default build configuration no longer uses setgid.</p>
+<h3 id="rules">Rules</h3>
+<ul>
+<li>K&amp;R brace style, with tabs of four spaces</li>
+<li>Avoid lines over 80 characters long (not strict if there are multiple indents, but ideally they should be refactored)</li>
+<li>If a function takes no parameters, it should be declared as function(void), not just as function().</li>
+<li>Use const where you shouldn&#39;t be modifying a variable.</li>
+<li>Avoid global variables like the plague, we already have too many.</li>
+<li>Use enums where possible instead of defines, and never use magic numbers.</li>
+<li>Don&#39;t use floating point.</li>
+<li>Code should compile as C89 with C99 int types, and not rely on undefined behaviour.</li>
+<li>Don&#39;t use the C built-in string functions, use the my_ versions instead (strcpy -&gt; my_strcpy, sprintf -&gt; strnfmt()).  They are safer.</li>
+</ul>
+<h3 id="our-indent-style-is">Our indent style is:</h3>
+<ul>
+<li>Opening braces should be on a separate line at the start of a function, but should otherwise follow the statement which requires them (&#39;if&#39;, &#39;do&#39;, &#39;for&#39; et al.)</li>
+<li>Closing braces for should be on separate lines, except where followed by &#39;while&#39; or &#39;else&#39;</li>
+<li>Spaces around the mathematical, comparison, and assignment operators (&#39;+&#39;, &#39;-&#39;, &#39;/&#39;, &#39;=&#39;, &#39;!=&#39;, &#39;==&#39;, &#39;&gt;&#39;, ...).  No spaces around  increment/decrement operators (&#39;++&#39;, &#39;--&#39;).</li>
+<li>Spaces between C identifiers like &#39;if&#39;, &#39;while&#39; and &#39;for&#39; and the opening brackets (&#39;if (foo)&#39;, &#39;while (bar)&#39;, ...),</li>
+<li><code>do { } while ();</code> loops should have a newline after &quot;do {&quot;, and the &quot;} while ();&quot; bit should be on the same line.</li>
+<li>No spaces between function names and brackets and between brackets and function arguments (function(1, 2) instead of function ( 1, 2 )).</li>
+<li>If you have an if statement whose conditionally executed code is only one statement, do not write both on the same line, except in the case of &quot;break&quot; or &quot;continue&quot; in loops.</li>
+<li><code>return</code> does not use brackets, <code>sizeof</code> does.</li>
+<li>Use two indents when a functional call/conditional extends over multiple lines, not spaces.</li>
+</ul>
+<h4 id="example">Example:</h4>
+<pre><code class="language-C">    if (fridge) {
+        int i = 10;
+
+        if (i &gt; 100) {
+            i += randint0(4);
+            bar(1, 2);
+        } else {
+            foo(buf, sizeof(buf), FLAG_UNUSED, FLAG_TIMED,
+                    FLAG_DEAD);
+        }
+      
+        do {
+            /* Only print even numbers */
+            if (i % 2) continue;
+
+            /* Be clever */
+            printf(&quot;Aha!&quot;);
+        } while (i--);
+
+        return 5;
+    }
+</code></pre>
+<p>Write code for humans first and execution second. Where code is unclear, comment, but e.g. the following is unneccessarily verbose and hurts readability:</p>
+<pre><code class="language-C">    /* Delete the object */
+    object_delete(idx);
+</code></pre>
+<h3 id="code-modules">Code modules</h3>
+<ul>
+<li>You should write code as modules wherever possible, with functions and global variables inside a module with the same prefix, like &quot;macro_&quot;.</li>
+<li>If you need to initialise stuff in your module, include &quot;init&quot; and &quot;free&quot; functions and call them appropriately rather than putting module-specific stuff all over the place.</li>
+<li>One day the game might not quit when a game ends, and might allow loading other games.  Keep this in mind.</li>
+</ul>
+<h3 id="documentation">Documentation</h3>
+<p>Be careful when documenting functions to use the following design:</p>
+<pre><code class="language-C">    /**
+     * Provides an example of a documentation style.
+     *
+     * The purpose of the function do_something() is explained here, mentioning
+     * the name and use of every parameter (e.g. `example`).  It returns TRUE if
+     * conditions X or Y are met, and FALSE otherwise.
+     *
+     * BUG: Brief description of bug. (#12345)
+     * TODO: Feature to implement. (#54321)
+     */
+    bool do_something(void *example)
+</code></pre>
+<h4 id="additional-notes-about-the-format">Additional notes about the format</h4>
+<ul>
+<li>Having the brief description separated out from the remainder of the comment means that Doxygen can pull it out without needing @brief tags.</li>
+<li>Variables should be referred to with surrounding backtick (&#39;`&#39;) quotes.</li>
+<li>Functions should be referred to as function_name() -- &#39;&#39;with&#39;&#39; the brackets.</li>
+<li>In brief descriptions of classes and functions, use present tense (i.e. answer the question &quot;What does this do?&quot; with &quot;It constructs / edits / calculates / returns...&quot;)</li>
+<li>In long descriptions, use passive mood to refer to variables (i.e. &quot;The variables are normalised.&quot; as opposed to &quot;This normalises the variables.&quot;)</li>
+<li>No UK/US spelling preference (i.e. the preference of the first commenter is adopted for that comment).</li>
+<li>(from &quot;The Elements of Style&quot;) &quot;A sentence should contain no unnecessary words, a paragraph no unnecessary sentences, for the same reason that a drawing should have no unnecessary lines and a machine no unnecessary parts. This requires not that the writer make all his sentences short, or that he avoid all detail and treat his subjects only in outline, but that every word tell.&quot;</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

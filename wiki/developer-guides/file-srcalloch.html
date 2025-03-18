@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File: src/alloc.h | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>File: src/alloc.h</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="file-srcalloch">File: src/alloc.h</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>alloc.h</code> is a header file that defines the <code>alloc_entry</code> struct used for object and monster allocation in the Angband roguelike game. This struct is central to the game&#39;s allocation system, which determines the probability of objects and monsters appearing at different dungeon levels.</p>
+<p>The allocation system uses a three-pass process to determine the final probabilities for each object or monster. The <code>alloc_entry</code> struct holds the necessary data for each item in this process.</p>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="alloc_entry"><code>alloc_entry</code></h3>
+<p>The <code>alloc_entry</code> struct represents an entry in the allocation table for objects or monsters. It contains the following fields:</p>
+<ul>
+<li><code>index</code> (int): The actual index of the object or monster in the game&#39;s data tables.</li>
+<li><code>level</code> (int): The base dungeon level at which this object or monster can appear.</li>
+<li><code>prob1</code> (int): The probability of the object or monster being chosen, determined in pass 1 of the allocation process.</li>
+<li><code>prob2</code> (int): The probability of the object or monster being chosen, determined in pass 2 of the allocation process.</li>
+<li><code>prob3</code> (int): The probability of the object or monster being chosen, determined in pass 3 of the allocation process.</li>
+</ul>
+<h2 id="global-variables">Global Variables</h2>
+<p>This header file does not define any global variables.</p>
+<h2 id="functions">Functions</h2>
+<p>This header file does not define any functions.</p>
+<h2 id="algorithms">Algorithms</h2>
+<p>The allocation system in Angband uses a three-pass process to determine the probabilities of objects and monsters appearing at each dungeon level. The exact details of this process are not defined in this header file, but the <code>alloc_entry</code> struct provides the necessary data for each pass:</p>
+<ol>
+<li><p><strong>Pass 1</strong>: Determined from allocation information. This pass likely uses the base <code>level</code> and <code>prob1</code> fields to establish an initial probability.</p>
+</li>
+<li><p><strong>Pass 2</strong>: Determined from allocation restriction. This pass might adjust the probability based on additional criteria, using the <code>prob2</code> field.</p>
+</li>
+<li><p><strong>Pass 3</strong>: Determined from allocation calculation. The final pass finalizes the probability, possibly using a more complex calculation, and stores the result in <code>prob3</code>.</p>
+</li>
+</ol>
+<p>The specific algorithms for each pass are likely defined in the corresponding source files that use this header.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>This header file does not directly depend on any other files. However, it is likely included by various source files that implement the object and monster allocation systems.</p>
+<h2 id="historical-context">Historical Context</h2>
+<p>The code includes an &quot;Angband licence&quot; which states that the software may be copied and distributed for educational, research, and not-for-profit purposes provided that the copyright and statement are included in all copies. This suggests that Angband has a long history and has been used as a basis for various educational and research projects over the years.</p>
+<p>The GNU General Public License (GPL) is also mentioned, implying that Angband is open-source software and welcomes contributions from the community.</p>
+<p>Understanding this historical context helps to appreciate the significance of Angband as a long-standing and influential roguelike game that has inspired numerous variants and spin-offs.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

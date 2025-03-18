@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lore System Integration Architecture | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Lore System Integration Architecture</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <h1 id="lore-system-integration-architecture">Lore System Integration Architecture</h1>
+<p>This document outlines the architectural plan for integrating the Tolkien lore system with the existing Ages of Arda documentation system.</p>
+<h2 id="overview">Overview</h2>
+<p>The lore system will extend the existing documentation architecture to incorporate structured lore data extracted from Tolkien&#39;s works. The integration will be modular, allowing the documentation system to function independently while seamlessly incorporating lore content when available.</p>
+<h2 id="system-components">System Components</h2>
+<h3 id="1-lore-source-processing-pipeline">1. Lore Source Processing Pipeline</h3>
+<p><img src="" alt="Lore Processing Pipeline"></p>
+<p>The pipeline for processing raw lore sources consists of these stages:</p>
+<ul>
+<li><strong>Source Extraction</strong>: Parse EPUB files from the <code>raw_inputs</code> directory</li>
+<li><strong>Content Segmentation</strong>: Break text into meaningful segments (paragraphs, chapters, etc.)</li>
+<li><strong>Entity Recognition</strong>: Identify key entities (characters, locations, artifacts, events)</li>
+<li><strong>Relationship Mapping</strong>: Establish connections between entities</li>
+<li><strong>Chronological Arrangement</strong>: Place entities and events in the timeline</li>
+<li><strong>Structured Storage</strong>: Store processed data in a queryable format</li>
+</ul>
+<h3 id="2-lore-data-storage">2. Lore Data Storage</h3>
+<p>Lore data will be stored in the <code>.memory-bank/lore</code> directory with the following structure:</p>
+<pre><code>.memory-bank/
+  lore/
+    characters/  # Character entities
+    locations/   # Location entities
+    artifacts/   # Item entities
+    events/      # Event entities
+    timeline/    # Chronological data
+    relationships/ # Entity relationships
+</code></pre>
+<p>Each entity will be stored as a structured JSON file with standardized metadata:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;character-gandalf&quot;,
+  &quot;name&quot;: &quot;Gandalf&quot;,
+  &quot;aliases&quot;: [&quot;Mithrandir&quot;, &quot;Olórin&quot;, &quot;Gandalf the Grey&quot;, &quot;Gandalf the White&quot;],
+  &quot;type&quot;: &quot;character&quot;,
+  &quot;relationships&quot;: [
+    {&quot;id&quot;: &quot;character-frodo&quot;, &quot;type&quot;: &quot;mentor&quot;},
+    {&quot;id&quot;: &quot;faction-istari&quot;, &quot;type&quot;: &quot;member&quot;}
+  ],
+  &quot;appearances&quot;: [
+    {&quot;work&quot;: &quot;the-hobbit&quot;, &quot;role&quot;: &quot;major&quot;},
+    {&quot;work&quot;: &quot;lotr&quot;, &quot;role&quot;: &quot;major&quot;},
+    {&quot;work&quot;: &quot;silmarillion&quot;, &quot;role&quot;: &quot;minor&quot;}
+  ],
+  &quot;content&quot;: &quot;Gandalf was a Maia, one of the Istari sent to Middle-earth...&quot;,
+  &quot;sources&quot;: [
+    {&quot;book&quot;: &quot;lotr&quot;, &quot;chapter&quot;: 2, &quot;context&quot;: &quot;...&quot;}
+  ]
+}
+</code></pre>
+<h3 id="3-lore-documentation-integration">3. Lore Documentation Integration</h3>
+<p>The existing documentation system will be extended with:</p>
+<ul>
+<li><strong>Lore Section</strong>: A dedicated section for browsing lore entities</li>
+<li><strong>Cross-References</strong>: Links between documentation and lore entities</li>
+<li><strong>Lore API</strong>: Programmatic access to lore data</li>
+</ul>
+<h3 id="4-search-system-integration">4. Search System Integration</h3>
+<p>The search system will be extended to include lore content in search results:</p>
+<pre><code class="language-javascript">const searchData = {
+  documentation: {
+    // Documentation index and documents (existing)
+    index: lunrDocumentationIndex,
+    documents: documentationDocuments
+  },
+  
+  lore: {
+    // Lore index and documents (new)
+    index: lunrLoreIndex,
+    documents: loreDocuments
+  }
+};
+</code></pre>
+<p>The search UI will be updated to display and filter results from both documentation and lore.</p>
+<h2 id="integration-points">Integration Points</h2>
+<h3 id="1-build-process-integration">1. Build Process Integration</h3>
+<p>The <code>build.js</code> script will be extended with lore processing:</p>
+<pre><code class="language-javascript">// Current build process
+loadDocuments()
+  .loadTemplates()
+  .generateOutputs();
+
+// Generate search index
+buildSearchIndex();
+
+// New step: Process and integrate lore
+processLore();
+</code></pre>
+<h3 id="2-lore-template-integration">2. Lore Template Integration</h3>
+<p>New templates will be created for lore content:</p>
+<ul>
+<li><code>_templates/lore_entity_template.hbs</code>: For individual lore entities</li>
+<li><code>_templates/lore_index_template.hbs</code>: For lore category indexes</li>
+<li><code>_templates/lore_timeline_template.hbs</code>: For chronological view</li>
+</ul>
+<h3 id="3-configuration-extension">3. Configuration Extension</h3>
+<p>The <code>_config.yml</code> will be extended with lore system settings:</p>
+<pre><code class="language-yaml"># Existing configuration...
+
+# Lore system settings
+lore:
+  enabled: true
+  source_directory: &quot;../raw_inputs&quot;
+  output_directory: &quot;../.memory-bank/lore&quot;
+  wiki_section: &quot;lore&quot;
+  categories:
+    - characters
+    - locations
+    - artifacts
+    - events
+  works:
+    - id: &quot;silmarillion&quot;
+      title: &quot;The Silmarillion&quot;
+      file: &quot;The Silmarillion by J.R.R. Tolkien.epub&quot;
+      priority: 1
+    - id: &quot;lotr&quot;
+      title: &quot;The Lord of the Rings&quot;
+      file: &quot;The Lord of the Rings by J.R.R. Tolkien.epub&quot;
+      priority: 2
+    - id: &quot;hobbit&quot;
+      title: &quot;The Hobbit&quot;
+      file: &quot;The Hobbit by J.R.R. Tolkien.epub&quot;
+      priority: 3
+</code></pre>
+<h2 id="implementation-phases">Implementation Phases</h2>
+<h3 id="phase-1-lore-data-processing">Phase 1: Lore Data Processing</h3>
+<ol>
+<li>Create the lore extraction module (<code>_scripts/lore-processing/epub-extractor.js</code>)</li>
+<li>Implement entity recognition for characters, locations, artifacts, and events</li>
+<li>Establish data storage schema and structure</li>
+<li>Create initial lore dataset from primary sources</li>
+</ol>
+<h3 id="phase-2-core-integration">Phase 2: Core Integration</h3>
+<ol>
+<li>Extend configuration to support lore settings</li>
+<li>Create lore templates for rendering</li>
+<li>Update build system to incorporate lore processing</li>
+<li>Implement basic lore browsing in the wiki</li>
+</ol>
+<h3 id="phase-3-search-integration">Phase 3: Search Integration</h3>
+<ol>
+<li>Extend search index to include lore entities</li>
+<li>Update search UI to display and filter lore results</li>
+<li>Implement lore-specific search refinements (by age, entity type, etc.)</li>
+</ol>
+<h3 id="phase-4-advanced-features">Phase 4: Advanced Features</h3>
+<ol>
+<li>Implement timeline visualization for chronological browsing</li>
+<li>Create relationship graph for entity connections</li>
+<li>Develop contextual lore references for documentation</li>
+<li>Implement lore API for programmatic access</li>
+</ol>
+<h2 id="technical-considerations">Technical Considerations</h2>
+<h3 id="performance">Performance</h3>
+<p>The lore extraction process can be computationally intensive. Optimizations include:</p>
+<ul>
+<li>Incremental processing (only process changed sources)</li>
+<li>Caching of intermediate results</li>
+<li>Lazy loading of lore content in the UI</li>
+<li>Separation of build-time and runtime processing</li>
+</ul>
+<h3 id="extensibility">Extensibility</h3>
+<p>The architecture is designed to be extensible for future needs:</p>
+<ul>
+<li>Additional Tolkien works can be added to the source list</li>
+<li>The entity recognition system can be extended with new entity types</li>
+<li>The relationship model can be expanded with new relationship types</li>
+<li>Alternative output formats can be supported with new templates</li>
+</ul>
+<h3 id="integration-with-game-systems">Integration with Game Systems</h3>
+<p>The lore system will provide access points for game systems:</p>
+<ul>
+<li>RESTful API for querying lore data</li>
+<li>Webhook notifications for game events</li>
+<li>Event-driven updates for real-time lore integration</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>This architecture provides a framework for integrating the rich lore of Tolkien&#39;s world with our documentation system. The modular design allows for incremental implementation and ensures the existing documentation functionality continues to work during development.</p>
+<p>The lore system will enhance the documentation by providing contextual information, historical background, and rich interconnections between game elements and their literary origins. </p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

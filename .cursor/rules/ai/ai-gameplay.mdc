@@ -1,8 +1,10 @@
 ---
-description: 
-globs: 
-alwaysApply: false
+title: "Untitled Rule"
+glob: "**/*"
+priority: 500
+related: []
 ---
+
 ---
 title: AI-Driven Emergent Gameplay Guidelines
 glob: "**/ai/**,**/npc/**,**/gameplay/**"
@@ -82,4 +84,4 @@ get_ai_response(game_state_t *state, const char *prompt_type, const char *contex
 - Response time
 - Token usage
 - Player engagement with AI content
-- Error rates 
+- Error rates  

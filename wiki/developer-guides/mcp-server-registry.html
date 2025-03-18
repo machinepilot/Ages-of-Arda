@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Server Registry | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>MCP Server Registry</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="mcp-server-registry">MCP Server Registry</h1>
+<h2 id="overview">Overview</h2>
+<p>This document provides a comprehensive registry of available Model Context Protocol (MCP) servers gathered from multiple sources including smithery.ai, glama.ai, cursor.directory, and lmsystems.ai/marketplace.</p>
+<h2 id="development-and-productivity">Development and Productivity</h2>
+<h3 id="code-and-repository-management">Code and Repository Management</h3>
+<table>
+<thead>
+<tr>
+<th>Server Name</th>
+<th>Description</th>
+<th>URL/Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td>Repository creation, PR management, issue tracking, and code browsing</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>GitLab</td>
+<td>Repository management, MR handling, CI/CD operations</td>
+<td>glama.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Bitbucket</td>
+<td>Repository operations and code management</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>VS Code</td>
+<td>Code editing, extension management, and workspace operations</td>
+<td>lmsystems.ai/marketplace</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td>AI-assisted code editing operations</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Replit</td>
+<td>Online IDE and code execution</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Vercel</td>
+<td>Deployment and project management</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+</tbody></table>
+<h3 id="project-management">Project Management</h3>
+<table>
+<thead>
+<tr>
+<th>Server Name</th>
+<th>Description</th>
+<th>URL/Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Jira</td>
+<td>Issue tracking, sprint management, and task assignment</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Asana</td>
+<td>Task management and project organization</td>
+<td>glama.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Trello</td>
+<td>Kanban board management and task organization</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Notion</td>
+<td>Workspace management, document creation, and database operations</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>ClickUp</td>
+<td>Project management and task tracking</td>
+<td>lmsystems.ai/marketplace</td>
+</tr>
+</tbody></table>
+<h3 id="communication">Communication</h3>
+<table>
+<thead>
+<tr>
+<th>Server Name</th>
+<th>Description</th>
+<th>URL/Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Slack</td>
+<td>Channel management, message sending, user information</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Discord</td>
+<td>Server interaction, message operations</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Gmail</td>
+<td>Email sending, inbox management, draft operations</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Microsoft Teams</td>
+<td>Team communication and meeting management</td>
+<td>glama.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Zoom</td>
+<td>Meeting scheduling and management</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+</tbody></table>
+<h2 id="data-and-analytics">Data and Analytics</h2>
+<h3 id="databases">Databases</h3>
+<table>
+<thead>
+<tr>
+<th>Server Name</th>
+<th>Description</th>
+<th>URL/Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PostgreSQL</td>
+<td>SQL query execution, database management</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td>Database operations and query execution</td>
+<td>glama.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>MongoDB</td>
+<td>NoSQL data operations and querying</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Supabase</td>
+<td>Database and authentication operations</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Redis</td>
+<td>Key-value operations and caching</td>
+<td>lmsystems.ai/marketplace</td>
+</tr>
+<tr>
+<td>Neo4j</td>
+<td>Graph database operations</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+</tbody></table>
+<h3 id="data-storage-and-processing">Data Storage and Processing</h3>
+<table>
+<thead>
+<tr>
+<th>Server Name</th>
+<th>Description</th>
+<th>URL/Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Google Drive</td>
+<td>File management, sharing, and search</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Dropbox</td>
+<td>File operations and storage management</td>
+<td>glama.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>AWS S3 bucket operations and file management</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Azure Blob Storage</td>
+<td>Microsoft Azure file operations</td>
+<td>lmsystems.ai/marketplace</td>
+</tr>
+<tr>
+<td>Snowflake</td>
+<td>Data warehouse operations</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Everything Search</td>
+<td>Local file system search operations</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+</tbody></table>
+<h3 id="analytics">Analytics</h3>
+<table>
+<thead>
+<tr>
+<th>Server Name</th>
+<th>Description</th>
+<th>URL/Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Google Analytics</td>
+<td>Website analytics and reporting</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Mixpanel</td>
+<td>User behavior analytics</td>
+<td>glama.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Amplitude</td>
+<td>Product analytics platform</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Segment</td>
+<td>Customer data platform operations</td>
+<td>lmsystems.ai/marketplace</td>
+</tr>
+<tr>
+<td>Looker</td>
+<td>Business intelligence and data visualization</td>
+<td>cursor.directory</td>
+</tr>
+</tbody></table>
+<h2 id="web-and-applications">Web and Applications</h2>
+<h3 id="web-services">Web Services</h3>
+<table>
+<thead>
+<tr>
+<th>Server Name</th>
+<th>Description</th>
+<th>URL/Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Puppeteer</td>
+<td>Web browsing, screenshot capture, and DOM interaction</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Firecrawl</td>
+<td>Website cloning and content extraction</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Wordpress</td>
+<td>CMS content management and posting</td>
+<td>glama.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Webflow</td>
+<td>Website design and content management</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Shopify</td>
+<td>E-commerce store management</td>
+<td>lmsystems.ai/marketplace</td>
+</tr>
+</tbody></table>
+<h3 id="apis-and-integration">APIs and Integration</h3>
+<table>
+<thead>
+<tr>
+<th>Server Name</th>
+<th>Description</th>
+<th>URL/Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Zapier</td>
+<td>Workflow automation and app integration</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Make (Integromat)</td>
+<td>Scenario automation and integration</td>
+<td>glama.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Postman</td>
+<td>API testing and management</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>n8n</td>
+<td>Workflow automation</td>
+<td>lmsystems.ai/marketplace</td>
+</tr>
+<tr>
+<td>API Gateway</td>
+<td>API management and request routing</td>
+<td>cursor.directory</td>
+</tr>
+</tbody></table>
+<h2 id="finance-and-business">Finance and Business</h2>
+<h3 id="finance">Finance</h3>
+<table>
+<thead>
+<tr>
+<th>Server Name</th>
+<th>Description</th>
+<th>URL/Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Stripe</td>
+<td>Payment processing and subscription management</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Finance Database</td>
+<td>Financial instrument lookup and categorization</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>QuickBooks</td>
+<td>Accounting operations and financial reporting</td>
+<td>glama.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Plaid</td>
+<td>Financial account connection and data retrieval</td>
+<td>lmsystems.ai/marketplace</td>
+</tr>
+<tr>
+<td>Sardine</td>
+<td>Fraud detection and risk management</td>
+<td>cursor.directory</td>
+</tr>
+</tbody></table>
+<h3 id="business-tools">Business Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Server Name</th>
+<th>Description</th>
+<th>URL/Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HubSpot</td>
+<td>CRM operations and customer management</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Salesforce</td>
+<td>CRM operations, lead management</td>
+<td>glama.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Zendesk</td>
+<td>Customer support ticket management</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Intercom</td>
+<td>Customer messaging and support</td>
+<td>lmsystems.ai/marketplace</td>
+</tr>
+<tr>
+<td>Airtable</td>
+<td>Database and spreadsheet operations</td>
+<td>cursor.directory</td>
+</tr>
+</tbody></table>
+<h2 id="specialized-domains">Specialized Domains</h2>
+<h3 id="healthcare">Healthcare</h3>
+<table>
+<thead>
+<tr>
+<th>Server Name</th>
+<th>Description</th>
+<th>URL/Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Flexpa</td>
+<td>FHIR healthcare data operations</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>WHOOP</td>
+<td>Health and fitness data retrieval</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Epic</td>
+<td>Electronic health record interactions</td>
+<td>glama.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>HealthKit</td>
+<td>Apple health data integration</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+</tbody></table>
+<h3 id="location-and-maps">Location and Maps</h3>
+<table>
+<thead>
+<tr>
+<th>Server Name</th>
+<th>Description</th>
+<th>URL/Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Google Maps</td>
+<td>Location search, directions, and place details</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Mapbox</td>
+<td>Custom map creation and geolocation services</td>
+<td>glama.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>OpenStreetMap</td>
+<td>Map data retrieval and navigation</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Weather API</td>
+<td>Weather forecasts and current conditions</td>
+<td>lmsystems.ai/marketplace</td>
+</tr>
+</tbody></table>
+<h3 id="blockchain-and-web3">Blockchain and Web3</h3>
+<table>
+<thead>
+<tr>
+<th>Server Name</th>
+<th>Description</th>
+<th>URL/Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Solana</td>
+<td>Blockchain transaction execution</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Ethereum</td>
+<td>Smart contract interaction and transaction execution</td>
+<td>glama.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Karma API</td>
+<td>DAO governance data retrieval</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>The Graph</td>
+<td>Blockchain data indexing and querying</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+</tbody></table>
+<h3 id="ai-and-ml">AI and ML</h3>
+<table>
+<thead>
+<tr>
+<th>Server Name</th>
+<th>Description</th>
+<th>URL/Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HuggingFace</td>
+<td>Model inference and dataset operations</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Pinecone</td>
+<td>Vector database operations for embeddings</td>
+<td>glama.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Weaviate</td>
+<td>Vector search and semantic operations</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Langchain</td>
+<td>Chain and agent operations</td>
+<td>lmsystems.ai/marketplace</td>
+</tr>
+<tr>
+<td>OpenAI</td>
+<td>API operations for various OpenAI services</td>
+<td>cursor.directory</td>
+</tr>
+</tbody></table>
+<h2 id="utilities-and-infrastructure">Utilities and Infrastructure</h2>
+<h3 id="system-operations">System Operations</h3>
+<table>
+<thead>
+<tr>
+<th>Server Name</th>
+<th>Description</th>
+<th>URL/Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AWS</td>
+<td>Cloud infrastructure management</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Google Cloud</td>
+<td>GCP service management</td>
+<td>glama.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Azure</td>
+<td>Microsoft cloud service management</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Docker</td>
+<td>Container management and deployment</td>
+<td>lmsystems.ai/marketplace</td>
+</tr>
+<tr>
+<td>Kubernetes</td>
+<td>Cluster management and deployment</td>
+<td>cursor.directory</td>
+</tr>
+</tbody></table>
+<h3 id="development-utilities">Development Utilities</h3>
+<table>
+<thead>
+<tr>
+<th>Server Name</th>
+<th>Description</th>
+<th>URL/Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Terminal</td>
+<td>Command execution and system operations</td>
+<td>cursor.directory</td>
+</tr>
+<tr>
+<td>Cloudflare</td>
+<td>DNS management and worker deployment</td>
+<td>glama.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>Netlify</td>
+<td>Website deployment and hosting</td>
+<td>smithery.ai/mcp/servers</td>
+</tr>
+<tr>
+<td>GitHub Actions</td>
+<td>CI/CD workflow management</td>
+<td>lmsystems.ai/marketplace</td>
+</tr>
+<tr>
+<td>NPM</td>
+<td>Package management operations</td>
+<td>cursor.directory</td>
+</tr>
+</tbody></table>
+<h2 id="directory-sources">Directory Sources</h2>
+<ul>
+<li><strong>smithery.ai/mcp/servers</strong>: Comprehensive directory of MCP servers with documentation</li>
+<li><strong>glama.ai/mcp/servers</strong>: Collection of specialized MCP integrations</li>
+<li><strong>cursor.directory</strong>: Cursor-focused MCP server registry</li>
+<li><strong>lmsystems.ai/marketplace</strong>: AI systems marketplace with MCP integrations</li>
+</ul>
+<h2 id="implementation-resources">Implementation Resources</h2>
+<p>For developers looking to implement or use these MCP servers:</p>
+<ol>
+<li><p><strong>Official Documentation</strong>: </p>
+<ul>
+<li>MCP GitHub Repository: <a href="https://github.com/anthropics/model-context-protocol">github.com/anthropics/model-context-protocol</a></li>
+<li>Cline Development Guide: <a href="https://docs.cline.bot/mcp-servers">docs.cline.bot/mcp-servers</a></li>
+</ul>
+</li>
+<li><p><strong>Client Libraries</strong>:</p>
+<ul>
+<li>Open MCP Client: Available via Composio</li>
+<li>LangChain4j MCP Integration: Java implementation for MCP</li>
+<li>Python MCP Client: Available in Anthropic&#39;s Python SDK</li>
+</ul>
+</li>
+<li><p><strong>Development Tools</strong>:</p>
+<ul>
+<li>Cline&#39;s <code>.clinerules</code> protocol for MCP development</li>
+<li>MCP Server Generator: <code>npx @modelcontextprotocol/create-server</code></li>
+<li>MCP Testing Tools: Available on GitHub</li>
+</ul>
+</li>
+<li><p><strong>Tutorials and Guides</strong>:</p>
+<ul>
+<li>18-minute MCP explainer video by Santiago Valdarrama (@svpino)</li>
+<li>Step-by-step guides available on Unwind AI</li>
+</ul>
+</li>
+</ol>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

@@ -1,8 +1,10 @@
 ---
-description: 
-globs: 
-alwaysApply: false
+title: "Untitled Rule"
+glob: "**/*"
+priority: 500
+related: []
 ---
+
 ---
 title: AI User Experience Guidelines
 glob: "**/ai/ux/**,**/interface/**"
@@ -91,4 +93,4 @@ display_ai_response(display_context_t *ctx, const char *response, ai_response_ty
 - Allow players to rate AI-generated content
 - Collect specific feedback on confusing/inappropriate responses
 - Track which AI features are most/least used
-- Use feedback to improve prompts and processing 
+- Use feedback to improve prompts and processing  

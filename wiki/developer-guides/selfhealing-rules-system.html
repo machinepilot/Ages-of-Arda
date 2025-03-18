@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Healing Rules System | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Self-Healing Rules System</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <p>Original Location: C:\working_directory\ages-project\clean-ages-of-arda.cursor\rules\self-healing\README.md</p>
+<h1 id="self-healing-rules-system">Self-Healing Rules System</h1>
+<p>This directory contains the self-healing component of the Ages of Arda Cursor rules system. This system automatically analyzes code errors and generates rule proposals to improve code quality over time.</p>
+<h2 id="overview">Overview</h2>
+<p>The self-healing system works in a continuous cycle:</p>
+<ol>
+<li><strong>Collect</strong>: Gather errors from compilation logs, static analysis, and runtime</li>
+<li><strong>Analyze</strong>: Group errors and identify recurring patterns</li>
+<li><strong>Generate</strong>: Create rule proposals with guidelines and examples</li>
+<li><strong>Integrate</strong>: Review and incorporate new rules into the main system</li>
+<li><strong>Monitor</strong>: Track effectiveness and refine the process</li>
+</ol>
+<h2 id="directory-structure">Directory Structure</h2>
+<pre><code>self-healing/
+├── error-analyzer.ps1       # Main analysis script
+├── schedule-analysis.ps1    # Scheduled task setup
+├── logs/                    # Analysis execution logs
+├── proposed-rules/          # Generated rule proposals
+├── patterns/                # Extracted error patterns
+└── error-database.json      # Error history database
+</code></pre>
+<h2 id="setup-and-usage">Setup and Usage</h2>
+<h3 id="setting-up-the-scheduled-task">Setting Up the Scheduled Task</h3>
+<ol>
+<li><p>Run the <code>schedule-analysis.ps1</code> script to set up a weekly analysis task:</p>
+<pre><code>PowerShell -ExecutionPolicy Bypass -File .cursor\rules\self-healing\schedule-analysis.ps1
+</code></pre>
+</li>
+<li><p>The script will prompt for credentials and ask if you want to run the analysis now.</p>
+</li>
+</ol>
+<h3 id="manual-analysis">Manual Analysis</h3>
+<p>You can run the error analysis manually at any time:</p>
+<pre><code>PowerShell -ExecutionPolicy Bypass -File .cursor\rules\self-healing\error-analyzer.ps1
+</code></pre>
+<h3 id="reviewing-rule-proposals">Reviewing Rule Proposals</h3>
+<p>After the analysis runs, you&#39;ll find rule proposals in the <code>proposed-rules/</code> directory:</p>
+<ol>
+<li>Each rule has a corresponding <code>.summary.md</code> file explaining the rule and integration steps</li>
+<li>Review the rule content for accuracy and relevance</li>
+<li>If approved, follow the integration steps in the summary file</li>
+</ol>
+<h2 id="integration-with-cursor-rules">Integration with Cursor Rules</h2>
+<h3 id="integration-process">Integration Process</h3>
+<ol>
+<li><strong>Review</strong>: Examine each rule proposal carefully</li>
+<li><strong>Test</strong>: Apply the rule to sample code to verify its effectiveness</li>
+<li><strong>Refine</strong>: Adjust the rule content if needed</li>
+<li><strong>Move</strong>: Place the rule in the appropriate category directory</li>
+<li><strong>Update References</strong>: Add the new rule to related files</li>
+</ol>
+<h3 id="example-integration">Example Integration</h3>
+<p>For a memory management rule proposal:</p>
+<ol>
+<li>Review the rule in <code>proposed-rules/memory_management-AUTO_xyz.mdc</code></li>
+<li>If approved, move it to the game category:<pre><code>Move-Item &quot;proposed-rules/memory_management-AUTO_xyz.mdc&quot; &quot;../game/&quot;
+</code></pre>
+</li>
+<li>Update related rules to reference it</li>
+<li>Run the verification script to ensure metadata is correct</li>
+</ol>
+<h2 id="customization">Customization</h2>
+<p>You can customize the self-healing system:</p>
+<ol>
+<li><strong>Thresholds</strong>: Edit <code>$ErrorThreshold</code> in <code>error-analyzer.ps1</code> to adjust sensitivity</li>
+<li><strong>Analysis Period</strong>: Modify <code>$LookbackDays</code> to change how far back the analysis looks</li>
+<li><strong>Categories</strong>: Update the <code>Determine-RuleCategory</code> function to add new categories</li>
+<li><strong>Error Patterns</strong>: Enhance the regex patterns to catch more error types</li>
+</ol>
+<h2 id="advanced-usage">Advanced Usage</h2>
+<h3 id="integration-with-cicd">Integration with CI/CD</h3>
+<p>The error analyzer can be integrated with your CI/CD pipeline to analyze errors from each build:</p>
+<ol>
+<li>Add a step in your build process to call the analyzer</li>
+<li>Set up a dedicated branch for rule proposals</li>
+<li>Create pull requests for approved rules</li>
+</ol>
+<h3 id="custom-error-sources">Custom Error Sources</h3>
+<p>You can extend the analyzer to collect errors from additional sources:</p>
+<ol>
+<li>Create a new collector function similar to <code>Get-CompilerErrors</code></li>
+<li>Add the function call to the <code>Analyze-CodeErrors</code> function</li>
+<li>Adjust error normalization to handle the new source format</li>
+</ol>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>If you encounter issues:</p>
+<ol>
+<li>Check the log files in the <code>logs/</code> directory</li>
+<li>Verify that build and runtime logs are in the expected format</li>
+<li>Ensure the script has sufficient permissions to access log files</li>
+<li>Try running the script manually with elevated privileges</li>
+</ol>
+<p>For questions and support, contact the Ages of Arda development team. </p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

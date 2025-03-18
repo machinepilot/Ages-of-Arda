@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>borg-item-val.c File Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>borg-item-val.c File Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="borg-item-valc-file-documentation">borg-item-val.c File Documentation</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-item-val.c</code> is part of the Angband roguelike game&#39;s &quot;borg&quot; AI system. The borg is an automated player that makes decisions based on game state. This file initializes and provides lookup for the &quot;sval&quot; (sub-value) and &quot;kval&quot; (kind-value) of various game items such as potions, scrolls, wands, etc. The svals and kvals are used by the borg to reason about and compare items.</p>
+<h2 id="data-structures">Data Structures</h2>
+<p>There are no major struct or typedef definitions in this file.</p>
+<h2 id="global-variables">Global Variables</h2>
+<p>This file defines a large number of global integer variables for the svals and kvals of specific item types. Some key examples:</p>
+<ul>
+<li><code>sv_food_ration</code>: The sval for ration food items</li>
+<li><code>sv_potion_healing</code>: The sval for healing potions</li>
+<li><code>kv_potion_healing</code>: The corresponding kval for healing potions</li>
+<li><code>sv_scroll_teleport</code>: The sval for teleportation scrolls</li>
+<li><code>sv_rod_detection</code>: The sval for detection rods</li>
+<li><code>sv_staff_holiness</code>: The sval for holiness staves</li>
+<li><code>sv_wand_magic_missile</code>: The sval for magic missile wands</li>
+</ul>
+<p>Each tval (item category like potions, scrolls, etc.) has its own set of sval globals defined. Some important tvals also have kval globals defined.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_lookup_sval_fail">borg_lookup_sval_fail</h3>
+<pre><code class="language-c">static int borg_lookup_sval_fail(int tval, const char *name)
+</code></pre>
+<p>A helper function that looks up the sval for an item subtype given its tval and name string. If the lookup fails, it logs a borg startup failure message.</p>
+<ul>
+<li>Parameters:<ul>
+<li><code>tval</code>: The tval to look up the sval for</li>
+<li><code>name</code>: The name string of the sval to find</li>
+</ul>
+</li>
+<li>Returns: The sval integer if found, -1 otherwise</li>
+<li>Side effects: May log a borg startup failure message</li>
+<li>Used by: <code>borg_init_item_val</code> to initialize sval globals</li>
+</ul>
+<h3 id="borg_init_item_val">borg_init_item_val</h3>
+<pre><code class="language-c">void borg_init_item_val(void)
+</code></pre>
+<p>Initializes all the sval and kval global variables using <code>borg_lookup_sval_fail</code> and <code>borg_lookup_kind</code>.</p>
+<ul>
+<li>Parameters: None</li>
+<li>Returns: Nothing</li>
+<li>Side effects: Initializes the sval and kval globals</li>
+<li>Depends on: <code>borg_lookup_sval_fail</code>, <code>borg_lookup_kind</code></li>
+</ul>
+<h3 id="borg_lookup_kind">borg_lookup_kind</h3>
+<pre><code class="language-c">int borg_lookup_kind(int tval, int sval)
+</code></pre>
+<p>Looks up the corresponding <code>k_idx</code> (kind index) for an object type given its tval and sval. Used to initialize kval globals.</p>
+<ul>
+<li>Parameters: <ul>
+<li><code>tval</code>: The tval of the object type</li>
+<li><code>sval</code>: The sval of the object type</li>
+</ul>
+</li>
+<li>Returns: The k_idx if found, 0 otherwise</li>
+<li>Side effects: May print an error message if lookup fails</li>
+<li>Used by: <code>borg_init_item_val</code> to initialize kval globals</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>No major complex algorithms. The file mainly deals with data setup and lookup.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>Includes several Angband core headers: <code>init.h</code>, <code>obj-tval.h</code>, <code>obj-util.h</code></li>
+<li>Includes some borg-specific headers: <code>borg-init.h</code>, <code>borg-io.h</code></li>
+<li>Is <code>#included</code> in other borg files that use the sval and kval globals</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>The borg AI system was a later addition to Angband, aimed at creating an automated player. This file is part of the borg&#39;s initialization and world modeling logic, allowing it to understand and differentiate game items. The Angband borg was developed by Ben Harrison, building on ideas from earlier Moria and Angband AI projects.</p>
+<p>Understanding object types is a key aspect of roguelike AI, as the borg needs to be able to reason about and compare the relative worth of different items for survival and dungeon exploration. The sval and kval abstractions help simplify this reasoning.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

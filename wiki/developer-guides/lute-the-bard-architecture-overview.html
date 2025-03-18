@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lute the Bard - Architecture Overview | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Lute the Bard - Architecture Overview</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="lute-the-bard---architecture-overview">Lute the Bard - Architecture Overview</h1>
+<p>This document describes the architecture of the Lute the Bard narrative generation system for Tower of Babel.</p>
+<h2 id="system-components">System Components</h2>
+<pre><code>┌───────────────────┐      ┌───────────────────┐      ┌───────────────────┐
+│                   │      │                   │      │                   │
+│  Tower of Babel   │      │    MCP Client     │      │    MCP Server     │
+│  (Angband Game)   │─────▶│    (mcp-client.c) │─────▶│  (Node.js)        │
+│                   │      │                   │      │                   │
+└───────────┬───────┘      └───────────┬───────┘      └───────────┬───────┘
+            │                          │                          │
+            │                          │                          │
+            ▼                          ▼                          ▼
+┌───────────────────┐      ┌───────────────────┐      ┌───────────────────┐
+│                   │      │                   │      │                   │
+│  Bard Interface   │      │  HTTP/JSON        │      │  OpenAI API       │
+│  (bard.c/h)       │      │  Communication    │      │  Integration      │
+│                   │      │                   │      │                   │
+└───────────────────┘      └───────────────────┘      └───────────────────┘
+                                                                │
+                                                                │
+                                                                ▼
+                                                      ┌───────────────────┐
+                                                      │                   │
+                                                      │  Memory System    │
+                                                      │  (JSON Files)     │
+                                                      │                   │
+                                                      └───────────────────┘
+</code></pre>
+<h2 id="component-details">Component Details</h2>
+<h3 id="1-tower-of-babel-angband-game">1. Tower of Babel (Angband Game)</h3>
+<p>This is the core roguelike game, an Angband variant. The game triggers narrative generation at key gameplay moments:</p>
+<ul>
+<li>When monsters are defeated</li>
+<li>When items are discovered</li>
+<li>When new dungeon levels are entered</li>
+<li>When the player has a near-death experience</li>
+<li>When quests are completed</li>
+<li>When the player levels up</li>
+</ul>
+<p>The game communicates with the Bard system through the Bard Interface.</p>
+<h3 id="2-bard-interface-bardch">2. Bard Interface (bard.c/h)</h3>
+<p>The Bard Interface is a C module that provides a clean API for the game to interact with the narrative generation system:</p>
+<ul>
+<li>It maintains a queue of generated narratives</li>
+<li>It tracks pending narrative requests</li>
+<li>It handles configuration of narrative style, frequency, and verbosity</li>
+</ul>
+<p>The Bard Interface uses the MCP Client to communicate with the MCP Server.</p>
+<h3 id="3-mcp-client-mcp-clientc">3. MCP Client (mcp-client.c)</h3>
+<p>The MCP Client implements the Model Context Protocol in C:</p>
+<ul>
+<li>It handles HTTP communication with the MCP Server</li>
+<li>It manages asynchronous requests and responses</li>
+<li>It serializes and deserializes JSON data</li>
+<li>It provides error handling and retry mechanisms</li>
+</ul>
+<h3 id="4-mcp-server-bard-mcp-serverjs">4. MCP Server (bard-mcp-server.js)</h3>
+<p>The MCP Server is a Node.js application that implements the server-side of the Model Context Protocol:</p>
+<ul>
+<li>It exposes an HTTP API for the MCP Client to connect to</li>
+<li>It processes narrative generation requests</li>
+<li>It integrates with the OpenAI API to generate narratives</li>
+<li>It manages the Memory System</li>
+</ul>
+<h3 id="5-memory-system-json-files">5. Memory System (JSON Files)</h3>
+<p>The Memory System stores and retrieves character memories:</p>
+<ul>
+<li>Each character has its own memory file</li>
+<li>Memories are stored as JSON data</li>
+<li>Memories are organized by type (events, relationships, etc.)</li>
+<li>Memories have importance values and timestamps</li>
+<li>The system automatically prunes less important memories when the storage limit is reached</li>
+</ul>
+<h3 id="6-openai-api-integration">6. OpenAI API Integration</h3>
+<p>The MCP Server uses the OpenAI API to generate narratives:</p>
+<ul>
+<li>It constructs detailed prompts based on the event type and details</li>
+<li>It includes relevant memories to provide context</li>
+<li>It supports different narrative styles and tones</li>
+<li>It receives structured JSON responses containing the narrative text and metadata</li>
+</ul>
+<h2 id="data-flow">Data Flow</h2>
+<ol>
+<li><p><strong>Game Event → Bard Interface</strong>: The game calls the appropriate Bard function when an event occurs.</p>
+</li>
+<li><p><strong>Bard Interface → MCP Client</strong>: The Bard Interface creates a request with event details and sends it to the MCP Client.</p>
+</li>
+<li><p><strong>MCP Client → MCP Server</strong>: The MCP Client serializes the request to JSON and sends it to the MCP Server via HTTP.</p>
+</li>
+<li><p><strong>MCP Server → OpenAI API</strong>: The MCP Server constructs a prompt with event details and relevant memories, then sends it to the OpenAI API.</p>
+</li>
+<li><p><strong>OpenAI API → MCP Server</strong>: The API returns a generated narrative.</p>
+</li>
+<li><p><strong>MCP Server → Memory System</strong>: The MCP Server stores the event and narrative in the character&#39;s memory.</p>
+</li>
+<li><p><strong>MCP Server → MCP Client</strong>: The MCP Server sends the narrative back to the MCP Client.</p>
+</li>
+<li><p><strong>MCP Client → Bard Interface</strong>: The MCP Client deserializes the response and notifies the Bard Interface.</p>
+</li>
+<li><p><strong>Bard Interface → Game</strong>: The Bard Interface adds the narrative to its queue, which the game can display at the appropriate time.</p>
+</li>
+</ol>
+<h2 id="memory-management">Memory Management</h2>
+<p>The Memory System uses a sophisticated approach to manage memories:</p>
+<ol>
+<li><p><strong>Importance-Based Storage</strong>: Memories are assigned importance values (1-100) based on the event type and the AI&#39;s assessment of significance.</p>
+</li>
+<li><p><strong>Retrieval by Relevance</strong>: When generating new narratives, the system retrieves memories based on:</p>
+<ul>
+<li>Recency (newer memories are favored)</li>
+<li>Importance (more significant memories are favored)</li>
+<li>Relevance to the current event (e.g., previous encounters with the same monster)</li>
+</ul>
+</li>
+<li><p><strong>Memory Pruning</strong>: When a character&#39;s memory exceeds the size limit, less important memories are automatically pruned.</p>
+</li>
+</ol>
+<h2 id="asynchronous-processing">Asynchronous Processing</h2>
+<p>The system uses asynchronous processing to avoid blocking gameplay:</p>
+<ol>
+<li>The game calls Bard functions, which return immediately</li>
+<li>The Bard Interface sends asynchronous requests to the MCP Server</li>
+<li>The game periodically calls <code>bard_process_pending()</code> to check for completed narratives</li>
+<li>Completed narratives are added to the queue</li>
+<li>The game calls <code>bard_get_next_narrative()</code> to retrieve and display narratives at appropriate times</li>
+</ol>
+<h2 id="configuration">Configuration</h2>
+<p>The system is highly configurable:</p>
+<ol>
+<li><strong>Narrative Frequency</strong>: Controls how often narratives are generated (0-100)</li>
+<li><strong>Verbosity</strong>: Controls the length and detail of narratives (0-100)</li>
+<li><strong>Style</strong>: Sets the default narrative style (fantasy, poetic, humorous, etc.)</li>
+<li><strong>Debug Mode</strong>: Enables detailed logging for troubleshooting</li>
+</ol>
+<h2 id="error-handling">Error Handling</h2>
+<p>The system implements robust error handling:</p>
+<ol>
+<li><strong>Client-Side Retries</strong>: The MCP Client automatically retries failed requests</li>
+<li><strong>Server-Side Fallbacks</strong>: The MCP Server provides fallback narratives if the AI generation fails</li>
+<li><strong>Graceful Degradation</strong>: If the narrative system is unavailable, the game continues to function without narratives</li>
+</ol>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

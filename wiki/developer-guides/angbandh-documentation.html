@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>angband.h Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>angband.h Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="angbandh-documentation">angband.h Documentation</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>angband.h</code> is a central header file for the Angband roguelike game. It serves as a hub for including various low-level, mid-level, and high-level header files that define the game&#39;s data structures, constants, and functions. This header is typically included by most of the game&#39;s source files to provide access to the core types and definitions.</p>
+<p>The file is divided into several sections:</p>
+<ol>
+<li>Basic includes (h-basic.h)</li>
+<li>Mid-level includes (z-*.h files)</li>
+<li>High-level includes (config.h, game-event.h, message.h, player.h)</li>
+</ol>
+<p>It also contains some historical copyright notices related to earlier versions of Angband.</p>
+<h2 id="data-structures">Data Structures</h2>
+<p>This header file does not directly define any data structures. However, it includes several other header files that define the game&#39;s core data types and structures.</p>
+<h2 id="global-variables">Global Variables</h2>
+<p>This header file does not declare any global variables.</p>
+<h2 id="functions">Functions</h2>
+<p>This header file does not define any functions.</p>
+<h2 id="algorithms">Algorithms</h2>
+<p>This header file does not implement any algorithms.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p><code>angband.h</code> depends on the following header files:</p>
+<ol>
+<li>h-basic.h: Low-level basic definitions and types.</li>
+<li>z-bitflag.h: Bitflag manipulation macros and types.</li>
+<li>z-color.h: Color-related constants and types.</li>
+<li>z-form.h: String formatting functions.</li>
+<li>z-util.h: Generic utility functions and macros.</li>
+<li>z-virt.h: Memory management and allocation functions.</li>
+<li>z-rand.h: Random number generation functions.</li>
+<li>config.h: Game configuration settings.</li>
+<li>game-event.h: Game event system definitions.</li>
+<li>message.h: Game message handling functions and types.</li>
+<li>player.h: Player character data structures and related functions.</li>
+</ol>
+<p>Many of the game&#39;s source files depend on <code>angband.h</code> to access the core definitions and types.</p>
+<h2 id="historical-context">Historical Context</h2>
+<p>The header file contains some historical copyright notices related to earlier versions of Angband, dating back to pre-2.4 versions. These notices mention the original designers, programmers, and contributors to the Angband codebase.</p>
+<p>Of particular note is the mention of the Unix port by James E. Wilson from UC Berkeley, highlighting Angband&#39;s long history and the contributions of the academic community to its development.</p>
+<p>The original copyright message also dedicates the game to &quot;hackers and adventurers everywhere,&quot; reflecting the open-source and collaborative nature of Angband&#39;s development.</p>
+<h2 id="game-mechanics-implemented">Game Mechanics Implemented</h2>
+<p>As a header file, <code>angband.h</code> does not directly implement any game mechanics. However, by including the various low-level, mid-level, and high-level headers, it provides access to the data structures, constants, and functions that define Angband&#39;s core game mechanics.</p>
+<p>Some of the key game mechanics that are enabled by the included headers are:</p>
+<ol>
+<li>Character attributes and player data (player.h)</li>
+<li>Game configuration and settings (config.h)</li>
+<li>Event-driven gameplay (game-event.h)</li>
+<li>In-game message handling (message.h)</li>
+<li>Bitflag-based properties for game entities (z-bitflag.h)</li>
+<li>Color-based display and user interface (z-color.h)</li>
+<li>Random number generation for procedural content (z-rand.h)</li>
+</ol>
+<p>By serving as a central include point for these various subsystems, <code>angband.h</code> plays a crucial role in enabling the implementation of Angband&#39;s rich and complex roguelike mechanics throughout the codebase.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

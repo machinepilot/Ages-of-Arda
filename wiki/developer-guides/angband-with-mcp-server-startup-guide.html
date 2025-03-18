@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angband with MCP Server - Startup Guide | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Angband with MCP Server - Startup Guide</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-15</div>
+        </header>
+        
+        <main>
+            <h1 id="angband-with-mcp-server---startup-guide">Angband with MCP Server - Startup Guide</h1>
+<p>This document explains how to use the integrated startup system for Angband with the Model Context Protocol (MCP) server integration.</p>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="windows">Windows</h3>
+<ol>
+<li>Double-click on <code>start-angband.bat</code> in your Angband installation directory</li>
+<li>The script will automatically start both the MCP server and the Angband game</li>
+</ol>
+<h3 id="unixlinux">Unix/Linux</h3>
+<ol>
+<li>Open a terminal in your Angband installation directory</li>
+<li>Run <code>chmod +x start-angband.sh</code> to make the script executable (first time only)</li>
+<li>Run <code>./start-angband.sh</code></li>
+<li>The script will automatically start both the MCP server and the Angband game</li>
+</ol>
+<h2 id="configuration">Configuration</h2>
+<p>The startup system uses a configuration file (<code>mcp_config.ini</code>) to control various aspects of the game and MCP server. This file is automatically created on first run with default values, but you can modify it to customize your experience.</p>
+<h3 id="configuration-file-location">Configuration File Location</h3>
+<p>The configuration file is located at:</p>
+<ul>
+<li>Windows: <code>[Angband Directory]\mcp_config.ini</code></li>
+<li>Unix/Linux: <code>[Angband Directory]/mcp_config.ini</code></li>
+</ul>
+<h3 id="configuration-sections">Configuration Sections</h3>
+<h4 id="mcp_server">MCP_SERVER</h4>
+<p>Controls the Model Context Protocol server integration:</p>
+<ul>
+<li><code>enabled</code>: Set to <code>true</code> to enable MCP server integration, <code>false</code> to disable</li>
+<li><code>autostart</code>: When <code>true</code>, automatically starts the MCP server with the game</li>
+<li><code>server_path</code>: Path to the MCP server directory (relative to game directory)</li>
+<li><code>port</code>: Port number for the MCP server (default: 3000)</li>
+<li><code>max_retry</code>: Maximum number of retry attempts if server fails to start</li>
+<li><code>retry_delay</code>: Delay between retry attempts in milliseconds</li>
+<li><code>timeout</code>: Timeout for server operations in milliseconds</li>
+</ul>
+<h4 id="window_preferences">WINDOW_PREFERENCES</h4>
+<p>Settings for game windows configuration:</p>
+<ul>
+<li><code>main_window_width</code>: Width of the main game window</li>
+<li><code>main_window_height</code>: Height of the main game window</li>
+<li><code>font_size</code>: Font size for the main window</li>
+<li><code>use_graphics</code>: Set to <code>true</code> to use graphical tiles, <code>false</code> for ASCII</li>
+<li><code>graphics_mode</code>: Graphics mode: &quot;old&quot; or &quot;new&quot;</li>
+</ul>
+<p>Subwindow configuration:</p>
+<ul>
+<li><code>subwindows</code>: Number of subwindows to open</li>
+<li><code>subwindowN_content</code>: Content for Nth subwindow: messages, recall, etc.</li>
+<li><code>subwindowN_height</code>: Height of Nth subwindow</li>
+</ul>
+<h4 id="gameplay">GAMEPLAY</h4>
+<p>General gameplay settings:</p>
+<ul>
+<li><code>show_flavors</code>: Set to <code>true</code> to show object flavors</li>
+<li><code>pickup_always</code>: Set to <code>true</code> to always pick up items</li>
+<li><code>pickup_inven</code>: Set to <code>true</code> to pick up items if there&#39;s room in inventory</li>
+</ul>
+<h4 id="advanced">ADVANCED</h4>
+<p>Advanced settings:</p>
+<ul>
+<li><code>debug_mode</code>: Set to <code>true</code> to enable debugging features</li>
+<li><code>log_level</code>: Logging level: debug, info, warn, error</li>
+<li><code>autosave</code>: Set to <code>true</code> to enable autosave</li>
+<li><code>autosave_freq</code>: Frequency of autosave (in turns)</li>
+<li><code>mcp_logging</code>: Set to <code>true</code> to log MCP server messages</li>
+</ul>
+<h2 id="requirements">Requirements</h2>
+<p>For the MCP server integration to work properly:</p>
+<ol>
+<li><p><strong>Node.js</strong>: The MCP server requires Node.js to be installed on your system. Download it from <a href="https://nodejs.org/">nodejs.org</a>.</p>
+</li>
+<li><p><strong>Proper File Structure</strong>: The startup scripts expect the MCP server files to be in the location specified by the <code>server_path</code> setting in the configuration file.</p>
+</li>
+</ol>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="mcp-server-wont-start">MCP Server Won&#39;t Start</h3>
+<ol>
+<li>Verify Node.js is installed by running <code>node --version</code> in a terminal/command prompt</li>
+<li>Check the <code>mcp-server.log</code> file in your Angband directory for error messages</li>
+<li>Make sure nothing else is using port 3000 (or whatever port you&#39;ve configured)</li>
+<li>Check that the <code>server_path</code> in <code>mcp_config.ini</code> points to the correct location</li>
+</ol>
+<h3 id="game-wont-start">Game Won&#39;t Start</h3>
+<ol>
+<li>Check that the Angband executable is properly installed and accessible</li>
+<li>Look for any error messages in the console output</li>
+<li>Try running Angband directly without the startup script to see if it works</li>
+</ol>
+<h2 id="advanced-usage">Advanced Usage</h2>
+<h3 id="running-mcp-server-separately">Running MCP Server Separately</h3>
+<p>If you prefer to run the MCP server separately from the game:</p>
+<ol>
+<li>Set <code>autostart=false</code> in the <code>[MCP_SERVER]</code> section of <code>mcp_config.ini</code></li>
+<li>Navigate to the MCP server directory</li>
+<li>Run <code>node mcp-server.js</code></li>
+<li>Start Angband using the normal startup script</li>
+</ol>
+<h3 id="command-line-arguments">Command Line Arguments</h3>
+<p>The startup scripts pass appropriate command line arguments to Angband based on your configuration. You can also add custom command line arguments by modifying the startup scripts.</p>
+<p>Refer to the Angband documentation for a complete list of supported command line arguments. </p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

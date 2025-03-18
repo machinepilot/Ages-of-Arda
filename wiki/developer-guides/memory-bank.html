@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Untitled</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <hr>
+<h2 id="title-memory-management-guidelines-glob-ch-priority-780-related-code-stylec-stylemdc-angband-variantmdc">title: Memory Management Guidelines
+glob: &quot;<strong>/*.c,</strong>/*.h&quot;
+priority: 780
+related: [&quot;../code-style/c-style.mdc&quot;, &quot;angband-variant.mdc&quot;]</h2>
+<h1 id="memory-management-guidelines">Memory Management Guidelines</h1>
+<p>This document outlines the memory management principles and practices for the Ages of Arda codebase.</p>
+<h2 id="core-memory-principles">Core Memory Principles</h2>
+<ol>
+<li><p><strong>Explicit Ownership</strong></p>
+<ul>
+<li>Every allocated resource must have a clear owner</li>
+<li>Ownership transfer must be explicitly documented</li>
+<li>Resource lifetimes should be predictable</li>
+</ul>
+</li>
+<li><p><strong>Defensive Programming</strong></p>
+<ul>
+<li>Always check allocation success</li>
+<li>Initialize memory to known values</li>
+<li>Validate inputs before allocation</li>
+<li>Check for overflows and underflows</li>
+</ul>
+</li>
+<li><p><strong>Resource Management</strong></p>
+<ul>
+<li>Free resources in reverse order of allocation</li>
+<li>Use appropriate data structures based on access patterns</li>
+<li>Consider memory fragmentation in long-running processes</li>
+</ul>
+</li>
+</ol>
+<h2 id="implementation-patterns">Implementation Patterns</h2>
+<h3 id="memory-allocation">Memory Allocation</h3>
+<pre><code class="language-c">/**
+ * Allocate memory for a game entity
+ */
+entity_t *
+entity_alloc(void)
+{
+    entity_t *entity = NULL;
+    
+    /* Allocate entity structure */
+    entity = calloc(1, sizeof(entity_t));
+    if (entity == NULL) {
+        log_critical(&quot;Failed to allocate entity&quot;);
+        return NULL;
+    }
+    
+    /* Initialize to default values */
+    entity-&gt;id = next_entity_id();
+    entity-&gt;type = ENTITY_TYPE_NONE;
+    entity-&gt;flags = 0;
+    entity-&gt;name = NULL;
+    
+    /* Track allocation */
+    mem_track_alloc(MEMTRACK_ENTITY, sizeof(entity_t));
+    
+    return entity;
+}
+</code></pre>
+<h3 id="memory-deallocation">Memory Deallocation</h3>
+<pre><code class="language-c">/**
+ * Free all resources associated with an entity
+ */
+void
+entity_free(entity_t *entity)
+{
+    if (entity == NULL) {
+        return;
+    }
+    
+    /* Free owned resources */
+    if (entity-&gt;name != NULL) {
+        string_free(entity-&gt;name);
+    }
+    
+    if (entity-&gt;inventory != NULL) {
+        inventory_free(entity-&gt;inventory);
+    }
+    
+    /* Track deallocation */
+    mem_track_free(MEMTRACK_ENTITY, sizeof(entity_t));
+    
+    /* Free the entity itself */
+    free(entity);
+}
+</code></pre>
+<h2 id="memory-tracking">Memory Tracking</h2>
+<ol>
+<li><p><strong>Categories to Track</strong></p>
+<ul>
+<li>Objects/items</li>
+<li>Entities (monsters, NPCs)</li>
+<li>Map/terrain</li>
+<li>UI elements</li>
+<li>Temporary buffers</li>
+</ul>
+</li>
+<li><p><strong>Tracking Metrics</strong></p>
+<ul>
+<li>Total allocations by category</li>
+<li>Current memory usage</li>
+<li>Peak memory usage</li>
+<li>Allocation patterns over time</li>
+</ul>
+</li>
+<li><p><strong>Leak Detection</strong></p>
+<ul>
+<li>Track source location of allocations</li>
+<li>Periodically check for unreleased resources</li>
+<li>Generate memory reports for debugging</li>
+</ul>
+</li>
+</ol>
+<h2 id="optimization-strategies">Optimization Strategies</h2>
+<ul>
+<li>Pool allocators for frequently created/destroyed objects</li>
+<li>Custom allocators for specific data structures</li>
+<li>Memory-mapped files for large persistent data</li>
+<li>Lazy loading for infrequently accessed resources</li>
+</ul>
+<h2 id="error-handling">Error Handling</h2>
+<ul>
+<li>Return meaningful error codes on allocation failures</li>
+<li>Log detailed information about memory errors</li>
+<li>Implement recovery strategies for low-memory conditions</li>
+<li>Avoid silent failures</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

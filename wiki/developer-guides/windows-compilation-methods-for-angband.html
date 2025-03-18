@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows Compilation Methods for Angband | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Windows Compilation Methods for Angband</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-13</div>
+        </header>
+        
+        <main>
+            <h1 id="windows-compilation-methods-for-angband">Windows Compilation Methods for Angband</h1>
+<p>Angband can be compiled on Windows using several different methods, each with its own advantages and requirements.</p>
+<h2 id="mingw-compilation-method">MinGW Compilation Method</h2>
+<p>MinGW (Minimalist GNU for Windows) provides a way to compile Angband using GCC on Windows.</p>
+<h3 id="setup">Setup</h3>
+<ol>
+<li>Install MinGW (<a href="http://www.mingw.org/">http://www.mingw.org/</a>)</li>
+<li>Add MinGW&#39;s bin directory to your PATH</li>
+<li>Install required dependencies (libpng, zlib)</li>
+</ol>
+<h3 id="compilation-steps">Compilation Steps</h3>
+<pre><code class="language-bash">cd angband
+./autogen.sh
+./configure --enable-win
+make
+</code></pre>
+<h3 id="notes">Notes</h3>
+<ul>
+<li>Produces native Windows executables</li>
+<li>Good compatibility with Windows APIs</li>
+<li>Smaller executable size compared to Cygwin</li>
+<li>May require manual DLL management</li>
+</ul>
+<h2 id="cygwin-compilation-method">Cygwin Compilation Method</h2>
+<p>Cygwin provides a UNIX-like environment for Windows, allowing Angband to be compiled with its standard build process.</p>
+<h3 id="setup-1">Setup</h3>
+<ol>
+<li>Install Cygwin (<a href="https://www.cygwin.com/">https://www.cygwin.com/</a>)</li>
+<li>Install development packages: gcc, make, autoconf, automake</li>
+<li>Install required libraries: libpng-devel, zlib-devel</li>
+</ol>
+<h3 id="compilation-steps-1">Compilation Steps</h3>
+<pre><code class="language-bash">cd angband
+./autogen.sh
+./configure --host=i686-pc-mingw32
+make
+</code></pre>
+<h3 id="notes-1">Notes</h3>
+<ul>
+<li>Requires Cygwin runtime</li>
+<li>Good for developers familiar with UNIX environments</li>
+<li>Can produce both Cygwin-dependent and MinGW (native Windows) executables</li>
+<li>Larger executable size due to POSIX compatibility layer</li>
+</ul>
+<h2 id="msys2-compilation-method">MSYS2 Compilation Method</h2>
+<p>MSYS2 is a modern development platform for Windows, combining MinGW with an updated package manager.</p>
+<h3 id="setup-2">Setup</h3>
+<ol>
+<li>Install MSYS2 (<a href="https://www.msys2.org/">https://www.msys2.org/</a>)</li>
+<li>Install required packages:<pre><code class="language-bash">pacman -S mingw-w64-x86_64-gcc make autoconf automake
+pacman -S mingw-w64-x86_64-libpng mingw-w64-x86_64-zlib
+</code></pre>
+</li>
+</ol>
+<h3 id="compilation-steps-2">Compilation Steps</h3>
+<pre><code class="language-bash">cd angband
+make -f Makefile.msys2
+</code></pre>
+<h3 id="notes-2">Notes</h3>
+<ul>
+<li>Modern, well-maintained toolchain</li>
+<li>Good package management</li>
+<li>Can build with SDL2 support for better graphics</li>
+<li>Recommended for new Windows development</li>
+</ul>
+<h2 id="visual-studio-compilation-method">Visual Studio Compilation Method</h2>
+<p>Visual Studio provides a native Windows development environment with its own compiler and tools.</p>
+<h3 id="setup-3">Setup</h3>
+<ol>
+<li>Install Visual Studio (Community edition is free)</li>
+<li>Open the Visual Studio solution file in the win/vs2019 directory</li>
+</ol>
+<h3 id="compilation-steps-3">Compilation Steps</h3>
+<ol>
+<li>Open angband.sln</li>
+<li>Select build configuration (Debug/Release)</li>
+<li>Build Solution (F7)</li>
+</ol>
+<h3 id="notes-3">Notes</h3>
+<ul>
+<li>Native Windows development experience</li>
+<li>Excellent debugging tools</li>
+<li>Good integration with Windows APIs</li>
+<li>Project files may need updating for newer Visual Studio versions</li>
+<li>Requires manual management of external dependencies</li>
+</ul>
+<h2 id="common-issues-and-solutions">Common Issues and Solutions</h2>
+<h3 id="dll-dependencies">DLL Dependencies</h3>
+<p>Windows builds often require DLLs to be distributed with the executable:</p>
+<ul>
+<li>libpng12.dll</li>
+<li>zlib1.dll</li>
+</ul>
+<h3 id="graphics-support">Graphics Support</h3>
+<p>For tile graphics support, ensure:</p>
+<ul>
+<li>SDL2 is installed for MSYS2 builds</li>
+<li>GDI+ is available for Visual Studio builds</li>
+</ul>
+<h3 id="sound-support">Sound Support</h3>
+<p>For sound support:</p>
+<ul>
+<li>SDL_mixer for MSYS2/MinGW builds</li>
+<li>Windows Multimedia API for Visual Studio builds</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

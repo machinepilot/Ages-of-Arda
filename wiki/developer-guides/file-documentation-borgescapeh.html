@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Documentation: borg-escape.h | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>File Documentation: borg-escape.h</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="file-documentation-borg-escapeh">File Documentation: borg-escape.h</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-escape.h</code> is a header file in the Angband source code that provides declarations for functions related to the Borg&#39;s escape and teleportation mechanics. The Borg is an AI player that can automatically play the game, making decisions based on various game states and heuristics.</p>
+<p>This file contains functions for evaluating the safety of the Borg&#39;s current location, determining when to use teleportation or phasing abilities, and attempting to escape from dangerous situations. It plays a crucial role in the Borg&#39;s decision-making process when it comes to survival and navigation within the dungeon.</p>
+<h2 id="data-structures">Data Structures</h2>
+<p>This header file does not contain any structs or typedefs.</p>
+<h2 id="global-variables">Global Variables</h2>
+<p>This header file does not contain any global variables.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_recall"><code>borg_recall()</code></h3>
+<pre><code class="language-c">extern bool borg_recall(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Attempts to induce the WORD_OF_RECALL effect, which teleports the player back to the dungeon&#39;s surface.</li>
+<li><strong>Parameters</strong>: None</li>
+<li><strong>Return value</strong>: Returns true if the recall attempt was successful, false otherwise.</li>
+<li><strong>Side effects</strong>: If successful, the player will be teleported to the dungeon&#39;s surface.</li>
+<li><strong>Relationships</strong>: This function is likely related to the game&#39;s teleportation mechanics and may interact with other functions that handle the WORD_OF_RECALL effect.</li>
+<li><strong>Game mechanics</strong>: In Angband, WORD_OF_RECALL is a means for the player to escape the dungeon and return to the surface. This function allows the Borg to utilize this mechanic when it deems necessary.</li>
+</ul>
+<h3 id="borg_freedom"><code>borg_freedom()</code></h3>
+<pre><code class="language-c">extern int borg_freedom(int y, int x);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Evaluates the &quot;freedom&quot; of the given location (y, x) within the dungeon.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>y</code>: The y-coordinate of the location to evaluate.</li>
+<li><code>x</code>: The x-coordinate of the location to evaluate.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: Returns an integer value representing the degree of freedom at the given location. Higher values likely indicate more freedom of movement.</li>
+<li><strong>Side effects</strong>: None</li>
+<li><strong>Relationships</strong>: This function is likely used by other Borg functions to assess the safety and maneuverability of different dungeon locations.</li>
+<li><strong>Game mechanics</strong>: The concept of &quot;freedom&quot; in this context relates to the Borg&#39;s ability to move and navigate at a given location without being trapped or surrounded by obstacles or enemies.</li>
+</ul>
+<h3 id="borg_caution_teleport"><code>borg_caution_teleport()</code></h3>
+<pre><code class="language-c">extern bool borg_caution_teleport(int emergency, int turns);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Helps determine if using the &quot;Teleport&quot; ability seems like a good idea given the current situation.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>emergency</code>: An integer value representing the urgency of the situation. Higher values may indicate a greater need for teleportation.</li>
+<li><code>turns</code>: The number of game turns to consider when evaluating the need for teleportation.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: Returns true if teleportation is recommended, false otherwise.</li>
+<li><strong>Side effects</strong>: None</li>
+<li><strong>Relationships</strong>: This function likely uses other Borg functions to assess the current game state and determine if teleportation is necessary.</li>
+<li><strong>Game mechanics</strong>: Teleportation is a means for the player to instantly move to a random location on the current dungeon level. This function helps the Borg decide when to use this ability based on the perceived danger and urgency of the situation.</li>
+</ul>
+<h3 id="borg_caution_phase"><code>borg_caution_phase()</code></h3>
+<pre><code class="language-c">extern bool borg_caution_phase(int emergency, int turns);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Helps determine if using the &quot;Phase Door&quot; ability seems like a good idea given the current situation.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>emergency</code>: An integer value representing the urgency of the situation. Higher values may indicate a greater need for phasing.</li>
+<li><code>turns</code>: The number of game turns to consider when evaluating the need for phasing.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: Returns true if phasing is recommended, false otherwise.</li>
+<li><strong>Side effects</strong>: None</li>
+<li><strong>Relationships</strong>: This function likely uses other Borg functions to assess the current game state and determine if phasing is necessary.</li>
+<li><strong>Game mechanics</strong>: Phase Door is an ability that allows the player to pass through solid walls and obstacles. This function helps the Borg decide when to use this ability based on the perceived danger and urgency of the situation.</li>
+</ul>
+<h3 id="borg_shadow_shift-borg_dimension_door-borg_allow_teleport"><code>borg_shadow_shift()</code>, <code>borg_dimension_door()</code>, <code>borg_allow_teleport()</code></h3>
+<pre><code class="language-c">extern bool borg_shadow_shift(int allow_fail);
+extern bool borg_dimension_door(int allow_fail);
+extern bool borg_allow_teleport(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: These functions are related to special teleportation abilities available to the player.<ul>
+<li><code>borg_shadow_shift()</code>: Likely handles the &quot;Shadow Shifting&quot; ability, which teleports the player to a nearby location.</li>
+<li><code>borg_dimension_door()</code>: Likely handles the &quot;Dimension Door&quot; ability, which teleports the player to a specific location.</li>
+<li><code>borg_allow_teleport()</code>: Determines if teleportation is allowed in the current situation.</li>
+</ul>
+</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>allow_fail</code>: An integer value indicating whether the ability should be attempted even if it may fail. Non-zero values likely allow for failure.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: Returns true if the ability was successfully used or is allowed, false otherwise.</li>
+<li><strong>Side effects</strong>: If successful, the player will be teleported according to the specific ability.</li>
+<li><strong>Relationships</strong>: These functions are related to the Borg&#39;s decision-making process for using special teleportation abilities.</li>
+<li><strong>Game mechanics</strong>: Shadow Shifting, Dimension Door, and other teleportation abilities provide the player with additional movement options. These functions help the Borg determine when and how to use these abilities effectively.</li>
+</ul>
+<h3 id="borg_surrounded"><code>borg_surrounded()</code></h3>
+<pre><code class="language-c">extern bool borg_surrounded(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Evaluates the likelihood of the Borg being surrounded by enemies or obstacles.</li>
+<li><strong>Parameters</strong>: None</li>
+<li><strong>Return value</strong>: Returns true if the Borg is likely to be surrounded, false otherwise.</li>
+<li><strong>Side effects</strong>: None</li>
+<li><strong>Relationships</strong>: This function is probably used by other Borg functions to assess the current situation and make decisions accordingly.</li>
+<li><strong>Game mechanics</strong>: Being surrounded can be a dangerous situation in Angband, as it limits the player&#39;s movement and escape options. This function allows the Borg to recognize when it is surrounded and take appropriate actions.</li>
+</ul>
+<h3 id="borg_escape"><code>borg_escape()</code></h3>
+<pre><code class="language-c">extern bool borg_escape(int b_q);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Attempts to make the Borg escape from a dangerous situation.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>b_q</code>: An integer value representing the level of danger or the escape strategy to use.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: Returns true if the escape attempt was successful, false otherwise.</li>
+<li><strong>Side effects</strong>: If successful, the Borg may use various abilities or strategies to escape, such as teleportation or phasing.</li>
+<li><strong>Relationships</strong>: This function likely uses other Borg functions to assess the situation and determine the best escape strategy.</li>
+<li><strong>Game mechanics</strong>: Escaping from dangerous situations is crucial for survival in Angband. This function encapsulates the Borg&#39;s escape mechanics and decision-making process.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>This header file does not contain any complex algorithms. The actual implementations of the escape and teleportation mechanics are likely found in the corresponding source files.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>This header file depends on the <code>angband.h</code> header file, which is included before the <code>ALLOW_BORG</code> preprocessor directive.</li>
+<li>Other source files that implement the Borg&#39;s AI and decision-making processes likely depend on this header file.</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>The code in this header file contains copyright notices dating back to 1997, indicating that it has been part of the Angband codebase for a considerable time. The original authors listed are Ben Harrison, James E. Wilson, and Robert A. Koeneke, with additional contributions from Andi Sidwell, Chris Carr, Ed Graham, and Erik Osheim in 2007-2009.</p>
+<p>The Borg AI player is a unique feature of Angband that has been developed and refined over the years to provide an automated gameplay experience. The escape and teleportation mechanics implemented in this file are essential for the Borg&#39;s ability to navigate the dungeon and survive dangerous encounters.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

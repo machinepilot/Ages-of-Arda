@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angband Game Context | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Angband Game Context</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-13</div>
+        </header>
+        
+        <main>
+            <h1 id="angband-game-context">Angband Game Context</h1>
+<h2 id="game-overview">Game Overview</h2>
+<p>Angband is a roguelike dungeon exploration game where the player controls a character who delves into a deep dungeon to eventually confront Morgoth, the Lord of Darkness. The game features:</p>
+<ul>
+<li>Turn-based gameplay</li>
+<li>Procedurally generated levels</li>
+<li>Permadeath (when your character dies, the game is over)</li>
+<li>Complex character development</li>
+<li>Hundreds of monster types and items</li>
+</ul>
+<h2 id="core-game-mechanics">Core Game Mechanics</h2>
+<h3 id="character-system">Character System</h3>
+<ul>
+<li>Multiple races (Human, Elf, Dwarf, Hobbit, etc.)</li>
+<li>Multiple classes (Warrior, Mage, Priest, Rogue, etc.)</li>
+<li>Character attributes (Strength, Intelligence, Wisdom, Dexterity, Constitution, Charisma)</li>
+<li>Experience levels and skill progression</li>
+<li>Complex inventory management</li>
+</ul>
+<h3 id="dungeon-generation">Dungeon Generation</h3>
+<ul>
+<li>Multiple dungeon levels of increasing difficulty</li>
+<li>Various room types and vault structures</li>
+<li>Special levels and themed areas</li>
+<li>Terrain features (doors, traps, stairs, etc.)</li>
+<li>Line-of-sight and field-of-view calculations</li>
+</ul>
+<h3 id="combat-system">Combat System</h3>
+<ul>
+<li>Melee, ranged, and magical combat</li>
+<li>To-hit calculations based on character skills and monster attributes</li>
+<li>Damage calculations with various modifiers</li>
+<li>Critical hits and special attacks</li>
+<li>Resistances and vulnerabilities</li>
+</ul>
+<h3 id="magic-system">Magic System</h3>
+<ul>
+<li>Spell books and scrolls</li>
+<li>Mana points for casting</li>
+<li>Various spell effects (damage, healing, teleportation, etc.)</li>
+<li>Magical items and artifacts</li>
+<li>Wands, staves, and rods with charges</li>
+</ul>
+<h3 id="monster-ai">Monster AI</h3>
+<ul>
+<li>Movement patterns</li>
+<li>Attack strategies</li>
+<li>Special abilities</li>
+<li>Group behavior</li>
+<li>Monster memory (player learns about monsters through encounters)</li>
+</ul>
+<h3 id="item-system">Item System</h3>
+<ul>
+<li>Weapons, armor, and accessories</li>
+<li>Magical properties and enchantments</li>
+<li>Identification mechanics</li>
+<li>Cursed items</li>
+<li>Artifacts (unique items with special properties)</li>
+</ul>
+<h2 id="game-progression">Game Progression</h2>
+<ul>
+<li>Character starts at dungeon level 1</li>
+<li>Deeper levels contain stronger monsters and better treasures</li>
+<li>Character gains experience and equipment</li>
+<li>Ultimate goal is to defeat Morgoth at the bottom level (typically level 100)</li>
+</ul>
+<h2 id="user-interface">User Interface</h2>
+<ul>
+<li>ASCII or tile-based display</li>
+<li>Command system for actions</li>
+<li>Message log for game events</li>
+<li>Status displays for character information</li>
+<li>Inventory management screens</li>
+<li>Various game options and configurations</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ages of Arda - Startup Implementation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Ages of Arda - Startup Implementation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <p>original location: C:\working_directory\ages-project\clean-ages-of-arda\STARTUP-IMPLEMENTATION.md</p>
+<h1 id="ages-of-arda---startup-implementation">Ages of Arda - Startup Implementation</h1>
+<p>This document summarizes the implementation of the startup procedure for the Ages of Arda game, including the MCP server integration and dynamic window configuration.</p>
+<h2 id="components-created">Components Created</h2>
+<ol>
+<li><p><strong>SDL2 Configuration Generator</strong></p>
+<ul>
+<li><code>src/sdl2-config-generator.c</code>: Implements a function to generate an optimized SDL2 configuration file based on the user&#39;s screen resolution.</li>
+<li><code>src/sdl2-config-generator.h</code>: Header file for the configuration generator.</li>
+<li><code>src/tests/test-sdl2-config-generator.c</code>: Unit tests for the configuration generator.</li>
+</ul>
+</li>
+<li><p><strong>Startup Scripts</strong></p>
+<ul>
+<li><code>start-ages-of-arda.bat</code>: Windows batch script to start both the MCP server and the game.</li>
+<li><code>start-ages-of-arda.sh</code>: Unix/Linux shell script to start both the MCP server and the game.</li>
+</ul>
+</li>
+<li><p><strong>Configuration Files</strong></p>
+<ul>
+<li><code>lib/customize/mcp_config_default.ini</code>: Default configuration file with settings for the MCP server and game preferences.</li>
+</ul>
+</li>
+<li><p><strong>Documentation</strong></p>
+<ul>
+<li><code>README-STARTUP.md</code>: User guide explaining how to use the startup scripts and configure the game.</li>
+<li><code>STARTUP-IMPLEMENTATION.md</code>: This document, summarizing the implementation details.</li>
+</ul>
+</li>
+</ol>
+<h2 id="implementation-details">Implementation Details</h2>
+<h3 id="sdl2-configuration-generator">SDL2 Configuration Generator</h3>
+<p>The SDL2 configuration generator (<code>src/sdl2-config-generator.c</code>) performs the following tasks:</p>
+<ol>
+<li>Detects the user&#39;s screen resolution using SDL2&#39;s display query functions.</li>
+<li>Calculates optimal window dimensions and positions based on the screen size.</li>
+<li>Generates a configuration file (<code>lib/user/sdl2init.txt</code>) with settings for:<ul>
+<li>Main window dimensions and position</li>
+<li>Seven subwindows with appropriate sizes and positions</li>
+<li>Font settings for each window</li>
+<li>Graphics and menu settings</li>
+</ul>
+</li>
+</ol>
+<p>The generator is designed to be called when the game starts if no configuration file exists, ensuring that new users get an optimal layout without manual configuration.</p>
+<h3 id="startup-scripts">Startup Scripts</h3>
+<p>The startup scripts (<code>start-ages-of-arda.bat</code> and <code>start-ages-of-arda.sh</code>) handle:</p>
+<ol>
+<li><p><strong>Configuration Management</strong>:</p>
+<ul>
+<li>Check for the existence of the configuration file (<code>mcp_config.ini</code>).</li>
+<li>Create a default configuration if none exists.</li>
+<li>Read settings from the configuration file.</li>
+</ul>
+</li>
+<li><p><strong>MCP Server Management</strong>:</p>
+<ul>
+<li>Check if the MCP server is enabled and set to autostart.</li>
+<li>Verify Node.js installation.</li>
+<li>Start the MCP server in the background.</li>
+<li>Create a <code>.env</code> file for the MCP server if needed.</li>
+</ul>
+</li>
+<li><p><strong>Game Startup</strong>:</p>
+<ul>
+<li>Configure command line arguments based on user preferences.</li>
+<li>Start the Angband game with appropriate settings.</li>
+</ul>
+</li>
+<li><p><strong>Error Handling</strong>:</p>
+<ul>
+<li>Provide informative error messages if components are missing.</li>
+<li>Fall back to defaults when necessary.</li>
+</ul>
+</li>
+</ol>
+<h3 id="integration-with-main-sdl2c">Integration with Main-SDL2.c</h3>
+<p>The SDL2 configuration generator is integrated with the main game initialization in <code>src/main-sdl2.c</code>:</p>
+<ol>
+<li>The <code>sdl2-config-generator.h</code> header is included.</li>
+<li>The <code>init_globals</code> function is modified to check for the existence of the configuration file.</li>
+<li>If no configuration file exists, <code>generate_sdl2_config()</code> is called to create one.</li>
+</ol>
+<p>This ensures that the configuration file is generated automatically when needed, without requiring user intervention.</p>
+<h2 id="testing">Testing</h2>
+<p>The implementation includes unit tests for the SDL2 configuration generator:</p>
+<ol>
+<li><code>test_sdl2_config_generator</code>: Tests that the generator creates a valid configuration file with all required elements.</li>
+<li><code>test_sdl2_config_dimensions</code>: Tests that the generated window dimensions are reasonable and consistent.</li>
+</ol>
+<h2 id="future-improvements">Future Improvements</h2>
+<p>Potential future improvements to the startup procedure include:</p>
+<ol>
+<li><strong>Configuration GUI</strong>: A graphical interface for editing the configuration file.</li>
+<li><strong>Multi-Monitor Support</strong>: Enhanced support for multi-monitor setups, allowing windows to span across monitors.</li>
+<li><strong>Profile System</strong>: Support for multiple configuration profiles for different users or play styles.</li>
+<li><strong>Auto-Update</strong>: Integration with an update system to keep the game and MCP server up to date.</li>
+<li><strong>Telemetry</strong>: Optional anonymous usage data collection to improve the user experience.</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>The implemented startup procedure provides a seamless experience for users, automatically configuring the game based on their system and preferences. The integration of the MCP server enhances the game with AI-driven narrative capabilities, while the dynamic window configuration ensures optimal use of screen space on any display. </p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

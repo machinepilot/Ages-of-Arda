@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Untitled</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <hr>
+<h2 id="title-lore-management-guidelines-glob-loreworlddatalore-priority-600-related-angband-variantmdc-aiai-gameplaymdc">title: Lore Management Guidelines
+glob: &quot;<strong>/lore/</strong>,<strong>/world/</strong>,<strong>/data/lore/</strong>&quot;
+priority: 600
+related: [&quot;angband-variant.mdc&quot;, &quot;../ai/ai-gameplay.mdc&quot;]</h2>
+<h1 id="lore-management-guidelines">Lore Management Guidelines</h1>
+<p>This document outlines the principles and practices for managing lore and world-building in the Ages of Arda.</p>
+<h2 id="core-principles">Core Principles</h2>
+<ol>
+<li><p><strong>Canon Accuracy</strong></p>
+<ul>
+<li>All lore should be consistent with Tolkien&#39;s works</li>
+<li>Primary sources take precedence over secondary sources</li>
+<li>When conflicts exist, The Silmarillion is authoritative</li>
+<li>Fill gaps with consistent extrapolation, not invention</li>
+</ul>
+</li>
+<li><p><strong>Depth and Layering</strong></p>
+<ul>
+<li>Surface level: Immediately accessible lore</li>
+<li>Mid-level: Discoverable through exploration</li>
+<li>Deep level: Rare and significant discoveries</li>
+<li>Hidden level: Easter eggs and scholarly connections</li>
+</ul>
+</li>
+<li><p><strong>Discovery Mechanisms</strong></p>
+<ul>
+<li>Books and scrolls found in-game</li>
+<li>NPC dialogue and storytelling</li>
+<li>Environmental storytelling</li>
+<li>Dreams and visions</li>
+<li>Archaeological discoveries</li>
+</ul>
+</li>
+</ol>
+<h2 id="implementation-structure">Implementation Structure</h2>
+<pre><code class="language-c">/**
+ * Lore fragment structure
+ */
+typedef struct lore_fragment_s {
+    uint32_t id;                /* Unique identifier */
+    char *title;                /* Title of the fragment */
+    char *content;              /* Content text */
+    lore_category_t category;   /* Category (history, person, place, etc.) */
+    lore_era_t era;             /* Time period */
+    uint32_t depth;             /* Discovery depth (1-4) */
+    char *source;               /* Tolkien source reference */
+    bool is_canon;              /* Whether directly from canon */
+    char **keywords;            /* Search keywords */
+    uint32_t keyword_count;     /* Number of keywords */
+} lore_fragment_t;
+</code></pre>
+<h2 id="naming-conventions">Naming Conventions</h2>
+<ul>
+<li><strong>Persons</strong>: Follow Tolkien&#39;s spelling and naming conventions</li>
+<li><strong>Places</strong>: Use canonical names with consistent formatting</li>
+<li><strong>Artifacts</strong>: Include original name and common name</li>
+<li><strong>Events</strong>: Include year and age references where appropriate</li>
+</ul>
+<h2 id="ai-integration">AI Integration</h2>
+<pre><code class="language-c">/**
+ * Generate contextual lore based on player&#39;s situation
+ */
+char *
+generate_contextual_lore(game_state_t *state, const char *location_name)
+{
+    lore_context_t context;
+    char *lore_text = NULL;
+    
+    /* Build lore context */
+    context.location = location_name;
+    context.player_race = state-&gt;player-&gt;race;
+    context.player_knowledge = get_player_knowledge(state);
+    context.current_age = state-&gt;world-&gt;current_age;
+    
+    /* First try to find canonical lore */
+    lore_text = find_canonical_lore(&amp;context);
+    
+    /* If no canonical lore, generate with AI */
+    if (lore_text == NULL) {
+        lore_text = ai_generate_lore(&amp;context);
+        tag_as_generated(lore_text);
+    }
+    
+    return lore_text;
+}
+</code></pre>
+<h2 id="quality-control">Quality Control</h2>
+<ul>
+<li>All AI-generated lore must be reviewed for accuracy</li>
+<li>Maintain clear separation between canon and interpolation</li>
+<li>Document sources for all canonical lore</li>
+<li>Implement version control for lore entries</li>
+</ul>
+<h2 id="first-age-timeline">First Age Timeline</h2>
+<p>Maintain a precise timeline of events with:</p>
+<ul>
+<li>Year in Valian Years and Years of the Sun</li>
+<li>Major characters involved</li>
+<li>Locations</li>
+<li>Consequences and significance</li>
+<li>Canonical source</li>
+</ul>
+<h2 id="cultural-development">Cultural Development</h2>
+<p>Track the development of cultures through:</p>
+<ul>
+<li>Language evolution</li>
+<li>Art and craftsmanship changes</li>
+<li>Political structures</li>
+<li>Technological innovations</li>
+<li>Migrations and settlements</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

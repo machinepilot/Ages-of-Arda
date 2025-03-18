@@ -1,8 +1,10 @@
 ---
-description: 
-globs: 
-alwaysApply: false
+title: "Untitled Rule"
+glob: "**/*"
+priority: 500
+related: []
 ---
+
 ---
 title: C Code Style Guidelines
 glob: "**/*.c,**/*.h"
@@ -67,4 +69,4 @@ calc_melee_damage(entity_t *attacker, entity_t *defender, object_t *weapon)
 ## Error Handling
 - Return error codes for recoverable errors
 - Use assert() for programming errors
-- Log all errors with appropriate context 
+- Log all errors with appropriate context  

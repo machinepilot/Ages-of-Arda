@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borg Inventory Header File Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Borg Inventory Header File Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="borg-inventory-header-file-documentation">Borg Inventory Header File Documentation</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-inventory.h</code> is a header file in the Angband roguelike game&#39;s codebase, specifically within the &quot;borg&quot; module. The borg is an AI player that can autonomously play the game. This file contains declarations and definitions related to managing the borg&#39;s inventory and equipment.</p>
+<p>The header includes functions for parsing the player&#39;s inventory and equipment screens, determining item values and usability, and making decisions about item usage and management. It also defines some key data structures and constants used in the borg&#39;s inventory logic.</p>
+<h2 id="data-structures">Data Structures</h2>
+<p>This header does not directly define any structs or typedefs. However, it does rely on the <code>borg_item</code> struct which is defined in <code>borg-item.h</code>.</p>
+<h2 id="global-variables">Global Variables</h2>
+<ul>
+<li><code>borg_do_crush_junk</code>: A boolean variable that tracks whether the borg needs to crush (destroy) junk items to free up inventory space.</li>
+</ul>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_wield_slot"><code>borg_wield_slot</code></h3>
+<pre><code class="language-c">extern int borg_wield_slot(const borg_item *item);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Determine which equipment slot an item could be wielded into.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>item</code>: A pointer to a <code>borg_item</code> struct representing the item to check.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: An integer representing the equipment slot the item can be wielded into, or -1 if it cannot be wielded.</li>
+<li><strong>Side effects</strong>: None.</li>
+<li><strong>Relationships</strong>: Uses the <code>borg_item</code> struct defined in <code>borg-item.h</code>.</li>
+<li><strong>Game mechanics</strong>: Implements the logic for determining if an item is wieldable and in which slot based on its type and the game&#39;s equipment rules.</li>
+</ul>
+<h3 id="borg_slot"><code>borg_slot</code></h3>
+<pre><code class="language-c">extern int borg_slot(int tval, int sval);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Find an item in the borg&#39;s inventory with a given tval (type value) and sval (subtype value).</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>tval</code>: The desired item&#39;s tval.</li>
+<li><code>sval</code>: The desired item&#39;s sval.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: The inventory slot of the first item found matching the given tval and sval, or -1 if no such item is found.</li>
+<li><strong>Side effects</strong>: None.</li>
+<li><strong>Relationships</strong>: None.</li>
+<li><strong>Game mechanics</strong>: Provides a way to search the borg&#39;s inventory for specific item types.</li>
+</ul>
+<h3 id="borg_cheat_equip-and-borg_cheat_inven"><code>borg_cheat_equip</code> and <code>borg_cheat_inven</code></h3>
+<pre><code class="language-c">extern void borg_cheat_equip(void);
+extern void borg_cheat_inven(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Parse the player&#39;s equipment and inventory screens to update the borg&#39;s knowledge of its gear.</li>
+<li><strong>Parameters</strong>: None.</li>
+<li><strong>Return value</strong>: None.</li>
+<li><strong>Side effects</strong>: Updates the borg&#39;s internal representation of its equipment and inventory.</li>
+<li><strong>Relationships</strong>: These functions are called as part of the borg&#39;s game state update process.</li>
+<li><strong>Game mechanics</strong>: Allows the borg to &quot;cheat&quot; by reading the player&#39;s actual inventory and equipment information from the game&#39;s interface.</li>
+</ul>
+<h3 id="borg_first_empty_inventory_slot"><code>borg_first_empty_inventory_slot</code></h3>
+<pre><code class="language-c">extern int borg_first_empty_inventory_slot(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Find the first empty slot in the borg&#39;s inventory.</li>
+<li><strong>Parameters</strong>: None.</li>
+<li><strong>Return value</strong>: The index of the first empty inventory slot, or -1 if the inventory is full.</li>
+<li><strong>Side effects</strong>: None.</li>
+<li><strong>Relationships</strong>: Used by the borg when deciding whether to pick up new items.</li>
+<li><strong>Game mechanics</strong>: Helps manage the borg&#39;s inventory by finding available space.</li>
+</ul>
+<h3 id="borg_item_worth_id"><code>borg_item_worth_id</code></h3>
+<pre><code class="language-c">extern bool borg_item_worth_id(const borg_item *item);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Determine if an item is likely to be worthless and not worth identifying.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>item</code>: A pointer to a <code>borg_item</code> struct representing the item to evaluate.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: True if the item is likely worthless, false if it may be worth identifying.</li>
+<li><strong>Side effects</strong>: None.</li>
+<li><strong>Relationships</strong>: Uses the <code>borg_item</code> struct defined in <code>borg-item.h</code>.</li>
+<li><strong>Game mechanics</strong>: Implements heuristics for judging item value based on the borg&#39;s knowledge and game mechanics, to avoid wasting resources identifying junk items.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>This header does not implement any complex algorithms directly. The decision-making logic for inventory management is likely spread across other files in the borg module.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li><code>angband.h</code>: The main Angband header file, included before this header.</li>
+<li><code>borg-item.h</code>: Defines the <code>borg_item</code> struct used in this header.</li>
+</ul>
+<p>This header is likely included by several other files in the borg module that implement inventory-related logic.</p>
+<h2 id="historical-context">Historical Context</h2>
+<p>The comments at the top of the file indicate that this code is part of a long-running open-source project with contributions dating back to 1997. The borg module itself seems to have been developed starting around 2007.</p>
+<p>The borg AI player is a distinctive feature of Angband compared to other roguelikes. Its development over the years has involved fine-tuning the AI to handle the game&#39;s complex item and resource management challenges.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

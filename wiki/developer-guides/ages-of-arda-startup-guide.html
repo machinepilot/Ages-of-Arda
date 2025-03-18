@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ages of Arda - Startup Guide | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Ages of Arda - Startup Guide</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <p>original location: C:\working_directory\ages-project\clean-ages-of-arda\README-STARTUP.md</p>
+<h1 id="ages-of-arda---startup-guide">Ages of Arda - Startup Guide</h1>
+<p>This document explains how to start the Ages of Arda game with the integrated MCP (Model Context Protocol) server for enhanced AI-driven narrative experiences.</p>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="windows">Windows</h3>
+<ol>
+<li>Double-click <code>start-ages-of-arda.bat</code> to launch both the MCP server and the game.</li>
+</ol>
+<h3 id="linuxunix">Linux/Unix</h3>
+<ol>
+<li>Make the startup script executable: <code>chmod +x start-ages-of-arda.sh</code></li>
+<li>Run the script: <code>./start-ages-of-arda.sh</code></li>
+</ol>
+<h2 id="configuration">Configuration</h2>
+<p>The startup scripts use a configuration file (<code>mcp_config.ini</code>) to control various aspects of the game and MCP server. If this file doesn&#39;t exist, a default one will be created automatically.</p>
+<h3 id="mcp-server-configuration">MCP Server Configuration</h3>
+<p>The <code>[MCP_SERVER]</code> section in the configuration file controls the MCP server:</p>
+<ul>
+<li><code>enabled</code>: Set to <code>true</code> to enable MCP server integration, <code>false</code> to disable it.</li>
+<li><code>autostart</code>: When <code>true</code>, the MCP server will start automatically with the game.</li>
+<li><code>server_path</code>: Path to the MCP server directory (relative to the game root).</li>
+<li><code>port</code>: Port for the MCP server to listen on (default: 3000).</li>
+<li><code>timeout</code>: Timeout in seconds for MCP server operations.</li>
+<li><code>retry_attempts</code>: Number of retry attempts for MCP server operations.</li>
+</ul>
+<h3 id="window-preferences">Window Preferences</h3>
+<p>The <code>[WINDOW_PREFERENCES]</code> section controls the game&#39;s display settings:</p>
+<ul>
+<li><code>use_graphics</code>: Set to <code>true</code> to enable graphical tiles, <code>false</code> for ASCII mode.</li>
+<li><code>graphics_mode</code>: Graphics mode to use (0-4, where 3 is recommended).</li>
+<li><code>main_font_size</code>: Font size for the main window.</li>
+<li><code>subwindow_font_size</code>: Font size for subwindows.</li>
+<li><code>show_borders</code>: Enable or disable window borders.</li>
+<li><code>inactive_alpha</code>: Alpha transparency for inactive windows (0-255).</li>
+</ul>
+<h3 id="gameplay-settings">Gameplay Settings</h3>
+<p>The <code>[GAMEPLAY]</code> section controls various gameplay options:</p>
+<ul>
+<li><code>show_flavors</code>: Show object flavors in inventory.</li>
+<li><code>pickup_always</code>: Automatically pick up items.</li>
+<li><code>confirm_close</code>: Confirm when closing windows with unsaved changes.</li>
+<li><code>use_sound</code>: Enable sound effects.</li>
+<li><code>sound_volume</code>: Volume level (0-100).</li>
+</ul>
+<h3 id="advanced-settings">Advanced Settings</h3>
+<p>The <code>[ADVANCED]</code> section contains advanced configuration options:</p>
+<ul>
+<li><code>debug_mode</code>: Enable debug mode.</li>
+<li><code>enable_logging</code>: Enable logging.</li>
+<li><code>log_level</code>: Log level (1-5, where 1 is critical and 5 is debug).</li>
+<li><code>autosave_freq</code>: Autosave frequency in turns.</li>
+<li><code>max_save_files</code>: Maximum number of save files to keep.</li>
+</ul>
+<h2 id="dynamic-window-configuration">Dynamic Window Configuration</h2>
+<p>The game will automatically generate an optimized window configuration based on your screen resolution. This configuration is stored in <code>lib/user/sdl2init.txt</code> and includes:</p>
+<ul>
+<li>Main window dimensions and position</li>
+<li>Subwindow layouts optimized for your screen</li>
+<li>Font settings for each window</li>
+<li>Graphics settings</li>
+</ul>
+<p>If you want to customize the window layout further, you can edit this file manually after it&#39;s been generated.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="mcp-server-issues">MCP Server Issues</h3>
+<p>If the MCP server fails to start:</p>
+<ol>
+<li>Ensure Node.js is installed and in your PATH.</li>
+<li>Check that the server path in the configuration file is correct.</li>
+<li>Verify that port 3000 (or your configured port) is not in use by another application.</li>
+<li>Check the server logs in the MCP server directory.</li>
+</ol>
+<h3 id="display-issues">Display Issues</h3>
+<p>If the game windows don&#39;t appear correctly:</p>
+<ol>
+<li>Delete the <code>lib/user/sdl2init.txt</code> file to regenerate the window configuration.</li>
+<li>Try different graphics modes in the configuration file.</li>
+<li>Adjust font sizes if text appears too large or small.</li>
+</ol>
+<h2 id="advanced-usage">Advanced Usage</h2>
+<h3 id="command-line-arguments">Command Line Arguments</h3>
+<p>The startup scripts pass command line arguments to the game based on your configuration:</p>
+<ul>
+<li>Graphics mode: <code>-mgcu:X</code> where X is the graphics mode number</li>
+<li>Debug mode: <code>-d</code> enables debug features</li>
+</ul>
+<p>You can modify the startup scripts to add additional command line arguments if needed.</p>
+<h3 id="custom-mcp-server">Custom MCP Server</h3>
+<p>If you want to use a custom MCP server:</p>
+<ol>
+<li>Set <code>autostart=false</code> in the configuration file.</li>
+<li>Start your custom MCP server manually.</li>
+<li>Update the <code>port</code> setting to match your custom server&#39;s port.</li>
+</ol>
+<h2 id="contact-and-support">Contact and Support</h2>
+<p>For issues or questions about the startup process, please file an issue on the project&#39;s GitHub repository or contact the development team. </p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

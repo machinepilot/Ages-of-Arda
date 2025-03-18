@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angband Documentation Agent - Quick Start Guide | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="gameplay-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Angband Documentation Agent - Quick Start Guide</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <p>Original Location: C:\working_directory\ages-project\clean-ages-of-arda\angband-doc-agent\QUICK_START.md</p>
+<h1 id="angband-documentation-agent---quick-start-guide">Angband Documentation Agent - Quick Start Guide</h1>
+<p>This guide will help you quickly set up and start using the Angband Documentation Agent to generate documentation for the Angband codebase.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before you begin, make sure you have:</p>
+<ul>
+<li>Python 3.8 or higher installed</li>
+<li>Node.js 14 or higher installed</li>
+<li>Angband source code downloaded to your computer</li>
+</ul>
+<h2 id="setup-steps">Setup Steps</h2>
+<ol>
+<li><p><strong>Clone the Repository</strong></p>
+<pre><code>git clone https://github.com/yourusername/angband-doc-agent.git
+cd angband-doc-agent
+</code></pre>
+</li>
+<li><p><strong>Set Up Environment Variables</strong></p>
+<p>Copy the sample environment file and edit it:</p>
+<pre><code>copy .env.sample .env
+</code></pre>
+<p>Open the <code>.env</code> file in a text editor and update the <code>ANGBAND_SOURCE_PATH</code> to point to your Angband source code.</p>
+</li>
+<li><p><strong>Install Dependencies</strong></p>
+<p>The batch files will automatically check for and install required dependencies, but you can also install them manually:</p>
+<pre><code>pip install requests
+npm install express cors
+</code></pre>
+</li>
+</ol>
+<h2 id="generating-documentation">Generating Documentation</h2>
+<h3 id="option-1-using-the-batch-file-recommended">Option 1: Using the Batch File (Recommended)</h3>
+<ol>
+<li><p>Run the documentation generation batch file:</p>
+<pre><code>cd src
+generate-docs.bat
+</code></pre>
+<p>This will:</p>
+<ul>
+<li>Check for required dependencies</li>
+<li>Start the MCP server if it&#39;s not already running</li>
+<li>Generate documentation</li>
+<li>Output the results to the <code>docs</code> directory</li>
+</ul>
+</li>
+<li><p>View the generated documentation by opening <code>docs/index.md</code> in your preferred Markdown viewer.</p>
+</li>
+</ol>
+<h3 id="option-2-manual-steps">Option 2: Manual Steps</h3>
+<ol>
+<li><p>Start the MCP server:</p>
+<pre><code>cd src
+node simple-mcp-server.js
+</code></pre>
+<p>Keep this terminal window open.</p>
+</li>
+<li><p>In a new terminal, run the documentation generator:</p>
+<pre><code>cd src
+python document-angband.py
+</code></pre>
+</li>
+</ol>
+<h2 id="customizing-documentation-generation">Customizing Documentation Generation</h2>
+<p>You can customize the documentation generation by editing the <code>document-angband.py</code> file or by passing command-line arguments:</p>
+<pre><code>python document-angband.py --windows-only --output custom-docs
+</code></pre>
+<p>Common options include:</p>
+<ul>
+<li><code>--windows-only</code>: Only document Windows-specific files</li>
+<li><code>--output DIR</code>: Specify a custom output directory</li>
+<li><code>--force</code>: Force regeneration of all documentation</li>
+<li><code>--verbose</code>: Show detailed output during generation</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="mcp-server-issues">MCP Server Issues</h3>
+<p>If you see errors connecting to the MCP server:</p>
+<ol>
+<li>Check that the server is running (you should see &quot;MCP Server running on port 3000&quot; in the terminal)</li>
+<li>Verify that port 3000 is not being used by another application</li>
+<li>Check that the <code>MCP_SERVER_URL</code> in your <code>.env</code> file is correct</li>
+</ol>
+<h3 id="file-access-issues">File Access Issues</h3>
+<p>If the documentation generator can&#39;t access the Angband source code:</p>
+<ol>
+<li>Verify that the path in <code>ANGBAND_SOURCE_PATH</code> in your <code>.env</code> file is correct</li>
+<li>Make sure the path doesn&#39;t contain special characters or spaces</li>
+<li>Ensure you have read permissions for the Angband source directory</li>
+</ol>
+<h3 id="python-or-nodejs-issues">Python or Node.js Issues</h3>
+<p>If you see errors related to Python or Node.js:</p>
+<ol>
+<li>Verify that both are installed and in your PATH</li>
+<li>Check that you have the required versions (Python 3.8+, Node.js 14+)</li>
+<li>Try reinstalling the dependencies manually</li>
+</ol>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

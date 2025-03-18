@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>borg-cave.h Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>borg-cave.h Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="borg-caveh-documentation">borg-cave.h Documentation</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-cave.h</code> is a header file in the Angband codebase that defines data structures and functions related to the Borg AI&#39;s representation of the game dungeon. The Borg AI is an automated player that navigates the dungeon and makes decisions based on its internal model of the game state.</p>
+<p>This file defines the <code>borg_grid</code> struct, which represents a single grid (tile) in the dungeon, as well as global variables and functions for initializing and freeing the Borg&#39;s dungeon model.</p>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="borg_grid"><code>borg_grid</code></h3>
+<p>The <code>borg_grid</code> struct represents a single grid (tile) in the Borg&#39;s model of the game dungeon. It contains the following fields:</p>
+<ul>
+<li><code>feat</code> (uint8_t): The terrain feature type of the grid. This may be incorrect and is based on the standard &quot;feature&quot; values, with some values never used or used in non-standard ways.</li>
+<li><code>info</code> (uint16_t): Grid flags that store additional information about the grid.</li>
+<li><code>trap</code> (bool): Indicates if the grid contains a trap.</li>
+<li><code>glyph</code> (bool): Indicates if the grid contains a glyph.</li>
+<li><code>web</code> (bool): Indicates if the grid contains a web.</li>
+<li><code>store</code> (uint8_t): Unknown purpose (not documented).</li>
+<li><code>take</code> (uint8_t): An object index into the &quot;object tracking&quot; array.</li>
+<li><code>kill</code> (uint8_t): A monster index into the &quot;monster tracking&quot; array.</li>
+<li><code>xtra</code> (uint8_t): An extra field that tracks how much &quot;searching&quot; has been done in the grid or in any adjacent grid.</li>
+</ul>
+<h2 id="global-variables">Global Variables</h2>
+<ul>
+<li><code>borg_grids</code> (borg_grid**): A 2D array of pointers to <code>borg_grid</code> structs representing the current dungeon map. The dimensions are <code>AUTO_MAX_Y</code> (maximum dungeon height) by <code>AUTO_MAX_X</code> (maximum dungeon width).</li>
+</ul>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_init_cave"><code>borg_init_cave</code></h3>
+<pre><code class="language-c">void borg_init_cave(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Initializes the Borg&#39;s dungeon model by allocating memory for the <code>borg_grids</code> array.</li>
+<li><strong>Parameters</strong>: None</li>
+<li><strong>Return Value</strong>: None</li>
+<li><strong>Side Effects</strong>: Allocates memory for the <code>borg_grids</code> array.</li>
+<li><strong>Relationships</strong>: Should be called before using the Borg AI.</li>
+<li><strong>Game Mechanics</strong>: Initializes the data structures needed for the Borg AI to model and navigate the dungeon.</li>
+</ul>
+<h3 id="borg_free_cave"><code>borg_free_cave</code></h3>
+<pre><code class="language-c">void borg_free_cave(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Frees the memory allocated for the Borg&#39;s dungeon model.</li>
+<li><strong>Parameters</strong>: None</li>
+<li><strong>Return Value</strong>: None</li>
+<li><strong>Side Effects</strong>: Frees the memory allocated for the <code>borg_grids</code> array.</li>
+<li><strong>Relationships</strong>: Should be called when the Borg AI is no longer needed or the game is exiting.</li>
+<li><strong>Game Mechanics</strong>: Cleans up the data structures used by the Borg AI to model the dungeon.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>There are no complex algorithms implemented directly in this header file. However, the data structures defined here are used by the Borg AI to implement pathfinding, dungeon navigation, and decision-making algorithms.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>This file depends on <code>angband.h</code> being included before <code>ALLOW_BORG</code> is defined.</li>
+<li>Other files in the <code>borg</code> directory likely depend on this file for the <code>borg_grid</code> struct and related functions.</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>The Borg AI was developed as an automated player for Angband, originally created by Ben Harrison. The code in this file has been maintained and updated by several contributors over the years, including James E. Wilson, Robert A. Koeneke, Andi Sidwell, Chris Carr, Ed Graham, and Erik Osheim.</p>
+<p>The copyright notice at the top of the file indicates that this code is free software, available under either the GNU General Public License or the &quot;Angband License&quot;, which allows copying and distribution for educational, research, and not-for-profit purposes.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

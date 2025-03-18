@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Untitled</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <hr>
+<h2 id="title-c-code-style-guidelines-glob-ch-priority-800-related-gameangband-variantmdc-gamememory-bankmdc">title: C Code Style Guidelines
+glob: &quot;<strong>/*.c,</strong>/*.h&quot;
+priority: 800
+related: [&quot;../game/angband-variant.mdc&quot;, &quot;../game/memory-bank.mdc&quot;]</h2>
+<h1 id="c-code-style-guidelines-for-angband-variant">C Code Style Guidelines for Angband Variant</h1>
+<h2 id="formatting">Formatting</h2>
+<ul>
+<li>Indentation: 4 spaces (no tabs)</li>
+<li>Max line length: 120 characters</li>
+<li>Braces: K&amp;R style (opening brace on same line)</li>
+<li>Function declarations: return type on separate line</li>
+</ul>
+<h2 id="naming-conventions">Naming Conventions</h2>
+<ul>
+<li>Functions: <code>snake_case</code></li>
+<li>Variables: <code>snake_case</code></li>
+<li>Constants: <code>ALL_CAPS_WITH_UNDERSCORES</code></li>
+<li>Structs/Enums: <code>snake_case_t</code> (with _t suffix)</li>
+<li>Macros: <code>ALL_CAPS_WITH_UNDERSCORES</code></li>
+</ul>
+<h2 id="example-function">Example Function</h2>
+<pre><code class="language-c">/**
+ * Calculate damage for a melee attack
+ * 
+ * @param attacker The attacking entity
+ * @param defender The defending entity
+ * @param weapon The weapon used (NULL for unarmed)
+ * @return int The calculated damage amount
+ */
+int
+calc_melee_damage(entity_t *attacker, entity_t *defender, object_t *weapon)
+{
+    int base_damage = 0;
+    int strength_bonus = 0;
+    
+    /* Base calculations */
+    if (weapon != NULL) {
+        base_damage = randint1(weapon-&gt;damage_dice) + weapon-&gt;damage_bonus;
+    } else {
+        base_damage = randint1(attacker-&gt;unarmed_dice);
+    }
+    
+    /* Apply strength modifier */
+    strength_bonus = (attacker-&gt;strength - 10) / 2;
+    
+    return MAX(1, base_damage + strength_bonus - defender-&gt;armor_class);
+}
+</code></pre>
+<h2 id="comments">Comments</h2>
+<ul>
+<li>Function headers: Document parameters and return values</li>
+<li>Complex logic: Explain with inline comments</li>
+<li>Magic numbers: Always explain or use constants</li>
+</ul>
+<h2 id="memory-management">Memory Management</h2>
+<ul>
+<li>Always free allocated memory</li>
+<li>Check return values from memory allocation</li>
+<li>Use defensive programming techniques</li>
+</ul>
+<h2 id="error-handling">Error Handling</h2>
+<ul>
+<li>Return error codes for recoverable errors</li>
+<li>Use assert() for programming errors</li>
+<li>Log all errors with appropriate context</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

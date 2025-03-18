@@ -1,8 +1,10 @@
 ---
-description: 
-globs: 
-alwaysApply: false
+title: "Untitled Rule"
+glob: "**/*"
+priority: 500
+related: []
 ---
+
 ---
 description: Model Context Protocol (MCP) Integration Guidelines
 globs: ["**/src/mcp/**", "**/angband-doc-agent/**"]
@@ -219,4 +221,4 @@ echo Starting MCP server in background...
 start "MCP Server" cmd /c "cd angband-doc-agent\src && node simple-mcp-server.js"
 echo Starting game...
 angband.exe -n3
-``` 
+```  

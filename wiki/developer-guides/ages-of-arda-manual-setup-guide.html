@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ages of Arda - Manual Setup Guide | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Ages of Arda - Manual Setup Guide</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <p>original location: C:\working_directory\ages-project\clean-ages-of-arda\manual-setup.md</p>
+<h1 id="ages-of-arda---manual-setup-guide">Ages of Arda - Manual Setup Guide</h1>
+<p>This guide provides step-by-step instructions for starting the Ages of Arda game with companion support.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Node.js installed and in your PATH</li>
+<li>Game files properly installed</li>
+</ul>
+<h2 id="starting-the-mcp-server">Starting the MCP Server</h2>
+<p>The MCP (Model Context Protocol) server enables AI features like the companion dialogue.</p>
+<h3 id="option-1-using-the-batch-file-recommended">Option 1: Using the batch file (recommended)</h3>
+<ol>
+<li>Run <code>start-mcp-server.bat</code> from the main game directory</li>
+<li>Leave the command window open while playing</li>
+</ol>
+<h3 id="option-2-manual-startup">Option 2: Manual startup</h3>
+<ol>
+<li>Open a command prompt</li>
+<li>Navigate to the MCP server directory:<pre><code>cd angband-doc-agent\src
+</code></pre>
+</li>
+<li>Start the server:<pre><code>node mcp-server.js
+</code></pre>
+</li>
+<li>Leave this window open while playing</li>
+</ol>
+<h2 id="starting-the-game">Starting the Game</h2>
+<h3 id="option-1-using-the-batch-file-recommended-1">Option 1: Using the batch file (recommended)</h3>
+<ol>
+<li>Run <code>start-game.bat</code> from the main game directory</li>
+</ol>
+<h3 id="option-2-manual-startup-1">Option 2: Manual startup</h3>
+<ol>
+<li>Open a command prompt</li>
+<li>Navigate to the game directory</li>
+<li>Start the game with multiple terminal support:<pre><code>angband.exe -n3
+</code></pre>
+</li>
+</ol>
+<h2 id="configuring-the-companion-window">Configuring the Companion Window</h2>
+<ol>
+<li>In the game, press the <code>=</code> (equals) key to access options</li>
+<li>Press <code>w</code> to access window display options</li>
+<li>Navigate to Term-2 and make sure &quot;Display companion information&quot; is selected</li>
+<li>Press Escape to save settings and exit the options menu</li>
+</ol>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>If &quot;Display companion information&quot; doesn&#39;t appear in the window options:</p>
+<ol>
+<li>Delete your preferences file:<pre><code>%USERPROFILE%\Documents\Angband\user\windows.prf
+</code></pre>
+</li>
+<li>Restart the game</li>
+</ol>
+<p>If the MCP server fails to start:</p>
+<ol>
+<li>Make sure Node.js is installed</li>
+<li>Check that you&#39;re in the correct directory</li>
+<li>Verify that <code>mcp-server.js</code> exists</li>
+</ol>
+<h2 id="manual-play-without-mcp">Manual Play Without MCP</h2>
+<p>If you can&#39;t or don&#39;t want to use the MCP server, the game will still work with templated companion responses instead of AI-generated ones. </p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

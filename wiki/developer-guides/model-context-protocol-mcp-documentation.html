@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Context Protocol (MCP) Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Model Context Protocol (MCP) Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="model-context-protocol-mcp-documentation">Model Context Protocol (MCP) Documentation</h1>
+<h2 id="technical-overview">Technical Overview</h2>
+<p>Model Context Protocol (MCP) is an open standard by Anthropic that standardizes connections between AI models and external tools/data sources. It enables bidirectional communication, allowing models to fetch information and trigger actions in external systems.</p>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li><strong>Universal Connector</strong>: Functions like a &quot;USB-C port&quot; for AI, enabling connections to diverse systems</li>
+<li><strong>Bidirectional Communication</strong>: Supports both data retrieval and action execution</li>
+<li><strong>Dynamic Adaptation</strong>: Allows AI models to adjust responses based on real-time external data</li>
+<li><strong>Standardized Protocol</strong>: Replaces custom integrations with a unified approach</li>
+<li><strong>Context-Awareness</strong>: Enhances AI capabilities by providing access to relevant external information</li>
+</ul>
+<h2 id="implementation">Implementation</h2>
+<h3 id="setting-up-mcp">Setting Up MCP</h3>
+<ol>
+<li><strong>Create MCP Server</strong>: Use tools like <code>@modelcontextprotocol/create-server</code> to initialize a server project</li>
+<li><strong>Define Tool Specifications</strong>: Specify available functions, parameters, and return values</li>
+<li><strong>Implement Tool Logic</strong>: Add code to interact with the target service or data source</li>
+<li><strong>Run and Test</strong>: Start the server and test tool functionality</li>
+<li><strong>Deploy</strong>: Host the server for production use</li>
+</ol>
+<h3 id="sample-implementation-code">Sample Implementation Code</h3>
+<pre><code class="language-javascript">// Basic MCP server setup
+const { createServer } = require(&#39;@modelcontextprotocol/create-server&#39;);
+
+// Define tools
+const tools = [{
+  name: &#39;searchFile&#39;,
+  description: &#39;Search for files matching a query&#39;,
+  parameters: {
+    type: &#39;object&#39;,
+    properties: {
+      query: {
+        type: &#39;string&#39;,
+        description: &#39;Search query&#39;
+      }
+    },
+    required: [&#39;query&#39;]
+  },
+  handler: async ({ query }) =&gt; {
+    // Implementation logic here
+    return { results: [] };
+  }
+}];
+
+// Create and start server
+const server = createServer({ tools });
+server.start();
+</code></pre>
+<h2 id="mcp-servers">MCP Servers</h2>
+<h3 id="popular-mcp-servers">Popular MCP Servers</h3>
+<ul>
+<li><strong>GitHub</strong>: Repository management and code access</li>
+<li><strong>Google Drive</strong>: File storage and retrieval</li>
+<li><strong>PostgreSQL</strong>: Database query and manipulation</li>
+<li><strong>Puppeteer</strong>: Web browsing and interaction</li>
+<li><strong>Slack</strong>: Team communication and notification</li>
+<li><strong>Jira</strong>: Issue tracking and project management</li>
+<li><strong>Flexpa</strong>: Healthcare data (FHIR) access</li>
+<li><strong>Everything Search</strong>: Local file search</li>
+<li><strong>Sardine</strong>: Financial risk assessment</li>
+</ul>
+<h3 id="mcp-server-directories">MCP Server Directories</h3>
+<ul>
+<li><strong>smithery.ai/mcp/servers</strong></li>
+<li><strong>glama.ai/mcp/servers</strong></li>
+<li><strong>cursor.directory</strong></li>
+<li><strong>lmsystems.ai/marketplace</strong></li>
+</ul>
+<h2 id="integration-examples">Integration Examples</h2>
+<h3 id="claude">Claude</h3>
+<pre><code class="language-javascript">// Using Claude with MCP
+const response = await claude.complete({
+  messages: [{ role: &#39;user&#39;, content: &#39;Find files about project X&#39; }],
+  tools: [{ type: &#39;mcp&#39;, server_url: &#39;https://my-mcp-server.example.com&#39; }]
+});
+</code></pre>
+<h3 id="langchain4j">LangChain4j</h3>
+<pre><code class="language-java">// Using LangChain4j with MCP for Google Drive access
+ModelContextProtocolTool tool = ModelContextProtocolTool.builder()
+  .serverUrl(&quot;https://gdrive-mcp-server.example.com&quot;)
+  .build();
+
+ChatLanguageModel model = AnthropicChatModel.builder()
+  .apiKey(System.getenv(&quot;ANTHROPIC_API_KEY&quot;))
+  .tools(List.of(tool))
+  .build();
+</code></pre>
+<h2 id="best-practices">Best Practices</h2>
+<ul>
+<li><strong>Security</strong>: Implement proper authentication and authorization</li>
+<li><strong>Error Handling</strong>: Provide informative error messages</li>
+<li><strong>Documentation</strong>: Clearly document tool capabilities and parameters</li>
+<li><strong>Rate Limiting</strong>: Implement appropriate rate limits to prevent abuse</li>
+<li><strong>Monitoring</strong>: Add logging and monitoring for troubleshooting</li>
+<li><strong>Versioning</strong>: Use semantic versioning for server APIs</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li>Official Documentation: <a href="https://github.com/anthropics/model-context-protocol">MCP GitHub Repository</a></li>
+<li>Community Implementations: See <code>registry_MCPServers.md</code></li>
+<li>Tutorials: 18-minute explainer video by Santiago Valdarrama (@svpino)</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

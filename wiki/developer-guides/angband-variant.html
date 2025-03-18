@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Untitled</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <hr>
+<h2 id="title-angband-variant-development-rules-glob-srccsrchincludeh-priority-750-related-memory-bankmdc-code-stylec-stylemdc-aiai-gameplaymdc">title: Angband Variant Development Rules
+glob: &quot;<strong>/src/</strong>/<em>.c,<strong>/src/</strong>/</em>.h,<strong>/include/</strong>/*.h&quot;
+priority: 750
+related: [&quot;memory-bank.mdc&quot;, &quot;../code-style/c-style.mdc&quot;, &quot;../ai/ai-gameplay.mdc&quot;]</h2>
+<h1 id="angband-variant-development-rules">Angband Variant Development Rules</h1>
+<p>This document outlines the core principles and guidelines for developing the Ages of Arda, an Angband variant focused on Tolkien&#39;s First Age.</p>
+<h2 id="core-game-structure">Core Game Structure</h2>
+<ol>
+<li><p><strong>Engine Components</strong></p>
+<ul>
+<li>Game loop</li>
+<li>Turn management</li>
+<li>Event handling</li>
+<li>Save/load systems</li>
+</ul>
+</li>
+<li><p><strong>World Generation</strong></p>
+<ul>
+<li>Procedural terrain generation</li>
+<li>Dungeon generation algorithms</li>
+<li>Settlement and fortress creation</li>
+<li>Special level design (Angband, Gondolin, etc.)</li>
+</ul>
+</li>
+<li><p><strong>Entity Systems</strong></p>
+<ul>
+<li>Character races (Elves, Men, Dwarves, etc.)</li>
+<li>Monster systems (Dragons, Balrogs, Orcs, etc.)</li>
+<li>NPC behavior and scheduling</li>
+<li>Faction relationships</li>
+</ul>
+</li>
+</ol>
+<h2 id="implementation-best-practices">Implementation Best Practices</h2>
+<h3 id="game-state-management">Game State Management</h3>
+<pre><code class="language-c">/**
+ * Update the game world for a single turn
+ */
+bool
+process_world_turn(game_state_t *state)
+{
+    /* Process player actions first */
+    process_player_turn(state);
+    
+    /* Process monster actions */
+    process_monsters(state);
+    
+    /* Process environment effects */
+    process_environment(state);
+    
+    /* Handle game events */
+    process_game_events(state);
+    
+    /* Update turn counter */
+    state-&gt;turn++;
+    
+    return true;
+}
+</code></pre>
+<h3 id="entity-management">Entity Management</h3>
+<ul>
+<li>Use entity component system where appropriate</li>
+<li>Ensure clean separation between data and behavior</li>
+<li>Implement efficient update loops for entities</li>
+<li>Cache commonly accessed entity properties</li>
+</ul>
+<h3 id="memory-efficiency">Memory Efficiency</h3>
+<ul>
+<li>Use appropriate data structures for different entity types</li>
+<li>Implement object pools for frequently created/destroyed objects</li>
+<li>Consider memory fragmentation in long gameplay sessions</li>
+<li>Profile memory usage regularly</li>
+</ul>
+<h2 id="ai-and-storytelling-integration">AI and Storytelling Integration</h2>
+<p>The Ages of Arda extends Angband with modern AI capabilities:</p>
+<ol>
+<li><p><strong>Dynamic Narrative</strong></p>
+<ul>
+<li>Use AI to generate contextual descriptions</li>
+<li>Create dynamic quests based on player actions</li>
+<li>Adapt story elements to player choices</li>
+</ul>
+</li>
+<li><p><strong>NPC Interactions</strong></p>
+<ul>
+<li>Generate realistic dialogue based on NPC knowledge</li>
+<li>Create personality-driven responses</li>
+<li>Maintain conversation history for NPCs</li>
+</ul>
+</li>
+<li><p><strong>Lore Integration</strong></p>
+<ul>
+<li>Generate lore fragments that match Tolkien&#39;s style</li>
+<li>Create historically accurate references</li>
+<li>Maintain consistency with established canon</li>
+</ul>
+</li>
+</ol>
+<h2 id="game-balance">Game Balance</h2>
+<ul>
+<li>Follow Angband difficulty curve conventions</li>
+<li>Balance all new races and classes against vanilla options</li>
+<li>Maintain challenging but fair progression</li>
+<li>Document all balance changes carefully</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

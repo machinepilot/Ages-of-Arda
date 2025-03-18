@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>borg-danger.h Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>borg-danger.h Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="borg-dangerh-documentation">borg-danger.h Documentation</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-danger.h</code> is a header file in the Angband codebase that contains declarations and definitions related to the Borg AI&#39;s danger assessment system. The Borg AI is an automated player that attempts to make optimal decisions based on the current game state. </p>
+<p>This file defines data structures and functions used by the Borg AI to evaluate the potential danger posed by monsters to the player character at specific grid locations in the dungeon. The danger assessment takes into account various factors such as the monster&#39;s abilities, potential damage output, and special effects.</p>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="borg_monblow-enumeration"><code>BORG_MONBLOW</code> Enumeration</h3>
+<p>The <code>BORG_MONBLOW</code> enumeration defines constants representing different types of monster blows or attacks. Each constant corresponds to a specific effect or damage type inflicted by a monster&#39;s blow. The enumeration includes:</p>
+<ul>
+<li><code>MONBLOW_NONE</code>: No special effect.</li>
+<li><code>MONBLOW_HURT</code>: Physical damage.</li>
+<li><code>MONBLOW_POISON</code>: Poisoning effect.</li>
+<li><code>MONBLOW_DISENCHANT</code>: Disenchantment of the player&#39;s equipment.</li>
+<li><code>MONBLOW_DRAIN_CHARGES</code>: Draining charges from the player&#39;s magical devices.</li>
+<li><code>MONBLOW_EAT_GOLD</code>: Consumption of the player&#39;s gold.</li>
+<li><code>MONBLOW_EAT_ITEM</code>: Consumption of the player&#39;s items.</li>
+<li><code>MONBLOW_EAT_FOOD</code>: Consumption of the player&#39;s food.</li>
+<li><code>MONBLOW_EAT_LIGHT</code>: Consumption of the player&#39;s light source.</li>
+<li><code>MONBLOW_ACID</code>: Acid damage.</li>
+<li><code>MONBLOW_ELEC</code>: Electric damage.</li>
+<li><code>MONBLOW_FIRE</code>: Fire damage.</li>
+<li><code>MONBLOW_COLD</code>: Cold damage.</li>
+<li><code>MONBLOW_BLIND</code>: Blinding effect.</li>
+<li><code>MONBLOW_CONFUSE</code>: Confusion effect.</li>
+<li><code>MONBLOW_TERRIFY</code>: Fear effect.</li>
+<li><code>MONBLOW_PARALYZE</code>: Paralysis effect.</li>
+<li><code>MONBLOW_LOSE_STR</code>: Loss of strength stat.</li>
+<li><code>MONBLOW_LOSE_INT</code>: Loss of intelligence stat.</li>
+<li><code>MONBLOW_LOSE_WIS</code>: Loss of wisdom stat.</li>
+<li><code>MONBLOW_LOSE_DEX</code>: Loss of dexterity stat.</li>
+<li><code>MONBLOW_LOSE_CON</code>: Loss of constitution stat.</li>
+<li><code>MONBLOW_LOSE_ALL</code>: Loss of all stats.</li>
+<li><code>MONBLOW_SHATTER</code>: Shattering of the player&#39;s equipment.</li>
+<li><code>MONBLOW_EXP_10</code>: Experience drain by 10%.</li>
+<li><code>MONBLOW_EXP_20</code>: Experience drain by 20%.</li>
+<li><code>MONBLOW_EXP_40</code>: Experience drain by 40%.</li>
+<li><code>MONBLOW_EXP_80</code>: Experience drain by 80%.</li>
+<li><code>MONBLOW_HALLU</code>: Hallucination effect.</li>
+<li><code>MONBLOW_BLACK_BREATH</code>: Black breath effect.</li>
+<li><code>MONBLOW_UNDEFINED</code>: Undefined effect.</li>
+</ul>
+<h2 id="global-variables">Global Variables</h2>
+<ul>
+<li><code>borg_fear_region</code>: A 2D array of <code>uint16_t</code> values representing the extra fear induced in each dungeon region. The dungeon is divided into 11x11 regions, and each element in the array corresponds to a specific region.</li>
+<li><code>borg_fear_monsters</code>: A 2D array of <code>uint16_t</code> values representing the extra fear induced by monsters in each grid of the dungeon. The array dimensions are <code>AUTO_MAX_Y + 1</code> and <code>AUTO_MAX_X + 1</code>, corresponding to the maximum dungeon dimensions.</li>
+<li><code>borg_danger_wipe</code>: A boolean flag indicating whether the danger values need to be recalculated.</li>
+</ul>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_danger_one_kill"><code>borg_danger_one_kill</code></h3>
+<pre><code class="language-c">int borg_danger_one_kill(int y, int x, int c, int i, bool average, bool full_damage);
+</code></pre>
+<ul>
+<li>Purpose: Calculate the danger posed by a single monster to a specific grid.</li>
+<li>Parameters:<ul>
+<li><code>y</code>: The y-coordinate of the grid.</li>
+<li><code>x</code>: The x-coordinate of the grid.</li>
+<li><code>c</code>: The distance from the player to the grid.</li>
+<li><code>i</code>: The index of the monster.</li>
+<li><code>average</code>: A boolean flag indicating whether to use average damage or maximum damage.</li>
+<li><code>full_damage</code>: A boolean flag indicating whether to consider full damage or adjusted damage.</li>
+</ul>
+</li>
+<li>Return Value: The calculated danger value.</li>
+<li>Side Effects: None.</li>
+<li>Relationships: Called by <code>borg_danger</code> to calculate the total danger of a grid.</li>
+<li>Game Mechanics: Evaluates the potential damage and effects of a monster&#39;s blows on the player character at the specified grid location. Takes into account factors such as the monster&#39;s abilities, distance, and damage output.</li>
+</ul>
+<h3 id="borg_danger"><code>borg_danger</code></h3>
+<pre><code class="language-c">int borg_danger(int y, int x, int c, bool average, bool full_damage);
+</code></pre>
+<ul>
+<li>Purpose: Calculate the total danger of a specific grid.</li>
+<li>Parameters:<ul>
+<li><code>y</code>: The y-coordinate of the grid.</li>
+<li><code>x</code>: The x-coordinate of the grid.</li>
+<li><code>c</code>: The distance from the player to the grid.</li>
+<li><code>average</code>: A boolean flag indicating whether to use average damage or maximum damage.</li>
+<li><code>full_damage</code>: A boolean flag indicating whether to consider full damage or adjusted damage.</li>
+</ul>
+</li>
+<li>Return Value: The calculated total danger value.</li>
+<li>Side Effects: None.</li>
+<li>Relationships: Calls <code>borg_danger_one_kill</code> for each monster to calculate the danger posed by individual monsters and sums up the values.</li>
+<li>Game Mechanics: Assesses the overall danger of a grid location by considering the combined danger posed by all monsters that can potentially affect the player character at that grid. The danger value is influenced by factors such as monster abilities, distance, and damage output.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>The danger assessment algorithms implemented in this file evaluate the potential threat posed by monsters to the player character at specific grid locations. The <code>borg_danger_one_kill</code> function calculates the danger of a single monster by considering its abilities, distance, and damage output. The <code>borg_danger</code> function aggregates the danger values of all monsters that can affect the player character at a given grid location to determine the total danger.</p>
+<p>The algorithms take into account various factors such as the monster&#39;s blow effects (defined in the <code>BORG_MONBLOW</code> enumeration), the distance between the monster and the player, and the potential damage inflicted by the monster&#39;s attacks. The danger values are calculated based on these factors and can be influenced by flags such as <code>average</code> (to use average damage instead of maximum damage) and <code>full_damage</code> (to consider full damage or adjusted damage).</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li><code>angband.h</code>: The main Angband header file that includes fundamental game definitions and structures.</li>
+<li><code>borg-cave.h</code>: Header file that defines data structures and functions related to the Borg AI&#39;s dungeon map representation.</li>
+</ul>
+<p>Other files in the Borg AI subsystem may depend on <code>borg-danger.h</code> to access the danger assessment functions and data structures.</p>
+<h2 id="historical-context">Historical Context</h2>
+<p>The Borg AI was developed as an automated player for Angband, aiming to make optimal decisions based on the current game state. The danger assessment system implemented in <code>borg-danger.h</code> is a crucial component of the Borg AI, allowing it to evaluate the potential threats posed by monsters and make informed decisions accordingly.</p>
+<p>The code in this file has evolved over time, with contributions from various developers, including Ben Harrison, James E. Wilson, Robert A. Koeneke, Andi Sidwell, Chris Carr, Ed Graham, and Erik Osheim.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

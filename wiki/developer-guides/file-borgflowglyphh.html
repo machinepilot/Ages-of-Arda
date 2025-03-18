@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File: borg-flow-glyph.h | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>File: borg-flow-glyph.h</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="file-borg-flow-glyphh">File: borg-flow-glyph.h</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-flow-glyph.h</code> is a header file in the Angband roguelike game&#39;s codebase, specifically within the &quot;borg&quot; AI module. The borg is an automated player that can navigate the dungeon and make decisions based on game state.</p>
+<p>This file contains declarations for data structures, global variables, and functions related to the borg&#39;s &quot;flow&quot; system for tracking and navigating special glyphs (symbols) in the dungeon. These glyphs likely represent important terrain features, objects, or other points of interest that the borg needs to be aware of to make decisions.</p>
+<h2 id="data-structures">Data Structures</h2>
+<p>The file declares one main data structure:</p>
+<pre><code class="language-c">extern struct borg_track track_glyph;
+</code></pre>
+<p><code>borg_track</code> is likely a struct defined elsewhere that represents a generic tracking data structure used by the borg. The <code>track_glyph</code> instance specifically tracks glyphs in the dungeon.</p>
+<h2 id="global-variables">Global Variables</h2>
+<p>The file declares two global variables:</p>
+<pre><code class="language-c">extern bool borg_needs_new_sea;
+</code></pre>
+<p><code>borg_needs_new_sea</code> is a boolean flag indicating whether the borg needs to recalculate or update its &quot;sea&quot; of glyphs. The &quot;sea&quot; likely refers to the overall map or representation of glyphs in the dungeon.</p>
+<h2 id="functions">Functions</h2>
+<p>The file declares four functions:</p>
+<pre><code class="language-c">extern bool borg_flow_glyph(int why);
+</code></pre>
+<p><code>borg_flow_glyph</code> is likely the main function for updating the borg&#39;s glyph flow information. It takes an integer parameter <code>why</code>, which may indicate the reason for the update (e.g., dungeon change, borg state change). It returns a boolean value, possibly indicating the success or necessity of the update.</p>
+<pre><code class="language-c">extern void borg_init_flow_glyph(void);
+</code></pre>
+<p><code>borg_init_flow_glyph</code> is an initialization function for the glyph flow system. It likely sets up initial data structures and state.</p>
+<pre><code class="language-c">extern void borg_free_flow_glyph(void);
+</code></pre>
+<p><code>borg_free_flow_glyph</code> is a cleanup function for the glyph flow system. It likely frees any allocated memory and resets state.</p>
+<h2 id="algorithms">Algorithms</h2>
+<p>The specific algorithms used for glyph flow are not detailed in this header file. They are likely implemented in the corresponding <code>.c</code> file.</p>
+<p>However, based on the naming and context, the glyph flow system probably involves some form of pathfinding or graph traversal algorithm to efficiently navigate between important glyphs in the dungeon. This could be used for the borg to plan routes, avoid obstacles, or seek out objectives.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>This file has the following direct dependencies:</p>
+<ul>
+<li><code>angband.h</code>: The main Angband header file, included before the <code>ALLOW_BORG</code> conditional compilation directive.</li>
+<li><code>borg-flow.h</code>: Another borg-related header file, likely containing definitions used by the glyph flow system.</li>
+</ul>
+<p>Other files in the borg module likely depend on this file to use the glyph flow functionality.</p>
+<h2 id="historical-context">Historical Context</h2>
+<p>The copyright notice at the top of the file indicates that this code has been part of the Angband project since at least 1997, with contributions from several developers over the years.</p>
+<p>The <code>ALLOW_BORG</code> conditional compilation directive suggests that the borg AI is an optional feature that can be excluded from builds if desired.</p>
+<h2 id="game-mechanics">Game Mechanics</h2>
+<p>The glyph flow system implemented in this file is part of the larger borg AI mechanics in Angband. The borg is essentially an autopilot that can control the player character and make decisions based on the current game state and its knowledge of the dungeon.</p>
+<p>Tracking and navigating between important glyphs (which may represent things like doors, stairs, objects, traps, or special terrain) allows the borg to plan efficient routes and make informed decisions about where to go and what to interact with. This could involve pathfinding to navigate to a target glyph, or avoidance behaviors to steer clear of dangerous glyphs.</p>
+<p>The <code>borg_needs_new_sea</code> variable suggests that the borg maintains an overall map or representation of the dungeon glyphs, which may need to be updated when the dungeon changes (e.g., through digging or other terrain modifications).</p>
+<p>Overall, the glyph flow system contributes to the borg&#39;s ability to intelligently navigate the procedurally-generated dungeons of Angband and progress through the game in an automated fashion.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

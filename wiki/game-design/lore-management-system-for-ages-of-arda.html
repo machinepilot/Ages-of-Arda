@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lore Management System for Ages of Arda | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="gameplay-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Lore Management System for Ages of Arda</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="lore-management-system-for-ages-of-arda">Lore Management System for Ages of Arda</h1>
+<p>This directory contains the Lore Management System for the Ages of Arda Angband variant, which provides a unified API for accessing and using lore data from the memory bank.</p>
+<h2 id="overview">Overview</h2>
+<p>The Lore Management System integrates with the MCP (Model Context Protocol) server to provide lore-driven gameplay generation capabilities:</p>
+<ul>
+<li>Retrieve and cache lore data from the memory bank</li>
+<li>Generate narrative descriptions for locations based on lore</li>
+<li>Create companion dialogue that reflects their knowledge of the world</li>
+<li>Generate quests and events that are consistent with the age and location</li>
+<li>Provide a unified API for other game systems to access lore data</li>
+</ul>
+<h2 id="components">Components</h2>
+<p>The system consists of the following main components:</p>
+<ul>
+<li><strong>Lore Manager (C)</strong>: Core lore retrieval and caching functionality in C</li>
+<li><strong>Narrative Generator (Python)</strong>: Generates narrative content using the lore data and LLMs</li>
+<li><strong>Lore Integration (Python)</strong>: Ties everything together and provides the MCP endpoints</li>
+</ul>
+<h2 id="directory-structure">Directory Structure</h2>
+<pre><code>src/mcp/lore/
+├── lore_manager.h           # C API for lore retrieval
+├── lore_manager.c           # Implementation of the C API
+├── lore_integration.py      # Python integration with MCP
+├── narrative_generator.py   # Narrative generation using lore
+├── initialize_lore_system.py # Utility to initialize the system
+└── README.md                # This file
+</code></pre>
+<h2 id="mcp-endpoints">MCP Endpoints</h2>
+<p>The system registers the following endpoints with the MCP server:</p>
+<h3 id="lore-endpoints">Lore Endpoints</h3>
+<ul>
+<li><code>ages/lore/character</code> - Get lore for a character</li>
+<li><code>ages/lore/location</code> - Get lore for a location</li>
+<li><code>ages/lore/artifact</code> - Get lore for an artifact</li>
+<li><code>ages/lore/random</code> - Get random lore</li>
+<li><code>ages/lore/companion</code> - Get lore for a companion</li>
+</ul>
+<h3 id="narrative-endpoints">Narrative Endpoints</h3>
+<ul>
+<li><code>ages/narrative/location</code> - Generate a narrative description for a location</li>
+<li><code>ages/narrative/companion</code> - Generate dialogue for a companion</li>
+<li><code>ages/narrative/quest</code> - Generate a quest description</li>
+</ul>
+<h3 id="age-management">Age Management</h3>
+<ul>
+<li><code>ages/lore/age/set</code> - Set the current age</li>
+<li><code>ages/lore/age/get</code> - Get the current age</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<h3 id="initializing-the-system">Initializing the System</h3>
+<p>To initialize the lore system and connect it to the MCP server:</p>
+<pre><code class="language-bash">python src/mcp/lore/initialize_lore_system.py --memory-bank-path /path/to/memory-bank --mcp-server-url http://localhost:3000
+</code></pre>
+<h3 id="command-line-options">Command Line Options</h3>
+<ul>
+<li><code>--memory-bank-path</code>: Path to the memory bank directory (default: &quot;../memory-bank&quot;)</li>
+<li><code>--mcp-server-url</code>: URL of the MCP server (default: &quot;<a href="http://localhost:3000">http://localhost:3000</a>&quot;)</li>
+<li><code>--model-name</code>: Name of the LLM model to use (default: &quot;llama2:13b&quot;)</li>
+<li><code>--without-llm</code>: Disable LLM-based generation (use templates only)</li>
+<li><code>--debug</code>: Enable debug logging</li>
+</ul>
+<h3 id="using-the-mcp-endpoints">Using the MCP Endpoints</h3>
+<h4 id="get-character-lore">Get Character Lore</h4>
+<pre><code class="language-json">// Request
+{
+  &quot;character_name&quot;: &quot;Gandalf&quot;,
+  &quot;age&quot;: &quot;third_age&quot;
+}
+
+// Response
+{
+  &quot;content&quot;: &quot;Gandalf, also known as Mithrandir, was an Istar (Wizard) sent to Middle-earth in the Third Age to combat the threat of Sauron...&quot;,
+  &quot;source&quot;: &quot;The Lord of the Rings&quot;,
+  &quot;age&quot;: &quot;third_age&quot;,
+  &quot;year&quot;: 3018,
+  &quot;is_canonical&quot;: true
+}
+</code></pre>
+<h4 id="generate-location-description">Generate Location Description</h4>
+<pre><code class="language-json">// Request
+{
+  &quot;location_name&quot;: &quot;Minas Tirith&quot;,
+  &quot;age&quot;: &quot;third_age&quot;,
+  &quot;context&quot;: {
+    &quot;time_of_day&quot;: &quot;dawn&quot;,
+    &quot;weather&quot;: &quot;clear&quot;
+  }
+}
+
+// Response
+{
+  &quot;description&quot;: &quot;The white towers of Minas Tirith gleamed in the early dawn light, rising tier upon tier like a mountain crowned with pearl...&quot;,
+  &quot;location&quot;: &quot;Minas Tirith&quot;,
+  &quot;age&quot;: &quot;third_age&quot;
+}
+</code></pre>
+<h4 id="generate-companion-dialogue">Generate Companion Dialogue</h4>
+<pre><code class="language-json">// Request
+{
+  &quot;companion_name&quot;: &quot;Aragorn&quot;,
+  &quot;age&quot;: &quot;third_age&quot;,
+  &quot;topic&quot;: &quot;Gondor&quot;,
+  &quot;relationship_level&quot;: 3,
+  &quot;context&quot;: {
+    &quot;location&quot;: &quot;Rivendell&quot;,
+    &quot;quest_progress&quot;: 0.5
+  }
+}
+
+// Response
+{
+  &quot;dialogue&quot;: &quot;Aragorn: Gondor has no king. Gondor needs no king. Yet... I begin to feel the weight of my ancestry calling to me.&quot;,
+  &quot;companion&quot;: &quot;Aragorn&quot;,
+  &quot;age&quot;: &quot;third_age&quot;,
+  &quot;topic&quot;: &quot;Gondor&quot;
+}
+</code></pre>
+<h4 id="generate-quest">Generate Quest</h4>
+<pre><code class="language-json">// Request
+{
+  &quot;quest_type&quot;: &quot;retrieve&quot;,
+  &quot;location&quot;: &quot;Moria&quot;,
+  &quot;age&quot;: &quot;third_age&quot;,
+  &quot;target&quot;: &quot;Mithril armor&quot;
+}
+
+// Response
+{
+  &quot;title&quot;: &quot;The Lost Mithril&quot;,
+  &quot;description&quot;: &quot;Deep in the darkness of Moria, a legendary set of mithril armor was left behind during the hasty retreat of Balin&#39;s folk...&quot;,
+  &quot;quest_type&quot;: &quot;retrieve&quot;,
+  &quot;location&quot;: &quot;Moria&quot;,
+  &quot;age&quot;: &quot;third_age&quot;,
+  &quot;target&quot;: &quot;Mithril armor&quot;
+}
+</code></pre>
+<h2 id="integration-with-game-systems">Integration with Game Systems</h2>
+<h3 id="companion-system">Companion System</h3>
+<p>The companion system can use the lore API to:</p>
+<ul>
+<li>Load companion profiles based on the current age</li>
+<li>Generate dialogue that reflects the companion&#39;s knowledge and personality</li>
+<li>Create relationships between companions based on lore</li>
+<li>Provide lore-appropriate reactions to game events</li>
+</ul>
+<h3 id="world-generation">World Generation</h3>
+<p>The world generation system can use the lore API to:</p>
+<ul>
+<li>Create age-appropriate environments, enemies, and items</li>
+<li>Ensure consistency with the lore of the current age</li>
+<li>Generate dynamic descriptions for locations</li>
+<li>Place artifacts and characters according to lore</li>
+</ul>
+<h3 id="quest-and-event-system">Quest and Event System</h3>
+<p>The quest and event system can use the lore API to:</p>
+<ul>
+<li>Generate quests that are consistent with the current age</li>
+<li>Create events that reflect the history and conflicts of the age</li>
+<li>Ensure quest rewards and difficulty are appropriate for the age</li>
+<li>Provide rich narrative context for quests and events</li>
+</ul>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>The lore manager includes a caching system to reduce memory bank access</li>
+<li>The narrative generator can fall back to template-based generation when LLM is not available</li>
+<li>Asynchronous processing can be used for non-blocking gameplay</li>
+<li>The system includes error handling and fallbacks for graceful degradation</li>
+</ul>
+<h2 id="future-enhancements">Future Enhancements</h2>
+<ul>
+<li>Extend the system to support additional ages (Second Age, Fourth Age)</li>
+<li>Implement a lore codex UI for players to explore the lore</li>
+<li>Add support for player-discovered lore that persists across playthroughs</li>
+<li>Create a dynamic event system that uses lore to generate age-appropriate events</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Untitled</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <hr>
+<h2 id="title-ai-driven-emergent-gameplay-guidelines-glob-ainpcgameplay-priority-700-related-ai-uxmdc-mcpmcp-integrationmdc-gameangband-variantmdc">title: AI-Driven Emergent Gameplay Guidelines
+glob: &quot;<strong>/ai/</strong>,<strong>/npc/</strong>,<strong>/gameplay/</strong>&quot;
+priority: 700
+related: [&quot;ai-ux.mdc&quot;, &quot;../mcp/mcp-integration.mdc&quot;, &quot;../game/angband-variant.mdc&quot;]</h2>
+<h1 id="ai-driven-emergent-gameplay-guidelines">AI-Driven Emergent Gameplay Guidelines</h1>
+<h2 id="core-principles">Core Principles</h2>
+<ul>
+<li>AI should enhance, not replace player agency</li>
+<li>Emergent gameplay should feel natural and consistent</li>
+<li>Performance impact should be minimal</li>
+<li>Offline fallback options must exist</li>
+</ul>
+<h2 id="ai-agent-types">AI Agent Types</h2>
+<ol>
+<li><p><strong>Narrative Agents</strong></p>
+<ul>
+<li>Generate dynamic descriptions</li>
+<li>Create contextual dialogue</li>
+<li>Adapt story elements to player choices</li>
+</ul>
+</li>
+<li><p><strong>Tactical Agents</strong></p>
+<ul>
+<li>Analyze combat situations</li>
+<li>Suggest optimal strategies</li>
+<li>Learn from player behavior</li>
+</ul>
+</li>
+<li><p><strong>World Agents</strong></p>
+<ul>
+<li>Manage faction relationships</li>
+<li>Control dynamic environment changes</li>
+<li>Generate side quests and events</li>
+</ul>
+</li>
+</ol>
+<h2 id="implementation-patterns">Implementation Patterns</h2>
+<pre><code class="language-c">/**
+ * Request AI-generated content with fallback
+ */
+char *
+get_ai_response(game_state_t *state, const char *prompt_type, const char *context)
+{
+    char *response = NULL;
+    
+    /* Try primary AI system */
+    response = mcp_request(state, prompt_type, context);
+    
+    /* Fall back to template if AI unavailable */
+    if (response == NULL) {
+        response = get_template_response(prompt_type, context);
+    }
+    
+    return response;
+}
+</code></pre>
+<h2 id="memory-management">Memory Management</h2>
+<ul>
+<li>Short-term memory: Current game session</li>
+<li>Medium-term memory: Current character lifetime</li>
+<li>Long-term memory: Persistent across playthroughs</li>
+</ul>
+<h2 id="prompt-engineering">Prompt Engineering</h2>
+<ul>
+<li>Keep prompts under 1000 tokens when possible</li>
+<li>Include only relevant context</li>
+<li>Use consistent formatting</li>
+<li>Include examples for complex behaviors</li>
+</ul>
+<h2 id="response-processing">Response Processing</h2>
+<ul>
+<li>Validate all AI outputs before applying</li>
+<li>Filter inappropriate content</li>
+<li>Ensure game balance is maintained</li>
+<li>Apply rate limiting for AI calls</li>
+</ul>
+<h2 id="testing-scenarios">Testing Scenarios</h2>
+<ol>
+<li>Offline mode testing</li>
+<li>Response latency testing</li>
+<li>Edge case handling</li>
+<li>Content appropriateness</li>
+</ol>
+<h2 id="metrics-to-track">Metrics to Track</h2>
+<ul>
+<li>Response time</li>
+<li>Token usage</li>
+<li>Player engagement with AI content</li>
+<li>Error rates</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

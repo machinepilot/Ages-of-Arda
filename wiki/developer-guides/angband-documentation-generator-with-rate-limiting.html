@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angband Documentation Generator with Rate Limiting | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Angband Documentation Generator with Rate Limiting</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="angband-documentation-generator-with-rate-limiting">Angband Documentation Generator with Rate Limiting</h1>
+<p>This README explains how to use the rate-limited documentation generator to avoid hitting API rate limits while ensuring all files are processed.</p>
+<h2 id="the-problem">The Problem</h2>
+<p>The Anthropic API has a rate limit of 2,000 output tokens per minute. When generating documentation for many files in quick succession, we can hit this limit, resulting in errors like:</p>
+<pre><code>Error code: 429 - Rate limit exceeded. For details, refer to: https://docs.anthropic.com/en/api/rate-limits.
+</code></pre>
+<h2 id="the-solution">The Solution</h2>
+<p>The enhanced documentation generator includes:</p>
+<ol>
+<li><strong>Rate limiting</strong> - Adds configurable delays between file processing</li>
+<li><strong>Checkpointing</strong> - Saves progress regularly so you can resume if interrupted</li>
+<li><strong>Batch processing</strong> - Processes files in small batches with checkpoints between batches</li>
+<li><strong>Retry mechanism</strong> - Automatically retries with exponential backoff when rate limits are hit</li>
+<li><strong>Progress tracking</strong> - Shows estimated completion time and progress</li>
+</ol>
+<h2 id="how-to-use">How to Use</h2>
+<h3 id="on-windows">On Windows</h3>
+<p>Run the batch script:</p>
+<pre><code>generate-docs-with-rate-limit.bat
+</code></pre>
+<h3 id="on-unix-like-systems-linux-macos">On Unix-like Systems (Linux, macOS)</h3>
+<p>Make the script executable (if not already):</p>
+<pre><code>chmod +x generate-docs-with-rate-limit.sh
+</code></pre>
+<p>Then run it:</p>
+<pre><code>./generate-docs-with-rate-limit.sh
+</code></pre>
+<h2 id="configuration">Configuration</h2>
+<p>The scripts use these default settings:</p>
+<ul>
+<li><strong>Delay between files</strong>: 60 seconds (to stay well under the rate limit)</li>
+<li><strong>Batch size</strong>: 5 files (small batches ensure frequent checkpoints)</li>
+</ul>
+<p>You can modify these values in the scripts if needed.</p>
+<h2 id="command-line-options">Command Line Options</h2>
+<p>If you want to run the Python script directly with custom options:</p>
+<pre><code>python document-angband.py --delay 60 --batch-size 5 [other options]
+</code></pre>
+<p>Available options:</p>
+<ul>
+<li><code>--delay SECONDS</code>: Delay between processing files (default: 30)</li>
+<li><code>--batch-size N</code>: Number of files to process before saving a checkpoint (default: 10)</li>
+<li><code>--resume</code>: Resume from the last checkpoint</li>
+<li><code>--max-files N</code>: Process only N files (useful for testing)</li>
+<li><code>--file PATH</code>: Process only a specific file</li>
+<li><code>--module PATH</code>: Process only files in a specific module/directory</li>
+</ul>
+<h2 id="resuming-after-interruption">Resuming After Interruption</h2>
+<p>If the process is interrupted (by error, power outage, or manual cancellation), simply run the script again. It will automatically detect the checkpoint file and resume from where it left off.</p>
+<h2 id="estimated-completion-time">Estimated Completion Time</h2>
+<p>The script will provide an estimated completion time at the start and update it after each batch. This helps you plan accordingly for long-running processes.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="rate-limits-still-occurring">Rate Limits Still Occurring</h3>
+<p>If you&#39;re still hitting rate limits:</p>
+<ol>
+<li>Increase the <code>--delay</code> parameter (try 90 or 120 seconds)</li>
+<li>Decrease the <code>--batch-size</code> parameter (try 3 or even 1)</li>
+</ol>
+<h3 id="process-taking-too-long">Process Taking Too Long</h3>
+<p>If the process is taking too long:</p>
+<ol>
+<li>You can safely interrupt it and resume later</li>
+<li>Consider processing only specific modules or directories using the <code>--module</code> option</li>
+<li>Process Windows files separately with <code>--windows-only</code></li>
+</ol>
+<h2 id="example-processing-only-core-files">Example: Processing Only Core Files</h2>
+<pre><code>python document-angband.py --delay 60 --batch-size 5 --module src/core
+</code></pre>
+<p>This will process only files in the <code>src/core</code> directory, making the task more manageable. </p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

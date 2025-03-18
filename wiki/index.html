@@ -3,145 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ages of Arda - Development Wiki</title>
-    <link rel="stylesheet" href="roguebasin-style.css">
+    <title>Ages of Arda Documentation</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="middle-earth-theme.css">
-    <script src="sidebar.js"></script>
-    <script src="middle-earth-interaction.js"></script>
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="sidebar.js" defer></script>
+    <script src="middle-earth-interaction.js" defer></script>
+    <script src="search.js" defer></script>
 </head>
 <body>
-    <div id="mw-navigation">
-        <div class="sidebar">
-            <div class="project-logo">
-                <img src="images/ages-of-arda-logo.png" alt="Ages of Arda Logo">
-            </div>
-            
-            <h2>Navigation</h2>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="overview.html">Project Overview</a></li>
-                <li><a href="development-story.html">Development Story</a></li>
-                <li><a href="roadmap.html">Roadmap</a></li>
-            </ul>
-            
-            <h2>Game Design</h2>
-            <ul>
-                <li><a href="game-design/concept.html">Concept & Vision</a></li>
-                <li><a href="game-design/companions.html">Companion System</a></li>
-                <li><a href="game-design/timeline.html">Timeline & Ages</a></li>
-                <li><a href="game-design/gameplay.html">Core Gameplay</a></li>
-            </ul>
-            
-            <h2>AI Architecture</h2>
-            <ul>
-                <li><a href="ai-architecture/overview.html">AI System Overview</a></li>
-                <li><a href="ai-architecture/mcp.html">Model Context Protocol</a></li>
-                <li><a href="ai-architecture/memory-bank.html">Memory Bank System</a></li>
-                <li><a href="ai-architecture/lore-management.html">Lore Management</a></li>
-                <li><a href="ai-architecture/narrative-generation.html">Narrative Generation</a></li>
-                <li><a href="ai-architecture/multi-agent.html">Multi-Agent Framework</a></li>
-            </ul>
-            
-            <h2>Developer Guides</h2>
-            <ul>
-                <li><a href="developer-guides/setup.html">Environment Setup</a></li>
-                <li><a href="developer-guides/code-style.html">Coding Standards</a></li>
-                <li><a href="developer-guides/contributing.html">Contributing</a></li>
-                <li><a href="developer-guides/testing.html">Testing</a></li>
-            </ul>
-            
-            <h2>API Reference</h2>
-            <ul>
-                <li><a href="api/mcp-endpoints.html">MCP Endpoints</a></li>
-                <li><a href="api/lore-api.html">Lore API</a></li>
-                <li><a href="api/companion-api.html">Companion API</a></li>
-                <li><a href="api/narrative-api.html">Narrative API</a></li>
-            </ul>
-        </div>
-    </div>
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
     
-    <div id="content" class="mw-body">
-        <h1 id="firstHeading">Ages of Arda Development Wiki</h1>
+    <div class="content-container">
+        <header>
+            <h1>Ages of Arda Documentation</h1>
+        </header>
         
-        <div id="bodyContent">
-            <p>Welcome to the official development wiki for <strong>Ages of Arda</strong>, an innovative Angband variant that integrates AI-driven companions and narrative generation through the Model Context Protocol (MCP). This wiki serves as the central repository for all design documentation, development guidelines, and technical specifications.</p>
-            
-            <div class="card">
-                <h3>About Ages of Arda</h3>
-                <p>Ages of Arda is an Angband variant that spans the Three Ages of Arda (First, Second, and Third Age) from Tolkien's legendarium. The game features AI-driven companions who guide the player through their journey, with a unique system where players are reborn in a new era with a new companion after death, creating a sense of continuity and progression across multiple playthroughs.</p>
-            </div>
-            
-            <h2>Key Features</h2>
-            
-            <div class="features">
-                <div class="feature-card">
-                    <h3>Timeline-Based Progression</h3>
-                    <p>The game spans the Three Ages of Arda, with each age featuring 10 unique companions. As players progress through the game and inevitably die, they are reborn in a new era.</p>
+        <main>
+            <div class="index-sections">
+                <div class="index-section">
+                    <h2>Development Documentation</h2>
+                    <p>Technical documentation for Ages of Arda developers</p>
+                    <a href="developer-guides/index.html" class="section-link">
+                        <div class="section-card">
+                            <h3>View Development Documentation</h3>
+                            <p>Guides, Architecture, Reference</p>
+                        </div>
+                    </a>
                 </div>
                 
-                <div class="feature-card">
-                    <h3>AI-Driven Companions</h3>
-                    <p>Companions provide contextual dialogue, guidance, and lore based on the current game state, creating a rich and dynamic gameplay experience.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>Relationship System</h3>
-                    <p>Build relationships with companions through gameplay actions, unlocking deeper dialogue and assistance as your bond grows stronger.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>Persistent Memory</h3>
-                    <p>The game remembers your previous incarnations and relationships, creating a sense of continuity and meaningful progression.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>MCP Integration</h3>
-                    <p>The Model Context Protocol enables AI-driven gameplay elements, providing a framework for emergent narrative and dynamic content generation.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>Lore Management</h3>
-                    <p>A rich lore database from Tolkien's works with intelligent retrieval and generation ensures an authentic Middle-earth experience.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>Developer Resources</h3>
-                    <p>Comprehensive guides and tools to streamline the development workflow.</p>
-                    <ul>
-                        <li><a href="developer-guides/setup.html">Development Setup Guide</a></li>
-                        <li><a href="developer-guides/code-style.html">Code Style Guidelines</a></li>
-                        <li><a href="developer-guides/cursor-rules.html">Cursor Rules System</a></li>
-                    </ul>
+                <div class="index-section">
+                    <h2>Gameplay Documentation</h2>
+                    <p>Game guides and information for players</p>
+                    <a href="game-design/index.html" class="section-link">
+                        <div class="section-card">
+                            <h3>View Gameplay Documentation</h3>
+                            <p>Guides, Reference</p>
+                        </div>
+                    </a>
                 </div>
             </div>
-            
-            <h2>Development Approach</h2>
-            
-            <p>Ages of Arda represents a revolutionary approach to game development, combining traditional roguelike mechanics with modern AI techniques to create emergent gameplay experiences. Our development philosophy emphasizes:</p>
-            
-            <ul>
-                <li><strong>AI-Enhanced Creativity</strong>: Using AI to augment human creativity, not replace it</li>
-                <li><strong>Modular Architecture</strong>: Building reusable components that can be adapted to other games</li>
-                <li><strong>Lore Authenticity</strong>: Maintaining fidelity to Tolkien's rich world while enabling dynamic storytelling</li>
-                <li><strong>Iterative Design</strong>: Continuously refining gameplay based on testing and feedback</li>
-                <li><strong>Open Development</strong>: Sharing our process and tools with the broader game development community</li>
-            </ul>
-            
-            <div class="card">
-                <h3>Getting Started</h3>
-                <p>New to the project? Here are some good places to start:</p>
-                <ul>
-                    <li><a href="overview.html">Project Overview</a> - Get a comprehensive understanding of the project</li>
-                    <li><a href="ai-architecture/overview.html">AI System Overview</a> - Learn about the AI architecture</li>
-                    <li><a href="developer-guides/setup.html">Environment Setup</a> - Set up your development environment</li>
-                    <li><a href="developer-guides/contributing.html">Contributing</a> - How to contribute to the project</li>
-                </ul>
-            </div>
-        </div>
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
     </div>
     
-    <footer id="footer" class="mw-footer">
-        <p>Ages of Arda Wiki - Documentation for AI-Driven Roguelike Development</p>
-    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('sidebar.html');
+        });
+    </script>
 </body>
-</html> 
+</html>

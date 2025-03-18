@@ -1,9 +1,12 @@
 // Middle-earth Interaction Scripts
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Remove any existing timeline elements
+    removeExistingTimelines();
+    
     // Initialize the Middle-earth theme elements
     initializeArdaCompass();
-    initializeTimeline();
+    // initializeTimeline(); // Timeline removed as requested
     initializeMistAnimations();
     initializeTorchlightEffects();
     initializeLoreNuggets();
@@ -13,7 +16,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Apply theme styles to existing content
     applyThemeStyles();
+    
+    // Initialize reading position indicator
+    initializeReadingPositionIndicator();
 });
+
+// Function to remove any existing timeline elements
+function removeExistingTimelines() {
+    const existingTimelines = document.querySelectorAll('.age-timeline');
+    existingTimelines.forEach(timeline => {
+        timeline.remove();
+    });
+}
 
 // Arda Compass - Draggable Widget
 function initializeArdaCompass() {
@@ -44,31 +58,24 @@ function initializeArdaCompass() {
             
             compass.style.transform = `rotate(${newRotation}deg)`;
             
-            // Change page based on rotation
-            if (newRotation % 120 < 15 && newRotation % 120 > -15) {
-                // First Age section
-                highlightAge('first');
-            } else if (newRotation % 120 < 135 && newRotation % 120 > 105) {
-                // Second Age section
-                highlightAge('second');
-            } else if (newRotation % 120 < -105 && newRotation % 120 > -135) {
-                // Third Age section
-                highlightAge('third');
-            }
+            // Previously would highlight ages based on rotation angle
+            // Timeline functionality has been removed
         });
         
         // Add click functionality
         compass.addEventListener('click', function() {
-            // Toggle visibility of the timeline
-            const timeline = document.querySelector('.age-timeline');
-            if (timeline) {
-                timeline.style.display = timeline.style.display === 'none' ? 'flex' : 'none';
-            }
+            // Previously toggled timeline visibility, but timeline has been removed
+            // Now just do a simple animation on click
+            compass.style.transform = 'rotate(45deg)';
+            setTimeout(() => {
+                compass.style.transform = '';
+            }, 1000);
         });
     }
 }
 
-// Timeline Bar with Age Orbs
+// Timeline Bar with Age Orbs - DISABLED PER REQUEST
+/*
 function initializeTimeline() {
     // Create timeline if it doesn't exist
     if (!document.querySelector('.age-timeline')) {
@@ -106,8 +113,10 @@ function initializeTimeline() {
         makeTimelineDraggable(timeline);
     }
 }
+*/
 
-// Create a timeline orb for a specific age
+// Create a timeline orb for a specific age - DISABLED PER REQUEST
+/*
 function createTimelineOrb(className, label) {
     const orb = document.createElement('div');
     orb.className = `timeline-orb ${className}`;
@@ -183,6 +192,7 @@ function highlightAge(age) {
         activeOrb.style.boxShadow = '0 0 20px var(--shadow-dark), 0 0 40px var(--elvish-glow)';
     }
 }
+*/
 
 // Mist Animation overlays for lore sections
 function initializeMistAnimations() {
@@ -816,11 +826,11 @@ function addBardicStyleToText() {
 function createRequiredImages() {
     // List of required images
     const requiredImages = [
-        'images/compass-icon.png',
-        'images/ring-icon.png',
-        'images/sword-icon.png',
-        'images/artifact-default.png',
-        'images/companions/default.png',
+        'images/compass-icon.svg',
+        'images/ring-icon.svg',
+        'images/sword-icon.svg',
+        'images/artifact-default.svg',
+        'images/companions/default.svg',
         'images/gear/default.png',
         'images/gear/sword.png',
         'images/gear/bow.png',
@@ -866,4 +876,31 @@ function getPathToRoot() {
     }
     
     return path;
+}
+
+/*.lore-nugget-icon.ring {
+    background-image: url('images/ring-icon.svg');
+}
+
+.lore-nugget-icon.sword {
+    background-image: url('images/sword-icon.svg');
+}*/
+
+// Initialize reading position indicator
+function initializeReadingPositionIndicator() {
+    // Create the indicator element if it doesn't exist
+    if (!document.querySelector('.reading-position-indicator')) {
+        const indicator = document.createElement('div');
+        indicator.className = 'reading-position-indicator';
+        document.body.appendChild(indicator);
+        
+        // Update indicator on scroll
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const readingProgress = (scrollPosition / documentHeight) * 100;
+            
+            indicator.style.width = `${readingProgress}%`;
+        });
+    }
 } 

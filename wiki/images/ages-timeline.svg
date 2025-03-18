@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="300" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="timeline-bg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5a7c96" />
+      <stop offset="33%" stop-color="#5a7c96" />
+      <stop offset="33%" stop-color="#b87333" />
+      <stop offset="66%" stop-color="#b87333" />
+      <stop offset="66%" stop-color="#2e5741" />
+      <stop offset="100%" stop-color="#2e5741" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3" />
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" mode="normal" />
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect x="0" y="0" width="800" height="300" fill="#f5e7c1" />
+  
+  <!-- Timeline Bar -->
+  <rect x="50" y="130" width="700" height="40" rx="5" ry="5" fill="url(#timeline-bg)" stroke="#3a2e21" stroke-width="2" />
+  
+  <!-- Timeline Markers -->
+  <line x1="50" y1="150" x2="50" y2="170" stroke="#3a2e21" stroke-width="2" />
+  <line x1="283" y1="130" x2="283" y2="170" stroke="#3a2e21" stroke-width="2" />
+  <line x1="517" y1="130" x2="517" y2="170" stroke="#3a2e21" stroke-width="2" />
+  <line x1="750" y1="150" x2="750" y2="170" stroke="#3a2e21" stroke-width="2" />
+  
+  <!-- Age Labels -->
+  <g font-family="Cinzel, serif" font-weight="bold" text-anchor="middle">
+    <!-- First Age -->
+    <text x="167" y="90" font-size="24" fill="#5a7c96" filter="url(#glow)">First Age</text>
+    <text x="167" y="120" font-size="14" fill="#3a2e21">Years of the Trees & Years of the Sun</text>
+    <text x="167" y="220" font-size="14" fill="#3a2e21">Creation of Arda to the War of Wrath</text>
+    <text x="50" y="190" font-size="12" fill="#3a2e21">Creation</text>
+    <text x="283" y="190" font-size="12" fill="#3a2e21">Overthrow of Morgoth</text>
+    
+    <!-- Second Age -->
+    <text x="400" y="90" font-size="24" fill="#b87333" filter="url(#glow)">Second Age</text>
+    <text x="400" y="120" font-size="14" fill="#3a2e21">The Age of Númenor</text>
+    <text x="400" y="220" font-size="14" fill="#3a2e21">Foundation of Númenor to the Last Alliance</text>
+    <text x="517" y="190" font-size="12" fill="#3a2e21">Fall of Sauron</text>
+    
+    <!-- Third Age -->
+    <text x="633" y="90" font-size="24" fill="#2e5741" filter="url(#glow)">Third Age</text>
+    <text x="633" y="120" font-size="14" fill="#3a2e21">The Age of Decline</text>
+    <text x="633" y="220" font-size="14" fill="#3a2e21">Defeat of Sauron to the War of the Ring</text>
+    <text x="750" y="190" font-size="12" fill="#3a2e21">End of the Third Age</text>
+  </g>
+  
+  <!-- Key Events Markers -->
+  <circle cx="100" cy="150" r="8" fill="#d4af37" stroke="#3a2e21" stroke-width="1" />
+  <circle cx="180" cy="150" r="8" fill="#d4af37" stroke="#3a2e21" stroke-width="1" />
+  <circle cx="240" cy="150" r="8" fill="#d4af37" stroke="#3a2e21" stroke-width="1" />
+  
+  <circle cx="320" cy="150" r="8" fill="#d4af37" stroke="#3a2e21" stroke-width="1" />
+  <circle cx="400" cy="150" r="8" fill="#d4af37" stroke="#3a2e21" stroke-width="1" />
+  <circle cx="480" cy="150" r="8" fill="#d4af37" stroke="#3a2e21" stroke-width="1" />
+  
+  <circle cx="550" cy="150" r="8" fill="#d4af37" stroke="#3a2e21" stroke-width="1" />
+  <circle cx="633" cy="150" r="8" fill="#d4af37" stroke="#3a2e21" stroke-width="1" />
+  <circle cx="710" cy="150" r="8" fill="#d4af37" stroke="#3a2e21" stroke-width="1" />
+  
+  <!-- Title -->
+  <text x="400" y="40" font-family="Cinzel, serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#3a2e21">
+    Timeline of the Ages of Arda
+  </text>
+  
+  <!-- Footer -->
+  <text x="400" y="280" font-family="Vollkorn, Georgia, serif" font-size="14" text-anchor="middle" fill="#3a2e21">
+    Based on J.R.R. Tolkien's Legendarium
+  </text>
+</svg> 

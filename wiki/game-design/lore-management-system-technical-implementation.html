@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lore Management System - Technical Implementation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="gameplay-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Lore Management System - Technical Implementation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <hr>
+<h2 id="title-lore-management-system---implementation-id-lore-management-implementation-section-development-category-architecture-created-2023-10-15-updated-2023-12-01-version-100-contributors-lead-engineer-tags-lore-architecture-memory-bank-ai-integration-related-narrative-generator-memory-bank-implementation-publish_to-github-cursor_rule-true-glob-loreclorehnarrativecnarrativeh-priority-800-rule_category-game">title: &quot;Lore Management System - Implementation&quot;
+id: &quot;lore-management-implementation&quot;
+section: &quot;development&quot;
+category: &quot;architecture&quot;
+created: &quot;2023-10-15&quot;
+updated: &quot;2023-12-01&quot;
+version: &quot;1.0.0&quot;
+contributors: [&quot;lead-engineer&quot;]
+tags: [&quot;lore&quot;, &quot;architecture&quot;, &quot;memory-bank&quot;, &quot;ai-integration&quot;]
+related: [&quot;narrative-generator&quot;, &quot;memory-bank-implementation&quot;]
+publish_to: [&quot;github&quot;]
+cursor_rule: true
+glob: &quot;<em><em>/lore</em>.c,</em><em>/lore</em>.h,<em><em>/narrative</em>.c,</em><em>/narrative</em>.h&quot;
+priority: 800
+rule_category: &quot;game&quot;</h2>
+<h1 id="lore-management-system---technical-implementation">Lore Management System - Technical Implementation</h1>
+<p>This document covers the technical implementation details of the Ages of Arda Lore Management System. It provides architecture specifications, API references, and integration guidelines for developers working on the codebase.</p>
+<h2 id="architecture">Architecture</h2>
+<p><img src="docs/images/lore-architecture.png" alt="Lore Management Architecture"></p>
+<p>The Lore Management System consists of the following components:</p>
+<ol>
+<li><strong>Lore Manager (<code>lore_manager.c</code>)</strong>: Core C implementation for lore retrieval and caching</li>
+<li><strong>Lore Integration (<code>lore_integration.py</code>)</strong>: Python interface for high-level access</li>
+<li><strong>Narrative Generator (<code>narrative_generator.py</code>)</strong>: Converts lore into engaging descriptions</li>
+<li><strong>Memory Bank</strong>: JSON-based persistent storage of lore entries</li>
+<li><strong>MCP Endpoints</strong>: Server integration for AI agent access</li>
+</ol>
+<h3 id="component-relationships">Component Relationships</h3>
+<pre><code>┌────────────────┐     ┌────────────────┐     ┌────────────────┐
+│                │     │                │     │                │
+│  Game Engine   │────▶│  Lore Manager  │────▶│  Memory Bank   │
+│                │     │                │     │                │
+└────────────────┘     └───────┬────────┘     └────────────────┘
+                              │
+                              ▼
+┌────────────────┐     ┌────────────────┐
+│                │     │                │
+│  MCP Endpoints │◀────┤Lore Integration│
+│                │     │                │
+└────────────────┘     └───────┬────────┘
+                              │
+                              ▼
+                       ┌────────────────┐
+                       │                │
+                       │   Narrative    │
+                       │   Generator    │
+                       │                │
+                       └────────────────┘
+</code></pre>
+<h2 id="directory-structure">Directory Structure</h2>
+<pre><code>src/
+├── game/
+│   └── lore/
+│       ├── lore_manager.c      // Core C implementation
+│       ├── lore_manager.h      // Public API header
+│       ├── lore_types.h        // Type definitions
+│       └── lore_utils.c        // Utility functions
+├── mcp/
+│   └── lore/
+│       ├── lore_integration.py // Python interface
+│       ├── narrative_generator.py // Description generator
+│       └── endpoints/          // MCP server endpoints
+│           ├── character.py
+│           ├── location.py
+│           └── artifact.py
+└── memory-bank/
+    └── lore/
+        ├── first_age/
+        │   ├── characters/
+        │   ├── locations/
+        │   ├── artifacts/
+        │   └── events/
+        ├── second_age/
+        └── third_age/
+</code></pre>
+<h2 id="api-reference">API Reference</h2>
+<h3 id="c-api">C API</h3>
+<pre><code class="language-c">// Initialize the lore manager
+lore_manager_t *manager = init_lore_manager(&quot;path/to/memory-bank&quot;);
+
+// Get character lore
+lore_data_t *character_lore = get_character_lore(manager, &quot;Aragorn&quot;, &quot;third_age&quot;);
+if (character_lore) {
+    printf(&quot;Lore: %s\n&quot;, character_lore-&gt;content);
+    printf(&quot;Source: %s\n&quot;, character_lore-&gt;source);
+    printf(&quot;Canonical: %s\n&quot;, character_lore-&gt;is_canonical ? &quot;Yes&quot; : &quot;No&quot;);
+    free_lore_data(character_lore);
+}
+
+// Get location lore
+lore_data_t *location_lore = get_location_lore(manager, &quot;Minas Tirith&quot;, &quot;third_age&quot;);
+
+// Get artifact lore
+lore_data_t *artifact_lore = get_artifact_lore(manager, &quot;Anduril&quot;, &quot;third_age&quot;);
+
+// Get random lore
+lore_data_t *random_lore = get_random_lore(manager, &quot;third_age&quot;, &quot;character&quot;);
+
+// Clean up
+free_lore_manager(manager);
+</code></pre>
+<h3 id="python-api">Python API</h3>
+<pre><code class="language-python">from src.mcp.lore.lore_integration import LoreIntegration
+
+# Initialize the lore integration
+lore = LoreIntegration(memory_bank_path=&quot;path/to/memory-bank&quot;)
+
+# Get character lore
+character_info = lore.get_character_lore(&quot;Aragorn&quot;, age=&quot;third_age&quot;)
+print(f&quot;Description: {character_info[&#39;content&#39;]}&quot;)
+print(f&quot;Source: {character_info[&#39;source&#39;]}&quot;)
+print(f&quot;Canonical: {&#39;Yes&#39; if character_info[&#39;is_canonical&#39;] else &#39;No&#39;}&quot;)
+
+# Get location lore
+location_info = lore.get_location_lore(&quot;Minas Tirith&quot;, age=&quot;third_age&quot;)
+
+# Get artifact lore
+artifact_info = lore.get_artifact_lore(&quot;Anduril&quot;, age=&quot;third_age&quot;)
+
+# Get random lore
+random_info = lore.get_random_lore(age=&quot;third_age&quot;, topic_type=&quot;character&quot;)
+
+# Generate narrative content
+description = lore.generate_location_description(&quot;Minas Tirith&quot;, &quot;third_age&quot;)
+</code></pre>
+<h2 id="data-schema">Data Schema</h2>
+<p>Each lore entry is stored as a JSON file with the following schema:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Minas Tirith&quot;,
+  &quot;description&quot;: &quot;The great city of Gondor, also known as the Tower of Guard&quot;,
+  &quot;content&quot;: &quot;Minas Tirith was built on seven levels, each carved out of the hill, and surrounded by the White Mountains. The city was originally called Minas Anor, the Tower of the Sun, but was renamed to Minas Tirith, the Tower of Guard, after Minas Ithil fell to the forces of Mordor and became Minas Morgul.&quot;,
+  &quot;source&quot;: &quot;The Lord of the Rings&quot;,
+  &quot;year&quot;: 3018,
+  &quot;is_canonical&quot;: true,
+  &quot;type&quot;: &quot;city&quot;,
+  &quot;region&quot;: &quot;Gondor&quot;,
+  &quot;notable_features&quot;: [
+    &quot;White Tower of Ecthelion&quot;,
+    &quot;The Citadel&quot;,
+    &quot;Seven levels&quot;
+  ]
+}
+</code></pre>
+<h2 id="mcp-integration">MCP Integration</h2>
+<p>The Lore Management System is integrated with the Model Context Protocol (MCP) server to provide AI agents with accurate context for narrative generation and gameplay decisions.</p>
+<h3 id="endpoints">Endpoints</h3>
+<ul>
+<li><p><code>ages/lore/character</code>: Get character lore</p>
+<ul>
+<li>Parameters: character_name, age (optional)</li>
+<li>Response: content, source, age, year, is_canonical</li>
+</ul>
+</li>
+<li><p><code>ages/lore/location</code>: Get location lore</p>
+<ul>
+<li>Parameters: location_name, age (optional)</li>
+<li>Response: content, source, age, year, is_canonical</li>
+</ul>
+</li>
+<li><p><code>ages/lore/artifact</code>: Get artifact lore</p>
+<ul>
+<li>Parameters: artifact_name, age (optional)</li>
+<li>Response: content, source, age, year, is_canonical</li>
+</ul>
+</li>
+<li><p><code>ages/lore/random</code>: Get random lore</p>
+<ul>
+<li>Parameters: topic_type (optional), age (optional)</li>
+<li>Response: content, topic_type, age, source</li>
+</ul>
+</li>
+<li><p><code>ages/lore/age/set</code>: Set the current age</p>
+<ul>
+<li>Parameters: age</li>
+<li>Response: status, age</li>
+</ul>
+</li>
+<li><p><code>ages/lore/age/get</code>: Get the current age</p>
+<ul>
+<li>Parameters: none</li>
+<li>Response: age</li>
+</ul>
+</li>
+</ul>
+<h3 id="example-request">Example Request</h3>
+<pre><code class="language-bash">curl -X POST &quot;http://localhost:8000/ages/lore/character&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;character_name&quot;: &quot;Aragorn&quot;, &quot;age&quot;: &quot;third_age&quot;}&#39;
+</code></pre>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<p>The Lore Management System implements several performance optimizations:</p>
+<ol>
+<li><strong>Memory Caching</strong>: Frequently accessed lore entries are cached in memory</li>
+<li><strong>Lazy Loading</strong>: Lore data is loaded on demand, not all at once</li>
+<li><strong>Index Building</strong>: JSON files are indexed by name and keywords for fast lookup</li>
+<li><strong>Connection Pooling</strong>: MCP connections are pooled for efficient reuse</li>
+<li><strong>Rate Limiting</strong>: API requests are rate-limited to prevent overloading</li>
+</ol>
+<h2 id="implementation-guidelines">Implementation Guidelines</h2>
+<h3 id="adding-new-lore-entries">Adding New Lore Entries</h3>
+<ol>
+<li>Create a JSON file in the appropriate directory (<code>memory-bank/lore/&lt;age&gt;/&lt;type&gt;/</code>)</li>
+<li>Ensure all required fields are present (name, description, content, source)</li>
+<li>Validate the JSON format using the provided schema</li>
+<li>Update the index if necessary</li>
+</ol>
+<h3 id="extending-the-lore-manager">Extending the Lore Manager</h3>
+<p>To add support for a new lore type:</p>
+<ol>
+<li>Add the type to <code>lore_types.h</code></li>
+<li>Create a new query function in <code>lore_manager.c</code></li>
+<li>Update the Python integration in <code>lore_integration.py</code></li>
+<li>Create a new MCP endpoint if needed</li>
+<li>Add tests for the new functionality</li>
+</ol>
+<h2 id="testing">Testing</h2>
+<p>The Lore Management System includes comprehensive tests:</p>
+<pre><code class="language-c">// Run lore manager tests
+void test_lore_manager() {
+    lore_manager_t *manager = init_lore_manager(&quot;path/to/test/memory-bank&quot;);
+    
+    // Test character lookup
+    lore_data_t *gandalf = get_character_lore(manager, &quot;Gandalf&quot;, &quot;third_age&quot;);
+    assert(gandalf != NULL);
+    assert(strcmp(gandalf-&gt;name, &quot;Gandalf&quot;) == 0);
+    
+    // Test fuzzy matching
+    lore_data_t *aragorn = get_character_lore(manager, &quot;Strider&quot;, &quot;third_age&quot;);
+    assert(aragorn != NULL);
+    assert(strcmp(aragorn-&gt;name, &quot;Aragorn&quot;) == 0);
+    
+    // Test missing character
+    lore_data_t *missing = get_character_lore(manager, &quot;NonExistent&quot;, &quot;third_age&quot;);
+    assert(missing == NULL);
+    
+    free_lore_manager(manager);
+}
+</code></pre>
+<h2 id="history">History</h2>
+<ul>
+<li><strong>2023-12-01</strong>: Added performance optimization section</li>
+<li><strong>2023-10-15</strong>: Initial implementation documentation</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Documentation: borg-formulas-calc.h | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>File Documentation: borg-formulas-calc.h</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="file-documentation-borg-formulas-calch">File Documentation: borg-formulas-calc.h</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-formulas-calc.h</code> is a header file in the Angband roguelike game codebase that provides functionality for parsing and calculating dynamic formulas used by the Borg AI system. The Borg is an autonomous player agent that attempts to play the game intelligently.</p>
+<p>This file defines functions for reading mathematical calculations from formula strings and evaluating those formulas using previously parsed data. It also includes a function for freeing the memory used by the calculations.</p>
+<h2 id="data-structures">Data Structures</h2>
+<p>This header file does not define any structs or typedefs.</p>
+<h2 id="global-variables">Global Variables</h2>
+<p>This header file does not define any global variables.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="parse_calculation_line"><code>parse_calculation_line</code></h3>
+<pre><code class="language-c">extern int parse_calculation_line(char *line, const char *full_line);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Reads a mathematical calculation from a dynamic formula string.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>line</code>: A pointer to the current line being parsed.</li>
+<li><code>full_line</code>: A pointer to the full formula string.</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: An integer index of the parsed calculation, or an error code if parsing fails.</li>
+<li><strong>Side effects</strong>: Stores the parsed calculation for later evaluation.</li>
+<li><strong>Relationships</strong>: Used by the Borg AI to parse dynamic formulas from configuration files.</li>
+<li><strong>Game mechanics</strong>: Allows the Borg AI to use customizable formulas for decision making.</li>
+</ul>
+<h3 id="borg_calculate_dynamic"><code>borg_calculate_dynamic</code></h3>
+<pre><code class="language-c">extern int32_t borg_calculate_dynamic(int formula, int range_index);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Calculates a value from a previously parsed dynamic formula.</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>formula</code>: The integer index of the formula to evaluate.</li>
+<li><code>range_index</code>: An index into the formula&#39;s input range (if applicable).</li>
+</ul>
+</li>
+<li><strong>Return value</strong>: The calculated value as a 32-bit integer.</li>
+<li><strong>Side effects</strong>: None.</li>
+<li><strong>Relationships</strong>: Uses the calculations parsed by <code>parse_calculation_line</code>.</li>
+<li><strong>Game mechanics</strong>: Allows the Borg AI to evaluate dynamic formulas for decision making.</li>
+</ul>
+<h3 id="calculations_free"><code>calculations_free</code></h3>
+<pre><code class="language-c">extern void calculations_free(void);
+</code></pre>
+<ul>
+<li><strong>Purpose</strong>: Frees all memory used by the parsed calculations.</li>
+<li><strong>Parameters</strong>: None.</li>
+<li><strong>Return value</strong>: None.</li>
+<li><strong>Side effects</strong>: Deallocates memory used by the calculations.</li>
+<li><strong>Relationships</strong>: Should be called when the Borg AI is no longer needed.</li>
+<li><strong>Game mechanics</strong>: Manages memory used by the Borg AI&#39;s dynamic formulas.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>This header file does not implement any complex algorithms directly. The actual parsing and evaluation of the formulas is likely handled in the corresponding source file.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li><code>angband.h</code>: The main Angband header file, included before the <code>ALLOW_BORG</code> conditional compilation directive.</li>
+<li><code>borg-trait.h</code>: A header file related to the Borg AI, included within the <code>ALLOW_BORG</code> conditional compilation block.</li>
+</ul>
+<p>This header file is likely included by other files in the Borg AI subsystem.</p>
+<h2 id="historical-context">Historical Context</h2>
+<p>The Borg AI was developed as an autonomous player agent for Angband, capable of playing the game intelligently without human intervention. The dynamic formula parsing and evaluation system allows the Borg AI to be customized and adapted to different playstyles and strategies.</p>
+<p>The original developers of the Borg AI are Ben Harrison, James E. Wilson, and Robert A. Koeneke, with later contributions from Andi Sidwell, Chris Carr, Ed Graham, and Erik Osheim, among others.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

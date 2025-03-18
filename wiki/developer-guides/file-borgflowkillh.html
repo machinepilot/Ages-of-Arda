@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File: borg-flow-kill.h | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>File: borg-flow-kill.h</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-14</div>
+        </header>
+        
+        <main>
+            <h1 id="file-borg-flow-killh">File: borg-flow-kill.h</h1>
+<h2 id="file-overview">File Overview</h2>
+<p><code>borg-flow-kill.h</code> is a header file in the Angband codebase that contains declarations and definitions related to the Borg AI&#39;s monster tracking and combat flow systems. The Borg is an AI player that aims to optimally play the game. This file focuses on how the Borg tracks and engages with monsters in the dungeon.</p>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="borg_kill"><code>borg_kill</code></h3>
+<p>The <code>borg_kill</code> struct represents information about a monster tracked by the Borg AI. It contains the following fields:</p>
+<ul>
+<li><code>r_idx</code> (uint16_t): The race index of the monster.</li>
+<li><code>known</code> (bool): Whether the race of the monster has been verified.</li>
+<li><code>awake</code> (bool): Whether the monster is probably awake.</li>
+<li><code>confused</code> (bool): Whether the monster is probably confused.</li>
+<li><code>afraid</code> (bool): Whether the monster is probably afraid.</li>
+<li><code>quiver</code> (bool): Whether the monster is probably quivering.</li>
+<li><code>stunned</code> (bool): Whether the monster is stunned.</li>
+<li><code>poisoned</code> (bool): Whether the monster is probably poisoned.</li>
+<li><code>seen</code> (bool): Whether motion has been assigned to the monster.</li>
+<li><code>used</code> (bool): Whether a message has been assigned to the monster.</li>
+<li><code>pos</code> (struct loc): The location of the monster.</li>
+<li><code>ox</code>, <code>oy</code> (uint8_t): The old location of the monster.</li>
+<li><code>speed</code> (uint8_t): The estimated speed of the monster.</li>
+<li><code>moves</code> (uint8_t): The estimated moves of the monster.</li>
+<li><code>ranged_attack</code> (uint8_t): The quantity of ranged attacks the monster has.</li>
+<li><code>spell</code> (uint8_t[RSF_MAX]): Spell flags for the monster&#39;s spells.</li>
+<li><code>power</code> (int16_t): The estimated hit-points of the monster.</li>
+<li><code>injury</code> (int16_t): The percentage the monster is wounded.</li>
+<li><code>other</code> (int16_t): An estimated value for something unspecified.</li>
+<li><code>level</code> (int16_t): The monster&#39;s level.</li>
+<li><code>spell_flags</code> (uint32_t[RF_MAX]): Preloaded monster race spell flags.</li>
+<li><code>when</code> (int16_t): When the monster was last seen.</li>
+<li><code>m_idx</code> (int16_t): The game&#39;s index for the monster.</li>
+</ul>
+<h2 id="global-variables">Global Variables</h2>
+<ul>
+<li><code>borg_kills_cnt</code> (int16_t): The count of monsters in the <code>borg_kills</code> array.</li>
+<li><code>borg_kills_summoner</code> (int16_t): The index of a summoning monster in the <code>borg_kills</code> array.</li>
+<li><code>borg_kills_nxt</code> (int16_t): The next available index in the <code>borg_kills</code> array.</li>
+<li><code>borg_kills</code> (borg_kill*): The array of monsters tracked by the Borg AI.</li>
+<li><code>borg_race_count</code> (int16_t*): A count of racial appearances per dungeon level.</li>
+<li><code>borg_race_death</code> (int16_t*): A count of racial kills (for unique monsters).</li>
+<li>Various global variables tracking the presence of specific monsters or monster types on the current level.</li>
+</ul>
+<h2 id="functions">Functions</h2>
+<h3 id="borg_race_name"><code>borg_race_name</code></h3>
+<pre><code class="language-c">const char *borg_race_name(int i);
+</code></pre>
+<ul>
+<li>Purpose: Get the name of a monster race.</li>
+<li>Parameters:<ul>
+<li><code>i</code> (int): The index of the monster race.</li>
+</ul>
+</li>
+<li>Return value: The name of the monster race as a string.</li>
+</ul>
+<h3 id="borg_delete_kill"><code>borg_delete_kill</code></h3>
+<pre><code class="language-c">void borg_delete_kill(int i);
+</code></pre>
+<ul>
+<li>Purpose: Delete an old &quot;kill&quot; record from the <code>borg_kills</code> array.</li>
+<li>Parameters:<ul>
+<li><code>i</code> (int): The index of the &quot;kill&quot; record to delete.</li>
+</ul>
+</li>
+<li>Side effects: Removes the &quot;kill&quot; record at index <code>i</code> from the <code>borg_kills</code> array.</li>
+</ul>
+<h3 id="borg_sleep_kill"><code>borg_sleep_kill</code></h3>
+<pre><code class="language-c">void borg_sleep_kill(int i);
+</code></pre>
+<ul>
+<li>Purpose: Force sleep onto a &quot;kill&quot; record in the <code>borg_kills</code> array.</li>
+<li>Parameters:<ul>
+<li><code>i</code> (int): The index of the &quot;kill&quot; record to force sleep onto.</li>
+</ul>
+</li>
+<li>Side effects: Modifies the &quot;kill&quot; record at index <code>i</code> in the <code>borg_kills</code> array to indicate the monster is sleeping.</li>
+</ul>
+<h3 id="borg_follow_kill"><code>borg_follow_kill</code></h3>
+<pre><code class="language-c">void borg_follow_kill(int i);
+</code></pre>
+<ul>
+<li>Purpose: Attempt to &quot;follow&quot; a missing monster.</li>
+<li>Parameters:<ul>
+<li><code>i</code> (int): The index of the &quot;kill&quot; record to follow.</li>
+</ul>
+</li>
+<li>Side effects: Updates the &quot;kill&quot; record at index <code>i</code> in the <code>borg_kills</code> array based on the monster&#39;s movement.</li>
+</ul>
+<h3 id="observe_kill_diff"><code>observe_kill_diff</code></h3>
+<pre><code class="language-c">bool observe_kill_diff(int y, int x, uint8_t a, wchar_t c);
+</code></pre>
+<ul>
+<li>Purpose: Attempt to notice a changing &quot;kill&quot; record.</li>
+<li>Parameters:<ul>
+<li><code>y</code>, <code>x</code> (int): The coordinates of the monster.</li>
+<li><code>a</code> (uint8_t): The monster&#39;s attribute.</li>
+<li><code>c</code> (wchar_t): The monster&#39;s character representation.</li>
+</ul>
+</li>
+<li>Return value: True if a change was noticed, false otherwise.</li>
+<li>Side effects: Updates the corresponding &quot;kill&quot; record in the <code>borg_kills</code> array if a change is noticed.</li>
+</ul>
+<h3 id="observe_kill_move"><code>observe_kill_move</code></h3>
+<pre><code class="language-c">bool observe_kill_move(int y, int x, int d, uint8_t a, wchar_t c, bool flag);
+</code></pre>
+<ul>
+<li>Purpose: Attempt to notice if a &quot;kill&quot; record moved.</li>
+<li>Parameters:<ul>
+<li><code>y</code>, <code>x</code> (int): The coordinates of the monster.</li>
+<li><code>d</code> (int): The direction of movement.</li>
+<li><code>a</code> (uint8_t): The monster&#39;s attribute.</li>
+<li><code>c</code> (wchar_t): The monster&#39;s character representation.</li>
+<li><code>flag</code> (bool): A flag indicating something unspecified.</li>
+</ul>
+</li>
+<li>Return value: True if movement was noticed, false otherwise.</li>
+<li>Side effects: Updates the corresponding &quot;kill&quot; record in the <code>borg_kills</code> array if movement is noticed.</li>
+</ul>
+<h3 id="borg_locate_kill"><code>borg_locate_kill</code></h3>
+<pre><code class="language-c">int borg_locate_kill(char *who, struct loc c, int r);
+</code></pre>
+<ul>
+<li>Purpose: Attempt to locate a monster which could explain a message.</li>
+<li>Parameters:<ul>
+<li><code>who</code> (char*): The name of the monster to locate.</li>
+<li><code>c</code> (struct loc): The coordinates to search around.</li>
+<li><code>r</code> (int): The radius to search within.</li>
+</ul>
+</li>
+<li>Return value: The index of the located &quot;kill&quot; record in the <code>borg_kills</code> array, or -1 if not found.</li>
+</ul>
+<h3 id="borg_count_death"><code>borg_count_death</code></h3>
+<pre><code class="language-c">void borg_count_death(int i);
+</code></pre>
+<ul>
+<li>Purpose: Notice the &quot;death&quot; of a monster.</li>
+<li>Parameters:<ul>
+<li><code>i</code> (int): The index of the &quot;kill&quot; record of the dead monster.</li>
+</ul>
+</li>
+<li>Side effects: Updates the racial kill count for the monster and removes the &quot;kill&quot; record from the <code>borg_kills</code> array.</li>
+</ul>
+<h3 id="borg_flow_kill"><code>borg_flow_kill</code></h3>
+<pre><code class="language-c">bool borg_flow_kill(bool viewable, int nearness);
+</code></pre>
+<ul>
+<li>Purpose: Prepare to &quot;flow&quot; towards monsters to &quot;kill&quot;.</li>
+<li>Parameters:<ul>
+<li><code>viewable</code> (bool): Whether to consider only viewable monsters.</li>
+<li><code>nearness</code> (int): The desired nearness to the monsters.</li>
+</ul>
+</li>
+<li>Return value: True if the flow was prepared successfully, false otherwise.</li>
+<li>Side effects: Sets up the Borg AI&#39;s flow towards monsters for combat.</li>
+</ul>
+<h3 id="borg_flow_kill_aim"><code>borg_flow_kill_aim</code></h3>
+<pre><code class="language-c">bool borg_flow_kill_aim(bool viewable);
+</code></pre>
+<ul>
+<li>Purpose: Take a couple of steps to line up a shot at a monster.</li>
+<li>Parameters:<ul>
+<li><code>viewable</code> (bool): Whether to consider only viewable monsters.</li>
+</ul>
+</li>
+<li>Return value: True if the Borg AI successfully lined up a shot, false otherwise.</li>
+<li>Side effects: Moves the Borg AI to line up a shot at a monster.</li>
+</ul>
+<h3 id="borg_flow_kill_corridor"><code>borg_flow_kill_corridor</code></h3>
+<pre><code class="language-c">bool borg_flow_kill_corridor(bool viewable);
+</code></pre>
+<ul>
+<li>Purpose: Dig an anti-summon corridor.</li>
+<li>Parameters:<ul>
+<li><code>viewable</code> (bool): Whether to consider only viewable monsters.</li>
+</ul>
+</li>
+<li>Return value: True if the corridor was dug successfully, false otherwise.</li>
+<li>Side effects: Digs a corridor to prevent monster summoning.</li>
+</ul>
+<h3 id="borg_flow_kill_direct"><code>borg_flow_kill_direct</code></h3>
+<pre><code class="language-c">bool borg_flow_kill_direct(bool viewable, bool twitchy);
+</code></pre>
+<ul>
+<li>Purpose: Dig a straight tunnel to a close monster.</li>
+<li>Parameters:<ul>
+<li><code>viewable</code> (bool): Whether to consider only viewable monsters.</li>
+<li><code>twitchy</code> (bool): Whether to allow twitchy movement.</li>
+</ul>
+</li>
+<li>Return value: True if the tunnel was dug successfully, false otherwise.</li>
+<li>Side effects: Digs a straight tunnel towards a close monster.</li>
+</ul>
+<h3 id="borg_near_monster_type"><code>borg_near_monster_type</code></h3>
+<pre><code class="language-c">void borg_near_monster_type(int dist);
+</code></pre>
+<ul>
+<li>Purpose: Check if a dangerous monster is nearby.</li>
+<li>Parameters:<ul>
+<li><code>dist</code> (int): The distance to check for monsters.</li>
+</ul>
+</li>
+<li>Side effects: Updates global variables indicating the presence of specific monster types within the given distance.</li>
+</ul>
+<h3 id="borg_shoot_scoot_safe"><code>borg_shoot_scoot_safe</code></h3>
+<pre><code class="language-c">bool borg_shoot_scoot_safe(int emergency, int turns, int b_p);
+</code></pre>
+<ul>
+<li>Purpose: Perform a bit of magic missile and phase to escape danger.</li>
+<li>Parameters:<ul>
+<li><code>emergency</code> (int): The level of emergency.</li>
+<li><code>turns</code> (int): The number of turns to spend.</li>
+<li><code>b_p</code> (int): The power of the magic missiles.</li>
+</ul>
+</li>
+<li>Return value: True if the Borg AI successfully escaped danger, false otherwise.</li>
+<li>Side effects: Makes the Borg AI use magic missiles and phasing to escape dangerous situations.</li>
+</ul>
+<h3 id="borg_create_kill"><code>borg_create_kill</code></h3>
+<pre><code class="language-c">int borg_create_kill(char *who, struct loc c);
+</code></pre>
+<ul>
+<li>Purpose: Create a &quot;kill&quot; record at the given location.</li>
+<li>Parameters:<ul>
+<li><code>who</code> (char*): The name of the monster.</li>
+<li><code>c</code> (struct loc): The coordinates of the monster.</li>
+</ul>
+</li>
+<li>Return value: The index of the created &quot;kill&quot; record in the <code>borg_kills</code> array.</li>
+<li>Side effects: Adds a new &quot;kill&quot; record to the <code>borg_kills</code> array.</li>
+</ul>
+<h3 id="borg_init_flow_kill"><code>borg_init_flow_kill</code></h3>
+<pre><code class="language-c">void borg_init_flow_kill(void);
+</code></pre>
+<ul>
+<li>Purpose: Initialize the data structures and variables related to the Borg AI&#39;s monster tracking and combat flow systems.</li>
+<li>Side effects: Allocates memory for the <code>borg_kills</code> array and initializes related variables.</li>
+</ul>
+<h3 id="borg_free_flow_kill"><code>borg_free_flow_kill</code></h3>
+<pre><code class="language-c">void borg_free_flow_kill(void);
+</code></pre>
+<ul>
+<li>Purpose: Free the memory allocated for the Borg AI&#39;s monster tracking and combat flow systems.</li>
+<li>Side effects: Deallocates the memory used by the <code>borg_kills</code> array.</li>
+</ul>
+<h2 id="algorithms">Algorithms</h2>
+<p>The functions in this file implement various algorithms and game mechanics related to the Borg AI&#39;s monster tracking and combat flow systems. Some key algorithms include:</p>
+<ul>
+<li>Updating and maintaining the <code>borg_kills</code> array based on monster movements and state changes.</li>
+<li>Preparing the Borg AI&#39;s flow towards monsters for combat.</li>
+<li>Lining up shots at monsters.</li>
+<li>Digging anti-summon corridors and straight tunnels towards monsters.</li>
+<li>Escaping dangerous situations using magic missiles and phasing.</li>
+</ul>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li><p>This file depends on the following files:</p>
+<ul>
+<li><code>angband.h</code>: For basic Angband data types and constants.</li>
+<li><code>mon-spell.h</code>: For monster spell constants.</li>
+<li><code>borg-flow.h</code>: For general Borg AI flow functionality.</li>
+</ul>
+</li>
+<li><p>Other files may depend on this file to access the Borg AI&#39;s monster tracking and combat flow functionality.</p>
+</li>
+</ul>
+<h2 id="historical-context">Historical Context</h2>
+<p>The Borg AI was developed as an add-on to Angband to create an automated player that could optimally play the game. The monster tracking and combat flow systems implemented in this file are crucial components of the Borg AI&#39;s decision-making process. The code has evolved over time to improve the Borg AI&#39;s effectiveness and efficiency in dealing with monsters in the dungeon.</p>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 

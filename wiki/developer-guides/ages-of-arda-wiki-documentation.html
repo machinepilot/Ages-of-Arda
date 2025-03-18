@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ages of Arda Wiki Documentation | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <!-- Lunr.js for search functionality -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <!-- Custom scripts -->
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+    <script src="../search.js" defer></script>
+</head>
+<body class="development-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>Ages of Arda Wiki Documentation</h1>
+            <div class="version-info">Version 0.1.0</div>
+            <div class="update-info">Last updated: 2025-03-18</div>
+        </header>
+        
+        <main>
+            <p>original location: C:\working_directory\ages-project\clean-ages-of-arda\wiki\CHANGELOG_wiki.md</p>
+<h1 id="ages-of-arda-wiki-documentation">Ages of Arda Wiki Documentation</h1>
+<p>This directory contains the comprehensive documentation for the Ages of Arda project, an AI-driven roguelike variant of Angband set in Tolkien&#39;s world.</p>
+<h2 id="documentation-structure">Documentation Structure</h2>
+<p>The wiki is organized into the following sections:</p>
+<h3 id="main-pages">Main Pages</h3>
+<ul>
+<li><code>index.html</code> - Main landing page and introduction to the project</li>
+<li><code>development-story.html</code> - The journey and evolution of the Ages of Arda project</li>
+</ul>
+<h3 id="ai-architecture">AI Architecture</h3>
+<ul>
+<li><code>ai-architecture/overview.html</code> - Overview of the AI system architecture</li>
+<li><code>ai-architecture/mcp-integration.html</code> - Model Context Protocol (MCP) documentation</li>
+<li><code>ai-architecture/multi-agent-framework.html</code> - Multi-Agent Framework documentation</li>
+<li><code>ai-architecture/memory-bank.html</code> - Memory Bank System documentation</li>
+<li><code>ai-architecture/lore-management.html</code> - Lore Management System documentation</li>
+</ul>
+<h3 id="assets">Assets</h3>
+<ul>
+<li><code>images/</code> - Directory containing diagrams and illustrations</li>
+<li><code>styles/</code> - CSS styling for the wiki</li>
+</ul>
+<h3 id="navigation">Navigation</h3>
+<ul>
+<li><code>sidebar.html</code> - Shared sidebar navigation component</li>
+<li><code>sidebar.js</code> - JavaScript for dynamic sidebar loading</li>
+<li><code>roguebasin-style.css</code> - RogueBasin-inspired styling for the wiki</li>
+</ul>
+<h2 id="style-guide">Style Guide</h2>
+<p>The documentation follows the RogueBasin wiki style guide with the following characteristics:</p>
+<ul>
+<li>Clean, readable layout with a focus on content</li>
+<li>Monospace fonts for code blocks and technical content</li>
+<li>Responsive design that works well on different screen sizes</li>
+<li>Consistent navigation across all pages</li>
+<li>Printer-friendly styling</li>
+</ul>
+<h2 id="contributing-to-documentation">Contributing to Documentation</h2>
+<p>When adding new pages to the wiki:</p>
+<ol>
+<li>Follow the existing HTML structure with proper navigation elements</li>
+<li>Link the <code>roguebasin-style.css</code> stylesheet</li>
+<li>Include the sidebar navigation component</li>
+<li>Add the new page to the sidebar navigation</li>
+<li>Ensure all code examples are properly formatted</li>
+<li>Include diagrams where appropriate to illustrate concepts</li>
+</ol>
+<h2 id="building-the-documentation">Building the Documentation</h2>
+<p>The documentation is static HTML and can be viewed directly in a browser. No build process is required.</p>
+<h2 id="future-documentation-plans">Future Documentation Plans</h2>
+<ul>
+<li>Game Design documentation</li>
+<li>Developer Guides</li>
+<li>API Reference</li>
+<li>User Manual</li>
+</ul>
+
+            
+            
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 
