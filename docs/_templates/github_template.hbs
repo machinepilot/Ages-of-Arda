@@ -1,0 +1,20 @@
+{{#if frontmatter.title}}# {{frontmatter.title}}
+{{/if}}
+{{#if frontmatter.version}}*Version: {{frontmatter.version}}*{{#if frontmatter.updated}} - Last updated: {{frontmatter.updated}}{{/if}}
+
+{{/if}}
+{{{content}}}
+
+{{#if frontmatter.contributors}}
+## Contributors
+{{#each frontmatter.contributors}}
+- {{this}}
+{{/each}}
+{{/if}}
+
+{{#if frontmatter.history}}
+## History
+{{#each frontmatter.history}}
+- **{{this.date}}**: {{this.description}}
+{{/each}}
+{{/if}} 

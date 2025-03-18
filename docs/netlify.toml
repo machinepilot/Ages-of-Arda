@@ -1,0 +1,35 @@
+[build]
+  base = "docs/"
+  publish = "../wiki"
+  command = "npm install && node _scripts/build.js"
+
+[build.environment]
+  NODE_VERSION = "16"
+
+# Production context
+[context.production]
+  command = "npm install && node _scripts/build.js"
+
+# Deploy Preview context
+[context.deploy-preview]
+  command = "npm install && node _scripts/build.js"
+
+# Branch Deploy context
+[context.branch-deploy]
+  command = "npm install && node _scripts/build.js"
+
+# Redirects
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/developer/*"
+  to = "/developer-guides/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/gameplay/*"
+  to = "/game-design/:splat"
+  status = 301 

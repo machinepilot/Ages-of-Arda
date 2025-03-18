@@ -1,0 +1,29 @@
+{
+  "name": "ages-of-arda",
+  "version": "1.0.0",
+  "description": "A First Age Angband Variant",
+  "scripts": {
+    "docs:build": "cd docs && npm run build",
+    "docs:migrate": "cd docs && npm run migrate",
+    "docs:dev": "cd docs && npm run dev",
+    "docs:sync-rules": "cd docs && node _scripts/integrations/cursor-rules.js",
+    "docs:install": "cd docs && npm install",
+    "docs:setup": "npm run docs:install && npm run docs:build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/username/ages-of-arda.git"
+  },
+  "keywords": [
+    "angband",
+    "roguelike",
+    "tolkien",
+    "first-age"
+  ],
+  "author": "Ages of Arda Team",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/username/ages-of-arda/issues"
+  },
+  "homepage": "https://github.com/username/ages-of-arda#readme"
+} 

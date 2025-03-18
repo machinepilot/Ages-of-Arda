@@ -1,0 +1,26 @@
+{
+  "name": "ages-of-arda-docs",
+  "version": "1.0.0",
+  "description": "Documentation system for Ages of Arda",
+  "main": "_scripts/build.js",
+  "scripts": {
+    "build": "node _scripts/build.js",
+    "migrate": "node _scripts/migrator.js",
+    "serve": "http-server _site -p 3000",
+    "watch": "nodemon --watch _source --ext md,yml --exec \"npm run build\"",
+    "dev": "concurrently \"npm run watch\" \"npm run serve\""
+  },
+  "dependencies": {
+    "fs-extra": "^10.1.0",
+    "glob": "^8.0.3",
+    "handlebars": "^4.7.7",
+    "js-yaml": "^4.1.0",
+    "marked": "^4.2.5",
+    "nodemon": "^2.0.20",
+    "concurrently": "^7.6.0",
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 

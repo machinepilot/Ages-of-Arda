@@ -1,0 +1,8 @@
+---
+title: "{{frontmatter.title}}"
+glob: "{{frontmatter.glob}}"
+priority: {{frontmatter.priority}}
+related: [{{#each frontmatter.related}}"{{this}}"{{#unless @last}}, {{/unless}}{{/each}}]
+---
+
+{{{content}}} 

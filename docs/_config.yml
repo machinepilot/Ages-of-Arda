@@ -1,0 +1,67 @@
+---
+# Ages of Arda Documentation Configuration
+title: "Ages of Arda"
+description: "A First Age Angband Variant"
+repository_url: "https://github.com/username/ages-of-arda"
+
+# Site structure
+base_url: "/"
+docs_directory: "_source"
+output_directory: "_site"
+
+# Build settings
+template_engine: "handlebars"
+markdown_engine: "marked"
+assets_directory: "_assets"
+
+# Content organization
+sections:
+  development:
+    title: "Development Documentation"
+    description: "Technical documentation for Ages of Arda developers"
+    categories:
+      - architecture
+      - guides
+      - reference
+  
+  gameplay:
+    title: "Gameplay Documentation"
+    description: "Game guides and information for players"
+    categories:
+      - guides
+      - reference
+
+# Output formats
+outputs:
+  - name: "wiki"
+    path: "../wiki"
+    template: "wiki_template"
+    active: true
+    
+  - name: "cursor_rules"
+    path: "../.cursor/rules"
+    template: "cursor_rule_template"
+    active: true
+    
+  - name: "github_docs"
+    path: "../"
+    template: "github_template"
+    active: true
+
+# Document naming convention
+naming_convention:
+  pattern: "{section}-{category}-{descriptor}"
+  timestamp_format: "YYYY-MM-DD"
+  version_format: "MAJOR.MINOR.PATCH"
+
+# Integration settings
+cursor_rules:
+  integration_enabled: true
+  rule_directory: "../.cursor/rules"
+  sync_bidirectional: true
+
+# Wiki settings
+wiki:
+  separate_experiences: true
+  development_section: "developer-guides"
+  gameplay_section: "game-design" 

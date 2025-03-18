@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} | Ages of Arda</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+    <script src="../sidebar.js" defer></script>
+    <script src="../middle-earth-interaction.js" defer></script>
+</head>
+<body class="{{section}}-section">
+    <!-- Include sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <div class="content-container">
+        <header>
+            <h1>{{title}}</h1>
+            {{#if frontmatter.version}}
+            <div class="version-info">Version {{frontmatter.version}}</div>
+            {{/if}}
+            {{#if frontmatter.updated}}
+            <div class="update-info">Last updated: {{frontmatter.updated}}</div>
+            {{/if}}
+        </header>
+        
+        <main>
+            {{{content}}}
+            
+            {{#if frontmatter.contributors}}
+            <div class="contributors">
+                <h3>Contributors:</h3>
+                <ul>
+                {{#each frontmatter.contributors}}
+                    <li>{{this}}</li>
+                {{/each}}
+                </ul>
+            </div>
+            {{/if}}
+            
+            {{#if frontmatter.related}}
+            <div class="related-content">
+                <h3>Related Content:</h3>
+                <ul>
+                {{#each frontmatter.related}}
+                    <li><a href="{{this}}.html">{{this}}</a></li>
+                {{/each}}
+                </ul>
+            </div>
+            {{/if}}
+        </main>
+        
+        <footer>
+            <p>Ages of Arda - A First Age Angband Variant</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSidebar('../sidebar.html');
+        });
+    </script>
+</body>
+</html> 
