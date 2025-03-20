@@ -1,0 +1,106 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Character Schema",
+    "type": "object",
+    "required": ["name", "description", "content", "source", "is_canonical", "type"],
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Primary name of the character"
+        },
+        "description": {
+            "type": "string",
+            "description": "Brief description (1-2 sentences)"
+        },
+        "content": {
+            "type": "string",
+            "description": "Detailed information about the character"
+        },
+        "source": {
+            "type": "string",
+            "description": "Source material reference"
+        },
+        "year": {
+            "type": ["integer", "string"],
+            "description": "Year or time period associated with the character"
+        },
+        "is_canonical": {
+            "type": "boolean",
+            "description": "Whether this information is from canonical sources"
+        },
+        "type": {
+            "type": "string",
+            "enum": ["character"],
+            "description": "Entity type"
+        },
+        "race": {
+            "type": "string",
+            "description": "Race or species of the character"
+        },
+        "titles": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Titles or honorifics held by the character"
+        },
+        "relations": {
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            },
+            "description": "Family and other relationships"
+        },
+        "notable_deeds": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Significant actions or accomplishments"
+        },
+        "death": {
+            "type": "object",
+            "properties": {
+                "cause": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "circumstances": {
+                    "type": "string"
+                }
+            },
+            "description": "Information about character's death if applicable"
+        },
+        "aliases": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Alternative names for the character"
+        },
+        "age": {
+            "type": "string",
+            "enum": ["first_age", "second_age", "third_age", "fourth_age"],
+            "description": "Primary age associated with the character"
+        },
+        "locations": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Locations associated with the character"
+        }
+    }
+} 

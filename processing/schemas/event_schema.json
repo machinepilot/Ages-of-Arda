@@ -1,0 +1,104 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Event Schema",
+    "type": "object",
+    "required": ["name", "description", "content", "source", "is_canonical", "type"],
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Primary name of the event"
+        },
+        "description": {
+            "type": "string",
+            "description": "Brief description (1-2 sentences)"
+        },
+        "content": {
+            "type": "string",
+            "description": "Detailed information about the event"
+        },
+        "source": {
+            "type": "string",
+            "description": "Source material reference"
+        },
+        "year": {
+            "type": ["integer", "string"],
+            "description": "Year or time period when the event occurred"
+        },
+        "is_canonical": {
+            "type": "boolean",
+            "description": "Whether this information is from canonical sources"
+        },
+        "type": {
+            "type": "string",
+            "enum": ["event", "battle", "journey", "council", "ceremony"],
+            "description": "Entity type"
+        },
+        "aliases": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Alternative names for the event"
+        },
+        "age": {
+            "type": "string",
+            "enum": ["first_age", "second_age", "third_age", "fourth_age"],
+            "description": "Age when the event occurred"
+        },
+        "significance": {
+            "type": "string",
+            "description": "Historical or narrative importance of the event"
+        },
+        "location": {
+            "type": "string",
+            "description": "Where the event took place"
+        },
+        "participants": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "type": "string"
+                    },
+                    "side": {
+                        "type": "string"
+                    }
+                }
+            },
+            "description": "Characters involved in the event"
+        },
+        "outcome": {
+            "type": "string",
+            "description": "Result or consequence of the event"
+        },
+        "preceding_events": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Events that led to this one"
+        },
+        "following_events": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Events that resulted from this one"
+        },
+        "duration": {
+            "type": "string",
+            "description": "How long the event lasted"
+        },
+        "artifacts": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Significant items involved in the event"
+        }
+    }
+} 

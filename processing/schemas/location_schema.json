@@ -1,0 +1,118 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Location Schema",
+    "type": "object",
+    "required": ["name", "description", "content", "source", "is_canonical", "type"],
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Primary name of the location"
+        },
+        "description": {
+            "type": "string",
+            "description": "Brief description (1-2 sentences)"
+        },
+        "content": {
+            "type": "string",
+            "description": "Detailed information about the location"
+        },
+        "source": {
+            "type": "string",
+            "description": "Source material reference"
+        },
+        "year": {
+            "type": ["integer", "string"],
+            "description": "Year or time period when the location was prominent"
+        },
+        "is_canonical": {
+            "type": "boolean",
+            "description": "Whether this information is from canonical sources"
+        },
+        "type": {
+            "type": "string",
+            "enum": ["location"],
+            "description": "Entity type"
+        },
+        "region": {
+            "type": "string",
+            "description": "Broader geographical region containing this location"
+        },
+        "aliases": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Alternative names for the location"
+        },
+        "age": {
+            "type": "string",
+            "enum": ["first_age", "second_age", "third_age", "fourth_age"],
+            "description": "Primary age associated with the location"
+        },
+        "significance": {
+            "type": "string",
+            "description": "Historical or narrative importance of the location"
+        },
+        "notable_features": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Distinctive aspects or landmarks of the location"
+        },
+        "inhabitants": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "relationship": {
+                        "type": "string"
+                    }
+                }
+            },
+            "description": "Beings or groups that live in this location"
+        },
+        "history": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "event": {
+                        "type": "string"
+                    },
+                    "year": {
+                        "type": ["string", "integer"]
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            },
+            "description": "Historical events associated with this location"
+        },
+        "connections": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "relationship": {
+                        "type": "string"
+                    }
+                }
+            },
+            "description": "Geographical or conceptual connections to other locations"
+        }
+    }
+} 

@@ -1,0 +1,115 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Item/Artifact Schema",
+    "type": "object",
+    "required": ["name", "description", "content", "source", "is_canonical", "type"],
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Primary name of the item or artifact"
+        },
+        "description": {
+            "type": "string",
+            "description": "Brief description (1-2 sentences)"
+        },
+        "content": {
+            "type": "string",
+            "description": "Detailed information about the item"
+        },
+        "source": {
+            "type": "string",
+            "description": "Source material reference"
+        },
+        "year": {
+            "type": ["integer", "string"],
+            "description": "Year or time period when the item was created or prominent"
+        },
+        "is_canonical": {
+            "type": "boolean",
+            "description": "Whether this information is from canonical sources"
+        },
+        "type": {
+            "type": "string",
+            "enum": ["item", "artifact", "weapon", "jewelry", "object"],
+            "description": "Entity type"
+        },
+        "creator": {
+            "type": "string",
+            "description": "Individual or group that created the item"
+        },
+        "aliases": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Alternative names for the item"
+        },
+        "age": {
+            "type": "string",
+            "enum": ["first_age", "second_age", "third_age", "fourth_age"],
+            "description": "Primary age associated with the item"
+        },
+        "significance": {
+            "type": "string",
+            "description": "Historical or narrative importance of the item"
+        },
+        "powers": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Magical or special abilities of the item"
+        },
+        "owners": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "period": {
+                        "type": "string"
+                    },
+                    "notes": {
+                        "type": "string"
+                    }
+                }
+            },
+            "description": "Characters who have possessed this item"
+        },
+        "history": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "event": {
+                        "type": "string"
+                    },
+                    "year": {
+                        "type": ["string", "integer"]
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            },
+            "description": "Historical events associated with this item"
+        },
+        "appearance": {
+            "type": "string",
+            "description": "Physical description of the item"
+        },
+        "materials": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Materials used in the item's construction"
+        },
+        "current_location": {
+            "type": "string",
+            "description": "Where the item is at the end of its known history"
+        }
+    }
+} 
