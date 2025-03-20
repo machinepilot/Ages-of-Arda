@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ages of Arda: A Game Preview</title>
+    <style>
+        :root {
+            /* LOTR-themed color palette */
+            --primary-color: #2d3e1f; /* Forest green */
+            --secondary-color: #8b4513; /* Saddle brown for wood/leather */
+            --accent-color: #c19a6b; /* Parchment/scroll color */
+            --gold-color: #d4af37; /* Gold for rings/artifacts */
+            --light-color: #f5f5dc; /* Beige/parchment */
+            --dark-color: #2b2b2b; /* Dark charcoal */
+            --terminal-amber: #ffb000; /* Classic amber terminal */
+            --terminal-green: #33ff33; /* Classic green terminal */
+            --terminal-black: #111111; /* Terminal background */
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --mordor-red: #7d0000; /* Dark red for evil elements */
+            --elven-silver: #c0c0c0; /* Silvery color for elven elements */
+            --dwarf-stone: #696969; /* Stone gray for dwarven elements */
+            --parchment: #e8e0d0; /* Old paper color */
+            --ink: #3a3a3a; /* Dark ink color */
+        }
+        
+        @font-face {
+            font-family: 'VT323';
+            src: url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        }
+        
+        body {
+            font-family: 'Bookman Old Style', Georgia, serif;
+            line-height: 1.6;
+            color: var(--ink);
+            background-color: #221c11;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMjIxYzExIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMxYjE3MGUiPjwvcmVjdD4KPC9zdmc+');
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+            background-color: var(--terminal-black);
+            color: var(--terminal-amber);
+            background-image: linear-gradient(rgba(17, 17, 17, 0.9), rgba(17, 17, 17, 0.9)), url('/api/placeholder/1200/300');
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--gold-color);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Cinzel', 'Times New Roman', serif;
+            letter-spacing: 2px;
+            color: var(--gold-color);
+        }
+        
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--gold-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+            font-family: 'Cinzel', 'Times New Roman', serif;
+            font-size: 1.75rem;
+        }
+        
+        h3 {
+            color: var(--primary-color);
+            margin-top: 1.5rem;
+            font-size: 1.25rem;
+        }
+        
+        /* Improved mobile navigation */
+        .nav-container {
+            position: relative;
+        }
+        
+        .nav-toggle {
+            display: none;
+            background-color: var(--terminal-black);
+            color: var(--terminal-amber);
+            border: 1px solid var(--gold-color);
+            border-radius: var(--border-radius);
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 1rem;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .nav-toggle::after {
+            content: "▼";
+            float: right;
+        }
+        
+        nav {
+            background-color: var(--terminal-black);
+            border-radius: var(--border-radius);
+            padding: 0.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--gold-color);
+        }
+        
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 0;
+            margin: 0;
+        }
+        
+        nav a {
+            color: var(--terminal-amber);
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            display: block;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+        }
+        
+        nav a:hover {
+            background-color: rgba(212, 175, 55, 0.2);
+            color: var(--gold-color);
+        }
+        
+        .exec-summary {
+            background-color: var(--parchment);
+            border-left: 5px solid var(--secondary-color);
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .exec-summary ul {
+            padding-left: 1.25rem;
+        }
+        
+        .exec-summary li {
+            margin-bottom: 0.75rem;
+            list-style-type: none;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .exec-summary li::before {
+            content: "✧";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+        }
+        
+        .alpha-launch {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            text-align: center;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: 1px solid var(--gold-color);
+        }
+        
+        /* ASCII Art optimized for mobile */
+        .ascii-square {
+            font-family: 'Courier New', monospace;
+            white-space: pre;
+            line-height: 1.2;
+            font-size: 0.6rem; /* Smaller font size for mobile */
+            overflow: hidden;
+            text-align: center;
+            color: var(--terminal-amber);
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            margin: 0.5rem auto;
+            display: block;
+            text-shadow: 0 0 5px rgba(255, 176, 0, 0.7);
+            max-width: 280px; /* Constrained width for mobile */
+        }
+        
+        .ascii-mini {
+            font-family: 'Courier New', monospace;
+            white-space: pre;
+            font-size: 0.75rem;
+            line-height: 1.2;
+            color: var(--terminal-amber);
+            background-color: var(--terminal-black);
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            text-align: center;
+            display: block;
+            border: 1px solid var(--gold-color);
+            box-shadow: inset 0 0 10px rgba(255, 176, 0, 0.1);
+            text-shadow: 0 0 5px rgba(255, 176, 0, 0.5);
+            overflow-x: auto;
+        }
+        
+        /* Mobile-friendly tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid var(--secondary-color);
+            border-radius: var(--border-radius);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+            box-shadow: var(--box-shadow);
+            font-size: 0.9rem;
+            background-color: var(--parchment);
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 2px solid var(--gold-color);
+        }
+        
+        td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+        
+        tr:nth-child(even) {
+            background-color: rgba(193, 154, 107, 0.2);
+        }
+        
+        tr:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Responsive cards for mobile */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .feature-card {
+            background-color: var(--parchment);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .feature-card h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial {
+            background-color: var(--parchment);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            box-shadow: var(--box-shadow);
+            font-size: 0.95rem;
+            border-left: 3px solid var(--secondary-color);
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--secondary-color);
+            text-align: right;
+            font-style: normal;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+            text-decoration: none;
+            padding: 1rem 1.5rem; /* Increased padding for touch targets */
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            margin: 1rem 0;
+            transition: background-color 0.3s ease;
+            font-size: 1.1rem; /* Larger text for mobile */
+            text-align: center;
+            min-width: 200px;
+            border: 1px solid var(--gold-color);
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .cta-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        footer {
+            background-color: var(--terminal-black);
+            color: var(--terminal-amber);
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin-top: 2.5rem;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            border: 1px solid var(--gold-color);
+            box-shadow: inset 0 0 10px rgba(255, 176, 0, 0.1);
+        }
+        
+        .reference {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            word-break: break-word;
+        }
+        
+        .section {
+            background-color: var(--parchment);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--secondary-color);
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2U4ZTBkMCI+PC9yZWN0Pgo8Y2lyY2xlIGN4PSIxMCIgY3k9IjEwIiByPSIwLjUiIGZpbGw9IiNjMTlhNmIiIG9wYWNpdHk9IjAuMSI+PC9jaXJjbGU+Cjwvc3ZnPg==');
+        }
+        
+        /* Retro Styling */
+        .retro-box {
+            font-family: 'Courier New', monospace;
+            background-color: var(--terminal-black);
+            color: var(--terminal-amber);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--gold-color);
+            box-shadow: inset 0 0 10px rgba(255, 176, 0, 0.1);
+        }
+        
+        .retro-box h3 {
+            color: var(--terminal-amber);
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0;
+            text-align: center;
+            border-bottom: 1px solid var(--gold-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .pixel-divider {
+            height: 5px;
+            background: repeating-linear-gradient(
+                to right,
+                var(--primary-color),
+                var(--primary-color) 10px,
+                var(--secondary-color) 10px,
+                var(--secondary-color) 20px
+            );
+            margin: 2rem 0;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .retro-stats {
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .stat-item {
+            background-color: var(--terminal-black);
+            color: var(--terminal-amber);
+            padding: 0.75rem; /* Increased padding */
+            border-radius: 4px;
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            border: 1px solid var(--gold-color);
+        }
+        
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        /* Tolkien-inspired decorative elements */
+        .elvish-border {
+            position: relative;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--elven-silver);
+            border-radius: var(--border-radius);
+            background-color: var(--parchment);
+        }
+        
+        .elvish-border::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 1px solid var(--elven-silver);
+            border-radius: calc(var(--border-radius) - 2px);
+            pointer-events: none;
+        }
+        
+        .dwarven-border {
+            position: relative;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 4px solid var(--dwarf-stone);
+            border-radius: var(--border-radius);
+            background-color: var(--parchment);
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2U4ZTBkMCI+PC9yZWN0Pgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMiIgaGVpZ2h0PSIyIiBmaWxsPSIjNjk2OTY5IiBvcGFjaXR5PSIwLjEiPjwvcmVjdD4KPHJlY3QgeD0iMTgiIHk9IjAiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9IiM2OTY5NjkiIG9wYWNpdHk9IjAuMSI+PC9yZWN0Pgo8cmVjdCB4PSIwIiB5PSIxOCIgd2lkdGg9IjIiIGhlaWdodD0iMiIgZmlsbD0iIzY5Njk2OSIgb3BhY2l0eT0iMC4xIj48L3JlY3Q+CjxyZWN0IHg9IjE4IiB5PSIxOCIgd2lkdGg9IjIiIGhlaWdodD0iMiIgZmlsbD0iIzY5Njk2OSIgb3BhY2l0eT0iMC4xIj48L3JlY3Q+Cjwvc3ZnPg==');
+        }
+        
+        .mordor-border {
+            position: relative;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 2px solid var(--mordor-red);
+            border-radius: var(--border-radius);
+            background-color: rgba(125, 0, 0, 0.05);
+        }
+        
+        /* Ring-inspired element */
+        .ring-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .ring {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, var(--gold-color) 30%, var(--secondary-color) 70%);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.7), inset 0 0 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        
+        .ring::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border-radius: 50%;
+            background-color: var(--parchment);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Scrolling map - mobile optimized */
+        .scrolling-map {
+            overflow-x: auto;
+            white-space: nowrap;
+            background-color: var(--terminal-black);
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+            border: 1px solid var(--gold-color);
+            box-shadow: inset 0 0 10px rgba(255, 176, 0, 0.1);
+            -webkit-overflow-scrolling: touch; /* Better scrolling on iOS */
+        }
+        
+        .map-content {
+            font-family: 'Courier New', monospace;
+            color: var(--terminal-amber);
+            display: inline-block;
+            text-align: center;
+            min-width: 100%;
+            line-height: 1.2;
+            font-size: 0.7rem; /* Smaller font for mobile */
+        }
+        
+        /* Health and stats bar - improved for touch */
+        .player-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem; /* Increased gap */
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .stat-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .stat-label {
+            width: 80px;
+            color: var(--terminal-amber);
+        }
+        
+        .bar-container {
+            flex: 1;
+            height: 15px; /* Increased height for touch */
+            background-color: var(--terminal-black);
+            border-radius: 3px;
+            overflow: hidden;
+            border: 1px solid var(--gold-color);
+        }
+        
+        .bar-fill {
+            height: 100%;
+            border-radius: 3px;
+        }
+        
+        .health-fill {
+            background-color: #ff4d4d;
+            width: 75%;
+        }
+        
+        .mana-fill {
+            background-color: #4d4dff;
+            width: 50%;
+        }
+        
+        .exp-fill {
+            background-color: #4dff4d;
+            width: 25%;
+        }
+        
+        .stat-value {
+            width: 70px;
+            text-align: right;
+            color: var(--terminal-amber);
+        }
+        
+        /* Elvish inscription - better mobile sizing */
+        .elvish-text {
+            font-family: 'Courier New', monospace;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--elven-silver);
+            text-align: center;
+            margin: 1.5rem 0;
+            letter-spacing: 1px; /* Reduced letter spacing */
+            line-height: 1.5;
+            text-shadow: 0 0 5px rgba(192, 192, 192, 0.5);
+            padding: 0 0.5rem; /* Added padding */
+        }
+        
+        /* Mobile optimization improvements */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .container {
+                padding: 0.75rem;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h3 {
+                font-size: 1.25rem;
+            }
+            
+            p {
+                margin-bottom: 1rem;
+                line-height: 1.5;
+            }
+            
+            .nav-toggle {
+                display: block;
+                font-size: 1.1rem; /* Larger text */
+                padding: 0.8rem 1rem; /* Larger target */
+            }
+            
+            nav {
+                display: none;
+                position: absolute;
+                width: 100%;
+                z-index: 100;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav a {
+                padding: 0.9rem 0.75rem; /* Larger touch target */
+                border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+                font-size: 1.1rem; /* Larger text */
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem; /* Increased gap */
+            }
+            
+            .table-responsive {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .ascii-mini {
+                font-size: 0.7rem;
+                padding: 0.5rem; /* Reduced padding */
+            }
+            
+            .retro-stats {
+                flex-direction: column;
+                gap: 0.8rem; /* Increased gap */
+            }
+            
+            .stat-item {
+                width: 100%;
+                padding: 0.8rem; /* Larger touch area */
+            }
+            
+            /* Improved space between elements */
+            .section {
+                padding: 1.25rem;
+                margin-bottom: 1.25rem;
+            }
+            
+            .pixel-divider {
+                margin: 1.5rem 0;
+            }
+            
+            /* Better touch targets */
+            li {
+                margin-bottom: 0.8rem;
+                line-height: 1.4;
+            }
+            
+            /* Font size adjustments */
+            .testimonial {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+            
+            .retro-box {
+                padding: 0.8rem;
+                line-height: 1.4;
+            }
+            
+            /* Spacing improvements */
+            ul, ol {
+                padding-left: 1.5rem;
+            }
+            
+            .feature-card {
+                padding: 1.25rem;
+            }
+            
+            /* Better visibility for small screens */
+            table th, table td {
+                padding: 0.8rem;
+            }
+            
+            .cta-button {
+                width: 90%;
+                max-width: 300px;
+                margin: 1.5rem auto;
+                display: block;
+            }
+            
+            /* Square ASCII art specific for mobile */
+            .ascii-square {
+                display: block;
+                margin: 0 auto;
+                max-width: 95%;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .ascii-square {
+                font-size: 0.7rem;
+            }
+            
+            .ascii-mini {
+                font-size: 0.875rem;
+            }
+            
+            .nav-toggle {
+                display: none;
+            }
+            
+            nav {
+                display: block !important;
+                position: relative;
+            }
+            
+            .cta-button {
+                min-width: 250px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .feature-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .ascii-square {
+                font-size: 0.8rem;
+                max-width: 360px;
+            }
+        }
+        
+        /* CRT Screen Effect */
+        .crt-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .crt-effect::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.03));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+        
+        /* Pixel Border */
+        .pixel-border {
+            position: relative;
+            padding: 10px;
+        }
+        
+        .pixel-border::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 4px solid transparent;
+            border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><rect x="0" y="0" width="4" height="4" fill="%232d3e1f"/><rect x="4" y="0" width="4" height="4" fill="%238b4513"/><rect x="8" y="0" width="4" height="4" fill="%232d3e1f"/><rect x="0" y="4" width="4" height="4" fill="%238b4513"/><rect x="4" y="4" width="4" height="4" fill="%232d3e1f"/><rect x="8" y="4" width="4" height="4" fill="%238b4513"/><rect x="0" y="8" width="4" height="4" fill="%232d3e1f"/><rect x="4" y="8" width="4" height="4" fill="%238b4513"/><rect x="8" y="8" width="4" height="4" fill="%232d3e1f"/></svg>') 4 repeat;
+            pointer-events: none;
+        }
+        
+        /* Focus and active states for better touch feedback */
+        a:focus, button:focus, input:focus {
+            outline: 2px solid var(--gold-color);
+            outline-offset: 2px;
+        }
+        
+        .cta-button:active {
+            background-color: var(--primary-color);
+            transform: translateY(2px);
+        }
+        
+        nav a:active {
+            background-color: rgba(212, 175, 55, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="crt-effect">
+            <div class="ascii-square">
+ █████╗  ██████╗ ███████╗███████╗
+██╔══██╗██╔════╝ ██╔════╝██╔════╝
+███████║██║  ███╗█████╗  ███████╗
+██╔══██║██║   ██║██╔══╝  ╚════██║
+██║  ██║╚██████╔╝███████╗███████║
+╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝
+                            
+ ██████╗ ███████╗          
+██╔═══██╗██╔════╝          
+██║   ██║█████╗            
+██║   ██║██╔══╝            
+╚██████╔╝██║               
+ ╚═════╝ ╚═╝               
+                            
+ █████╗ ██████╗ ██████╗  █████╗ 
+██╔══██╗██╔══██╗██╔══██╗██╔══██╗
+███████║██████╔╝██║  ██║███████║
+██╔══██║██╔══██╗██║  ██║██╔══██║
+██║  ██║██║  ██║██████╔╝██║  ██║
+╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝
+            </div>
+            <h1>Ages of Arda</h1>
+            <p>A roguelike set in Tolkien's First Age</p>
+        </header>
+        
+        <div class="nav-container">
+            <button class="nav-toggle">Navigation Menu</button>
+            <nav>
+                <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#game-concept">Game Concept</a></li>
+                    <li><a href="#gameplay">Gameplay</a></li>
+                    <li><a href="#highlights">Highlights</a></li>
+                    <li><a href="#visual">Visual Showcase</a></li>
+                    <li><a href="#experiences">Player Experiences</a></li>
+                    <li><a href="#alpha">Alpha Launch</a></li>
+                    <li><a href="#roadmap">Roadmap</a></li>
+                    <li><a href="#community">Community</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <div class="elvish-text">
+            Ash nazg durbatulûk, ash nazg gimbatul
+        </div>
+        
+        <div class="section pixel-border">
+            <div class="exec-summary">
+                <h2 style="margin-top: 0;">Executive Summary</h2>
+                <p>Step into the mythic Ages of Middle Earth with Ages of Arda, a groundbreaking roguelike that builds upon the classic Angband foundation through the lens of J.R.R. Tolkien's legendary world. This preview unveils a gameplay experience where:</p>
+                <ul>
+                    <li><strong>Multiple Ages:</strong> Journey through the First, Second, and Third Ages with your actions in earlier periods affecting later ones.</li>
+                    <li><strong>AI-Powered Companions:</strong> Travel with context-aware NPCs who provide knowledge, combat assistance, and narrative opportunities unique to their background and your shared history.</li>
+                    <li><strong>Dynamic Narrative:</strong> Experience procedurally generated stories and quests that respond to your choices while staying true to Tolkien's lore.</li>
+                    <li><strong>Lore Authenticity:</strong> Explore a world built on a comprehensive database of Tolkien's works, ensuring consistency with the established mythology.</li>
+                    <li><strong>Emergent Gameplay:</strong> MCP (Model Context Protocol) integration creates responsive AI interactions through local language models for unpredictable but coherent adventures.</li>
+                </ul>
+                <p>Set against the backdrop of Beleriand and beyond, Ages of Arda merges traditional roguelike challenge with AI-enhanced storytelling into an evolving journey through the ages of Middle-earth.</p>
+            </div>
+            
+            <div class="alpha-launch">
+                Alpha Launch: Q3 2024 – First Age Implementation
+            </div>
+            
+            <div class="retro-box">
+                <h3>Roguelike Heritage</h3>
+                <p>@ - You, the hero of the First Age<br>
+                d - Deadly dragons of Morgoth<br>
+                o - Orcish hordes in your path<br>
+                B - Terrifying Balrogs<br>
+                ! - Powerful potions and elixirs<br>
+                ] - Legendary armor and weapons<br>
+                % - Food to sustain your journey</p>
+                <p style="text-align: center;">-- Press ? for help, q to quit --</p>
+            </div>
+            
+            <div class="player-stats">
+                <div class="stat-bar">
+                    <div class="stat-label">Health:</div>
+                    <div class="bar-container">
+                        <div class="bar-fill health-fill"></div>
+                    </div>
+                    <div class="stat-value">75/100</div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-label">Mana:</div>
+                    <div class="bar-container">
+                        <div class="bar-fill mana-fill"></div>
+                    </div>
+                    <div class="stat-value">50/100</div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-label">XP:</div>
+                    <div class="bar-container">
+                        <div class="bar-fill exp-fill"></div>
+                    </div>
+                    <div class="stat-value">2500/10K</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="introduction" class="section">
+            <h2>Introduction</h2>
+            <p>In the shadowed depths of Angband and across the lands of Middle-earth throughout its three great Ages, legends are forged. Ages of Arda invites players to become part of that legend, blending the tactical depth of traditional roguelikes with the rich tapestry of Tolkien's world.</p>
+            
+            <div class="scrolling-map">
+                <div class="map-content">
+                    ^^^^^  ANGBAND  #####  THANGORODRIM  ^^^^^<br>
+                    ^^^^^  ###  ########  MOUNTAINS  ^^^^^<br>
+                    ^^^^^  ##############  ^^^^^  ^^^^^<br>
+                    ^^^  ANFAUGLITH PLAIN  ^^^  DORTHONION  ^^<br>
+                    ^^  * * * * * * * * * *  ^^^^^^^^^^^^^  ^^<br>
+                    ^  * * * * * * * * * * *  ^^^^^^^^^  ^^^<br>
+                    ^  ERED WETHRIN  * * * * *  ^^^^^^  ^^<br>
+                    ^  MOUNTAINS  ^^  * * * * * *  ^^^^^  ^<br>
+                    ^  ^^^^^^^^^  ^^  * * * * * * *   ^^^  <br>
+                    ^  ^^^^^^^^^  NARGOTHROND * * *  DORIATH<br>
+                    ^^  ^^^^^^^^  [[[[[[[  * * * *  &&&&&&&<br>
+                    ^^^  ^^^^^^^  [[[[[  * * * *  &&&&&&&&&<br>
+                    ^^^^  @  MOUTHS OF SIRION  BAY OF BALAR<br>
+                    ^^^^^  ~~~~~~~~~~~~~~  &&&  ~~~~~~~~~<br>
+                    ^^^^^  ~~~~~~~~~~~~~~  GREAT SEA  ~~~~<br>
+                </div>
+            </div>
+            
+            <p>Here, you'll forge alliances with AI-driven companions, navigate the complex politics of different races and kingdoms, and face the servants of darkness—all within a world that evolves across three distinct Ages of Tolkien's mythology.</p>
+            
+            <div class="retro-stats">
+                <div class="stat-item">
+                    <div>AGES</div>
+                    <div class="stat-value">3</div>
+                    <div>Eras</div>
+                </div>
+                <div class="stat-item">
+                    <div>MONSTERS</div>
+                    <div class="stat-value">250+</div>
+                    <div>Types</div>
+                </div>
+                <div class="stat-item">
+                    <div>ITEMS</div>
+                    <div class="stat-value">500+</div>
+                    <div>Artifacts</div>
+                </div>
+            </div>
+            
+            <h3>Purpose and Objectives</h3>
+            <p>This preview aims to:</p>
+            <ul>
+                <li>Showcase how Ages of Arda expands upon traditional roguelike mechanics by introducing AI-driven companions and narrative.</li>
+                <li>Explain how the unique Age progression system allows players to experience different eras of Middle-earth.</li>
+                <li>Reveal how the lore management system ensures authenticity to Tolkien's world.</li>
+                <li>Demonstrate how the Model Context Protocol creates dynamic, context-aware gameplay experiences.</li>
+                <li>Highlight the multi-agent AI framework that powers different aspects of the game.</li>
+                <li>Generate excitement for the upcoming alpha release focusing on the First Age.</li>
+            </ul>
+            
+            <h3>Target Audience</h3>
+            <p>This report is crafted for:</p>
+            <ul>
+                <li><strong>Players:</strong> Seeking a fresh, lore-rich roguelike.</li>
+                <li><strong>Tolkien Fans:</strong> Eager to explore the First Age in a new way.</li>
+                <li><strong>Roguelike Enthusiasts:</strong> Craving innovative mechanics.</li>
+                <li><strong>Game Developers:</strong> Inspired by AI-driven design.</li>
+                <li><strong>Media and Influencers:</strong> Looking for the next breakthrough game.</li>
+            </ul>
+        </div>
+        
+        <div class="pixel-divider"></div>
+        
+        <div id="game-concept" class="section">
+            <h2>Game Concept</h2>
+            <p>Ages of Arda represents a bold evolution of the roguelike genre built on the Angband codebase, expanding it to encompass Tolkien's entire legendarium. Unlike traditional roguelikes focused solely on dungeon crawling, Ages of Arda creates a temporally connected experience across the three Ages of Middle-earth, where your actions in each era affect subsequent ones.</p>
+            
+            <div class="retro-box crt-effect">
+                <p style="text-align: center; font-size: 0.875rem;">
+                    <span style="color: white;">You</span> @ <span style="color: #ff6666;">see</span> B <span style="color: #ffb000;">a menacing Balrog!</span><br>
+                    <span style="color: #ffb000;">--More--</span><br>
+                    <span style="color: #ffb000;">The Balrog roars with ancient malice!</span><br>
+                    <span style="color: #c0c0c0;">Your companion: "We should flee!"</span><br>
+                    <span style="color: #ffb000;">[a]ttack, [f]lee, or [u]se item?</span>
+                </p>
+            </div>
+            
+            <div class="ring-container">
+                <div class="ring"></div>
+            </div>
+            
+            <p>What distinguishes Ages of Arda from other Tolkien-inspired games and traditional roguelikes:</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Age Progression System</h3>
+                    <p>Play across the First, Second, and Third Ages with actions in earlier eras affecting later ones through the character reincarnation system.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>AI-Driven Companions</h3>
+                    <p>Interact with NPCs powered by the Multi-Agent Framework, each with age-appropriate knowledge, personalities, and goals.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Lore Management System</h3>
+                    <p>Experience a world built on a comprehensive database of Tolkien's works, ensuring authenticity and consistency.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Model Context Protocol</h3>
+                    <p>Enjoy responsive, context-aware AI interactions through local language models that understand your gameplay history.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Memory Bank System</h3>
+                    <p>Benefit from a persistent repository that maintains your experiences, choices, and world-altering decisions across playthroughs.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="gameplay" class="section">
+            <h2>Gameplay Overview</h2>
+            <p>In Ages of Arda, you'll experience Tolkien's world across its three defining eras. Beginning in the First Age, you'll choose from races like the Noldor Elves, Sindar, Edain, or Dwarves, each with distinct abilities and cultural connections. As you journey through Middle-earth, your AI companions—drawn from various races and backgrounds—will accompany you, offering age-appropriate knowledge and support.</p>
+            
+            <div class="retro-box">
+                <p style="text-align: center;">Character Creation</p>
+                <p style="text-align: center;">
+                    Race: [N]oldor [S]indar [E]dain [D]warf<br>
+                    Class: [W]arrior [M]instrel [R]anger [C]rafter<br>
+                    Companion: [E]lf [H]uman [D]warf [N]one
+                </p>
+                <p style="text-align: center; margin-top: 0.5rem;">Press ENTER to begin your quest</p>
+            </div>
+            
+            <p>When your character dies or completes major objectives in one age, you can advance to the next, with your actions and discoveries in earlier ages influencing the world state. Your companions will change to reflect the new era, but relationships with immortal beings may persist across ages.</p>
+            
+            <div class="elvish-border">
+                <h3 style="text-align: center; color: var(--elven-silver);">First Age: The Elder Days</h3>
+                <p>Experience the war against Morgoth in Beleriand, interact with legendary figures like Fingolfin and Beren, and witness events from The Silmarillion. This age focuses on epic heroism against overwhelming odds.</p>
+            </div>
+            
+            <div class="dwarven-border">
+                <h3 style="text-align: center; color: var(--dwarf-stone);">Second Age: The Age of Númenor</h3>
+                <p>Navigate the era of the Rings of Power and the rise and fall of Númenor. Explore Lindon, Eregion, and early Gondor while dealing with Sauron's growing influence and political intrigue.</p>
+            </div>
+            
+            <div class="mordor-border">
+                <h3 style="text-align: center; color: var(--mordor-red);">Third Age: The Familiar Era</h3>
+                <p>Adventure in the world familiar from The Hobbit and The Lord of the Rings, with locations like Gondor, Rohan, and Mirkwood. Focus on small-scale heroism in a world of fading magic and spreading darkness.</p>
+            </div>
+            
+            <h3>A Typical Gameplay Session</h3>
+            <ol>
+                <li><strong>Character Creation:</strong> Select age, race, class, and customize your AI companion.</li>
+                <li><strong>World Exploration:</strong> Traverse the regions of Middle-earth appropriate to your chosen age.</li>
+                <li><strong>Companion Interaction:</strong> Develop relationships with AI-driven companions who provide context-aware assistance.</li>
+                <li><strong>Lore Discovery:</strong> Uncover canonical and procedurally generated lore that enriches your understanding of Tolkien's world.</li>
+                <li><strong>Dynamic Quests:</strong> Engage with narratives that adapt to your choices and the current age.</li>
+                <li><strong>Age Transition:</strong> Upon death or completion of major objectives, advance to the next age while carrying forward your legacy.</li>
+            </ol>
+        </div>
+        
+        <div class="pixel-divider"></div>
+        
+        <div id="highlights" class="section">
+            <h2>Gameplay Highlights</h2>
+            
+            <h3>Core Game Systems</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Description</th>
+                            <th>Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Age Progression</td>
+                            <td>Travel through three distinct eras</td>
+                            <td>Actions in early ages affect later ones</td>
+                        </tr>
+                        <tr>
+                            <td>Multi-Agent Framework</td>
+                            <td>Specialized AI agents for different aspects</td>
+                            <td>Coherent, complex game systems</td>
+                        </tr>
+                        <tr>
+                            <td>Lore Integration</td>
+                            <td>Database of canonical Tolkien content</td>
+                            <td>Authentic Middle-earth experience</td>
+                        </tr>
+                        <tr>
+                            <td>Memory Bank</td>
+                            <td>Persistent storage for game events</td>
+                            <td>Contextual awareness of history</td>
+                        </tr>
+                        <tr>
+                            <td>Character Reincarnation</td>
+                            <td>Legacy continues in new ages</td>
+                            <td>Continuous narrative across time</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <p>Imagine facing a Balrog in the First Age, with your choices determining whether certain artifacts survive into the Second Age. Or discovering a hidden elven settlement whose fate becomes legendary lore by the Third Age. The Memory Bank ensures your actions have lasting consequences, transforming the traditional roguelike permadeath into a historical transition.</p>
+            
+            <div class="ascii-mini crt-effect">
+                === MEMORY BANK ===
+                First Age Events: 24 recorded
+                Legacy Items: Ringil, Star-glass
+                Key Decisions: Saved Doriath scouts
+                Companion Memory: High trust w/Laiquendi
+            </div>
+            
+            <h3>Companion System</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Description</th>
+                            <th>Technical Implementation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Age-Appropriate NPCs</td>
+                            <td>Companions specific to each era</td>
+                            <td>MCP integration with lore database</td>
+                        </tr>
+                        <tr>
+                            <td>Contextual Knowledge</td>
+                            <td>NPCs know information relevant to their background</td>
+                            <td>Lore Management System queries</td>
+                        </tr>
+                        <tr>
+                            <td>Relationship Development</td>
+                            <td>Bonds evolve based on shared experiences</td>
+                            <td>Memory Bank tracking of interactions</td>
+                        </tr>
+                        <tr>
+                            <td>Narrative Agency</td>
+                            <td>Companions initiate quests and suggest actions</td>
+                            <td>Character Agent in Multi-Agent Framework</td>
+                        </tr>
+                        <tr>
+                            <td>Combat Assistance</td>
+                            <td>Tactical support based on companion type</td>
+                            <td>Combat Agent with NPC behavior patterns</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <p>The Companion System works through the Model Context Protocol, connecting the game engine to local large language models via Ollama. This allows companions to generate contextually appropriate dialogue and behavior while maintaining consistent personalities. All processing happens locally on your machine, ensuring responsive gameplay without network latency.</p>
+        </div>
+        
+        <div id="visual" class="section">
+            <h2>Visual Design Approach</h2>
+            <p>Ages of Arda combines traditional roguelike ASCII aesthetics with modern design elements:</p>
+            
+            <div class="retro-box crt-effect">
+                <p style="text-align: center; font-size: 0.875rem; line-height: 1.2;">
+                    <span style="color: #8b4513;">^^^^</span> <span style="color: #ffb000;">Mountains of Hithlum</span><br>
+                    <span style="color: #2d3e1f;">&amp;&amp;&amp;</span> <span style="color: #2d3e1f;">Forests of Doriath</span><br>
+                    <span style="color: #4470e2;">~~~~</span> <span style="color: #4470e2;">Bay of Balar</span><br>
+                    <span style="color: #7d0000;">####</span> <span style="color: #7d0000;">Angband Fortress</span><br>
+                    <span style="color: #ffb000;">@</span> <span style="color: #ffb000;">You are here</span>
+                </p>
+            </div>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>ASCII Foundation</h3>
+                    <p>Building on roguelike traditions with modern amenities like color-coding and enhanced symbols</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Era-Specific Styling</h3>
+                    <p>Visual elements that reflect the distinct aesthetics of each Age of Middle-earth</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Information Design</h3>
+                    <p>Clear interface ensuring important lore and contextual data is accessible</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Technical Integration</h3>
+                    <p>UI elements that display AI-generated content and companion interactions seamlessly</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Accessibility Focus</h3>
+                    <p>Options for colorblind modes, text scaling, and interface customization</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pixel-divider"></div>
+        
+        <div id="experiences" class="section">
+            <h2>Anticipated Player Experiences</h2>
+            <p>While the game is still in active development, our vision for player experiences includes:</p>
+            
+            <div class="testimonial">
+                <p>"Imagine exploring a First Age dungeon and finding wall inscriptions your elven companion recognizes as relating to their people's history. This could trigger a companion-led quest to discover a forgotten artifact with implications that ripple into later ages."</p>
+                <p class="testimonial-author">—Development Vision</p>
+            </div>
+            
+            <div class="testimonial">
+                <p>"In the Second Age, your choices regarding the Rings of Power could determine which factions trust you and which items survive into the Third Age. Your companion's knowledge and advice would evolve based on events you experienced together in the First Age."</p>
+                <p class="testimonial-author">—Gameplay Design Document</p>
+            </div>
+            
+            <div class="testimonial">
+                <p>"The Memory Bank system will track your significant decisions, allowing a character who saved a dwarven settlement in the First Age to encounter descendants or legacy artifacts when playing in the Second Age, creating a personalized historical narrative."</p>
+                <p class="testimonial-author">—Technical Architecture Plan</p>
+            </div>
+            
+            <div class="retro-box">
+                <h3>Development Milestones</h3>
+                <p>
+                    ✓ MCP framework functional<br>
+                    ✓ Lore database integration<br>
+                    ✓ First Age environment generation<br>
+                    □ Complete companion system<br>
+                    □ Full Memory Bank implementation<br>
+                    □ First alpha playtest
+                </p>
+            </div>
+        </div>
+        
+        <div id="alpha" class="section">
+            <h2>Alpha Launch Details</h2>
+            
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem;">
+                <div style="background-color: var(--terminal-black); color: var(--terminal-amber); padding: 1rem; border-radius: var(--border-radius); text-align: center; border: 1px solid var(--gold-color);">
+                    <h3 style="color: var(--terminal-amber); margin-top: 0; margin-bottom: 0.25rem;">Launch Window</h3>
+                    <p style="font-size: 1.2rem; margin-bottom: 0;">Q3 2024</p>
+                </div>
+                
+                <div style="background-color: var(--terminal-black); color: var(--terminal-amber); padding: 1rem; border-radius: var(--border-radius); text-align: center; border: 1px solid var(--gold-color);">
+                    <h3 style="color: var(--terminal-amber); margin-top: 0; margin-bottom: 0.25rem;">Platforms</h3>
+                    <p style="font-size: 1.2rem; margin-bottom: 0;">PC, Mac, Linux</p>
+                </div>
+                
+                <div style="background-color: var(--terminal-black); color: var(--terminal-amber); padding: 1rem; border-radius: var(--border-radius); text-align: center; border: 1px solid var(--gold-color);">
+                    <h3 style="color: var(--terminal-amber); margin-top: 0; margin-bottom: 0.25rem;">Alpha Access</h3>
+                    <p style="font-size: 1.2rem; margin-bottom: 0;">First Age Implementation</p>
+                </div>
+            </div>
+            
+            <div class="ascii-mini crt-effect">
+                == ALPHA INVITE ==
+                Enter the code: TOLKIEN-ROGUE-2024
+                to gain early access!
+            </div>
+            
+            <h3>Alpha Features</h3>
+            <p>The alpha launch will include:</p>
+            <ul>
+                <li>First Age setting with 4 playable races</li>
+                <li>Basic AI companion system with multiple companion types</li>
+                <li>Model Context Protocol integration for dynamic content</li>
+                <li>Lore Management System for authentic Tolkien experience</li>
+                <li>Memory Bank foundation for persistent world state</li>
+            </ul>
+            
+            <h3>How to Join</h3>
+            <ol>
+                <li>Sign up at agesofarda.com/alpha</li>
+                <li>Join our Discord community for priority access</li>
+                <li>Wishlist on Steam to receive launch notifications</li>
+                <li>Participate in upcoming community events for guaranteed access keys</li>
+            </ol>
+            
+            <div class="cta-container">
+                <a href="#" class="cta-button">JOIN THE ALPHA WAITLIST</a>
+            </div>
+            
+            <div class="retro-box">
+                <h3>System Requirements</h3>
+                <p>
+                    OS: Windows 7/10/11, MacOS 10.14+, Linux<br>
+                    CPU: Intel i3/AMD Ryzen 3 or better<br>
+                    RAM: 4GB minimum, 8GB recommended<br>
+                    Graphics: Integrated GPU (discrete for best visuals)<br>
+                    Storage: 4GB available space<br>
+                    <span style="font-style: italic; color: #ffb000;">* Can run on a potato like a true roguelike should</span>
+                </p>
+            </div>
+        </div>
+        
+        <div class="pixel-divider"></div>
+        
+        <div id="roadmap" class="section">
+            <h2>Development Roadmap</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Phase</th>
+                            <th>Timeframe</th>
+                            <th>Focus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Foundation</td>
+                            <td>Completed (Q3-Q4 2023)</td>
+                            <td>Core game systems architecture</td>
+                        </tr>
+                        <tr>
+                            <td>AI Integration</td>
+                            <td>Current (Q1-Q2 2024)</td>
+                            <td>MCP, Memory Bank, Lore Systems</td>
+                        </tr>
+                        <tr>
+                            <td>First Age</td>
+                            <td>Upcoming (Q3-Q4 2024)</td>
+                            <td>Complete First Age content</td>
+                        </tr>
+                        <tr>
+                            <td>Age Transition</td>
+                            <td>Planned (Q1-Q2 2025)</td>
+                            <td>Character reincarnation mechanics</td>
+                        </tr>
+                        <tr>
+                            <td>Multi-Age</td>
+                            <td>Planned (Q3-Q4 2025)</td>
+                            <td>Second and Third Age implementation</td>
+                        </tr>
+                        <tr>
+                            <td>Full Release</td>
+                            <td>Target (2026)</td>
+                            <td>Complete three-age experience</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="retro-box">
+                <p style="text-align: center; line-height: 1.2;">
+                    [########........] 40% Complete<br>
+                    <span style="color: #ffb000;">✓</span> Core Game Engine<br>
+                    <span style="color: #ffb000;">✓</span> MCP Framework<br>
+                    <span style="color: #ffb000;">✓</span> Lore Management System<br>
+                    <span style="color: #ffaaaa;">□</span> Memory Bank System<br>
+                    <span style="color: #ffaaaa;">□</span> Companion System<br>
+                    <span style="color: #ffaaaa;">□</span> First Age Content
+                </p>
+            </div>
+        </div>
+        
+        <div id="community" class="section">
+            <h2>Community & Open Source</h2>
+            <p>Ages of Arda is being developed as an open-source project with a focus on:</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Collaboration</h3>
+                    <ul>
+                        <li><strong>GitHub Repository</strong></li>
+                        <li><strong>Developer Wiki</strong></li>
+                        <li><strong>Community Discord</strong></li>
+                        <li><strong>Contribution Guide</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>AI Research</h3>
+                    <ul>
+                        <li><strong>LLM Integration Techniques</strong></li>
+                        <li><strong>MCP Documentation</strong></li>
+                        <li><strong>Memory Bank Architecture</strong></li>
+                        <li><strong>Multi-Agent Frameworks</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Learning Resources</h3>
+                    <ul>
+                        <li><strong>Roguelike Development</strong></li>
+                        <li><strong>Tolkien Lore Accuracy</strong></li>
+                        <li><strong>Game AI Techniques</strong></li>
+                        <li><strong>Game Design Principles</strong></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="ascii-mini crt-effect">
+                === DEVELOPMENT NOTES ===
+                * Join us on Discord for weekly progress updates
+                * Fork the repo to contribute code or documentation
+                * Alpha test signups coming in Q2 2024
+                * See CONTRIBUTING.md for development workflow
+            </div>
+        </div>
+        
+        <div class="elvish-text">
+            Three Rings for the Elven-kings under the sky...
+        </div>
+        
+        <div class="section">
+            <h2>Conclusion</h2>
+            <p>Ages of Arda represents an ambitious expansion of the roguelike genre, merging the tactical depth of ASCII-based gameplay with the rich lore of Tolkien's world and modern AI capabilities. The core innovation is the spanning of three ages, allowing players to experience the unfolding history of Middle-earth with their actions rippling through time.</p>
+            
+            <p>As a community-driven open-source project, Ages of Arda invites contributors to help shape both the game and its innovative AI architecture. The upcoming alpha will focus on the First Age implementation, providing a foundation for the multi-age experience to come.</p>
+            
+            <div class="retro-box">
+                <p style="text-align: center; font-size: 0.9rem;">
+                    "A FOSS project to establish an AI-driven roguelike set in Tolkien's world"<br>
+                    - Built on the Angband codebase with modern enhancements -
+                </p>
+            </div>
+            
+            <div class="cta-container">
+                <a href="#" class="cta-button crt-effect">FOLLOW DEVELOPMENT PROGRESS</a>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>References & Legal</h2>
+            <p class="reference">1. Ages of Arda Documentation. (2024). <em>Wiki and Technical Documentation</em>. Retrieved March 18, 2024, from <a href="https://github.com/machinepilot/Ages-of-Arda/wiki">https://github.com/machinepilot/Ages-of-Arda/wiki</a></p>
+            <p class="reference">2. Angband Project. (2024). <em>Angband roguelike game</em>. Retrieved March 15, 2024, from <a href="https://github.com/angband/angband">https://github.com/angband/angband</a></p>
+            <p class="reference">3. Tolkien Gateway. (2024). <em>First Age Lore</em>. Retrieved March 16, 2024, from <a href="https://tolkiengateway.net/wiki/First_Age">https://tolkiengateway.net/wiki/First_Age</a></p>
+            <p class="reference">4. Ollama. (2024). <em>Run LLMs locally</em>. Retrieved March 17, 2024, from <a href="https://ollama.ai/">https://ollama.ai/</a></p>
+            <p class="reference">5. Tolkien, J.R.R. (1977). <em>The Silmarillion</em>. George Allen & Unwin.</p>
+            <p class="reference" style="font-style: italic; color: var(--secondary-color);">Note: Ages of Arda is a fan project that draws inspiration from J.R.R. Tolkien's works. It is not officially licensed by the Tolkien Estate, Middle-earth Enterprises, or related entities. This is a non-commercial, educational project under fair use principles.</p>
+        </div>
+        
+        <footer>
+            <p>© 2025 Ages of Arda Development Team. All rights reserved.</p>
+            <p>Set in Tolkien's First Age | A Groundbreaking Roguelike Experience</p>
+            <p style="margin-top: 0.5rem; font-family: 'Courier New', monospace; font-size: 0.8rem;">Press q to quit, s to save your progress</p>
+        </footer>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.querySelector('.nav-toggle');
+            const nav = document.querySelector('nav');
+            
+            navToggle.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                if (nav.classList.contains('active')) {
+                    navToggle.textContent = 'Close Menu ▲';
+                } else {
+                    navToggle.textContent = 'Navigation Menu ▼';
+                }
+            });
+            
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                    navToggle.textContent = 'Navigation Menu ▼';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
