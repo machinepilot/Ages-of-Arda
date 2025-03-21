@@ -65,6 +65,265 @@ def setup_directories():
     
     return dirs
 
+class Pipeline:
+    """
+    Complete processing pipeline for Tolkien ePub content to Memory Bank integration.
+    This class manages the entire workflow from ePub processing to Memory Bank integration.
+    """
+    
+    def __init__(self, epub_dir=None, output_dir=None, temp_dir=None, memory_bank_dir=None, 
+                 schema_dir=None, validation_level='error', strict=False, force=False):
+        """
+        Initialize the processing pipeline.
+        
+        Args:
+            epub_dir (str, optional): Directory containing ePub files
+            output_dir (str, optional): Base output directory for all processing stages
+            temp_dir (str, optional): Temporary directory for processing
+            memory_bank_dir (str, optional): Memory Bank root directory
+            schema_dir (str, optional): Directory containing schema files
+            validation_level (str): Validation level (error, warning, info)
+            strict (bool): Stop pipeline if validation fails
+            force (bool): Force processing even if already complete
+        """
+        # Create directory paths with proper error handling
+        self.dirs = setup_directories()
+        
+        # Set directory paths
+        self.epub_dir = Path(epub_dir) if epub_dir else Path('processing/epub_content')
+        self.output_dir = Path(output_dir) if output_dir else Path('processing/output')
+        self.temp_dir = Path(temp_dir) if temp_dir else Path('processing/temp')
+        self.memory_bank_dir = Path(memory_bank_dir) if memory_bank_dir else Path('.memory-bank')
+        self.schema_dir = Path(schema_dir) if schema_dir else Path('processing/schemas')
+        
+        # Other settings
+        self.validation_level = validation_level
+        self.strict = strict
+        self.force = force
+        
+        # Initialize checkpoint manager
+        self.checkpoint_manager = get_checkpoint_manager()
+        
+        # Initialize results
+        self.results = {
+            "epub_processing": None,
+            "entity_extraction": None,
+            "entity_consolidation": None,
+            "entity_validation": None,
+            "memory_bank_integration": None,
+            "success": False
+        }
+    
+    def run(self):
+        """
+        Run the complete processing pipeline.
+        
+        Returns:
+            dict: Processing results
+        """
+        try:
+            logger.info("Starting Ages of Arda processing pipeline")
+            
+            # Step 1: Process ePubs
+            self._process_epubs()
+            
+            # Step 2: Extract entities
+            self._extract_entities()
+            
+            # Step 3: Consolidate entities
+            self._consolidate_entities()
+            
+            # Step 4: Validate entities
+            validation_passed = self._validate_entities()
+            
+            # If validation failed in strict mode, stop pipeline
+            if self.strict and not validation_passed:
+                logger.error("Validation failed in strict mode. Pipeline halted.")
+                return self.results
+            
+            # Step 5: Integrate to Memory Bank
+            self._integrate_to_memory_bank()
+            
+            # Mark pipeline as successful
+            self.results["success"] = True
+            logger.info("Processing pipeline completed successfully")
+            
+        except Exception as e:
+            logger.error(f"Pipeline error: {str(e)}")
+            self.results["error"] = str(e)
+            self.results["success"] = False
+            
+        return self.results
+    
+    def _process_epubs(self):
+        """Process ePub files."""
+        logger.info(f"Processing ePubs from {self.epub_dir}")
+        
+        # Check for existing checkpoint
+        checkpoint = self.checkpoint_manager.load_checkpoint("epub_processing")
+        if checkpoint and not self.force:
+            if checkpoint.get("status") == "complete":
+                logger.info("ePub processing already complete, skipping")
+                self.results["epub_processing"] = checkpoint.get("results", {})
+                return
+        
+        # Process ePubs
+        results = process_all_epubs(self.epub_dir, self.dirs['epub_content'], self.temp_dir)
+        
+        # Save checkpoint and results
+        checkpoint_data = {
+            "status": "complete",
+            "epub_dir": str(self.epub_dir),
+            "output_dir": str(self.dirs['epub_content']),
+            "timestamp": time.time(),
+            "results": results
+        }
+        self.checkpoint_manager.save_checkpoint("epub_processing", checkpoint_data)
+        
+        self.results["epub_processing"] = {
+            "successful": len(results.get('successful', [])),
+            "failed": len(results.get('failed', []))
+        }
+    
+    def _extract_entities(self):
+        """Extract entities from processed ePub content."""
+        logger.info(f"Extracting entities from {self.dirs['epub_content']}")
+        
+        # Check for existing checkpoint
+        checkpoint = self.checkpoint_manager.load_checkpoint("entity_extraction")
+        if checkpoint and not self.force:
+            if checkpoint.get("status") == "complete":
+                logger.info("Entity extraction already complete, skipping")
+                self.results["entity_extraction"] = checkpoint.get("results", {})
+                return
+        
+        # Extract entities
+        results = extract_entities(self.dirs['epub_content'], self.dirs['json_output'])
+        
+        # Save checkpoint and results
+        checkpoint_data = {
+            "status": "complete",
+            "input_dir": str(self.dirs['epub_content']),
+            "output_dir": str(self.dirs['json_output']),
+            "timestamp": time.time(),
+            "results": results
+        }
+        self.checkpoint_manager.save_checkpoint("entity_extraction", checkpoint_data)
+        
+        self.results["entity_extraction"] = {
+            "total_entities": results.get('total_entities', 0),
+            "entity_counts": results.get('entity_counts', {})
+        }
+    
+    def _consolidate_entities(self):
+        """Consolidate extracted entities."""
+        logger.info(f"Consolidating entities from {self.dirs['json_output']}")
+        
+        # Check for existing checkpoint
+        checkpoint = self.checkpoint_manager.load_checkpoint("entity_consolidation")
+        if checkpoint and not self.force:
+            if checkpoint.get("status") == "complete":
+                logger.info("Entity consolidation already complete, skipping")
+                self.results["entity_consolidation"] = checkpoint.get("results", {})
+                return
+        
+        # Consolidate entities
+        results = consolidate_entities(self.dirs['json_output'], self.dirs['consolidated'])
+        
+        # Save checkpoint and results
+        checkpoint_data = {
+            "status": "complete",
+            "input_dir": str(self.dirs['json_output']),
+            "output_dir": str(self.dirs['consolidated']),
+            "timestamp": time.time(),
+            "results": results
+        }
+        self.checkpoint_manager.save_checkpoint("entity_consolidation", checkpoint_data)
+        
+        self.results["entity_consolidation"] = {
+            "total_entities": results.get('total_entities', 0),
+            "entity_counts": results.get('entity_counts', {}),
+            "duplicates_resolved": results.get('duplicates_resolved', 0)
+        }
+    
+    def _validate_entities(self):
+        """
+        Validate consolidated entities.
+        
+        Returns:
+            bool: True if validation passed (or no validation errors in non-strict mode)
+        """
+        logger.info(f"Validating entities in {self.dirs['consolidated']}")
+        
+        # Check for existing checkpoint
+        checkpoint = self.checkpoint_manager.load_checkpoint("entity_validation")
+        if checkpoint and not self.force:
+            if checkpoint.get("status") == "complete":
+                logger.info("Entity validation already complete, skipping")
+                self.results["entity_validation"] = checkpoint.get("results", {})
+                invalid_count = self.results["entity_validation"].get("summary", {}).get("invalid", 0)
+                return invalid_count == 0
+        
+        # Validate entities
+        results = validate_entities(
+            self.dirs['consolidated'], 
+            self.schema_dir, 
+            self.dirs['validation'],
+            validation_level=self.validation_level
+        )
+        
+        # Save checkpoint and results
+        checkpoint_data = {
+            "status": "complete",
+            "input_dir": str(self.dirs['consolidated']),
+            "schema_dir": str(self.schema_dir),
+            "validation_dir": str(self.dirs['validation']),
+            "timestamp": time.time(),
+            "results": results
+        }
+        self.checkpoint_manager.save_checkpoint("entity_validation", checkpoint_data)
+        
+        self.results["entity_validation"] = {
+            "total": results.get('summary', {}).get('total', 0),
+            "valid": results.get('summary', {}).get('valid', 0),
+            "invalid": results.get('summary', {}).get('invalid', 0)
+        }
+        
+        # Return True if no invalid entities
+        return self.results["entity_validation"].get("invalid", 0) == 0
+    
+    def _integrate_to_memory_bank(self):
+        """Integrate entities to Memory Bank."""
+        logger.info(f"Integrating entities to Memory Bank at {self.memory_bank_dir}")
+        
+        # Check for existing checkpoint
+        checkpoint = self.checkpoint_manager.load_checkpoint("memory_bank_integration")
+        if checkpoint and not self.force:
+            if checkpoint.get("status") == "complete":
+                logger.info("Memory Bank integration already complete, skipping")
+                self.results["memory_bank_integration"] = checkpoint.get("results", {})
+                return
+        
+        # Integrate entities
+        results = integrate_to_memory_bank(self.dirs['consolidated'], self.memory_bank_dir, self.schema_dir)
+        
+        # Save checkpoint and results
+        checkpoint_data = {
+            "status": "complete",
+            "input_dir": str(self.dirs['consolidated']),
+            "memory_bank_dir": str(self.memory_bank_dir),
+            "schema_dir": str(self.schema_dir),
+            "timestamp": time.time(),
+            "results": results
+        }
+        self.checkpoint_manager.save_checkpoint("memory_bank_integration", checkpoint_data)
+        
+        self.results["memory_bank_integration"] = {
+            "total_entities": results.get('total_entities', 0),
+            "entity_counts": results.get('entity_counts', {}),
+            "memory_bank_files": results.get('memory_bank_files', 0)
+        }
+
 def process_epubs(epub_dir, output_dir, checkpoint_manager, force=False):
     """
     Process all ePub files in the specified directory.

@@ -28,6 +28,268 @@ logger = logging.getLogger('validate')
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from processing.schema_validator import SchemaValidator
 
+class MemoryBankValidator:
+    """
+    Validator for verifying the integrity and structure of Memory Bank entries.
+    This class validates that entities integrated into the Memory Bank conform
+    to the expected file structure and cross-reference integrity.
+    """
+    
+    def __init__(self, memory_bank_dir, schema_dir=None):
+        """
+        Initialize the Memory Bank validator.
+        
+        Args:
+            memory_bank_dir (str): Path to the Memory Bank root directory
+            schema_dir (str, optional): Directory containing schema files
+        """
+        self.memory_bank_dir = Path(memory_bank_dir)
+        self.schema_validator = SchemaValidator(schema_dir) if schema_dir else None
+        
+    def validate_memory_bank(self, report_dir=None):
+        """
+        Validate the entire Memory Bank structure and content.
+        
+        Args:
+            report_dir (str, optional): Directory to save validation reports
+            
+        Returns:
+            dict: Validation results with summary statistics
+        """
+        logger.info(f"Validating Memory Bank at {self.memory_bank_dir}")
+        
+        results = {
+            "valid": 0,
+            "invalid": 0,
+            "errors": [],
+            "warnings": [],
+            "ages": {}
+        }
+        
+        # Check if the Memory Bank directory exists
+        if not self.memory_bank_dir.exists():
+            results["errors"].append({
+                "type": "missing_directory",
+                "message": f"Memory Bank directory does not exist: {self.memory_bank_dir}"
+            })
+            return results
+        
+        # Validate Age directories
+        for age_dir in self.memory_bank_dir.iterdir():
+            if age_dir.is_dir():
+                age_results = self._validate_age_directory(age_dir)
+                results["ages"][age_dir.name] = age_results
+                results["valid"] += age_results["valid"]
+                results["invalid"] += age_results["invalid"]
+                results["errors"].extend(age_results["errors"])
+                results["warnings"].extend(age_results["warnings"])
+        
+        # Generate report if requested
+        if report_dir:
+            self._generate_validation_report(results, report_dir)
+        
+        return results
+    
+    def _validate_age_directory(self, age_dir):
+        """
+        Validate an Age directory within the Memory Bank.
+        
+        Args:
+            age_dir (Path): Path to the Age directory
+            
+        Returns:
+            dict: Validation results for the Age
+        """
+        logger.info(f"Validating Age directory: {age_dir.name}")
+        
+        age_results = {
+            "valid": 0,
+            "invalid": 0,
+            "errors": [],
+            "warnings": [],
+            "entity_types": {}
+        }
+        
+        # Check for expected entity type directories
+        expected_types = ["characters", "locations", "items", "events", "races", "languages"]
+        found_types = [d.name for d in age_dir.iterdir() if d.is_dir()]
+        
+        # Check for missing entity type directories
+        for entity_type in expected_types:
+            if entity_type not in found_types:
+                age_results["warnings"].append({
+                    "type": "missing_entity_type",
+                    "message": f"Missing entity type directory: {entity_type} in {age_dir.name}"
+                })
+        
+        # Validate each entity type directory
+        for entity_type_dir in age_dir.iterdir():
+            if entity_type_dir.is_dir():
+                type_results = self._validate_entity_type_directory(entity_type_dir)
+                age_results["entity_types"][entity_type_dir.name] = type_results
+                age_results["valid"] += type_results["valid"]
+                age_results["invalid"] += type_results["invalid"]
+                age_results["errors"].extend(type_results["errors"])
+                age_results["warnings"].extend(type_results["warnings"])
+        
+        return age_results
+    
+    def _validate_entity_type_directory(self, entity_type_dir):
+        """
+        Validate an entity type directory within an Age.
+        
+        Args:
+            entity_type_dir (Path): Path to the entity type directory
+            
+        Returns:
+            dict: Validation results for the entity type
+        """
+        logger.info(f"Validating entity type directory: {entity_type_dir.name}")
+        
+        type_results = {
+            "valid": 0,
+            "invalid": 0,
+            "errors": [],
+            "warnings": [],
+            "entities": {}
+        }
+        
+        # Validate each entity file
+        for entity_file in entity_type_dir.glob("*.json"):
+            try:
+                with open(entity_file, 'r', encoding='utf-8') as f:
+                    entity_data = json.load(f)
+                
+                # Validate the entity
+                entity_results = self._validate_entity(entity_data, entity_file)
+                type_results["entities"][entity_file.stem] = entity_results
+                
+                if entity_results["valid"]:
+                    type_results["valid"] += 1
+                else:
+                    type_results["invalid"] += 1
+                    type_results["errors"].extend(entity_results["errors"])
+                    type_results["warnings"].extend(entity_results["warnings"])
+                    
+            except json.JSONDecodeError as e:
+                type_results["invalid"] += 1
+                type_results["errors"].append({
+                    "type": "json_error",
+                    "entity": entity_file.name,
+                    "message": f"Invalid JSON in {entity_file}: {str(e)}"
+                })
+            except Exception as e:
+                type_results["invalid"] += 1
+                type_results["errors"].append({
+                    "type": "validation_error",
+                    "entity": entity_file.name,
+                    "message": f"Error validating {entity_file}: {str(e)}"
+                })
+        
+        return type_results
+    
+    def _validate_entity(self, entity_data, entity_file):
+        """
+        Validate a single entity from the Memory Bank.
+        
+        Args:
+            entity_data (dict): Entity data to validate
+            entity_file (Path): Path to the entity file
+            
+        Returns:
+            dict: Validation results for the entity
+        """
+        entity_results = {
+            "valid": True,
+            "errors": [],
+            "warnings": []
+        }
+        
+        # Check for required fields
+        required_fields = ["name", "type", "id"]
+        for field in required_fields:
+            if field not in entity_data:
+                entity_results["valid"] = False
+                entity_results["errors"].append({
+                    "type": "missing_field",
+                    "field": field,
+                    "message": f"Required field '{field}' missing in {entity_file.name}"
+                })
+        
+        # If Schema Validator is available, use it for additional validation
+        if self.schema_validator:
+            schema_valid, error_msg = self.schema_validator.validate_entity(entity_data)
+            if not schema_valid:
+                entity_results["valid"] = False
+                entity_results["errors"].append({
+                    "type": "schema_error",
+                    "message": error_msg
+                })
+        
+        # Check relationship integrity
+        if "relationships" in entity_data:
+            for relationship in entity_data.get("relationships", []):
+                if "target_id" in relationship and "type" in relationship:
+                    # Check if the target entity exists
+                    target_id = relationship["target_id"]
+                    target_type = relationship.get("target_type", "").lower() + "s"  # Pluralize
+                    
+                    # Construct the expected path to the target entity
+                    age_dir = entity_file.parent.parent
+                    target_dir = age_dir / target_type
+                    target_file = target_dir / f"{target_id}.json"
+                    
+                    if not target_file.exists():
+                        entity_results["warnings"].append({
+                            "type": "broken_relationship",
+                            "relationship": relationship,
+                            "message": f"Relationship target {target_id} does not exist"
+                        })
+        
+        return entity_results
+    
+    def _generate_validation_report(self, results, report_dir):
+        """
+        Generate a validation report for the Memory Bank.
+        
+        Args:
+            results (dict): Validation results
+            report_dir (str): Directory to save the report
+        """
+        report_dir = Path(report_dir)
+        report_dir.mkdir(parents=True, exist_ok=True)
+        
+        report_path = report_dir / "memory_bank_validation_report.json"
+        with open(report_path, 'w', encoding='utf-8') as f:
+            json.dump(results, f, indent=2)
+        
+        logger.info(f"Memory Bank validation report saved to {report_path}")
+        
+        # Also save a human-readable summary
+        summary_path = report_dir / "memory_bank_validation_summary.txt"
+        with open(summary_path, 'w', encoding='utf-8') as f:
+            f.write(f"Memory Bank Validation Summary\n")
+            f.write(f"==============================\n\n")
+            f.write(f"Valid entities: {results['valid']}\n")
+            f.write(f"Invalid entities: {results['invalid']}\n\n")
+            
+            if results['errors']:
+                f.write(f"Errors ({len(results['errors'])}):\n")
+                for i, error in enumerate(results['errors'][:10], 1):  # Show first 10 errors
+                    f.write(f"{i}. {error['message']}\n")
+                if len(results['errors']) > 10:
+                    f.write(f"   ... and {len(results['errors']) - 10} more errors\n")
+                f.write("\n")
+            
+            if results['warnings']:
+                f.write(f"Warnings ({len(results['warnings'])}):\n")
+                for i, warning in enumerate(results['warnings'][:10], 1):  # Show first 10 warnings
+                    f.write(f"{i}. {warning['message']}\n")
+                if len(results['warnings']) > 10:
+                    f.write(f"   ... and {len(results['warnings']) - 10} more warnings\n")
+                
+        logger.info(f"Memory Bank validation summary saved to {summary_path}")
+
 class EntityValidator:
     """
     Validator for Tolkien entities that provides detailed validation
