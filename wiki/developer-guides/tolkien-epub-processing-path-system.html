@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tolkien ePub Processing Path System - Ages of Arda Developer Guide</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../middle-earth-theme.css">
+</head>
+<body class="developer-guide">
+    <main class="content">
+        <h1>Tolkien ePub Processing Path System</h1>
+        
+        <div class="metadata">
+            <p><strong>Author:</strong> Development Team</p>
+            <p><strong>Created:</strong> March 21, 2025</p>
+            <p><strong>Category:</strong> Developer Guides</p>
+            <p><strong>Tags:</strong> processing, path, configuration, testing</p>
+        </div>
+
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>
+                The Path Configuration System is a core component of the Tolkien ePub Processing Framework that provides
+                standardized path management across all components. This guide explains how the system works and how to use it
+                in your development efforts.
+            </p>
+        </section>
+
+        <section id="overview">
+            <h2>System Overview</h2>
+            <p>
+                The path configuration system solves several key problems:
+            </p>
+            <ul>
+                <li>Eliminates hardcoded paths that cause cross-platform issues</li>
+                <li>Provides different path sets for different environments (production, testing, development)</li>
+                <li>Centralizes directory creation to ensure all required directories exist</li>
+                <li>Simplifies test implementation by automatically switching paths</li>
+                <li>Improves code maintainability by removing path management boilerplate</li>
+            </ul>
+        </section>
+
+        <section id="components">
+            <h2>Key Components</h2>
+            <p>The path system consists of these core components:</p>
+
+            <h3>Environment Enum</h3>
+            <p>Defines the three supported environments:</p>
+            <pre><code>class Environment(Enum):
+    PRODUCTION = "production"
+    TEST = "test"
+    DEVELOPMENT = "development"</code></pre>
+
+            <h3>Path Templates</h3>
+            <p>Pre-defined paths for each environment:</p>
+            <pre><code>PATH_TEMPLATES = {
+    Environment.PRODUCTION: {
+        "processing": PROJECT_ROOT / "processing",
+        "logs": PROJECT_ROOT / "processing" / "logs",
+        "temp": PROJECT_ROOT / "processing" / "temp",
+        # Additional paths...
+    },
+    Environment.TEST: {
+        "processing": PROJECT_ROOT / "processing",
+        "logs": PROJECT_ROOT / "processing" / "test_logs",
+        "temp": PROJECT_ROOT / "processing" / "test_temp",
+        # Additional paths with test-specific locations...
+    },
+    # Development paths...
+}</code></pre>
+
+            <h3>Core Functions</h3>
+            <p>The system provides several key functions:</p>
+            <ul>
+                <li><code>set_environment(env)</code>: Set the current environment</li>
+                <li><code>get_path(path_type)</code>: Get a path for the current environment</li>
+                <li><code>create_directories()</code>: Create all directories for the current environment</li>
+                <li><code>get_log_file_path(component_name)</code>: Get log file path for a component</li>
+                <li><code>resolve_path(path_str, base_type)</code>: Resolve relative or absolute paths</li>
+                <li><code>get_memory_bank_path(age, entity_type)</code>: Get specialized memory bank paths</li>
+            </ul>
+        </section>
+
+        <section id="usage">
+            <h2>Using the Path System</h2>
+
+            <h3>Basic Path Access</h3>
+            <p>To access paths in your code:</p>
+            <pre><code>from processing.path_config import get_path
+
+# Get a specific path from the current environment
+output_dir = get_path('output')
+temp_dir = get_path('temp')
+
+# Use the paths in your code
+output_file = output_dir / "my_output.json"
+with open(output_file, 'w') as f:
+    json.dump(data, f)</code></pre>
+
+            <h3>Setting Up Logging</h3>
+            <p>For component logging:</p>
+            <pre><code>import logging
+from processing.path_config import get_log_file_path
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(get_log_file_path('my_component')),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger('my_component')</code></pre>
+
+            <h3>Resolving User-Provided Paths</h3>
+            <p>When accepting paths from function arguments:</p>
+            <pre><code>from processing.path_config import resolve_path
+
+def process_file(input_file, output_dir=None):
+    # Resolve input file path relative to the input directory
+    input_path = resolve_path(input_file, 'epub_content')
+    
+    # Use default output directory if none provided
+    output_path = resolve_path(output_dir, 'output') if output_dir else get_path('output')
+    
+    # Process the file...
+    processed_data = read_and_process(input_path)
+    
+    # Write to output
+    result_file = output_path / f"{input_path.stem}_processed.json"
+    with open(result_file, 'w') as f:
+        json.dump(processed_data, f)</code></pre>
+        </section>
+
+        <section id="testing">
+            <h2>Path Configuration in Testing</h2>
+            <p>
+                The path system significantly simplifies testing by providing isolated paths for test data and output.
+            </p>
+
+            <h3>Setting Up Test Environment</h3>
+            <p>All test modules should start with:</p>
+            <pre><code>from processing.path_config import set_environment, Environment
+
+# Set test environment at the start
+set_environment(Environment.TEST)</code></pre>
+
+            <h3>Directory Structure in Tests</h3>
+            <p>With the environment set to TEST, the system provides paths that won't interfere with production data:</p>
+            <ul>
+                <li><code>processing/test_logs/</code>: Log files from tests</li>
+                <li><code>processing/test_temp/</code>: Temporary files during testing</li>
+                <li><code>processing/test_output/</code>: Output files from tests</li>
+                <li><code>processing/test_data/</code>: Test data files</li>
+                <li><code>processing/test_reports/</code>: Test result reports</li>
+            </ul>
+
+            <h3>Example in Test Code</h3>
+            <pre><code>def setUp(self):
+    """Set up test environment with temporary directories."""
+    # These paths automatically use the test environment paths
+    self.test_dir = get_path('temp')
+    self.output_dir = get_path('output')
+    
+    # Create test data
+    with open(self.test_dir / "test_data.json", 'w') as f:
+        json.dump(test_data, f)</code></pre>
+        </section>
+
+        <section id="migration">
+            <h2>Migrating Existing Code</h2>
+            <p>To migrate existing code to use the path configuration system:</p>
+            <ol>
+                <li>
+                    <p><strong>Step 1: Import the path configuration</strong></p>
+                    <pre><code>from processing.path_config import get_path, resolve_path</code></pre>
+                </li>
+                <li>
+                    <p><strong>Step 2: Replace hardcoded paths</strong></p>
+                    <p>Before:</p>
+                    <pre><code>output_dir = "processing/output"
+log_file = "processing/logs/my_component.log"</code></pre>
+                    <p>After:</p>
+                    <pre><code>output_dir = get_path('output')
+log_file = get_log_file_path('my_component')</code></pre>
+                </li>
+                <li>
+                    <p><strong>Step 3: Update logging setup</strong></p>
+                    <p>Before:</p>
+                    <pre><code>logging.basicConfig(
+    handlers=[logging.FileHandler("processing/logs/my_component.log")]
+)</code></pre>
+                    <p>After:</p>
+                    <pre><code>logging.basicConfig(
+    handlers=[logging.FileHandler(get_log_file_path('my_component'))]
+)</code></pre>
+                </li>
+                <li>
+                    <p><strong>Step 4: Set the environment in tests</strong></p>
+                    <pre><code>from processing.path_config import set_environment, Environment
+set_environment(Environment.TEST)</code></pre>
+                </li>
+                <li>
+                    <p><strong>Step 5: Remove manual directory creation</strong></p>
+                    <p>Before:</p>
+                    <pre><code>os.makedirs("processing/output", exist_ok=True)
+os.makedirs("processing/temp", exist_ok=True)</code></pre>
+                    <p>After:</p>
+                    <pre><code># No code needed - directories are created automatically</code></pre>
+                </li>
+            </ol>
+        </section>
+
+        <section id="benefits">
+            <h2>Benefits and Best Practices</h2>
+            
+            <h3>Key Benefits</h3>
+            <ul>
+                <li><strong>Consistency:</strong> All components use the same paths</li>
+                <li><strong>Cross-platform:</strong> Works reliably on Windows, Mac, and Linux</li>
+                <li><strong>Test isolation:</strong> Tests won't corrupt production data</li>
+                <li><strong>Centralized configuration:</strong> Path changes need to be made in only one place</li>
+                <li><strong>Code reduction:</strong> Less boilerplate for path handling</li>
+            </ul>
+            
+            <h3>Best Practices</h3>
+            <ul>
+                <li>Always use <code>get_path()</code> instead of hardcoding paths</li>
+                <li>Use <code>resolve_path()</code> for any user-provided paths</li>
+                <li>Set environment to TEST at the start of all test modules</li>
+                <li>Use <code>get_log_file_path()</code> for component logging</li>
+                <li>When adding new path types, add them to all environments</li>
+                <li>Use pathlib.Path methods for path manipulation (not os.path)</li>
+            </ul>
+        </section>
+
+        <section id="future-development">
+            <h2>Future Development</h2>
+            <p>
+                Planned enhancements to the path configuration system include:
+            </p>
+            <ul>
+                <li>Support for user-defined environment configurations</li>
+                <li>Integration with configuration files</li>
+                <li>Path validation to catch incorrect path usage</li>
+                <li>Path usage statistics to identify opportunities for optimization</li>
+            </ul>
+        </section>
+
+        <section id="faq">
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Why use a centralized path system?</h3>
+            <p>
+                A centralized path system ensures consistency, improves maintainability, and makes it easier to adapt
+                the codebase to different environments and operating systems.
+            </p>
+            
+            <h3>How do I add a new path type?</h3>
+            <p>
+                Add the new path to all environment configurations in PATH_TEMPLATES in path_config.py.
+            </p>
+            
+            <h3>Can I use this for paths outside the processing directory?</h3>
+            <p>
+                Yes, the system can resolve any path relative to the project root. For external paths, use resolve_path()
+                with absolute paths.
+            </p>
+            
+            <h3>How does this work with temporary test directories?</h3>
+            <p>
+                In tests, you can still use tempfile.mkdtemp() for truly temporary directories, but for standard test
+                paths, using the TEST environment provides consistency and automatic cleanup.
+            </p>
+        </section>
+
+        <footer>
+            <p>Last updated: March 21, 2025</p>
+        </footer>
+    </main>
+
+    <script src="../sidebar.js"></script>
+</body>
+</html> 

@@ -1,0 +1,22 @@
+2025-03-21 00:51:37,404 - test_utils - INFO - Discovering tests in C:\working_directory\ages-project\clean-ages-of-arda\processing with pattern test_*.py
+2025-03-21 00:51:37,508 - test_utils - INFO - Running 10 tests
+2025-03-21 00:51:37,517 - mock_entity_extractor - INFO - Initialized mock OllamaClient with model llama3
+2025-03-21 00:51:37,518 - mock_entity_extractor - INFO - Initialized mock EntityStore at C:\Users\tripp\AppData\Local\Temp\tmp62c61eht\test_output\entities
+2025-03-21 00:51:37,518 - mock_entity_extractor - INFO - Initialized mock EntityExtractor with output directory C:\Users\tripp\AppData\Local\Temp\tmp62c61eht\test_output
+2025-03-21 00:51:37,520 - mock_entity_extractor - INFO - Extracting entities from chapter: The Fellowship of the Ring
+2025-03-21 00:51:37,520 - mock_entity_extractor - INFO - Mock generating text for prompt: Extract all Tolkien entities from the following te...
+2025-03-21 00:51:37,521 - mock_entity_extractor - INFO - Added entity character_frodo_baggins of type CHARACTER
+2025-03-21 00:51:37,522 - mock_entity_extractor - INFO - Added entity character_gandalf of type CHARACTER
+2025-03-21 00:51:37,523 - mock_entity_extractor - INFO - Added entity location_bag_end of type LOCATION
+2025-03-21 00:51:37,524 - mock_entity_extractor - INFO - Added entity location_shire of type LOCATION
+2025-03-21 00:51:37,528 - mock_entity_extractor - INFO - Initialized mock EntityStore at C:\Users\tripp\AppData\Local\Temp\tmporcgzi0x\test_output
+2025-03-21 00:51:37,529 - mock_entity_extractor - INFO - Added entity character_frodo_baggins of type CHARACTER
+2025-03-21 00:51:37,532 - mock_entity_extractor - INFO - Initialized mock EntityStore at C:\Users\tripp\AppData\Local\Temp\tmpjbz332ln\test_output
+2025-03-21 00:51:37,533 - mock_entity_extractor - INFO - Added entity character_frodo_baggins of type CHARACTER
+2025-03-21 00:51:37,534 - mock_entity_extractor - INFO - Added entity character_gandalf of type CHARACTER
+2025-03-21 00:51:37,536 - mock_entity_extractor - INFO - Added entity location_bag_end of type LOCATION
+2025-03-21 00:51:37,539 - mock_entity_extractor - INFO - Initialized mock OllamaClient with model llama3
+2025-03-21 00:51:37,539 - mock_entity_extractor - INFO - Mock generating text for prompt: Extract character entities from text...
+2025-03-21 00:51:37,539 - mock_entity_extractor - INFO - Mock generating text for prompt: Extract location entities from text...
+2025-03-21 00:51:37,542 - mock_entity_extractor - INFO - Initialized mock OllamaClient with model llama3
+2025-03-21 00:51:37,547 - test_utils - INFO - Test report saved to C:\working_directory\ages-project\clean-ages-of-arda\processing\test_reports\test_report_20250321_005137.json

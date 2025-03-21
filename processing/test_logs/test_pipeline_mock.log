@@ -1,0 +1,53 @@
+2025-03-21 00:49:24,606 - mock_entity_extractor - INFO - Initialized mock OllamaClient with model llama3
+2025-03-21 00:49:24,607 - mock_entity_extractor - INFO - Initialized mock EntityStore at C:\Users\tripp\AppData\Local\Temp\tmpq8yyljm2\test_output\entities
+2025-03-21 00:49:24,607 - mock_entity_extractor - INFO - Initialized mock EntityExtractor with output directory C:\Users\tripp\AppData\Local\Temp\tmpq8yyljm2\test_output
+2025-03-21 00:49:24,625 - mock_entity_extractor - INFO - Extracting entities from chapter: The Fellowship of the Ring
+2025-03-21 00:49:24,626 - mock_entity_extractor - INFO - Mock generating text for prompt: Extract all Tolkien entities from the following te...
+2025-03-21 00:49:24,630 - mock_entity_extractor - INFO - Initialized mock EntityStore at C:\Users\tripp\AppData\Local\Temp\tmp2d_6qf4i\test_output
+2025-03-21 00:49:24,631 - mock_entity_extractor - INFO - Added entity character_frodo_baggins of type CHARACTER
+2025-03-21 00:49:24,634 - mock_entity_extractor - INFO - Initialized mock EntityStore at C:\Users\tripp\AppData\Local\Temp\tmpb3uiji5i\test_output
+2025-03-21 00:49:24,635 - mock_entity_extractor - INFO - Added entity character_frodo_baggins of type CHARACTER
+2025-03-21 00:49:24,636 - mock_entity_extractor - INFO - Added entity character_gandalf of type CHARACTER
+2025-03-21 00:49:24,637 - mock_entity_extractor - INFO - Added entity location_bag_end of type LOCATION
+2025-03-21 00:49:24,640 - mock_entity_extractor - INFO - Initialized mock OllamaClient with model llama3
+2025-03-21 00:49:24,641 - mock_entity_extractor - INFO - Mock generating text for prompt: Extract character entities from text...
+2025-03-21 00:49:24,641 - mock_entity_extractor - INFO - Mock generating text for prompt: Extract location entities from text...
+2025-03-21 00:49:24,644 - mock_entity_extractor - INFO - Initialized mock OllamaClient with model llama3
+2025-03-21 00:51:03,396 - mock_entity_extractor - INFO - Initialized mock OllamaClient with model llama3
+2025-03-21 00:51:03,397 - mock_entity_extractor - INFO - Initialized mock EntityStore at C:\Users\tripp\AppData\Local\Temp\tmpsqqjkrzx\test_output\entities
+2025-03-21 00:51:03,397 - mock_entity_extractor - INFO - Initialized mock EntityExtractor with output directory C:\Users\tripp\AppData\Local\Temp\tmpsqqjkrzx\test_output
+2025-03-21 00:51:03,399 - mock_entity_extractor - INFO - Extracting entities from chapter: The Fellowship of the Ring
+2025-03-21 00:51:03,400 - mock_entity_extractor - INFO - Mock generating text for prompt: Extract all Tolkien entities from the following te...
+2025-03-21 00:51:03,401 - mock_entity_extractor - INFO - Added entity character_frodo_baggins of type CHARACTER
+2025-03-21 00:51:03,402 - mock_entity_extractor - INFO - Added entity character_gandalf of type CHARACTER
+2025-03-21 00:51:03,404 - mock_entity_extractor - INFO - Added entity location_bag_end of type LOCATION
+2025-03-21 00:51:03,405 - mock_entity_extractor - INFO - Added entity location_shire of type LOCATION
+2025-03-21 00:51:03,409 - mock_entity_extractor - INFO - Initialized mock EntityStore at C:\Users\tripp\AppData\Local\Temp\tmpkmzokuyg\test_output
+2025-03-21 00:51:03,410 - mock_entity_extractor - INFO - Added entity character_frodo_baggins of type CHARACTER
+2025-03-21 00:51:03,414 - mock_entity_extractor - INFO - Initialized mock EntityStore at C:\Users\tripp\AppData\Local\Temp\tmpr0sc10qp\test_output
+2025-03-21 00:51:03,415 - mock_entity_extractor - INFO - Added entity character_frodo_baggins of type CHARACTER
+2025-03-21 00:51:03,416 - mock_entity_extractor - INFO - Added entity character_gandalf of type CHARACTER
+2025-03-21 00:51:03,417 - mock_entity_extractor - INFO - Added entity location_bag_end of type LOCATION
+2025-03-21 00:51:03,420 - mock_entity_extractor - INFO - Initialized mock OllamaClient with model llama3
+2025-03-21 00:51:03,420 - mock_entity_extractor - INFO - Mock generating text for prompt: Extract character entities from text...
+2025-03-21 00:51:03,421 - mock_entity_extractor - INFO - Mock generating text for prompt: Extract location entities from text...
+2025-03-21 00:51:03,424 - mock_entity_extractor - INFO - Initialized mock OllamaClient with model llama3
+2025-03-21 00:51:50,635 - mock_entity_extractor - INFO - Initialized mock OllamaClient with model llama3
+2025-03-21 00:51:50,636 - mock_entity_extractor - INFO - Initialized mock EntityStore at C:\Users\tripp\AppData\Local\Temp\tmpj6owe49r\test_output\entities
+2025-03-21 00:51:50,636 - mock_entity_extractor - INFO - Initialized mock EntityExtractor with output directory C:\Users\tripp\AppData\Local\Temp\tmpj6owe49r\test_output
+2025-03-21 00:51:50,638 - mock_entity_extractor - INFO - Extracting entities from chapter: The Fellowship of the Ring
+2025-03-21 00:51:50,639 - mock_entity_extractor - INFO - Mock generating text for prompt: Extract all Tolkien entities from the following te...
+2025-03-21 00:51:50,640 - mock_entity_extractor - INFO - Added entity character_frodo_baggins of type CHARACTER
+2025-03-21 00:51:50,641 - mock_entity_extractor - INFO - Added entity character_gandalf of type CHARACTER
+2025-03-21 00:51:50,642 - mock_entity_extractor - INFO - Added entity location_bag_end of type LOCATION
+2025-03-21 00:51:50,643 - mock_entity_extractor - INFO - Added entity location_shire of type LOCATION
+2025-03-21 00:51:50,647 - mock_entity_extractor - INFO - Initialized mock EntityStore at C:\Users\tripp\AppData\Local\Temp\tmptui0lzhh\test_output
+2025-03-21 00:51:50,648 - mock_entity_extractor - INFO - Added entity character_frodo_baggins of type CHARACTER
+2025-03-21 00:51:50,651 - mock_entity_extractor - INFO - Initialized mock EntityStore at C:\Users\tripp\AppData\Local\Temp\tmpnrase0ob\test_output
+2025-03-21 00:51:50,652 - mock_entity_extractor - INFO - Added entity character_frodo_baggins of type CHARACTER
+2025-03-21 00:51:50,653 - mock_entity_extractor - INFO - Added entity character_gandalf of type CHARACTER
+2025-03-21 00:51:50,654 - mock_entity_extractor - INFO - Added entity location_bag_end of type LOCATION
+2025-03-21 00:51:50,657 - mock_entity_extractor - INFO - Initialized mock OllamaClient with model llama3
+2025-03-21 00:51:50,657 - mock_entity_extractor - INFO - Mock generating text for prompt: Extract character entities from text...
+2025-03-21 00:51:50,658 - mock_entity_extractor - INFO - Mock generating text for prompt: Extract location entities from text...
+2025-03-21 00:51:50,660 - mock_entity_extractor - INFO - Initialized mock OllamaClient with model llama3

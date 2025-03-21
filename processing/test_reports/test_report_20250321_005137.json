@@ -1,0 +1,22 @@
+{
+  "timestamp": "2025-03-21T00:51:37.547127",
+  "total_tests": 10,
+  "passed": 7,
+  "failed": 0,
+  "errors": [
+    {
+      "test": "test_pipeline (unittest.loader._FailedTest.test_pipeline)",
+      "message": "ImportError: Failed to import test module: test_pipeline\nTraceback (most recent call last):\n  File \"C:\\Users\\tripp\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\unittest\\loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n  File \"C:\\Users\\tripp\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\unittest\\loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n    ~~~~~~~~~~^^^^^^\n  File \"C:\\working_directory\\ages-project\\clean-ages-of-arda\\processing\\test_pipeline.py\", line 24, in <module>\n    logging.FileHandler(os.path.join('logs', 'test.log')),\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tripp\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\logging\\__init__.py\", line 1218, in __init__\n    StreamHandler.__init__(self, self._open())\n                                 ~~~~~~~~~~^^\n  File \"C:\\Users\\tripp\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\logging\\__init__.py\", line 1247, in _open\n    return open_func(self.baseFilename, self.mode,\n                     encoding=self.encoding, errors=self.errors)\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\working_directory\\\\ages-project\\\\clean-ages-of-arda\\\\logs\\\\test.log'\n\n"
+    },
+    {
+      "test": "test_pipeline_fixed (unittest.loader._FailedTest.test_pipeline_fixed)",
+      "message": "ImportError: Failed to import test module: test_pipeline_fixed\nTraceback (most recent call last):\n  File \"C:\\Users\\tripp\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\unittest\\loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n  File \"C:\\Users\\tripp\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\unittest\\loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n    ~~~~~~~~~~^^^^^^\n  File \"C:\\working_directory\\ages-project\\clean-ages-of-arda\\processing\\test_pipeline_fixed.py\", line 38, in <module>\n    from processing.entity_extractor import EntityExtractor, OllamaClient, EntityStore\n  File \"C:\\working_directory\\ages-project\\clean-ages-of-arda\\processing\\entity_extractor.py\", line 11, in <module>\n    import requests\nModuleNotFoundError: No module named 'requests'\n\n"
+    },
+    {
+      "test": "test_pipeline_fixed_imports (unittest.loader._FailedTest.test_pipeline_fixed_imports)",
+      "message": "ImportError: Failed to import test module: test_pipeline_fixed_imports\nTraceback (most recent call last):\n  File \"C:\\Users\\tripp\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\unittest\\loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n  File \"C:\\Users\\tripp\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\unittest\\loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n    ~~~~~~~~~~^^^^^^\n  File \"C:\\working_directory\\ages-project\\clean-ages-of-arda\\processing\\test_pipeline_fixed_imports.py\", line 38, in <module>\n    from processing.entity_extractor import EntityExtractor, OllamaClient, EntityStore\n  File \"C:\\working_directory\\ages-project\\clean-ages-of-arda\\processing\\entity_extractor.py\", line 11, in <module>\n    import requests\nModuleNotFoundError: No module named 'requests'\n\n"
+    }
+  ],
+  "skipped": 0,
+  "failures": []
+}
