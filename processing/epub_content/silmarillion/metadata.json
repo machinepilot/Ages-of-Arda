@@ -1,0 +1,420 @@
+{
+  "book_id": "silmarillion",
+  "title": "Silmarillion",
+  "age": "first_age",
+  "chapter_count": 82,
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Chapter 1",
+      "file": "chapter_001.json"
+    },
+    {
+      "number": 2,
+      "title": "Chapter 2",
+      "file": "chapter_002.json"
+    },
+    {
+      "number": 3,
+      "title": "Chapter 3",
+      "file": "chapter_003.json"
+    },
+    {
+      "number": 4,
+      "title": "Chapter 4",
+      "file": "chapter_004.json"
+    },
+    {
+      "number": 5,
+      "title": "Chapter 5",
+      "file": "chapter_005.json"
+    },
+    {
+      "number": 6,
+      "title": "Chapter 6",
+      "file": "chapter_006.json"
+    },
+    {
+      "number": 7,
+      "title": "Chapter 7",
+      "file": "chapter_007.json"
+    },
+    {
+      "number": 8,
+      "title": "Chapter 8",
+      "file": "chapter_008.json"
+    },
+    {
+      "number": 9,
+      "title": "Chapter 9",
+      "file": "chapter_009.json"
+    },
+    {
+      "number": 10,
+      "title": "Chapter 10",
+      "file": "chapter_010.json"
+    },
+    {
+      "number": 11,
+      "title": "Chapter 11",
+      "file": "chapter_011.json"
+    },
+    {
+      "number": 12,
+      "title": "Chapter 12",
+      "file": "chapter_012.json"
+    },
+    {
+      "number": 13,
+      "title": "Chapter 13",
+      "file": "chapter_013.json"
+    },
+    {
+      "number": 14,
+      "title": "Chapter 14",
+      "file": "chapter_014.json"
+    },
+    {
+      "number": 15,
+      "title": "Chapter 15",
+      "file": "chapter_015.json"
+    },
+    {
+      "number": 16,
+      "title": "Chapter 16",
+      "file": "chapter_016.json"
+    },
+    {
+      "number": 17,
+      "title": "Chapter 17",
+      "file": "chapter_017.json"
+    },
+    {
+      "number": 18,
+      "title": "Chapter 18",
+      "file": "chapter_018.json"
+    },
+    {
+      "number": 19,
+      "title": "Chapter 19",
+      "file": "chapter_019.json"
+    },
+    {
+      "number": 20,
+      "title": "Chapter 20",
+      "file": "chapter_020.json"
+    },
+    {
+      "number": 21,
+      "title": "Chapter 21",
+      "file": "chapter_021.json"
+    },
+    {
+      "number": 22,
+      "title": "Chapter 22",
+      "file": "chapter_022.json"
+    },
+    {
+      "number": 23,
+      "title": "Chapter 23",
+      "file": "chapter_023.json"
+    },
+    {
+      "number": 24,
+      "title": "Chapter 24",
+      "file": "chapter_024.json"
+    },
+    {
+      "number": 25,
+      "title": "Chapter 25",
+      "file": "chapter_025.json"
+    },
+    {
+      "number": 26,
+      "title": "Chapter 26",
+      "file": "chapter_026.json"
+    },
+    {
+      "number": 27,
+      "title": "Chapter 27",
+      "file": "chapter_027.json"
+    },
+    {
+      "number": 28,
+      "title": "Chapter 28",
+      "file": "chapter_028.json"
+    },
+    {
+      "number": 29,
+      "title": "Chapter 29",
+      "file": "chapter_029.json"
+    },
+    {
+      "number": 30,
+      "title": "Chapter 30",
+      "file": "chapter_030.json"
+    },
+    {
+      "number": 31,
+      "title": "Chapter 31",
+      "file": "chapter_031.json"
+    },
+    {
+      "number": 32,
+      "title": "Chapter 32",
+      "file": "chapter_032.json"
+    },
+    {
+      "number": 33,
+      "title": "Chapter 33",
+      "file": "chapter_033.json"
+    },
+    {
+      "number": 34,
+      "title": "Chapter 34",
+      "file": "chapter_034.json"
+    },
+    {
+      "number": 35,
+      "title": "Chapter 35",
+      "file": "chapter_035.json"
+    },
+    {
+      "number": 36,
+      "title": "Chapter 36",
+      "file": "chapter_036.json"
+    },
+    {
+      "number": 37,
+      "title": "Chapter 37",
+      "file": "chapter_037.json"
+    },
+    {
+      "number": 38,
+      "title": "Chapter 38",
+      "file": "chapter_038.json"
+    },
+    {
+      "number": 39,
+      "title": "Chapter 39",
+      "file": "chapter_039.json"
+    },
+    {
+      "number": 40,
+      "title": "Chapter 40",
+      "file": "chapter_040.json"
+    },
+    {
+      "number": 41,
+      "title": "Chapter 41",
+      "file": "chapter_041.json"
+    },
+    {
+      "number": 42,
+      "title": "Chapter 42",
+      "file": "chapter_042.json"
+    },
+    {
+      "number": 43,
+      "title": "Chapter 43",
+      "file": "chapter_043.json"
+    },
+    {
+      "number": 44,
+      "title": "Chapter 44",
+      "file": "chapter_044.json"
+    },
+    {
+      "number": 45,
+      "title": "Chapter 45",
+      "file": "chapter_045.json"
+    },
+    {
+      "number": 46,
+      "title": "Chapter 46",
+      "file": "chapter_046.json"
+    },
+    {
+      "number": 47,
+      "title": "Chapter 47",
+      "file": "chapter_047.json"
+    },
+    {
+      "number": 48,
+      "title": "Chapter 48",
+      "file": "chapter_048.json"
+    },
+    {
+      "number": 49,
+      "title": "Chapter 49",
+      "file": "chapter_049.json"
+    },
+    {
+      "number": 50,
+      "title": "Chapter 50",
+      "file": "chapter_050.json"
+    },
+    {
+      "number": 51,
+      "title": "Chapter 51",
+      "file": "chapter_051.json"
+    },
+    {
+      "number": 52,
+      "title": "Chapter 52",
+      "file": "chapter_052.json"
+    },
+    {
+      "number": 53,
+      "title": "Chapter 53",
+      "file": "chapter_053.json"
+    },
+    {
+      "number": 54,
+      "title": "Chapter 54",
+      "file": "chapter_054.json"
+    },
+    {
+      "number": 55,
+      "title": "Chapter 55",
+      "file": "chapter_055.json"
+    },
+    {
+      "number": 56,
+      "title": "Chapter 56",
+      "file": "chapter_056.json"
+    },
+    {
+      "number": 57,
+      "title": "Chapter 57",
+      "file": "chapter_057.json"
+    },
+    {
+      "number": 58,
+      "title": "Chapter 58",
+      "file": "chapter_058.json"
+    },
+    {
+      "number": 59,
+      "title": "Chapter 59",
+      "file": "chapter_059.json"
+    },
+    {
+      "number": 60,
+      "title": "Chapter 60",
+      "file": "chapter_060.json"
+    },
+    {
+      "number": 61,
+      "title": "Chapter 61",
+      "file": "chapter_061.json"
+    },
+    {
+      "number": 62,
+      "title": "Chapter 62",
+      "file": "chapter_062.json"
+    },
+    {
+      "number": 63,
+      "title": "Chapter 63",
+      "file": "chapter_063.json"
+    },
+    {
+      "number": 64,
+      "title": "Chapter 64",
+      "file": "chapter_064.json"
+    },
+    {
+      "number": 65,
+      "title": "Chapter 65",
+      "file": "chapter_065.json"
+    },
+    {
+      "number": 66,
+      "title": "Chapter 66",
+      "file": "chapter_066.json"
+    },
+    {
+      "number": 67,
+      "title": "Chapter 67",
+      "file": "chapter_067.json"
+    },
+    {
+      "number": 68,
+      "title": "Chapter 68",
+      "file": "chapter_068.json"
+    },
+    {
+      "number": 69,
+      "title": "Chapter 69",
+      "file": "chapter_069.json"
+    },
+    {
+      "number": 70,
+      "title": "Chapter 70",
+      "file": "chapter_070.json"
+    },
+    {
+      "number": 71,
+      "title": "Chapter 71",
+      "file": "chapter_071.json"
+    },
+    {
+      "number": 72,
+      "title": "Chapter 72",
+      "file": "chapter_072.json"
+    },
+    {
+      "number": 73,
+      "title": "Chapter 73",
+      "file": "chapter_073.json"
+    },
+    {
+      "number": 74,
+      "title": "Chapter 74",
+      "file": "chapter_074.json"
+    },
+    {
+      "number": 75,
+      "title": "Chapter 75",
+      "file": "chapter_075.json"
+    },
+    {
+      "number": 76,
+      "title": "Chapter 76",
+      "file": "chapter_076.json"
+    },
+    {
+      "number": 77,
+      "title": "Chapter 77",
+      "file": "chapter_077.json"
+    },
+    {
+      "number": 78,
+      "title": "Chapter 78",
+      "file": "chapter_078.json"
+    },
+    {
+      "number": 79,
+      "title": "Chapter 79",
+      "file": "chapter_079.json"
+    },
+    {
+      "number": 80,
+      "title": "Chapter 80",
+      "file": "chapter_080.json"
+    },
+    {
+      "number": 81,
+      "title": "Chapter 81",
+      "file": "chapter_081.json"
+    },
+    {
+      "number": 82,
+      "title": "Chapter 82",
+      "file": "chapter_082.json"
+    }
+  ],
+  "processed_date": "2025-03-20T05:27:11.115175",
+  "source_file": "The Silmarillion by J.R.R. Tolkien.epub"
+}

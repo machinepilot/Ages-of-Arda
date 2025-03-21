@@ -1,0 +1,101 @@
+{
+  "FIRST_AGE": {
+    "name": "First Age",
+    "description": "From the creation of Arda to the overthrow of Morgoth",
+    "books": [
+      "The Silmarillion",
+      "The Children of Húrin",
+      "Beren and Lúthien",
+      "The Fall of Gondolin"
+    ],
+    "start_year": "VY 1",
+    "end_year": "FA 590",
+    "major_events": [
+      "Creation of Arda",
+      "Awakening of the Elves",
+      "Coming of Men",
+      "Quest for the Silmarils",
+      "War of Wrath"
+    ],
+    "major_figures": [
+      "Morgoth",
+      "Fëanor",
+      "Beren",
+      "Lúthien",
+      "Túrin Turambar",
+      "Húrin"
+    ]
+  },
+  "SECOND_AGE": {
+    "name": "Second Age",
+    "description": "From the defeat of Morgoth to the first defeat of Sauron",
+    "books": [
+      "The Silmarillion (latter parts)",
+      "Unfinished Tales (parts)",
+      "The Fall of Númenor"
+    ],
+    "start_year": "SA 1",
+    "end_year": "SA 3441",
+    "major_events": [
+      "Forging of the Rings of Power",
+      "Rise and Fall of Númenor",
+      "Foundation of Gondor and Arnor",
+      "War of the Last Alliance"
+    ],
+    "major_figures": [
+      "Sauron",
+      "Celebrimbor",
+      "Elrond",
+      "Gil-galad",
+      "Elendil",
+      "Isildur"
+    ]
+  },
+  "THIRD_AGE": {
+    "name": "Third Age",
+    "description": "From the defeat of Sauron by the Last Alliance to the War of the Ring",
+    "books": [
+      "The Hobbit",
+      "The Lord of the Rings",
+      "Unfinished Tales (parts)"
+    ],
+    "start_year": "TA 1",
+    "end_year": "TA 3021",
+    "major_events": [
+      "Foundation of Rohan",
+      "Awakening of Durin's Bane",
+      "The Quest of Erebor",
+      "War of the Ring"
+    ],
+    "major_figures": [
+      "Gandalf",
+      "Aragorn",
+      "Frodo Baggins",
+      "Bilbo Baggins",
+      "Galadriel",
+      "Sauron"
+    ]
+  },
+  "FOURTH_AGE": {
+    "name": "Fourth Age",
+    "description": "The age of the Dominion of Men, following the War of the Ring",
+    "books": [
+      "The Lord of the Rings (appendices)",
+      "Unfinished Tales (brief mentions)"
+    ],
+    "start_year": "FA 1",
+    "end_year": "Unknown",
+    "major_events": [
+      "Rebuilding of the Reunited Kingdom",
+      "Departure of the Ring-bearers",
+      "Passing of the Elves"
+    ],
+    "major_figures": [
+      "King Elessar (Aragorn)",
+      "King Éomer",
+      "Samwise Gamgee",
+      "Meriadoc Brandybuck",
+      "Peregrin Took"
+    ]
+  }
+} 

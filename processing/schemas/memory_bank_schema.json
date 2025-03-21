@@ -1,0 +1,150 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Memory Bank Entity Schema",
+  "description": "Schema for entities stored in the Ages of Arda Memory Bank",
+  "type": "object",
+  "required": ["name", "description", "metadata"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Primary name of the entity"
+    },
+    "alternate_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Alternative names or titles for the entity"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the entity"
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["entity_type", "age"],
+      "properties": {
+        "entity_type": {
+          "type": "string",
+          "enum": ["character", "location", "item", "event", "race", "language"],
+          "description": "The type of entity (lowercase)"
+        },
+        "entity_subtype": {
+          "type": "string",
+          "description": "More specific classification of entity"
+        },
+        "age": {
+          "type": "string",
+          "enum": ["first_age", "second_age", "third_age", "fourth_age"],
+          "description": "The age to which this entity primarily belongs (lowercase)"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Confidence score for entity extraction (0.0-1.0)"
+        },
+        "canonical": {
+          "type": "boolean",
+          "description": "Whether this entity is directly from Tolkien canon"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of source books where entity appears"
+        },
+        "first_appearance": {
+          "type": "string",
+          "description": "First known appearance in the texts"
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of last update"
+        }
+      }
+    },
+    "content": {
+      "type": "string",
+      "description": "Detailed content about the entity"
+    },
+    "references": {
+      "type": "object",
+      "properties": {
+        "mentions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["source", "text"],
+            "properties": {
+              "source": {
+                "type": "string",
+                "description": "Source book"
+              },
+              "chapter": {
+                "type": "string",
+                "description": "Chapter reference"
+              },
+              "text": {
+                "type": "string",
+                "description": "The actual text mention"
+              }
+            }
+          },
+          "description": "List of textual mentions"
+        },
+        "relationships": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["entity", "type"],
+            "properties": {
+              "entity": {
+                "type": "string",
+                "description": "Name of the related entity"
+              },
+              "type": {
+                "type": "string",
+                "description": "Relationship type"
+              },
+              "evidence": {
+                "type": "string",
+                "description": "Textual evidence of the relationship"
+              }
+            }
+          },
+          "description": "List of relationships to other entities"
+        }
+      }
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Type-specific attributes",
+      "additionalProperties": true
+    },
+    "timeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["year", "event"],
+        "properties": {
+          "year": {
+            "type": "string",
+            "description": "Year or time period"
+          },
+          "event": {
+            "type": "string",
+            "description": "What happened"
+          },
+          "source": {
+            "type": "string", 
+            "description": "Source for this timeline entry"
+          }
+        }
+      },
+      "description": "Chronological events related to this entity"
+    }
+  }
+} 

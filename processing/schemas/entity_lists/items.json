@@ -1,0 +1,129 @@
+{
+  "metadata": {
+    "description": "Well-known Tolkien items for entity extraction",
+    "version": "1.0.0",
+    "last_updated": "2023-03-20"
+  },
+  "items": [
+    {
+      "name": "One Ring",
+      "type": "ITEM",
+      "subtype": "artifact",
+      "age": "SECOND_AGE",
+      "alternate_names": ["Ring of Power", "The Precious", "Ruling Ring", "Isildur's Bane"],
+      "key_attributes": ["power", "invisibility", "corruption"]
+    },
+    {
+      "name": "Glamdring",
+      "type": "ITEM",
+      "subtype": "weapon",
+      "age": "FIRST_AGE",
+      "alternate_names": ["Foe-hammer", "Beater"],
+      "key_attributes": ["sword", "elven", "glows near orcs"]
+    },
+    {
+      "name": "Sting",
+      "type": "ITEM",
+      "subtype": "weapon",
+      "age": "FIRST_AGE",
+      "alternate_names": ["Bilbo's sword", "Orc-stinger"],
+      "key_attributes": ["dagger", "glows near orcs", "elven"]
+    },
+    {
+      "name": "Andúril",
+      "type": "ITEM",
+      "subtype": "weapon",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Flame of the West", "Narsil reforged"],
+      "key_attributes": ["sword", "reforged", "kingly"]
+    },
+    {
+      "name": "Narsil",
+      "type": "ITEM",
+      "subtype": "weapon",
+      "age": "SECOND_AGE",
+      "alternate_names": ["Sword of Elendil", "Sword that was Broken"],
+      "key_attributes": ["sword", "broken", "cut the Ring"]
+    },
+    {
+      "name": "Palantír",
+      "type": "ITEM",
+      "subtype": "artifact",
+      "age": "FIRST_AGE",
+      "alternate_names": ["Seeing Stone"],
+      "key_attributes": ["vision", "communication", "ancient"]
+    },
+    {
+      "name": "Phial of Galadriel",
+      "type": "ITEM",
+      "subtype": "artifact",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Star-glass", "Light of Eärendil"],
+      "key_attributes": ["light", "elven", "protection"]
+    },
+    {
+      "name": "Mithril Coat",
+      "type": "ITEM",
+      "subtype": "armor",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Bilbo's mail", "Mithril shirt"],
+      "key_attributes": ["mithril", "light", "protective"]
+    },
+    {
+      "name": "Elven Cloaks",
+      "type": "ITEM",
+      "subtype": "clothing",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Lórien cloaks", "Cloaks of Invisibility"],
+      "key_attributes": ["camouflage", "elven", "protection"]
+    },
+    {
+      "name": "Arkenstone",
+      "type": "ITEM",
+      "subtype": "gem",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Heart of the Mountain", "King's Jewel"],
+      "key_attributes": ["valuable", "glowing", "dwarven"]
+    },
+    {
+      "name": "Silmarils",
+      "type": "ITEM",
+      "subtype": "gem",
+      "age": "FIRST_AGE",
+      "alternate_names": ["Jewels of Fëanor"],
+      "key_attributes": ["light", "valuable", "powerful"]
+    },
+    {
+      "name": "Rings of Power",
+      "type": "ITEM",
+      "subtype": "artifact",
+      "age": "SECOND_AGE",
+      "alternate_names": ["Great Rings", "Lesser Rings"],
+      "key_attributes": ["power", "influence", "magic"]
+    },
+    {
+      "name": "Orthanc Key",
+      "type": "ITEM",
+      "subtype": "tool",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Key of Orthanc"],
+      "key_attributes": ["black", "heavy", "ornate"]
+    },
+    {
+      "name": "Red Book of Westmarch",
+      "type": "ITEM",
+      "subtype": "book",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Bilbo's Book", "Red Book"],
+      "key_attributes": ["history", "records", "hobbit"]
+    },
+    {
+      "name": "White Tree of Gondor",
+      "type": "ITEM",
+      "subtype": "plant",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Tree of Minas Tirith", "White Tree"],
+      "key_attributes": ["symbolic", "royal", "ancient"]
+    }
+  ]
+} 

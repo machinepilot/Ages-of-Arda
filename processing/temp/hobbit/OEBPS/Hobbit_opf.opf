@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><package xmlns="http://www.idpf.org/2007/opf" unique-identifier="a9780007322602" version="2.0">
+   <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+      <dc:title>The Hobbit</dc:title>
+      <dc:creator opf:file-as="TOLKIEN, J.R.R." opf:role="aut">J. R. R. Tolkien</dc:creator>
+      <dc:publisher>HarperCollins</dc:publisher>
+      <dc:date/>
+      <dc:subject/>
+      <dc:description/>
+      <dc:rights/>
+      <dc:identifier id="a9780007322602" opf:scheme="ISBN">9780007322602</dc:identifier>
+      <dc:language>en-US</dc:language>
+      <meta content="cover-image" name="cover"/>
+      <meta content="" name="srp-usd"/>
+   </metadata>
+   <manifest>
+<item href="images/9780007322602mono.jpg" id="cover-image" media-type="image/jpeg"/>
+<item href="images/9780007322602.jpg" id="cover-image1" media-type="image/jpeg"/>
+<item href="cover-mono.html" id="cover-mono" media-type="application/xhtml+xml"/>
+<item href="cover.html" id="cover" media-type="application/xhtml+xml"/>
+<item href="css/Hobbit_style.css" id="style" media-type="text/css"/>
+<item href="Hobbit_toc.html" id="toc" media-type="application/xhtml+xml"/>
+<item href="images/Art_logo.jpg" id="Art_logo.jpg" media-type="image/jpeg"/>
+<item href="images/Art_P001.jpg" id="Art_P001.jpg" media-type="image/jpeg"/>
+<item href="images/Art_P002f.jpg" id="Art_P002f.jpg" media-type="image/jpeg"/>
+<item href="images/title.jpg" id="title.jpg" media-type="image/jpeg"/>
+<item href="images/Art_P002g.jpg" id="Art_P002g.jpg" media-type="image/jpeg"/>
+<item href="images/Art_P002h.jpg" id="Art_P002h.jpg" media-type="image/jpeg"/>
+<item href="images/Art_P047.jpg" id="Art_P047.jpg" media-type="image/jpeg"/>
+<item href="images/Art_P068.jpg" id="Art_P068.jpg" media-type="image/jpeg"/>
+<item href="images/Art_P128.jpg" id="Art_P128.jpg" media-type="image/jpeg"/>
+<item href="images/Art_P140.jpg" id="Art_P140.jpg" media-type="image/jpeg"/>
+<item href="images/Art_P200.jpg" id="Art_P200.jpg" media-type="image/jpeg"/>
+<item href="images/Art_P223.jpg" id="Art_P223.jpg" media-type="image/jpeg"/>
+<item href="images/Art_P237.jpg" id="Art_P237.jpg" media-type="image/jpeg"/>
+<item href="images/Art_P350.jpg" id="Art_P350.jpg" media-type="image/jpeg"/>
+<item href="images/Art_P352.jpg" id="Art_P352.jpg" media-type="image/jpeg"/>
+<item href="images/Art_P373a.jpg" id="Art_P373a.jpg" media-type="image/jpeg"/>
+<item href="images/Art_P373b.jpg" id="Art_P373b.jpg" media-type="image/jpeg"/>
+<item href="images/Art_Pii00a.jpg" id="Art_Pii00a.jpg" media-type="image/jpeg"/>
+<item href="images/Art_Pii00b.jpg" id="Art_Pii00b.jpg" media-type="image/jpeg"/>
+<item href="images/Art_Piii00.jpg" id="Art_Piii00.jpg" media-type="image/jpeg"/>
+<item href="images/Art_Piv00.jpg" id="Art_Piv00.jpg" media-type="image/jpeg"/>
+<item href="images/Art_Pviii00.jpg" id="Art_Pviii00.jpg" media-type="image/jpeg"/>
+<item href="images/car1.jpg" id="car1.jpg" media-type="image/jpeg"/>
+<item href="images/car2.jpg" id="car2.jpg" media-type="image/jpeg"/>
+<item href="images/car3.jpg" id="car3.jpg" media-type="image/jpeg"/>
+<item href="images/car4.jpg" id="car4.jpg" media-type="image/jpeg"/>
+<item href="images/car5.jpg" id="car5.jpg" media-type="image/jpeg"/>
+<item href="Hobbit_copy.html" id="copyright" media-type="application/xhtml+xml"/>
+<item href="Hobbit.ncx" id="ncx" media-type="application/x-dtbncx+xml"/>
+<item href="Hobbit_pref-1.html" id="pref-1" media-type="application/xhtml+xml"/>
+<item href="Hobbit_pref1-1.html" id="pref1-1" media-type="application/xhtml+xml"/>
+<item href="Hobbit_note.html" id="note-1" media-type="application/xhtml+xml"/>
+<item href="Hobbit_map-1.html" id="map-1" media-type="application/xhtml+xml"/>
+<item href="Hobbit_author-1.html" id="author-1" media-type="application/xhtml+xml"/>
+<item href="Hobbit_title-1.html" id="title-1" media-type="application/xhtml+xml"/>
+<item href="Hobbit_fron-1.html" id="fron-1" media-type="application/xhtml+xml"/>
+<item href="Hobbit_intr-1.html" id="intr-1" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-1.html" id="chap-1" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-2.html" id="chap-2" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-3.html" id="chap-3" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-4.html" id="chap-4" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-5.html" id="chap-5" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-6.html" id="chap-6" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-7.html" id="chap-7" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-8.html" id="chap-8" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-9.html" id="chap-9" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-10.html" id="chap-10" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-11.html" id="chap-11" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-12.html" id="chap-12" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-13.html" id="chap-13" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-14.html" id="chap-14" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-15.html" id="chap-15" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-16.html" id="chap-16" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-17.html" id="chap-17" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-18.html" id="chap-18" media-type="application/xhtml+xml"/>
+<item href="Hobbit_chap-19.html" id="chap-19" media-type="application/xhtml+xml"/>
+<item href="Hobbit_pub-1.html" id="pub" media-type="application/xhtml+xml"/>
+   </manifest>
+   <spine toc="ncx">
+      <itemref idref="cover-mono" linear="no"/>
+      <itemref idref="cover" linear="yes"/>
+      <itemref idref="title-1" linear="yes"/>
+      <itemref idref="intr-1" linear="yes"/>
+      <itemref idref="toc" linear="yes"/>
+      <itemref idref="pref1-1" linear="yes"/>
+      <itemref idref="pref-1" linear="yes"/>
+      <itemref idref="map-1" linear="yes"/>
+      <itemref idref="author-1" linear="yes"/>
+      <itemref idref="chap-1" linear="yes"/>
+      <itemref idref="chap-2" linear="yes"/>
+      <itemref idref="chap-3" linear="yes"/>
+      <itemref idref="chap-4" linear="yes"/>
+      <itemref idref="chap-5" linear="yes"/>
+      <itemref idref="chap-6" linear="yes"/>
+      <itemref idref="chap-7" linear="yes"/>
+      <itemref idref="chap-8" linear="yes"/>
+      <itemref idref="chap-9" linear="yes"/>
+      <itemref idref="chap-10" linear="yes"/>
+      <itemref idref="chap-11" linear="yes"/>
+      <itemref idref="chap-12" linear="yes"/>
+      <itemref idref="chap-13" linear="yes"/>
+      <itemref idref="chap-14" linear="yes"/>
+      <itemref idref="chap-15" linear="yes"/>
+      <itemref idref="chap-16" linear="yes"/>
+      <itemref idref="chap-17" linear="yes"/>
+      <itemref idref="chap-18" linear="yes"/>
+      <itemref idref="chap-19" linear="yes"/>
+      <itemref idref="fron-1" linear="yes"/>
+      <itemref idref="copyright" linear="yes"/>
+      <itemref idref="pub" linear="yes"/>
+      <itemref idref="note-1" linear="yes"/>
+   </spine>
+   <guide>
+      <reference href="Hobbit_copy.html" title="Copyright Page" type="copyright"/>
+      <reference href="Hobbit_toc.html" title="Table of Contents" type="toc"/>
+      <reference href="cover-mono.html" title="Cover Image" type="cover"/>
+   </guide>
+</package>

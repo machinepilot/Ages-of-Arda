@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ncx
+  PUBLIC "-//NISO//DTD ncx 2005-1//EN" "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="en-US">
+   <head>
+      <meta name="dtb:uid" content="a9780007322602"/>
+      <meta name="dtb:depth" content="1"/>
+      <meta name="dtb:totalPageCount" content="0"/>
+      <meta name="dtb:maxPageNumber" content="0"/>
+   </head>
+   <docTitle>
+      <text>The Hobbit</text>
+   </docTitle>
+   <docAuthor>
+      <text>J.R.R. TOLKIEN</text>
+   </docAuthor>
+   <navMap>
+<navPoint playOrder="1" class="toc-chapter" id="chap-1"><navLabel><text>COVER PAGE</text></navLabel><content src="cover-mono.html"/></navPoint> 
+<navPoint playOrder="2" class="toc-chapter" id="chap-1"><navLabel><text>TITLE PAGE</text></navLabel><content src="Hobbit_title-1.html"/></navPoint> 
+<navPoint playOrder="5" class="toc-chapter" id="chap-1"><navLabel><text>TABLE OF CONTENTS</text></navLabel><content src="Hobbit_toc.html"/></navPoint> 
+<navPoint playOrder="6" class="toc-chapter" id="pref1-1"><navLabel><text>LIST OF ILLUSTRATIONS</text></navLabel><content src="Hobbit_pref1-1.html"/></navPoint> 
+<navPoint playOrder="4" class="toc-chapter" id="pref-1"><navLabel><text>NOTE ON THE TEXT</text></navLabel><content src="Hobbit_pref-1.html"/></navPoint> 
+<navPoint playOrder="3" class="toc-chapter" id="author-1"><navLabel><text>AUTHOR’S NOTE</text></navLabel><content src="Hobbit_author-1.html"/></navPoint> 
+<navPoint playOrder="7" class="toc-chapter" id="chap-1"><navLabel><text>CHAPTER I: AN UNEXPECTED PARTY</text></navLabel><content src="Hobbit_chap-1.html"/></navPoint> 
+<navPoint playOrder="8" class="toc-chapter" id="chap-2"><navLabel><text>CHAPTER II: ROAST MUTTON</text></navLabel><content src="Hobbit_chap-2.html"/></navPoint> 
+<navPoint playOrder="9" class="toc-chapter" id="chap-3"><navLabel><text>CHAPTER III: A SHORT REST</text></navLabel><content src="Hobbit_chap-3.html"/></navPoint> 
+<navPoint playOrder="10" class="toc-chapter" id="chap-4"><navLabel><text>CHAPTER IV: OVER HILL AND UNDER HILL</text></navLabel><content src="Hobbit_chap-4.html"/></navPoint> 
+<navPoint playOrder="11" class="toc-chapter" id="chap-5"><navLabel><text>CHAPTER V: RIDDLES IN THE DARK</text></navLabel><content src="Hobbit_chap-5.html"/></navPoint> 
+<navPoint playOrder="12" class="toc-chapter" id="chap-6"><navLabel><text>CHAPTER VI: OUT OF THE FRYING-PAN INTO THE FIRE</text></navLabel><content src="Hobbit_chap-6.html"/></navPoint> 
+<navPoint playOrder="13" class="toc-chapter" id="chap-7"><navLabel><text>CHAPTER VII: QUEER LODGINGS</text></navLabel><content src="Hobbit_chap-7.html"/></navPoint> 
+<navPoint playOrder="14" class="toc-chapter" id="chap-8"><navLabel><text>CHAPTER VIII: FLIES AND SPIDERS</text></navLabel><content src="Hobbit_chap-8.html"/></navPoint> 
+<navPoint playOrder="15" class="toc-chapter" id="chap-9"><navLabel><text>CHAPTER IX: BARRELS OUT OF BOND</text></navLabel><content src="Hobbit_chap-9.html"/></navPoint> 
+<navPoint playOrder="16" class="toc-chapter" id="chap-10"><navLabel><text>CHAPTER X: A WARM WELCOME</text></navLabel><content src="Hobbit_chap-10.html"/></navPoint> 
+<navPoint playOrder="17" class="toc-chapter" id="chap-11"><navLabel><text>CHAPTER XI: ON THE DOORSTEP</text></navLabel><content src="Hobbit_chap-11.html"/></navPoint> 
+<navPoint playOrder="18" class="toc-chapter" id="chap-12"><navLabel><text>CHAPTER XII: INSIDE INFORMATION</text></navLabel><content src="Hobbit_chap-12.html"/></navPoint> 
+<navPoint playOrder="19" class="toc-chapter" id="chap-13"><navLabel><text>CHAPTER XIII: NOT AT HOME</text></navLabel><content src="Hobbit_chap-13.html"/></navPoint> 
+<navPoint playOrder="20" class="toc-chapter" id="chap-14"><navLabel><text>CHAPTER XIV: FIRE AND WATER</text></navLabel><content src="Hobbit_chap-14.html"/></navPoint> 
+<navPoint playOrder="21" class="toc-chapter" id="chap-15"><navLabel><text>CHAPTER XV: THE GATHERING OF THE CLOUDS</text></navLabel><content src="Hobbit_chap-15.html"/></navPoint> 
+<navPoint playOrder="22" class="toc-chapter" id="chap-16"><navLabel><text>CHAPTER XVI: A THIEF IN THE NIGHT</text></navLabel><content src="Hobbit_chap-16.html"/></navPoint> 
+<navPoint playOrder="23" class="toc-chapter" id="chap-17"><navLabel><text>CHAPTER XVII: THE CLOUDS BURST</text></navLabel><content src="Hobbit_chap-17.html"/></navPoint> 
+<navPoint playOrder="24" class="toc-chapter" id="chap-18"><navLabel><text>CHAPTER XVIII: THE RETURN JOURNEY</text></navLabel><content src="Hobbit_chap-18.html"/></navPoint> 
+<navPoint playOrder="25" class="toc-chapter" id="chap-19"><navLabel><text>CHAPTER XIX: THE LAST STAGE</text></navLabel><content src="Hobbit_chap-19.html"/></navPoint> 
+<navPoint playOrder="26" class="toc-chapter" id="fron-1"><navLabel><text>WORKS BY J.R.R. TOLKIEN</text></navLabel><content src="Hobbit_fron-1.html"/></navPoint> 
+<navPoint playOrder="27" class="toc-chapter" id="copy-1"><navLabel><text>COPYRIGHT</text></navLabel><content src="Hobbit_copy.html"/></navPoint> 
+<navPoint playOrder="28" class="toc-chapter" id="copy-1"><navLabel><text>ABOUT THE PUBLISHER</text></navLabel><content src="Hobbit_pub-1.html"/></navPoint>
+</navMap>
+</ncx>

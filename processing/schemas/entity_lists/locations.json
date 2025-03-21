@@ -1,0 +1,153 @@
+{
+  "metadata": {
+    "description": "Well-known Tolkien locations for entity extraction",
+    "version": "1.0.0",
+    "last_updated": "2023-03-20"
+  },
+  "locations": [
+    {
+      "name": "Mordor",
+      "type": "LOCATION",
+      "subtype": "realm",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Black Land", "Land of Shadow"],
+      "key_features": ["Mount Doom", "Barad-dûr", "evil"]
+    },
+    {
+      "name": "The Shire",
+      "type": "LOCATION",
+      "subtype": "realm",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Hobbit-land", "Sûza"],
+      "key_features": ["Hobbiton", "peaceful", "pastoral"]
+    },
+    {
+      "name": "Rivendell",
+      "type": "LOCATION",
+      "subtype": "settlement",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Imladris", "Last Homely House"],
+      "key_features": ["elven refuge", "healing", "knowledge"]
+    },
+    {
+      "name": "Gondor",
+      "type": "LOCATION",
+      "subtype": "kingdom",
+      "age": "THIRD_AGE",
+      "alternate_names": ["South Kingdom", "Stone-land"],
+      "key_features": ["Minas Tirith", "White Tree", "men"]
+    },
+    {
+      "name": "Rohan",
+      "type": "LOCATION",
+      "subtype": "kingdom",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Riddermark", "Mark", "Horse-country"],
+      "key_features": ["horses", "plains", "Edoras"]
+    },
+    {
+      "name": "Moria",
+      "type": "LOCATION",
+      "subtype": "underground realm",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Khazad-dûm", "Black Pit", "Dwarrowdelf"],
+      "key_features": ["mines", "dwarven halls", "Balrog"]
+    },
+    {
+      "name": "Lothlórien",
+      "type": "LOCATION",
+      "subtype": "forest realm",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Lórien", "Golden Wood", "Dreamflower"],
+      "key_features": ["mallorn trees", "Galadriel", "elven magic"]
+    },
+    {
+      "name": "Isengard",
+      "type": "LOCATION",
+      "subtype": "fortress",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Angrenost", "Iron Fortress"],
+      "key_features": ["Orthanc", "Saruman", "industrial"]
+    },
+    {
+      "name": "Minas Tirith",
+      "type": "LOCATION",
+      "subtype": "city",
+      "age": "THIRD_AGE",
+      "alternate_names": ["White City", "Tower of Guard", "City of Kings"],
+      "key_features": ["seven levels", "White Tower", "capital of Gondor"]
+    },
+    {
+      "name": "Barad-dûr",
+      "type": "LOCATION",
+      "subtype": "fortress",
+      "age": "SECOND_AGE",
+      "alternate_names": ["Dark Tower", "Fortress of Sauron"],
+      "key_features": ["Eye of Sauron", "evil", "intimidating"]
+    },
+    {
+      "name": "Mount Doom",
+      "type": "LOCATION",
+      "subtype": "mountain",
+      "age": "SECOND_AGE",
+      "alternate_names": ["Orodruin", "Amon Amarth", "Mountain of Fire"],
+      "key_features": ["volcano", "forging of the Ring", "fiery"]
+    },
+    {
+      "name": "Fangorn Forest",
+      "type": "LOCATION",
+      "subtype": "forest",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Entwood"],
+      "key_features": ["Ents", "ancient trees", "mysterious"]
+    },
+    {
+      "name": "Edoras",
+      "type": "LOCATION",
+      "subtype": "city",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Capital of Rohan"],
+      "key_features": ["Golden Hall", "Meduseld", "hill"]
+    },
+    {
+      "name": "Helm's Deep",
+      "type": "LOCATION",
+      "subtype": "fortress",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Hornburg", "Aglarond"],
+      "key_features": ["refuge", "Glittering Caves", "battle"]
+    },
+    {
+      "name": "Angmar",
+      "type": "LOCATION",
+      "subtype": "kingdom",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Witch-realm"],
+      "key_features": ["Witch-king", "evil", "northern"]
+    },
+    {
+      "name": "Erebor",
+      "type": "LOCATION",
+      "subtype": "mountain",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Lonely Mountain", "Kingdom Under the Mountain"],
+      "key_features": ["dwarven kingdom", "treasure", "dragon"]
+    },
+    {
+      "name": "Mirkwood",
+      "type": "LOCATION",
+      "subtype": "forest",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Greenwood the Great", "Taur e-Ndaedelos"],
+      "key_features": ["spiders", "Thranduil", "elven realm"]
+    },
+    {
+      "name": "Númenor",
+      "type": "LOCATION",
+      "subtype": "island kingdom",
+      "age": "SECOND_AGE",
+      "alternate_names": ["Westernesse", "Land of the Star"],
+      "key_features": ["advanced civilization", "drowned", "men"]
+    }
+  ]
+} 

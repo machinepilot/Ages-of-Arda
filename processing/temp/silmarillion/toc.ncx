@@ -1,0 +1,261 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="en">
+  <head>
+    <meta content="3fdcc085-6f10-4822-8ae9-20cc125cd360" name="dtb:uid"/>
+    <meta content="2" name="dtb:depth"/>
+    <meta content="calibre (0.7.48)" name="dtb:generator"/>
+    <meta content="0" name="dtb:totalPageCount"/>
+    <meta content="0" name="dtb:maxPageNumber"/>
+  </head>
+  <docTitle>
+    <text>The Silmarillion Illustrated</text>
+  </docTitle>
+  <navMap>
+    <navPoint class="chapter" id="cedb2e88-0d5e-496a-ba36-79492d52b410" playOrder="1">
+      <navLabel>
+        <text>J.R.R. TOLKIEN</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_000.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="2cdfae36-743c-48aa-b787-bc475aee49df" playOrder="2">
+      <navLabel>
+        <text>TITLE PAGE</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_001.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="9d3f9463-0855-41a1-82fc-e3c5d5904024" playOrder="3">
+      <navLabel>
+        <text>FOREWORD</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_003.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="49cddd60-e966-41a3-8e65-b2d19a858815" playOrder="4">
+      <navLabel>
+        <text>PREFACE TO THE SECOND EDITION</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_004.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="1c9aa087-b034-4e5e-9341-b7f1d5b36651" playOrder="5">
+      <navLabel>
+        <text>FROM A LETTER BY J.R.R. TOLKIEN TO MILTON WALDMAN, 1951</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_005.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="75d4c979-1633-4d35-8159-bdee55cd275c" playOrder="6">
+      <navLabel>
+        <text>AINULINDALË</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_006.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="b881a632-65c7-4e5a-93e6-712288a901bd" playOrder="7">
+      <navLabel>
+        <text>VALAQUENTA</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_008.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="8285de11-243e-459d-86d3-4863740c3b7d" playOrder="8">
+      <navLabel>
+        <text>QUENTA SILMARILLION</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_010.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="2812e7e7-2ef3-4038-8ea1-2ce0e85bf716" playOrder="9">
+      <navLabel>
+        <text>CHAPTER 1: OF THE BEGINNING OF DAYS</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_011.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="4d64afa2-7caa-4aba-b048-eba0f09d134c" playOrder="10">
+      <navLabel>
+        <text>CHAPTER 2: OF AULË AND YAVANNA</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_013.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="61045fb5-50e1-4340-8664-8803e2b3202b" playOrder="11">
+      <navLabel>
+        <text>CHAPTER 3: OF THE COMING OF THE ELVES AND THE CAPTIVITY OF MELKOR</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_015.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="e3bb41ee-86af-42ea-a889-e34519dd60fa" playOrder="12">
+      <navLabel>
+        <text>CHAPTER 4: OF THINGOL AND MELIAN</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_017.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="94f912f5-017a-41dd-8536-2215435f5c1b" playOrder="13">
+      <navLabel>
+        <text>CHAPTER 5: OF ELDAMAR AND THE PRINCES OF THE ELDALIË</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_019.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="5fc08587-ff2f-47e8-ac77-7763625fc45c" playOrder="14">
+      <navLabel>
+        <text>CHAPTER 6: OF FËANOR AND THE UNCHAINING OF MELKOR</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_021.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="85917a78-8615-4a48-8862-5a9b1c0b28f0" playOrder="15">
+      <navLabel>
+        <text>CHAPTER 7: OF THE SILMARILS AND THE UNREST OF THE NOLDOR</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_023.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="bcacfd26-2ba8-45f1-a54f-948dfa10b418" playOrder="16">
+      <navLabel>
+        <text>CHAPTER 8: OF THE DARKENING OF VALINOR</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_025.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="a4ee1699-9905-4566-80f9-128b694e5de1" playOrder="17">
+      <navLabel>
+        <text>CHAPTER 9: OF THE FLIGHT OF THE NOLDOR</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_027.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="d9c93e76-def4-438a-aeb2-94c40e82ed4a" playOrder="18">
+      <navLabel>
+        <text>CHAPTER 10: OF THE SINDAR</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_029.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="2cd423de-2f5f-4123-bf96-e34c434efcf1" playOrder="19">
+      <navLabel>
+        <text>CHAPTER 11: OF THE SUN AND MOON AND THE HIDING OF VALINOR</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_031.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="44252916-f9b2-45b3-be2f-af3c20cd3fa6" playOrder="20">
+      <navLabel>
+        <text>CHAPTER 12: OF MEN</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_033.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="7ec70fbe-57e5-4511-8d73-b47a76a3ad57" playOrder="21">
+      <navLabel>
+        <text>CHAPTER 13: OF THE RETURN OF THE NOLDOR</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_035.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="085d0961-c021-40f7-b370-412a9fbe0709" playOrder="22">
+      <navLabel>
+        <text>CHAPTER 14: OF BELERIAND AND ITS REALMS</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_037.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="13ace36f-9a31-436b-a055-f7e1bcac886e" playOrder="23">
+      <navLabel>
+        <text>CHAPTER 15: OF THE NOLDOR IN BELERIAND</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_039.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="0278bcfb-3b0a-46a6-ba4c-d60ec8afd88b" playOrder="24">
+      <navLabel>
+        <text>CHAPTER 16: OF MAEGLIN</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_041.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="343aedfa-7f47-4d18-a3d7-13bb44d2d03d" playOrder="25">
+      <navLabel>
+        <text>CHAPTER 17: OF THE COMING OF MEN INTO THE WEST</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_043.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="380c2f5c-afb3-4b4f-ab56-9dcfa6335b18" playOrder="26">
+      <navLabel>
+        <text>CHAPTER 18: OF THE RUIN OF BELERIAND AND THE FALL OF FINGOLFIN</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_045.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="012eb182-cdb3-4cd4-bdf8-949cf568eea6" playOrder="27">
+      <navLabel>
+        <text>CHAPTER 19: OF BEREN AND LÚTHIEN</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_047.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="56b1e8cb-248f-41e1-ba41-dd6f64c045f6" playOrder="28">
+      <navLabel>
+        <text>CHAPTER 20: OF THE FIFTH BATTLE: NIRNAETH ARNOEDIAD</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_049.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="89d4a943-7d11-4fb1-b3b7-a4c4067a2242" playOrder="29">
+      <navLabel>
+        <text>CHAPTER 21: OF TÚRIN TURAMBAR</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_051.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="f0977697-441c-42fe-a807-d52c0eaf13f4" playOrder="30">
+      <navLabel>
+        <text>CHAPTER 22: OF THE RUIN OF DORIATH</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_053.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="0f3404a9-81eb-4ec2-9488-5e26658544e8" playOrder="31">
+      <navLabel>
+        <text>CHAPTER 23: OF TUOR AND THE FALL OF GONDOLIN</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_055.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="d54f89c7-377c-4813-bde2-f2ed66ed81ca" playOrder="32">
+      <navLabel>
+        <text>CHAPTER 24: OF THE VOYAGE OF EÄRENDIL AND THE WAR OF WRATH</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_057.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="b271a7d6-3ddb-45a3-b57e-864750c2f468" playOrder="33">
+      <navLabel>
+        <text>AKALLABÊTH</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_059.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="e0170d8c-c154-4061-adb4-80c220beb2e9" playOrder="34">
+      <navLabel>
+        <text>OF THE RINGS OF POWER AND THE THIRD AGE</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_061.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="73f1fbba-230b-4ec1-af68-7afc67f42f27" playOrder="35">
+      <navLabel>
+        <text>NOTE ON PRONUNCIATION</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_063.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="be0e1d19-78a4-4845-a4ec-c3961b112e07" playOrder="36">
+      <navLabel>
+        <text>INDEX OF NAMES</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_064.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="f99b935b-c486-4638-ad79-7c7182a4c8f2" playOrder="37">
+      <navLabel>
+        <text>APPENDIX</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_065.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="cbfc576a-1e95-4e3a-8317-a438eb2f4be9" playOrder="38">
+      <navLabel>
+        <text>MAPS</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_067.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="3d15c097-508f-4c31-880e-39102150148b" playOrder="39">
+      <navLabel>
+        <text>WORKS BY J.R.R. TOLKIEN</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_068.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="5354da0c-3065-4c76-a3b9-4ae73b5ff8b1" playOrder="40">
+      <navLabel>
+        <text>COPYRIGHT PAGE</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_069.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="3e1880ab-3c7d-4c83-b545-0124516ca9fc" playOrder="41">
+      <navLabel>
+        <text>ABOUT THE PUBLISHER</text>
+      </navLabel>
+      <content src="The_Silmarillion_Illustrated_split_070.html"/>
+    </navPoint>
+  </navMap>
+</ncx>

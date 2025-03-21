@@ -1,0 +1,155 @@
+{
+  "book_id": "hobbit",
+  "title": "Hobbit",
+  "age": "third_age",
+  "chapter_count": 29,
+  "chapters": [
+    {
+      "number": 1,
+      "title": "THE HOBBIT",
+      "file": "chapter_001.json"
+    },
+    {
+      "number": 2,
+      "title": "Chapter 2",
+      "file": "chapter_002.json"
+    },
+    {
+      "number": 3,
+      "title": "Chapter 3",
+      "file": "chapter_003.json"
+    },
+    {
+      "number": 4,
+      "title": "ILLUSTRATIONS",
+      "file": "chapter_004.json"
+    },
+    {
+      "number": 5,
+      "title": "NOTE ON THE TEXT",
+      "file": "chapter_005.json"
+    },
+    {
+      "number": 6,
+      "title": "Chapter 6",
+      "file": "chapter_006.json"
+    },
+    {
+      "number": 7,
+      "title": "Chapter I",
+      "file": "chapter_007.json"
+    },
+    {
+      "number": 8,
+      "title": "Chapter II",
+      "file": "chapter_008.json"
+    },
+    {
+      "number": 9,
+      "title": "Chapter III",
+      "file": "chapter_009.json"
+    },
+    {
+      "number": 10,
+      "title": "Chapter IV",
+      "file": "chapter_010.json"
+    },
+    {
+      "number": 11,
+      "title": "Chapter V",
+      "file": "chapter_011.json"
+    },
+    {
+      "number": 12,
+      "title": "Chapter VI",
+      "file": "chapter_012.json"
+    },
+    {
+      "number": 13,
+      "title": "Chapter VII",
+      "file": "chapter_013.json"
+    },
+    {
+      "number": 14,
+      "title": "Chapter VIII",
+      "file": "chapter_014.json"
+    },
+    {
+      "number": 15,
+      "title": "Chapter IX",
+      "file": "chapter_015.json"
+    },
+    {
+      "number": 16,
+      "title": "Chapter X",
+      "file": "chapter_016.json"
+    },
+    {
+      "number": 17,
+      "title": "Chapter XI",
+      "file": "chapter_017.json"
+    },
+    {
+      "number": 18,
+      "title": "Chapter XII",
+      "file": "chapter_018.json"
+    },
+    {
+      "number": 19,
+      "title": "Chapter XIII",
+      "file": "chapter_019.json"
+    },
+    {
+      "number": 20,
+      "title": "Chapter XIV",
+      "file": "chapter_020.json"
+    },
+    {
+      "number": 21,
+      "title": "Chapter XV",
+      "file": "chapter_021.json"
+    },
+    {
+      "number": 22,
+      "title": "Chapter XVI",
+      "file": "chapter_022.json"
+    },
+    {
+      "number": 23,
+      "title": "Chapter XVII",
+      "file": "chapter_023.json"
+    },
+    {
+      "number": 24,
+      "title": "Chapter XVIII",
+      "file": "chapter_024.json"
+    },
+    {
+      "number": 25,
+      "title": "Chapter XIX",
+      "file": "chapter_025.json"
+    },
+    {
+      "number": 26,
+      "title": "Chapter 26",
+      "file": "chapter_026.json"
+    },
+    {
+      "number": 27,
+      "title": "COPYRIGHT",
+      "file": "chapter_027.json"
+    },
+    {
+      "number": 28,
+      "title": "Chapter 28",
+      "file": "chapter_028.json"
+    },
+    {
+      "number": 29,
+      "title": "Chapter 29",
+      "file": "chapter_029.json"
+    }
+  ],
+  "processed_date": "2025-03-20T05:26:43.967356",
+  "source_file": "The Hobbit by J.R.R. Tolkien.epub"
+}

@@ -1,4 +1,9 @@
 ---
+description: 
+globs: 
+alwaysApply: true
+---
+---
 title: "File Type Rule Mapping"
 glob: "**/*"
 priority: 500
@@ -15,9 +20,12 @@ This rule automatically applies the appropriate rule files based on file type an
 |--------------|---------------|
 | `**/*.c` | code-style/c-style.mdc, game/memory-bank.mdc |
 | `**/*.h` | code-style/c-style.mdc, game/memory-bank.mdc |
+| `**/*.py` | code-style/python-style.mdc |
+| `**/processing/**/*.py` | code-style/python-style.mdc, game/tolkien-processing.mdc |
 | `**/src/**/*.c` | game/angband-variant.mdc |
 | `**/html/**/*.html` | code-style/html.mdc |
 | `**/ai/**/*.c` | ai/ai-gameplay.mdc, ai/ai-ux.mdc |
+| `**/ai/**/*.py` | ai/ai-gameplay.mdc, ai/ai-ux.mdc, code-style/python-style.mdc |
 | `**/mcp/**/*.c` | mcp/mcp-integration.mdc, mcp/mcp-server.mdc |
 
 ## Configuration Files
@@ -27,6 +35,7 @@ This rule automatically applies the appropriate rule files based on file type an
 | `netlify.toml` | infrastructure/netlify.mdc |
 | `.github/**` | infrastructure/github-standards.mdc |
 | `**/mcp/config.json` | mcp/mcp-server.mdc |
+| `**/processing/schemas/**/*.json` | game/tolkien-processing.mdc |
 
 ## Game Content Files
 
@@ -35,10 +44,22 @@ This rule automatically applies the appropriate rule files based on file type an
 | `**/lore/**` | game/lore-management.mdc |
 | `**/npc/**` | ai/ai-gameplay.mdc |
 | `**/gameplay/**` | game/angband-variant.mdc, ai/ai-gameplay.mdc |
+| `**/.memory-bank/**` | game/lore-management.mdc, game/tolkien-processing.mdc |
+
+## Tolkien Processing Files
+
+| File Pattern | Applied Rules |
+|--------------|---------------|
+| `**/processing/epub_processor.py` | game/tolkien-processing.mdc, code-style/python-style.mdc |
+| `**/processing/entity_extractor.py` | game/tolkien-processing.mdc, code-style/python-style.mdc, ai/multi-agent.mdc |
+| `**/processing/entity_consolidator.py` | game/tolkien-processing.mdc, code-style/python-style.mdc |
+| `**/processing/memory_bank_integrator.py` | game/tolkien-processing.mdc, code-style/python-style.mdc, game/lore-management.mdc |
+| `**/processing/validate.py` | game/tolkien-processing.mdc, code-style/python-style.mdc |
+| `**/processing/main.py` | game/tolkien-processing.mdc, code-style/python-style.mdc |
 
 ## Usage
 
-This file does not need to be explicitly referenced. It automatically runs at priority 950 to ensure all appropriate rules are applied based on the file types being edited.
+This file does not need to be explicitly referenced. It automatically runs at priority 500 to ensure all appropriate rules are applied based on the file types being edited.
 
 Each mapping indicates:
 1. The glob pattern to match file paths

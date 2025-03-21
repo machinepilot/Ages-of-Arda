@@ -1,0 +1,17 @@
+{
+  "process_name": "epub_processing",
+  "timestamp": "2025-03-20T05:27:11.117696",
+  "state": {
+    "status": "complete",
+    "epub_dir": "raw_inputs/New Files",
+    "output_dir": "processing\\epub_content",
+    "results": {
+      "successful": [
+        "The Hobbit by J.R.R. Tolkien.epub",
+        "The Lord of the Rings by J.R.R. Tolkien.epub",
+        "The Silmarillion by J.R.R. Tolkien.epub"
+      ],
+      "failed": []
+    }
+  }
+}

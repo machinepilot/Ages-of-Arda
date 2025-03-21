@@ -1,0 +1,90 @@
+[
+    {
+        "entity1_id": "character_frodo_baggins",
+        "entity2_id": "location_bag_end",
+        "relationship_type": "LIVES_IN",
+        "confidence": 0.93,
+        "source_info": {
+            "book": "The Lord of the Rings",
+            "chapter": "Three is Company",
+            "context": "Frodo Baggins set out from Bag End with Samwise Gamgee and Peregrin Took."
+        }
+    },
+    {
+        "entity1_id": "character_bilbo_baggins",
+        "entity2_id": "location_bag_end",
+        "relationship_type": "LIVES_IN",
+        "confidence": 0.95,
+        "source_info": {
+            "book": "The Lord of the Rings",
+            "chapter": "A Long-expected Party",
+            "context": "When Mr. Bilbo Baggins of Bag End announced that he would shortly be celebrating his eleventy-first birthday with a party of special magnificence, there was much talk and excitement in Hobbiton."
+        }
+    },
+    {
+        "entity1_id": "character_frodo_baggins",
+        "entity2_id": "character_samwise_gamgee",
+        "relationship_type": "FRIEND_OF",
+        "confidence": 0.91,
+        "source_info": {
+            "book": "The Lord of the Rings",
+            "chapter": "Three is Company",
+            "context": "Frodo Baggins set out from Bag End with Samwise Gamgee and Peregrin Took."
+        }
+    },
+    {
+        "entity1_id": "character_frodo_baggins",
+        "entity2_id": "character_peregrin_took",
+        "relationship_type": "FRIEND_OF",
+        "confidence": 0.90,
+        "source_info": {
+            "book": "The Lord of the Rings",
+            "chapter": "Three is Company",
+            "context": "Frodo Baggins set out from Bag End with Samwise Gamgee and Peregrin Took."
+        }
+    },
+    {
+        "entity1_id": "character_frodo_baggins",
+        "entity2_id": "character_bilbo_baggins",
+        "relationship_type": "RELATIVE_OF",
+        "confidence": 0.87,
+        "source_info": {
+            "book": "The Lord of the Rings",
+            "chapter": "A Long-expected Party",
+            "context": "Bilbo adopted Frodo as his heir."
+        }
+    },
+    {
+        "entity1_id": "location_bag_end",
+        "entity2_id": "location_hobbiton",
+        "relationship_type": "LOCATED_IN",
+        "confidence": 0.94,
+        "source_info": {
+            "book": "The Lord of the Rings",
+            "chapter": "A Long-expected Party",
+            "context": "When Mr. Bilbo Baggins of Bag End announced that he would shortly be celebrating his eleventy-first birthday with a party of special magnificence, there was much talk and excitement in Hobbiton."
+        }
+    },
+    {
+        "entity1_id": "location_hobbiton",
+        "entity2_id": "location_the_shire",
+        "relationship_type": "LOCATED_IN",
+        "confidence": 0.96,
+        "source_info": {
+            "book": "The Lord of the Rings",
+            "chapter": "A Long-expected Party",
+            "context": "The talk did not die down in nine or even ninety-nine days. The second disappearance of Mr. Bilbo Baggins was discussed in Hobbiton, and indeed all over the Shire, for a year and a day."
+        }
+    },
+    {
+        "entity1_id": "character_nazgul",
+        "entity2_id": "character_sauron",
+        "relationship_type": "SERVES",
+        "confidence": 0.98,
+        "source_info": {
+            "book": "The Lord of the Rings",
+            "chapter": "Three is Company",
+            "context": "They encountered Black Riders on the road, which they later learned were the Nazgûl, the most terrible servants of the Dark Lord Sauron."
+        }
+    }
+] 

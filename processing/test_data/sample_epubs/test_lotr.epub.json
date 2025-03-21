@@ -1,0 +1,23 @@
+{
+    "metadata": {
+        "title": "The Lord of the Rings",
+        "creator": "J.R.R. Tolkien",
+        "publisher": "Allen & Unwin",
+        "date": "1954-1955",
+        "age": "Third Age"
+    },
+    "content": [
+        {
+            "title": "A Long-expected Party",
+            "content": "When Mr. Bilbo Baggins of Bag End announced that he would shortly be celebrating his eleventy-first birthday with a party of special magnificence, there was much talk and excitement in Hobbiton. Bilbo was very rich and very peculiar, and had been the wonder of the Shire for sixty years, ever since his remarkable disappearance and unexpected return."
+        },
+        {
+            "title": "The Shadow of the Past",
+            "content": "The talk did not die down in nine or even ninety-nine days. The second disappearance of Mr. Bilbo Baggins was discussed in Hobbiton, and indeed all over the Shire, for a year and a day, and was remembered much longer than that. It became a fireside-story for young hobbits; and eventually Mad Baggins, who used to vanish with a bang and a flash and reappear with bags of jewels and gold, became a favorite character of legend and lived on long after all the true events were forgotten."
+        },
+        {
+            "title": "Three is Company",
+            "content": "Frodo Baggins set out from Bag End with Samwise Gamgee and Peregrin Took. They encountered Black Riders on the road, which they later learned were the Nazgûl, the most terrible servants of the Dark Lord Sauron."
+        }
+    ]
+} 

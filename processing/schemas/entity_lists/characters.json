@@ -1,0 +1,129 @@
+{
+  "metadata": {
+    "description": "Well-known Tolkien characters for entity extraction",
+    "version": "1.0.0",
+    "last_updated": "2023-03-20"
+  },
+  "characters": [
+    {
+      "name": "Frodo Baggins",
+      "type": "CHARACTER",
+      "subtype": "hobbit",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Frodo", "Ring-bearer", "Mr. Baggins"],
+      "key_traits": ["brave", "resilient", "ring-bearer"]
+    },
+    {
+      "name": "Gandalf",
+      "type": "CHARACTER",
+      "subtype": "wizard",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Gandalf the Grey", "Gandalf the White", "Mithrandir", "Olórin", "Grey Pilgrim", "White Rider"],
+      "key_traits": ["wise", "powerful", "guide"]
+    },
+    {
+      "name": "Aragorn",
+      "type": "CHARACTER",
+      "subtype": "human",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Strider", "Elessar", "Isildur's Heir", "Dunadan", "King of Gondor"],
+      "key_traits": ["ranger", "heir", "leader"]
+    },
+    {
+      "name": "Samwise Gamgee",
+      "type": "CHARACTER",
+      "subtype": "hobbit",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Sam", "Master Samwise"],
+      "key_traits": ["loyal", "brave", "gardener"]
+    },
+    {
+      "name": "Galadriel",
+      "type": "CHARACTER",
+      "subtype": "elf",
+      "age": "FIRST_AGE",
+      "alternate_names": ["Lady of Lórien", "Lady of the Golden Wood"],
+      "key_traits": ["powerful", "wise", "ancient"]
+    },
+    {
+      "name": "Sauron",
+      "type": "CHARACTER",
+      "subtype": "maiar",
+      "age": "FIRST_AGE",
+      "alternate_names": ["Dark Lord", "Necromancer", "Lord of the Rings", "Eye of Sauron"],
+      "key_traits": ["evil", "powerful", "deceiver"]
+    },
+    {
+      "name": "Bilbo Baggins",
+      "type": "CHARACTER",
+      "subtype": "hobbit",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Bilbo", "Mr. Baggins", "Ring-finder", "Barrel-rider"],
+      "key_traits": ["adventurous", "clever", "ring-bearer"]
+    },
+    {
+      "name": "Legolas",
+      "type": "CHARACTER",
+      "subtype": "elf",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Legolas Greenleaf", "Prince of Mirkwood"],
+      "key_traits": ["archer", "agile", "wood-elf"]
+    },
+    {
+      "name": "Gimli",
+      "type": "CHARACTER",
+      "subtype": "dwarf",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Gimli son of Glóin", "Lord of the Glittering Caves"],
+      "key_traits": ["warrior", "stubborn", "loyal"]
+    },
+    {
+      "name": "Boromir",
+      "type": "CHARACTER",
+      "subtype": "human",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Captain of Gondor", "Son of Denethor"],
+      "key_traits": ["warrior", "proud", "noble"]
+    },
+    {
+      "name": "Saruman",
+      "type": "CHARACTER",
+      "subtype": "wizard",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Saruman the White", "Saruman of Many Colours"],
+      "key_traits": ["fallen", "cunning", "powerful"]
+    },
+    {
+      "name": "Gollum",
+      "type": "CHARACTER",
+      "subtype": "hobbit",
+      "age": "THIRD_AGE",
+      "alternate_names": ["Sméagol", "Stinker", "Slinker", "Precious"],
+      "key_traits": ["corrupted", "split-personality", "ring-obsessed"]
+    },
+    {
+      "name": "Elrond",
+      "type": "CHARACTER",
+      "subtype": "elf",
+      "age": "FIRST_AGE",
+      "alternate_names": ["Lord of Rivendell", "Master Elrond", "Elrond Half-elven"],
+      "key_traits": ["wise", "healer", "loremaster"]
+    },
+    {
+      "name": "Théoden",
+      "type": "CHARACTER",
+      "subtype": "human",
+      "age": "THIRD_AGE",
+      "alternate_names": ["King of Rohan", "Lord of the Mark"],
+      "key_traits": ["leader", "warrior", "redeemed"]
+    },
+    {
+      "name": "Éowyn",
+      "type": "CHARACTER",
+      "subtype": "human",
+      "age": "THIRD_AGE",
+      "alternate_names": ["White Lady of Rohan", "Shield-maiden"],
+      "key_traits": ["brave", "shield-maiden", "determined"]
+    }
+  ]
+} 

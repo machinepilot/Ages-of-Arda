@@ -1,0 +1,126 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tolkien Entity Schema",
+  "description": "Schema for entities extracted from Tolkien's works",
+  "type": "object",
+  "required": ["name", "type", "source", "age"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Primary name of the entity"
+    },
+    "alternate_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Alternative names or titles for the entity"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["CHARACTER", "LOCATION", "ITEM", "EVENT", "RACE", "LANGUAGE"],
+      "description": "Primary entity type"
+    },
+    "subtype": {
+      "type": "string",
+      "description": "More specific entity classification"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the entity"
+    },
+    "content": {
+      "type": "string",
+      "description": "Detailed information about the entity"
+    },
+    "age": {
+      "type": "string",
+      "enum": ["FIRST_AGE", "SECOND_AGE", "THIRD_AGE", "FOURTH_AGE"],
+      "description": "The age to which this entity primarily belongs"
+    },
+    "source": {
+      "type": "object",
+      "required": ["book", "chapter"],
+      "properties": {
+        "book": {
+          "type": "string",
+          "description": "Book title where entity was extracted from"
+        },
+        "chapter": {
+          "type": "string",
+          "description": "Chapter title/number where entity was extracted from"
+        },
+        "paragraph": {
+          "type": "integer",
+          "description": "Paragraph number within chapter (optional)"
+        },
+        "context": {
+          "type": "string",
+          "description": "Surrounding text context"
+        }
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Confidence score for entity extraction (0.0-1.0)"
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["entity", "type"],
+        "properties": {
+          "entity": {
+            "type": "string",
+            "description": "Name of the related entity"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of relationship"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the relationship"
+          },
+          "source": {
+            "type": "string",
+            "description": "Source text describing the relationship"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Confidence score for relationship extraction"
+          }
+        }
+      }
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Entity-type specific attributes",
+      "additionalProperties": true
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata",
+      "properties": {
+        "extraction_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date and time of extraction"
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date and time of last update"
+        },
+        "version": {
+          "type": "string",
+          "description": "Schema version"
+        }
+      }
+    }
+  }
+} 

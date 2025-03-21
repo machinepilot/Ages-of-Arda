@@ -1,0 +1,173 @@
+[
+    {
+        "id": "character_frodo_baggins",
+        "name": "Frodo Baggins",
+        "type": "CHARACTER",
+        "subtype": "HOBBIT",
+        "attributes": {
+            "race": "Hobbit",
+            "residence": "Bag End, The Shire",
+            "age": "Third Age"
+        },
+        "sources": [
+            {
+                "book": "The Lord of the Rings",
+                "chapter": "Three is Company",
+                "context": "Frodo Baggins set out from Bag End with Samwise Gamgee and Peregrin Took."
+            }
+        ],
+        "confidence": 0.95
+    },
+    {
+        "id": "character_samwise_gamgee",
+        "name": "Samwise Gamgee",
+        "type": "CHARACTER",
+        "subtype": "HOBBIT",
+        "attributes": {
+            "race": "Hobbit",
+            "residence": "The Shire",
+            "age": "Third Age"
+        },
+        "sources": [
+            {
+                "book": "The Lord of the Rings",
+                "chapter": "Three is Company",
+                "context": "Frodo Baggins set out from Bag End with Samwise Gamgee and Peregrin Took."
+            }
+        ],
+        "confidence": 0.92
+    },
+    {
+        "id": "character_peregrin_took",
+        "name": "Peregrin Took",
+        "type": "CHARACTER",
+        "subtype": "HOBBIT",
+        "attributes": {
+            "race": "Hobbit",
+            "residence": "The Shire",
+            "age": "Third Age"
+        },
+        "sources": [
+            {
+                "book": "The Lord of the Rings",
+                "chapter": "Three is Company",
+                "context": "Frodo Baggins set out from Bag End with Samwise Gamgee and Peregrin Took."
+            }
+        ],
+        "confidence": 0.90
+    },
+    {
+        "id": "character_bilbo_baggins",
+        "name": "Bilbo Baggins",
+        "type": "CHARACTER",
+        "subtype": "HOBBIT",
+        "attributes": {
+            "race": "Hobbit",
+            "residence": "Bag End, The Shire",
+            "age": "Third Age"
+        },
+        "sources": [
+            {
+                "book": "The Lord of the Rings",
+                "chapter": "A Long-expected Party",
+                "context": "When Mr. Bilbo Baggins of Bag End announced that he would shortly be celebrating his eleventy-first birthday with a party of special magnificence, there was much talk and excitement in Hobbiton."
+            }
+        ],
+        "confidence": 0.97
+    },
+    {
+        "id": "location_bag_end",
+        "name": "Bag End",
+        "type": "LOCATION",
+        "subtype": "STRUCTURE",
+        "attributes": {
+            "region": "The Shire",
+            "significance": "Home of Bilbo and later Frodo Baggins",
+            "age": "Third Age"
+        },
+        "sources": [
+            {
+                "book": "The Lord of the Rings",
+                "chapter": "A Long-expected Party",
+                "context": "When Mr. Bilbo Baggins of Bag End announced that he would shortly be celebrating his eleventy-first birthday with a party of special magnificence, there was much talk and excitement in Hobbiton."
+            }
+        ],
+        "confidence": 0.93
+    },
+    {
+        "id": "location_the_shire",
+        "name": "The Shire",
+        "type": "LOCATION",
+        "subtype": "REGION",
+        "attributes": {
+            "inhabitants": "Hobbits",
+            "description": "Peaceful region in northwestern Middle-earth",
+            "age": "Third Age"
+        },
+        "sources": [
+            {
+                "book": "The Lord of the Rings",
+                "chapter": "A Long-expected Party",
+                "context": "Bilbo was very rich and very peculiar, and had been the wonder of the Shire for sixty years, ever since his remarkable disappearance and unexpected return."
+            }
+        ],
+        "confidence": 0.96
+    },
+    {
+        "id": "location_hobbiton",
+        "name": "Hobbiton",
+        "type": "LOCATION",
+        "subtype": "SETTLEMENT",
+        "attributes": {
+            "region": "The Shire",
+            "inhabitants": "Hobbits",
+            "age": "Third Age"
+        },
+        "sources": [
+            {
+                "book": "The Lord of the Rings",
+                "chapter": "A Long-expected Party",
+                "context": "When Mr. Bilbo Baggins of Bag End announced that he would shortly be celebrating his eleventy-first birthday with a party of special magnificence, there was much talk and excitement in Hobbiton."
+            }
+        ],
+        "confidence": 0.91
+    },
+    {
+        "id": "character_nazgul",
+        "name": "Nazgûl",
+        "type": "CHARACTER",
+        "subtype": "OTHER",
+        "attributes": {
+            "race": "Wraith",
+            "allegiance": "Sauron",
+            "age": "Third Age"
+        },
+        "sources": [
+            {
+                "book": "The Lord of the Rings",
+                "chapter": "Three is Company",
+                "context": "They encountered Black Riders on the road, which they later learned were the Nazgûl, the most terrible servants of the Dark Lord Sauron."
+            }
+        ],
+        "confidence": 0.88
+    },
+    {
+        "id": "character_sauron",
+        "name": "Sauron",
+        "type": "CHARACTER",
+        "subtype": "MAIAR",
+        "attributes": {
+            "race": "Maiar",
+            "allegiance": "Morgoth, then himself",
+            "age": "All Ages"
+        },
+        "sources": [
+            {
+                "book": "The Lord of the Rings",
+                "chapter": "Three is Company",
+                "context": "They encountered Black Riders on the road, which they later learned were the Nazgûl, the most terrible servants of the Dark Lord Sauron."
+            }
+        ],
+        "confidence": 0.92
+    }
+] 

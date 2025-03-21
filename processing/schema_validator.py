@@ -1,14 +1,14 @@
 """
 Schema Validator for Ages of Arda
 
-This module provides functionality for validating generated JSON entities
-against the defined schemas for the Ages of Arda Memory Bank system.
+This module provides functionality for validating entities against JSON schemas.
 """
 
 import os
 import json
 import logging
 from pathlib import Path
+from typing import Dict, List, Any, Tuple, Optional
 
 # Set up logging
 logging.basicConfig(
@@ -23,20 +23,20 @@ logger = logging.getLogger('schema_validator')
 
 class SchemaValidator:
     """
-    Validator for ensuring generated JSON entities conform to the defined schemas.
+    Validator for checking entities against JSON schemas.
     """
-    
+
     def __init__(self, schema_dir):
         """
         Initialize the schema validator.
-        
+
         Args:
             schema_dir (str): Directory containing schema files
         """
         self.schema_dir = Path(schema_dir)
         self.schemas = {}
         self._load_schemas()
-    
+
     def _load_schemas(self):
         """Load all schema files from the schema directory"""
         try:
@@ -44,26 +44,33 @@ class SchemaValidator:
             logger.info(f"Found {len(schema_files)} schema files in {self.schema_dir}")
             
             for schema_file in schema_files:
-                schema_name = schema_file.stem
-                with open(schema_file, 'r', encoding='utf-8') as f:
-                    schema_data = json.load(f)
+                try:
+                    with open(schema_file, 'r', encoding='utf-8') as f:
+                        schema_data = json.load(f)
+                    
+                    # Use filename as schema name (without extension)
+                    schema_name = schema_file.stem
                     self.schemas[schema_name] = schema_data
-                logger.info(f"Loaded schema: {schema_name}")
-            
+                    logger.debug(f"Loaded schema: {schema_name}")
+                    
+                except Exception as e:
+                    logger.warning(f"Failed to load schema {schema_file}: {str(e)}")
         except Exception as e:
             logger.error(f"Error loading schemas: {str(e)}")
-    
+
     def get_schema_for_entity_type(self, entity_type):
         """
         Get the appropriate schema for a given entity type.
         
         Args:
             entity_type (str): Entity type (character, location, item, event)
-            
+
         Returns:
             dict: Schema data for the entity type
         """
         schema_name = f"{entity_type}_schema"
+        logger.debug(f"Looking for schema: {schema_name}")
+        
         if schema_name in self.schemas:
             return self.schemas[schema_name]
         
@@ -71,17 +78,25 @@ class SchemaValidator:
         if entity_type == "artifact" and "item_schema" in self.schemas:
             return self.schemas["item_schema"]
         
+        if entity_type == "weapon" and "item_schema" in self.schemas:
+            return self.schemas["item_schema"]
+        
+        # Try generic entity schema
+        if "entity_schema" in self.schemas:
+            logger.info(f"Using generic entity schema for {entity_type}")
+            return self.schemas["entity_schema"]
+        
         logger.warning(f"No schema found for entity type: {entity_type}")
         return None
-    
+
     def validate_entity(self, entity, entity_type=None):
         """
         Validate an entity against its schema.
-        
+
         Args:
             entity (dict): Entity data to validate
             entity_type (str, optional): Entity type. If None, determined from entity data
-            
+
         Returns:
             tuple: (is_valid, error_message)
         """
@@ -90,44 +105,44 @@ class SchemaValidator:
             entity_type = entity.get('type', '').lower()
             if not entity_type:
                 return False, "Entity has no type field"
-        
+
         # Get schema for this entity type
         schema = self.get_schema_for_entity_type(entity_type)
         if not schema:
             return False, f"No schema available for type: {entity_type}"
         
-        # Validate required fields
+        # Check required fields
         if 'required' in schema:
             for field in schema['required']:
                 if field not in entity:
                     return False, f"Missing required field: {field}"
         
-        # Validate field types
+        # Validate fields against schema
         if 'properties' in schema:
             for field, field_schema in schema['properties'].items():
                 if field in entity:
                     valid, error = self._validate_field(entity[field], field_schema, field)
                     if not valid:
                         return False, error
-        
+
         return True, None
-    
+
     def _validate_field(self, field_value, field_schema, field_name):
         """
         Validate a single field against its schema.
-        
+
         Args:
             field_value: Value of the field
             field_schema (dict): Schema for the field
             field_name (str): Name of the field
-            
+
         Returns:
             tuple: (is_valid, error_message)
         """
         # Check type
         if 'type' in field_schema:
             field_type = field_schema['type']
-            
+
             # Handle union types
             if isinstance(field_type, list):
                 valid_type = False
@@ -140,18 +155,18 @@ class SchemaValidator:
             else:
                 if not self._check_type(field_value, field_type):
                     return False, f"Field '{field_name}' with value '{field_value}' is not of type {field_type}"
-        
+
         # Check enum values
         if 'enum' in field_schema and field_value not in field_schema['enum']:
             return False, f"Field '{field_name}' with value '{field_value}' is not one of the allowed values: {field_schema['enum']}"
-        
+
         # Validate array items
         if field_schema.get('type') == 'array' and isinstance(field_value, list) and 'items' in field_schema:
             for i, item in enumerate(field_value):
                 valid, error = self._validate_field(item, field_schema['items'], f"{field_name}[{i}]")
                 if not valid:
                     return False, error
-        
+
         # Validate object properties
         if field_schema.get('type') == 'object' and isinstance(field_value, dict) and 'properties' in field_schema:
             for prop_name, prop_schema in field_schema['properties'].items():
@@ -159,17 +174,17 @@ class SchemaValidator:
                     valid, error = self._validate_field(field_value[prop_name], prop_schema, f"{field_name}.{prop_name}")
                     if not valid:
                         return False, error
-        
+
         return True, None
-    
+
     def _check_type(self, value, expected_type):
         """
         Check if a value matches the expected type.
-        
+
         Args:
             value: Value to check
             expected_type (str): Expected type name
-            
+
         Returns:
             bool: True if the value matches the expected type
         """
@@ -187,35 +202,35 @@ class SchemaValidator:
             return isinstance(value, dict)
         elif expected_type == 'null':
             return value is None
-        
+
         return False
-    
+
     def validate_file(self, file_path):
         """
         Validate a JSON file against its schema.
-        
+
         Args:
             file_path (str): Path to JSON file
-            
+
         Returns:
             tuple: (is_valid, error_message)
         """
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 entity = json.load(f)
-            
+
             return self.validate_entity(entity)
         except Exception as e:
             return False, f"Error validating file {file_path}: {str(e)}"
-    
+
     def validate_directory(self, directory, recursive=True):
         """
         Validate all JSON files in a directory.
-        
+
         Args:
             directory (str): Directory to validate
             recursive (bool): Whether to recursively validate subdirectories
-            
+
         Returns:
             dict: Validation results
         """
@@ -223,14 +238,14 @@ class SchemaValidator:
             'valid': [],
             'invalid': []
         }
-        
+
         directory = Path(directory)
-        
+
         # Find all JSON files
         pattern = '**/*.json' if recursive else '*.json'
         json_files = list(directory.glob(pattern))
         logger.info(f"Found {len(json_files)} JSON files in {directory}")
-        
+
         for json_file in json_files:
             valid, error = self.validate_file(json_file)
             if valid:
@@ -242,7 +257,7 @@ class SchemaValidator:
                     'error': error
                 })
                 logger.warning(f"Validation failed for {json_file}: {error}")
-        
+
         logger.info(f"Validation complete. Valid: {len(results['valid'])}, Invalid: {len(results['invalid'])}")
         return results
 
@@ -250,29 +265,33 @@ class SchemaValidator:
 def validate_entities(entity_dir, schema_dir, output_file=None):
     """
     Validate all entity files in a directory.
-    
+
     Args:
         entity_dir (str): Directory containing entity files
         schema_dir (str): Directory containing schema files
         output_file (str, optional): File to save validation results
-        
+
     Returns:
         dict: Validation results
     """
     validator = SchemaValidator(schema_dir)
     results = validator.validate_directory(entity_dir)
-    
+
     if output_file:
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=2)
         logger.info(f"Validation results saved to {output_file}")
-    
+
     return results
 
 
 if __name__ == "__main__":
-    entity_directory = os.path.join('processing', 'json_output')
-    schema_directory = os.path.join('processing', 'schemas')
-    output_file = os.path.join('processing', 'validation_results.json')
+    import argparse
     
-    validate_entities(entity_directory, schema_directory, output_file) 
+    parser = argparse.ArgumentParser(description="Validate entities against JSON schemas")
+    parser.add_argument("--entity-dir", default="processing/json_output", help="Directory containing entity files")
+    parser.add_argument("--schema-dir", default="processing/schemas", help="Directory containing schema files")
+    parser.add_argument("--output-file", default="processing/validation_results.json", help="File to save validation results")
+    args = parser.parse_args()
+    
+    validate_entities(args.entity_dir, args.schema_dir, args.output_file) 
