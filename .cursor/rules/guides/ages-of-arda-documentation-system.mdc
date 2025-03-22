@@ -1,4 +1,9 @@
 ---
+description: This directory contains the unified documentation system for the Ages of Arda project. The system provides a single source of truth for all documentation, which is then automatically compiled into multiple formats:
+globs: 
+alwaysApply: false
+---
+---
 title: "Ages of Arda Documentation System"
 glob: "**/*"
 priority: 500
@@ -63,7 +68,7 @@ This will start a local web server and watch for changes to documentation files,
 
 ## Writing Documentation
 
-All documentation should follow the [Documentation Standards](./docs/_source/development/guides/documentation-standards.md).
+All documentation should follow the [Documentation Standards](mdc:docs/_source/development/guides/documentation-standards.md).
 
 ### Basic Document Template
 

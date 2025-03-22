@@ -1,4 +1,9 @@
 ---
+description: The lore system will extend the existing documentation architecture to incorporate structured lore data extracted from Tolkien's works. The integration will be modular, allowing the documentation system to function independently while seamlessly incorporating lore content when available.
+globs: 
+alwaysApply: false
+---
+---
 title: "Lore System Integration Architecture"
 glob: "**/*.md"
 priority: 600

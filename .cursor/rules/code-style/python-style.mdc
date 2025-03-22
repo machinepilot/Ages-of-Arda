@@ -1,4 +1,9 @@
 ---
+description: 
+globs: **/*.py
+alwaysApply: false
+---
+---
 title: Python Code Style Guidelines
 glob: "**/*.py"
 priority: 800

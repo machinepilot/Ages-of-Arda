@@ -1,4 +1,9 @@
 ---
+description: 
+globs: 
+alwaysApply: true
+---
+---
 title: "Self-Healing Rules System"
 glob: "**/*"
 priority: 500

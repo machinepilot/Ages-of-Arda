@@ -1,8 +1,7 @@
 ---
-title: "Untitled Rule"
-glob: "**/*"
-priority: 500
-related: []
+description: 
+globs: **/src/mcp/**", "**/angband-doc-agent/**
+alwaysApply: false
 ---
 
 ---

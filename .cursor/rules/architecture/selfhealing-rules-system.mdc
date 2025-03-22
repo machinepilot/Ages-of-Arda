@@ -1,4 +1,9 @@
 ---
+description: This directory contains the self-healing component of the Ages of Arda Cursor rules system. This system automatically analyzes code errors and generates rule proposals to improve code quality over time.
+globs: 
+alwaysApply: false
+---
+---
 title: "Self-Healing Rules System"
 glob: "**/*"
 priority: 500

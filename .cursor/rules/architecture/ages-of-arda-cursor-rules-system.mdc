@@ -1,4 +1,9 @@
 ---
+description: This document provides a comprehensive guide to the Ages of Arda Cursor rules system - a sophisticated framework for maintaining code quality, consistency, and development standards across the project. This system is designed to make game development more efficient by providing context-aware guidance directly within your code editor.
+globs: 
+alwaysApply: false
+---
+---
 title: "Ages of Arda Cursor Rules System"
 glob: "**/*"
 priority: 500
@@ -12,16 +17,16 @@ This document provides a comprehensive guide to the Ages of Arda Cursor rules sy
 
 ## Table of Contents
 
-1. [Introduction for New Users](#introduction-for-new-users)
-2. [System Overview](#system-overview)
-3. [Directory Structure](#directory-structure)
-4. [Rule Categories](#rule-categories)
-5. [Getting Started](#getting-started)
-6. [Development Loop](#development-loop)
-7. [Self-Healing System](#self-healing-system)
-8. [Practical Implementation](#practical-implementation)
-9. [Advanced Topics](#advanced-topics)
-10. [Troubleshooting](#troubleshooting)
+1. [Introduction for New Users](mdc:#introduction-for-new-users)
+2. [System Overview](mdc:#system-overview)
+3. [Directory Structure](mdc:#directory-structure)
+4. [Rule Categories](mdc:#rule-categories)
+5. [Getting Started](mdc:#getting-started)
+6. [Development Loop](mdc:#development-loop)
+7. [Self-Healing System](mdc:#self-healing-system)
+8. [Practical Implementation](mdc:#practical-implementation)
+9. [Advanced Topics](mdc:#advanced-topics)
+10. [Troubleshooting](mdc:#troubleshooting)
 
 ## Introduction for New Users
 

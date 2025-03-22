@@ -1,4 +1,9 @@
 ---
+description: 
+globs: **/*.md,**/*.c,**/*.h
+alwaysApply: false
+---
+---
 title: "Documentation Standards"
 glob: "**/*.md,**/*.c,**/*.h"
 priority: 900

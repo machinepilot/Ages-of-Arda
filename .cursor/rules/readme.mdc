@@ -1,4 +1,9 @@
 ---
+description: This is the master rule file that coordinates all other rule files in the project. It is automatically loaded for all files and provides the foundation for our rule system.
+globs: 
+alwaysApply: false
+---
+---
 title: Ages of Arda Development Guidelines
 glob: "**"
 priority: 1000

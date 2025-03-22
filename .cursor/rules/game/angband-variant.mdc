@@ -1,10 +1,8 @@
 ---
-title: "Untitled Rule"
-glob: "**/*"
-priority: 500
-related: []
+description: 
+globs: **/src/**/*.c,**/src/**/*.h,**/include/**/*.h
+alwaysApply: false
 ---
-
 ---
 title: Angband Variant Development Rules
 glob: "**/src/**/*.c,**/src/**/*.h,**/include/**/*.h"

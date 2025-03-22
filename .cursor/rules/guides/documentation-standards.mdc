@@ -1,4 +1,9 @@
 ---
+description: 
+globs: 
+alwaysApply: false
+---
+---
 title: "Documentation Standards"
 glob: "**/*"
 priority: 500

@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  mcp-gateway:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=production
+      - OLLAMA_URL=http://ollama:11434
+      - MCP_PORT=8000
+      - MEMORY_PATH=/data/memory
+    volumes:
+      - memory-data:/data/memory
+    depends_on:
+      - ollama
+    restart: unless-stopped
+    
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama-models:/root/.ollama
+    ports:
+      - "11434:11434"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+volumes:
+  memory-data:
+  ollama-models: 

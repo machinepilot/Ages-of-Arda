@@ -1,4 +1,9 @@
 ---
+description: 
+globs: **/lore*.c,**/lore*.h,**/narrative*.c,**/narrative*.h
+alwaysApply: false
+---
+---
 title: "Lore Management System - Implementation"
 glob: "**/lore*.c,**/lore*.h,**/narrative*.c,**/narrative*.h"
 priority: 800
@@ -11,7 +16,7 @@ This document covers the technical implementation details of the Ages of Arda Lo
 
 ## Architecture
 
-![Lore Management Architecture](docs/images/lore-architecture.png)
+![Lore Management Architecture](mdc:docs/images/lore-architecture.png)
 
 The Lore Management System consists of the following components:
 

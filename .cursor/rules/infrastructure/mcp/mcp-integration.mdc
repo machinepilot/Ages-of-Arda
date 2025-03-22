@@ -1,13 +1,7 @@
 ---
 description: 
-globs: 
+globs: **/src/mcp/**", "**/angband-doc-agent/**
 alwaysApply: false
----
----
-title: "MCP Integration"
-glob: "**/*"
-priority: 500
-related: []
 ---
 
 ---

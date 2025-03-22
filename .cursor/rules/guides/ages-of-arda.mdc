@@ -1,4 +1,9 @@
 ---
+description: Ages of Arda uses a unified documentation system that provides a single source of truth for all project documentation. The system automatically generates:
+globs: 
+alwaysApply: false
+---
+---
 title: "Ages of Arda"
 glob: "**/*"
 priority: 500
@@ -32,7 +37,7 @@ To contribute to the documentation:
 2. Build the documentation locally to verify your changes
 3. Submit a pull request
 
-For full details, see the [Documentation Standards](docs/_source/development/guides/documentation-standards.md).
+For full details, see the [Documentation Standards](mdc:docs/_source/development/guides/documentation-standards.md).
 
 ### Building Locally
 
@@ -51,12 +56,12 @@ npm run docs:dev
 
 ### For Players
 
-See the [Quick Start Guide](docs/_source/gameplay/guides/quick-start.md) for installation and gameplay instructions.
+See the [Quick Start Guide](mdc:docs/_source/gameplay/guides/quick-start.md) for installation and gameplay instructions.
 
 ### For Developers
 
-See the [Development Guide](docs/_source/development/guides/getting-started.md) to set up your development environment.
+See the [Development Guide](mdc:docs/_source/development/guides/getting-started.md) to set up your development environment.
 
 ## License
 
-GNU General Public License v3.0 - See [LICENSE](LICENSE) for details.  
+GNU General Public License v3.0 - See [LICENSE](mdc:LICENSE) for details.  

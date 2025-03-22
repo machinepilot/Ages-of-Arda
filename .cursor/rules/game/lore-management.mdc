@@ -1,10 +1,8 @@
 ---
-title: "Untitled Rule"
-glob: "**/*"
-priority: 500
-related: []
+description: 
+globs: **/lore/**,**/world/**,**/data/lore/**
+alwaysApply: false
 ---
-
 ---
 title: Lore Management Guidelines
 glob: "**/lore/**,**/world/**,**/data/lore/**"

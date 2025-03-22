@@ -1,4 +1,9 @@
 ---
+description: This guide explains how to add or modify documentation in the Ages of Arda documentation system. Follow these steps to ensure your contributions integrate smoothly with our unified documentation system.
+globs: 
+alwaysApply: false
+---
+---
 title: "Documentation Contribution Guide"
 glob: "**/*.md"
 priority: 700
@@ -125,7 +130,7 @@ After building:
 1. Numbered list item
 2. Another numbered item
 
-[Link text](URL)
+[Link text](mdc:URL)
 ```
 
 ### Code Blocks
@@ -152,7 +157,7 @@ int main() {
 ### Images
 
 ```markdown
-![Alt text](path/to/image.png "Optional title")
+![Alt text](mdc:path/to/image.png "Optional title")
 ```
 
 ## Common Issues and Solutions
@@ -161,8 +166,8 @@ int main() {
 
 When referencing other documents or assets, use relative paths:
 
-- For links to other documentation: `[Link text](../category/file-name.html)`
-- For images in the wiki: `![Alt text](../images/image-name.png)`
+- For links to other documentation: `[Link text](mdc:../category/file-name.html)`
+- For images in the wiki: `![Alt text](mdc:../images/image-name.png)`
 
 ### Frontmatter Validation
 

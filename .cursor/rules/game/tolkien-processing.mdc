@@ -1,4 +1,9 @@
 ---
+description: This document outlines the principles and practices for processing Tolkien's works and extracting structured data for the Ages of Arda project.
+globs: 
+alwaysApply: false
+---
+---
 title: Tolkien ePub Processing Guidelines
 glob: "**/processing/**/*.py"
 priority: 750
