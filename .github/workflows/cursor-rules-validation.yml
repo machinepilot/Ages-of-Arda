@@ -1,0 +1,40 @@
+name: Cursor Rules Validation
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  validate-cursor-rules:
+    runs-on: windows-latest  # Using Windows runner for better compatibility
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install cryptography pyyaml
+      
+      - name: Validate Rule Files
+        run: |
+          python .cursor\rules\infrastructure\validate-rules.py --ci
+        shell: pwsh
+      
+      - name: Check Rule Conflicts
+        run: |
+          python .cursor\rules\infrastructure\check-rule-conflicts.py
+        shell: pwsh
+      
+      - name: Upload Validation Report
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: cursor-rules-validation-report
+          path: validation-report.md
