@@ -1,0 +1,43 @@
+name: Cursor Rules Testing
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run daily at midnight
+  workflow_dispatch:      # Allow manual triggering
+
+jobs:
+  test-cursor-rules:
+    runs-on: windows-latest  # Using Windows runner
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install cryptography pyyaml requests
+        shell: pwsh
+      
+      - name: Set up MCP credentials
+        env:
+          BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+        run: |
+          python .cursor\rules\infrastructure\ci-setup-credentials.py
+        shell: pwsh
+      
+      - name: Run Rule Tests
+        run: |
+          .\.cursor\rules\integration\test-framework.ps1 -GenerateReport
+        shell: pwsh
+      
+      - name: Upload Test Report
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: cursor-rules-test-report
+          path: test-reports\cursor-rules-tests.md
