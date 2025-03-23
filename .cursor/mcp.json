@@ -1,0 +1,47 @@
+{
+  "mcpServer": {
+    "sequentialThinking": {
+      "enabled": true,
+      "configuration": {
+        "defaultSteps": 5,
+        "maxDepth": 10
+      }
+    },
+    "braveSearch": {
+      "enabled": true,
+      "configuration": {
+        "apiKey": "BSAYiKe_2UoLNrInbF7glbbfOxpOXgH",
+        "defaultCount": 20,
+        "countLimit": 50
+      }
+    },
+    "tavily": {
+      "enabled": true,
+      "configuration": {
+        "apiKey": "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",
+        "searchDepth": "advanced"
+      }
+    },
+    "fetch": {
+      "enabled": true,
+      "configuration": {
+        "timeout": 30000,
+        "maxRetries": 3
+      }
+    },
+    "puppeteer": {
+      "enabled": false,
+      "configuration": {
+        "headless": true,
+        "userApprovalRequired": true
+      }
+    },
+    "memoryGraph": {
+      "enabled": true,
+      "configuration": {
+        "storageLocation": ".memory-bank/knowledge-graph",
+        "persistenceEnabled": true
+      }
+    }
+  }
+} 

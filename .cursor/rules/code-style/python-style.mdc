@@ -1,5 +1,5 @@
 ---
-description: 
+description: "Python style guide for the Ages of Arda project, focusing on consistent formatting, documentation, and best practices for Python code."
 globs: **/*.py
 alwaysApply: false
 ---

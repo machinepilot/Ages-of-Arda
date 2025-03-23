@@ -1,12 +1,14 @@
 ---
-description: This is the master rule file that coordinates all other rule files in the project. It is automatically loaded for all files and provides the foundation for our rule system.
+description: 
 globs: 
 alwaysApply: false
 ---
 ---
-title: Ages of Arda Development Guidelines
+title: "Ages of Arda Development Guidelines"
+description: "This is the master rule file that coordinates all other rule files in the project. It is automatically loaded for all files and provides the foundation for our rule system."
 glob: "**"
 priority: 1000
+alwaysApply: true
 ---
 
 # Ages of Arda Development Guidelines
@@ -28,6 +30,7 @@ Our rules are organized into logical categories:
 │   └── multi-agent.mdc        # Multi-agent systems
 ├── code-style/                # Programming standards
 │   ├── c-style.mdc            # C language style
+│   ├── c-style-enhanced.mdc   # Enhanced C style guide
 │   └── html.mdc               # HTML formatting
 ├── game/                      # Game mechanics
 │   ├── angband-variant.mdc    # Angband variant development
@@ -35,10 +38,19 @@ Our rules are organized into logical categories:
 │   └── memory-bank.mdc        # Memory management
 ├── infrastructure/            # Development infrastructure
 │   ├── github-standards.mdc   # GitHub workflow
+│   ├── directory_creation.mdc # Cross-platform directory creation
 │   └── netlify.mdc            # Netlify deployment
-└── mcp/                       # Model Context Protocol
-    ├── mcp-integration.mdc    # MCP integration
-    └── mcp-server.mdc         # MCP server configuration
+├── mcp/                       # Model Context Protocol
+│   ├── mcp-integration.mdc    # MCP integration
+│   ├── mcp-server.mdc         # MCP server configuration
+│   └── tool-usage.mdc         # MCP tool usage guidelines
+├── memory/                    # Memory and knowledge management
+│   └── memory-management.mdc  # Memory management protocol
+├── research/                  # Research methodologies
+│   └── research-protocol.mdc  # Research protocol for Tolkien content
+└── self-healing/              # Self-healing rules system
+    ├── README.md              # Self-healing system overview
+    └── improvement-protocol.mdc # Self-healing improvement protocol
 ```
 
 ## Rule Categories
@@ -49,6 +61,9 @@ Our rules are organized into logical categories:
 - **Infrastructure**: Deployment, builds, and repository management
 - **MCP**: Model Context Protocol integration and configuration
 - **Lore**: Story and world-building for the Ages of Arda universe
+- **Memory**: Knowledge graph and memory management
+- **Research**: Structured research methodologies for Tolkien content
+- **Self-Healing**: Automated error detection and rule generation
 
 ## Automated Rule Selection Logic
 
@@ -56,8 +71,10 @@ This rule system uses glob patterns and priorities to automatically load the app
 
 ### Priority Levels
 - **1000-900**: Master rules (always loaded)
-- **899-700**: Domain rules (language/technology specific)
-- **699-500**: Feature rules (feature-specific guidelines)
+- **899-800**: Code style and standards
+- **799-700**: Domain rules (language/technology specific)
+- **699-600**: MCP and tool integration
+- **599-500**: Feature rules (feature-specific guidelines)
 - **499-300**: Specialized rules (very specific contexts)
 - **299-100**: Optional rules (guidelines that may not always apply)
 
@@ -65,6 +82,7 @@ This rule system uses glob patterns and priorities to automatically load the app
 - C source files (`**/*.c`) → Load C style guidelines
 - AI components (`**/ai/**`) → Load AI gameplay rules
 - MCP integration (`**/mcp/**`) → Load MCP integration guidelines
+- Research files (`**/processing/**`) → Load research protocol
 
 ## How to Use These Rules
 
@@ -73,6 +91,29 @@ When working in this codebase, the appropriate rules will be automatically loade
 1. File path and name matching via glob patterns
 2. Rule priority (higher priority rules are applied first)
 3. Explicit relationships between rules
+
+## Tool Integration
+
+### MCP Tools Integration
+The project now includes comprehensive integration with MCP tools:
+
+1. **Sequential Thinking**: Used for complex problem solving and debugging
+2. **Brave Search**: Used for general research and documentation lookup
+3. **Tavily Search**: Used for deep technical research and verification
+4. **Fetch**: Used for retrieving documentation from known sources
+5. **Puppeteer**: Used for interactive web exploration with user approval
+6. **Knowledge Graph**: Used for persistent storage of project knowledge
+
+Configuration for these tools is maintained in `.cursor/mcp.json`.
+
+## Research Methodology
+
+The project now includes a structured research protocol for Tolkien content:
+
+1. **Initial Engagement**: Define objectives and source materials
+2. **Research Planning**: Identify themes and outline research approach
+3. **Research Cycles**: Systematic analysis and deep investigation
+4. **Final Documentation**: Standard documentation format with knowledge development
 
 ## Adding New Rules
 
@@ -107,6 +148,8 @@ This directory contains rules and automation scripts for the Ages of Arda projec
 │   ├── verify_directories.sh   # Bash directory verification script
 │   └── init.ps1                # Initialization script that runs at startup
 ├── mcp/               # Model Context Protocol rules
+├── memory/            # Memory and knowledge management
+├── research/          # Research methodologies
 └── self-healing/      # Rules for self-correcting systems
 ```
 
@@ -119,6 +162,10 @@ The following rules must be followed by all developers:
 2. **Code Style Guidelines**: Follow project-specific code style rules defined in the `code-style/` directory.
 
 3. **MCP Integration**: Follow the Model Context Protocol rules defined in the `mcp/` directory for AI integration.
+
+4. **Research Protocol**: Follow the structured research methodology for Tolkien content in the `research/` directory.
+
+5. **Memory Management**: Follow memory and knowledge graph management protocols in the `memory/` directory.
 
 ## Automated Checking
 

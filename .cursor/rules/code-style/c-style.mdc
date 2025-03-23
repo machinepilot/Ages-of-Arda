@@ -1,5 +1,5 @@
 ---
-description: 
+description: "C language style guidelines for the Ages of Arda project, providing consistent coding standards for C source code."
 globs: **/*.c,**/*.h
 alwaysApply: false
 ---
